@@ -2,7 +2,8 @@ import View from "./View.js";
 
 class LoginView extends View{    
     /**
-    * @param {Element} el
+    * @constructor
+    * @param {HTMLElement} el
     */
     constructor(el){
         super();
@@ -15,7 +16,9 @@ class LoginView extends View{
         // Click Event
         this.el.addEventListener('click', this.onClick)
     }
+    //Inner Event
     /**
+     * @event
      * @param {CustomEvent} e
      */
     onClick(e){

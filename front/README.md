@@ -70,3 +70,12 @@ Commit Log
             + created App
             + creating View(Login)
             + creating Controller(default)
+    + 1.1.1
+        + created Model(DataCollector.js)
+            + tested Fetch in LocalHost using LocalCom
+            + Improved CSS Design
+        + created BoardView(Board.js)
+            + BoardView is base for other Question/Answer Board
+            + Imporved jsdoc
+        + "Warning!!"
+            + delete Test Model(LocalCom.js / App) later...
