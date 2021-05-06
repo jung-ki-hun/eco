@@ -62,14 +62,17 @@ Commit Log
         + created workspace 'front'
         + created html 'question_board'
         + created html 'answer_board'
+   
     + 1.0.2
         + creted folders for MVC
         + updated README.md
+   
     + 1.1.0
         + created Page(default)
             + created App
             + creating View(Login)
             + creating Controller(default)
+   
     + 1.1.1
         + created Model(DataCollector.js)
             + tested Fetch in LocalHost using LocalCom            
@@ -78,13 +81,17 @@ Commit Log
             + Improved jsdoc
         + "Warning!!"
             + delete Test Model(LocalCom.js / App) later...
+   
     + 1.2.0
-        + renameed LoginView.js -> HeaderView.js
+        + renamed LoginView.js -> HeaderView.js
         + created InnerView.js
             + This is page area.
         + Improved HeaderView.js
         + created PageModel.js
             + this make page to other page
         + Improved DefaultController.js
-        + Imporved jsdoc
+        + Improved jsdoc
         + Deleted Test Model(LocalCom.js / App)...
+
+    + 1.2.1
+        + Improved READMD.md
