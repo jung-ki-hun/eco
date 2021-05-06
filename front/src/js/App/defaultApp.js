@@ -1,3 +1,3 @@
-import controller from "../default/Controller/defaultController.js"
+import Controller from "../default/Controller/DefaultController.js"
 
-controller.start();
+const controller = new Controller();

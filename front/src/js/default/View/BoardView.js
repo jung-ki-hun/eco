@@ -1,5 +1,9 @@
 import View from "./View.js";
 
+/**
+ * 게시판 관리 View  
+ * @class
+ */
 class Board extends View{
     /**
      * @type {String}
@@ -15,9 +19,9 @@ class Board extends View{
         this.rowSpec = rowSpecifier;
         this.setup(el);
         if(this.isElement())
-            this.bindEvent();
+            this.bindEvents();
     }
-    bindEvent(){
+    bindEvents(){
         //Click Event
         this.el.addEventListener('click', this.onClick)
     }

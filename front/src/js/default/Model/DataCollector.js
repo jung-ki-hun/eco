@@ -1,3 +1,7 @@
+/**
+ * 데이터 송수신 Model Class
+ * @class
+ */
 class DataCollecter{
     /**     
      * Destination URL.
@@ -22,15 +26,25 @@ class DataCollecter{
      * @constructor
      * @param {String} url 
      */
-    constructor(url){
+    constructor(url = ""){
+        this.setURL(url);
+    }
+    /**
+     * Set URL for Communication. Return Success or not;
+     * @param {*} url 
+     * @returns {Boolean}
+     */
+    setURL(url){
         if(url.length != 0){
             this.urlpath = url;
             this.canMessage = true;
+            return true;
         }            
         else{
             console.log("Error not right URL!!");
             this.canMessage = false;
-        }            
+            return false;
+        } 
     }
     /**     
      * @param {RequestInit} resInit 
@@ -59,7 +73,7 @@ class DataCollecter{
      * @param {Response} res
      */
     fetchCallBack(res){                
-        if(res.status == 200 || res.status == 201){            
+        if(res.status != 404){            
             res.text().then(this.onGet);
             this.errorDuplicated = 0;
         }else{                        

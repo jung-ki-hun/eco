@@ -72,10 +72,19 @@ Commit Log
             + creating Controller(default)
     + 1.1.1
         + created Model(DataCollector.js)
-            + tested Fetch in LocalHost using LocalCom
-            + Improved CSS Design
+            + tested Fetch in LocalHost using LocalCom            
         + created BoardView(Board.js)
             + BoardView is base for other Question/Answer Board
-            + Imporved jsdoc
+            + Improved jsdoc
         + "Warning!!"
             + delete Test Model(LocalCom.js / App) later...
+    + 1.2.0
+        + renameed LoginView.js -> HeaderView.js
+        + created InnerView.js
+            + This is page area.
+        + Improved HeaderView.js
+        + created PageModel.js
+            + this make page to other page
+        + Improved DefaultController.js
+        + Imporved jsdoc
+        + Deleted Test Model(LocalCom.js / App)...
