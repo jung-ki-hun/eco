@@ -1,4 +1,4 @@
-import View from "./View.js";
+import View from "../../_origin/View.js";
 
 /**
  * 게시판 관리 View  
@@ -15,11 +15,12 @@ class Board extends View{
      * @param {String} rowSpecifier
      */
     constructor(el, rowSpecifier){
-        super();
+        super("BoardView");
         this.rowSpec = rowSpecifier;
         this.setup(el);
-        if(this.isElement())
+        if(this.isElement()){
             this.bindEvents();
+        }            
     }
     bindEvents(){
         //Click Event

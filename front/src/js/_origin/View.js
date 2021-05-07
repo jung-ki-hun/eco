@@ -7,26 +7,26 @@ class View{
     /**
      * @type {String}
      */
-    v_name = "Default View";
+    v_name = "";
     /**
      * @type {HTMLElement}
      */
-    el;
+    el = null;
     /**
      * @constructor
      * @param {String} viewName
      */
     constructor(viewName = ""){
         if(viewName.length > 0)
-            this.v_name = viewName        
+            this.v_name = "["+viewName+"]";
     }
     /**     
      * Element 등록
      * @param {HTMLElement} el      
      */
-    setup = function(el){        
+    setup(el){        
         if(!el){
-            console.log(this.v_name + "No Element!")
+            this.push("No Element!");
             return;
         }else{
             this.el = el                        
@@ -38,7 +38,7 @@ class View{
      * @param {*} data 
      * @returns {ThisType}
      */
-    emit = function(name, data){
+    emit(name, data){
         let evt = new CustomEvent(name, {detail:data})
         this.el.dispatchEvent(evt)                
         return this
@@ -49,7 +49,7 @@ class View{
      * @param {Function} fn 
      * @returns {ThisType}
      */
-    hear = function(evt, fn){        
+    hear(evt, fn){        
         this.el.addEventListener(evt, fn)
         return this     
     }
@@ -57,7 +57,7 @@ class View{
      * 등록된 Element가 있는지 확인
      * @returns {Boolean}
      */
-    isElement = function(){
+    isElement(){
         if(this.el) return true;
         else false;
     }
@@ -65,8 +65,15 @@ class View{
      * Element안의 요소 가져오기
      * @param {String} specifier 
      */
-    get = function(specifier){        
+    get(specifier){        
         return this.el.querySelector(specifier)
+    }
+    /**
+     * Alert Something using Console...
+     * @param {String} content 
+     */
+    push(content){        
+        console.log(this.v_name+ " - " + content);
     }
 }
 

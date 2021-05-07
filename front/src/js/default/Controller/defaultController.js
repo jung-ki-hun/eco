@@ -1,3 +1,5 @@
+//Import Controller
+import Controller from "../../_origin/Controller.js";
 // Import Models
 import PageModel from "../Model/PageModel.js";
 // Import Views
@@ -6,7 +8,7 @@ import InnerView from "../View/InnerView.js";
 import ScrollView from "../View/ScrollView.js";
 import LandingView from "../View/LandingView.js";
 
-class Controller {
+class DefaultController extends Controller {
 /* Views */
     /**
      * @type {LoginView}
@@ -37,7 +39,8 @@ class Controller {
     /**
      * @constructor
      */
-    constructor(){                
+    constructor(){  
+        super("DefaultController");
         //Views
         this.headerView = new HeaderView(this.get("header.top"));
         this.innerView = new InnerView(this.get("div.middle .inner"));        
@@ -45,21 +48,12 @@ class Controller {
         this.landingView = new LandingView(this.get(".landingWrapper"));
         //Models
         this.pageModel = new PageModel();                
-
         //Variables
-        this.contentEl = this.get(".contentWrapper");
-
+        this.contentEl = this.get(".contentWrapper");        
         //Binding
         this.landingView.hear("@click", (e)=>this.onLandingClick(e));
         this.headerView.hear("@click", (e)=>this.onControllerClick(e));
         this.pageModel.onGet = (text)=>this.onGetData(text);
-    }
-    /**
-     * @param {string} specifier 
-     * @returns {HTMLElement}
-     */
-    get(specifier){        
-        return document.querySelector(specifier);
     }    
     /**     
      * @param {CustomEvent} e 
@@ -77,4 +71,4 @@ class Controller {
     }
 }
 
-export default Controller;
+export default DefaultController;

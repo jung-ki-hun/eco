@@ -1,4 +1,4 @@
-import View from "./View.js";
+import View from "../../_origin/View.js";
 
 /**
  * Landing View 관리
@@ -10,7 +10,7 @@ class LandingView extends View{
      * @param {HTMLElement} el 
      */
     constructor(el){
-        super();
+        super("LandingView");
         this.setup(el);
         if(this.isElement()){
             this.bindEvents();

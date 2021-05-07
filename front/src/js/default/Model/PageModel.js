@@ -1,10 +1,10 @@
-import DataCollecter from "./DataCollector.js"
+import Model from "../../_origin/Model.js"
 
 /**
  * HTML를 받아오는 Model
  * @class
  */
-class PageModel extends DataCollecter{    
+class PageModel extends Model{    
     /**
      * @constructor
      */

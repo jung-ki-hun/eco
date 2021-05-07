@@ -1,4 +1,4 @@
-import View from "./View.js";
+import View from "../../_origin/View.js";
 
 /**
  * Controller(Logo, Login, Logout) 관리하는 View
@@ -23,7 +23,7 @@ class HeaderView extends View{
     * @param {HTMLElement} el
     */
     constructor(el){
-        super();
+        super("HeaderView");
         this.setup(el);
         if(this.isElement()){                        
             this.loginEl = this.get(".login");

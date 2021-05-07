@@ -112,3 +112,19 @@ Commit Log
         + deleted Scrollbar(default)
             + replaced Special ScrollBar(ScrollView.js)
         + Improved CSS Design & HTML Structure
+       
+    + 1.3.1
+        + created _origin
+            + For super(parent Class)
+                + View.js
+                + Model.js
+                + Controller.js
+        + Improved View & Model & Controller
+            + added Function
+                + push(content) - display 'content' in console.
+                + get(specifier) - get HTMLElement in Document using 'specifier'. (Only Controller)
+        + created MVC Folder
+            + Login MVC(.js)
+                + LoginModel
+                + LoginView
+                + LoginController

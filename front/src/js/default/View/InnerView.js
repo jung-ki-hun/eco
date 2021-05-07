@@ -1,4 +1,4 @@
-import View from "./View.js";
+import View from "../../_origin/View.js";
 
 /**
  * @class

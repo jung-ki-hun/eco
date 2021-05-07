@@ -2,7 +2,12 @@
  * 데이터 송수신 Model Class
  * @class
  */
-class DataCollecter{
+class Model{
+    /**
+     * Model Name
+     * @type {String}
+     */
+    m_name = "";
     /**     
      * Destination URL.
      * @type {String}
@@ -24,9 +29,11 @@ class DataCollecter{
     fetchSetting = null;
     /**
      * @constructor
+     * @param {String} name
      * @param {String} url 
      */
-    constructor(url = ""){
+    constructor(name, url = ""){
+        this.m_name = "["+name+"]";
         this.setURL(url);
     }
     /**
@@ -41,7 +48,7 @@ class DataCollecter{
             return true;
         }            
         else{
-            console.log("Error not right URL!!");
+            this.push("Error not right URL!!");
             this.canMessage = false;
             return false;
         } 
@@ -64,7 +71,7 @@ class DataCollecter{
             }
         }            
         else{
-            console.log("Error you can't message!");
+            this.push("Error you can't message!");
         }            
     }
     /**
@@ -77,11 +84,11 @@ class DataCollecter{
             res.text().then(this.onGet);
             this.errorDuplicated = 0;
         }else{                        
-            console.log("Not good Conversation!");            
+            this.push("Error Not Good Communication...");
             this.errorDuplicated++;
             if(this.errorDuplicated >= 3){
                 this.canMessage = false;
-                console.log("Refresh Page.");
+                this.push("Error Duplicated(3 times), Refresh page...");
             }
         }
     }
@@ -92,6 +99,13 @@ class DataCollecter{
     onGet(text){
         
     }
+    /**
+     * Alert Something using Console...
+     * @param {String} content
+     */
+    push(content){
+        console.log(this.m_name + " - " + content)
+    }
 }
 
-export default DataCollecter;
+export default Model;

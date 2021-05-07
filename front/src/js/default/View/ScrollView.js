@@ -1,4 +1,4 @@
-import View from "./View.js";
+import View from "../../_origin/View.js";
 
 /**
  * Scroll 관리
@@ -41,14 +41,14 @@ class ScrollView extends View{
      * @param {number} scrollHeight
      */
     constructor(el, multiple){
-        super();        
+        super("ScrollView");        
         this.setup(el);
         if(this.isElement()){
             this.scrollingData.multiple = multiple;             
             this.resetScreenData();
             this.bindEvents();
         }else{
-            console.log("Error no document");
+            this.push("Error no document");
         }            
     }
     bindEvents(){
@@ -104,8 +104,7 @@ class ScrollView extends View{
         if(document.body.scrollTop >= position){            
             cancelAnimationFrame(this.scrollingData.scrollStatus);
         }else{
-            document.body.scrollTop += (delta * this.scrollingData.multiple);
-            console.log("ss")
+            document.body.scrollTop += (delta * this.scrollingData.multiple);            
             requestAnimationFrame(()=>this.setScroll(position,delta));
         }
     }
