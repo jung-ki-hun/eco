@@ -3,6 +3,7 @@ import PageModel from "../Model/PageModel.js";
 // Import Views
 import HeaderView from "../View/HeaderView.js";
 import InnerView from "../View/InnerView.js";
+import ScrollView from "../View/ScrollView.js";
 
 class Controller {
 /* Views */
@@ -14,11 +15,15 @@ class Controller {
      * @type {InnerView}
      */
     innerView = null
+    /**
+     * @type {ScrollView}
+     */
+    scrollView = null
 /* Models */
     /**
      * @type {PageModel}
      */
-     pageModel = null
+    pageModel = null
     /**
      * @constructor
      */
@@ -26,6 +31,7 @@ class Controller {
         //Views
         this.headerView = new HeaderView(this.get("header.top"));
         this.innerView = new InnerView(this.get("div.middle .inner"));        
+        this.scrollView = new ScrollView(window);
         //Models
         this.pageModel = new PageModel();                
 
