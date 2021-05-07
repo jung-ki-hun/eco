@@ -128,3 +128,6 @@ Commit Log
                 + LoginModel
                 + LoginView
                 + LoginController
+
+    + 1.3.2
+        + Improved JS File Structure

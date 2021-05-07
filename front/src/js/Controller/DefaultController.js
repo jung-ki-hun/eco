@@ -1,12 +1,12 @@
 //Import Controller
-import Controller from "../../_origin/Controller.js";
+import Controller from "../_origin/Controller.js";
 // Import Models
-import PageModel from "../Model/PageModel.js";
+import PageModel from "../default/Model/PageModel.js";
 // Import Views
-import HeaderView from "../View/HeaderView.js";
-import InnerView from "../View/InnerView.js";
-import ScrollView from "../View/ScrollView.js";
-import LandingView from "../View/LandingView.js";
+import HeaderView from "../default/View/HeaderView.js";
+import InnerView from "../default/View/InnerView.js";
+import ScrollView from "../default/View/ScrollView.js";
+import LandingView from "../default/View/LandingView.js";
 
 class DefaultController extends Controller {
 /* Views */

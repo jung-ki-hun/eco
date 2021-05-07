@@ -1,8 +1,8 @@
-import Controller from "../../_origin/Controller.js";
+import Controller from "../_origin/Controller.js";
 //Import Models
-import LoginModel from "../Model/LoginModel.js";
+import LoginModel from "../login/Model/LoginModel.js";
 //Import Views
-import LoginView from "../View/LoginView.js";
+import LoginView from "../login/View/LoginView.js";
 
 class LoginController extends Controller{
 /* Views */

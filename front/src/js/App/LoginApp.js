@@ -1,3 +1,3 @@
-import Controller from "../login/Controller/LoginController.js";
+import Controller from "../Controller/LoginController.js";
 
 const controller = new Controller();
