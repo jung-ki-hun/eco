@@ -24,14 +24,27 @@ class ScrollView extends View{
         rate : 0
     }
     /**
+     * @typedef {Object} ScrollingData
+     * @property {number} scrollStatus
+     * @property {number} multiple
+     */
+    /**
+     * @type {ScrollingData}
+     */
+    scrollingData = {
+        scrollStatus : null,
+        multiple : 5
+    }    
+    /**
      * @constructor
      * @param {HTMLElement} el
+     * @param {number} scrollHeight
      */
-    constructor(el){
+    constructor(el, multiple){
         super();        
         this.setup(el);
         if(this.isElement()){
-            console.log(this.el)
+            this.scrollingData.multiple = multiple;             
             this.resetScreenData();
             this.bindEvents();
         }else{
@@ -40,10 +53,9 @@ class ScrollView extends View{
     }
     bindEvents(){
         //Scroll Event
-        this.el.addEventListener('scroll', ()=>console.log("ss"))
-        // document.addEventListener("scroll", ()=>console.log("ds"));
+        document.body.addEventListener('scroll', ()=>this.onScroll())        
         //Resize Event
-        // window.addEventListener("resize", ()=>this.onResize());
+        window.addEventListener("resize", ()=>this.onResize());
     }
     /**
      * @event     
@@ -51,15 +63,51 @@ class ScrollView extends View{
     onResize(){
         this.resetScreenData();
     }
-    onScroll(){
-        console.log("htllo");
+    onScroll(){        
+        this.calculatePosition();        
+        this.placeScrollbar();
+    }
+    resetScreenData(){        
+        this.screenData.screenHeight = window.innerHeight;
+        this.screenData.totalHeight = document.body.scrollHeight - this.screenData.screenHeight;        
+        this.onScroll();
+    }
+    calculatePosition(){
         this.screenData.previousHeight = this.screenData.currentHeight;
         this.screenData.currentHeight = document.body.scrollTop;                
+        this.screenData.rate = (this.screenData.currentHeight / this.screenData.totalHeight * 100).toFixed(2);
     }
-    resetScreenData(){
-        this.screenData.screenHeight = window.innerHeight;
-        this.screenData.totalHeight = document.body.scrollHeight;
-        this.onScroll();        
+    placeScrollbar(){       
+        this.el.style.height = (this.screenData.rate/100*this.screenData.screenHeight).toFixed(2)+"px";
+    }
+    /**
+     * Scroll 이동
+     * @param {number} position 
+     */
+    goTo(position){
+        if(!this.scrollingData.scrollStatus){
+            cancelAnimationFrame(this.scrollingData.scrollStatus);
+        }            
+        let delta = 0;
+        if(this.screenData.currentHeight < position){
+            delta = 1;
+        }else{
+            delta = -1;
+        }
+        this.scrollingData.scrollStatus = requestAnimationFrame(()=>this.setScroll(position,delta));
+    }
+    /**     
+     * @param {number} position 
+     * @param {number} delta 
+     */
+    setScroll(position, delta){        
+        if(document.body.scrollTop >= position){            
+            cancelAnimationFrame(this.scrollingData.scrollStatus);
+        }else{
+            document.body.scrollTop += (delta * this.scrollingData.multiple);
+            console.log("ss")
+            requestAnimationFrame(()=>this.setScroll(position,delta));
+        }
     }
 }
 

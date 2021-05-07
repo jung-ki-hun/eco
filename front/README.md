@@ -95,3 +95,20 @@ Commit Log
 
     + 1.2.1
         + Improved READMD.md
+   
+    + 1.3.0
+        + created View(ScrollView.js)
+            + saved data about Scroll
+                + totalHeight
+                + screenHeight
+                + currentScroll(=Height)
+            + controll Scrollbar
+                + displayed Special Scrollbar
+                + go to position
+        + created View(LandingView.js)
+            + registered Event(@click)
+                + scroll to contentWrapper
+            + will register other Event
+        + deleted Scrollbar(default)
+            + replaced Special ScrollBar(ScrollView.js)
+        + Improved CSS Design & HTML Structure
