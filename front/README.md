@@ -137,7 +137,14 @@ Commit Log
             + View.js Condition Error - get()
         + Improved Scrollbar
             + changed ScreenData Structure
+                + deleted currentHeight
+                + deleted previousHeight
+                + deleted rate
             + changed ScrollingData Structure
+                + added currentPosition
+                + added previousPosition
+                + added rate
+                + added direction
         + Improve CSS
             + About HeaderView
             + About InnerView
@@ -147,3 +154,6 @@ Commit Log
                 + merged Logo Style(Big/Small) to Inner
         + created folder(login)
             + created Login CSS
+   
+    + 1.4.1
+        + Improved READMD.md
