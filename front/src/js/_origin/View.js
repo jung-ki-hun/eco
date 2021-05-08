@@ -66,7 +66,7 @@ class View{
      * @param {String} specifier 
      */
     get(specifier){        
-        return this.el.querySelector(specifier)
+        return this.el.querySelector(specifier);
     }
     /**
      * Alert Something using Console...

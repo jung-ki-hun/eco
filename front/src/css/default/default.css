@@ -6,17 +6,23 @@
     --bgColor-default: rgba(255,255,255,1);
     --fontColor-default: rgba(0,0,0,1);
     --fontColor-drag: rgba(255,255,255);
-    --bgColor-drag:rgba(255,0,0,0.8);
+    --bgColor-drag:rgba(133, 255, 133, 0.8);
     /* header setting */
     --header-whole-min-height:3em;
-    --header-bgColor:rgba(0,255,255,1);
+    --header-bgColor:rgba(255, 255, 255, 0.7);
     --header-fontColor:rgba(0,0,0,1);
     --header-items-margin-lr:1em;
     --header-items-margin-ud:0.5em;
+    --header-transition-duration: 0.5s;
     /* footer setting */
     --footer-whole-min-height:3em;
     --footer-bgColor:rgba(0,0,0,1);
     --footer-fontColor:rgba(255,255,255,1);
+    /* middel inner */
+    --middle-inner-margin-top:3em;
+    --middle-inner-bgColor:rgba(255,255,255,0.6);
+    --middle-inner-padding:2em;    
+    --middle-inner-border-radius:1em;
 }
 /* drag Color */
 ::-moz-selection{
@@ -57,6 +63,7 @@ body::-webkit-scrollbar{
     border-radius: 7px;
     background-color:rgb(255, 255, 255,0.7);
 }
+
 /* wrappers */
 
 .wholeWrapper{
@@ -88,11 +95,17 @@ header.top{
     position:fixed;
     top:0px;
     left:0px;
-    width:100%;    
+    width:100%;   
+    background-color:var(--header-bgColor);
     min-height: var(--header-whole-min-height);    
     justify-content: space-between;
     align-items: center;
-    color:var(--header-fontColor);    
+    color:var(--header-fontColor);
+    transition:all var(--header-transition-duration); 
+}
+
+header.top.hide{
+    top:calc(-1*var(--header-whole-min-height));
 }
 
 header.top > div{
@@ -130,9 +143,24 @@ header.top .controller .logout{
 
 /* middle */
 div.middle{
-    width:inherit;
-    border:1px solid #000;    
+    width:inherit;    
+    height: inherit;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+div.middle .inner{    
+    margin-top:var(--middle-inner-margin-top);
+    background-color:var(--middle-inner-bgColor);
+    padding:var(--middle-inner-padding);
+    width:var(--middle-inner-width);
+    height: var(--middle-inner-heigth);
+    border-radius: var(--middle-inner-border-radius);
+    transition-property: all; 
+    transition-duration: 1s;
+}
+
 /* footer */
 footer.bottom{
     display:flex;

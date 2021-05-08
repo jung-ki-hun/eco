@@ -128,6 +128,22 @@ Commit Log
                 + LoginModel
                 + LoginView
                 + LoginController
-
+   
     + 1.3.2
         + Improved JS File Structure
+    
+    + 1.4.0
+        + Fixed Error
+            + View.js Condition Error - get()
+        + Improved Scrollbar
+            + changed ScreenData Structure
+            + changed ScrollingData Structure
+        + Improve CSS
+            + About HeaderView
+            + About InnerView
+        + HTML Structure
+            + changed Logo Structure
+                + deleted Big&Small Logo Style
+                + merged Logo Style(Big/Small) to Inner
+        + created folder(login)
+            + created Login CSS

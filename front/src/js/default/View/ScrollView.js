@@ -8,32 +8,34 @@ class ScrollView extends View{
     /**
      * @typedef {Object} ScreenData     
      * @property {number} totalHeight
-     * @property {number} screenHeight
-     * @property {number} currentHeight
-     * @property {number} previousHeight
-     * @property {number} rate
+     * @property {number} screenHeight          
      */
     /**
      * @type {ScreenData}
      */
     screenData = {              
         totalHeight : 0,
-        screenHeight : 0,
-        currentHeight : 0,
-        previousHeight : 0,
-        rate : 0
+        screenHeight : 0,                
     }
     /**
      * @typedef {Object} ScrollingData
      * @property {number} scrollStatus
-     * @property {number} multiple
+     * @property {number} currentPosition
+     * @property {number} previousPosition
+     * @property {number} rate
+     * @property {number} multiple 
+     * @property {boolean} direction
      */
     /**
      * @type {ScrollingData}
      */
     scrollingData = {
         scrollStatus : null,
-        multiple : 5
+        currentPosition : 0,
+        previousPosition : 0,
+        multiple : 5,
+        rate : 0,
+        direction : true
     }    
     /**
      * @constructor
@@ -66,6 +68,7 @@ class ScrollView extends View{
     onScroll(){        
         this.calculatePosition();        
         this.placeScrollbar();
+        this.calcDirection();
     }
     resetScreenData(){        
         this.screenData.screenHeight = window.innerHeight;
@@ -73,12 +76,26 @@ class ScrollView extends View{
         this.onScroll();
     }
     calculatePosition(){
-        this.screenData.previousHeight = this.screenData.currentHeight;
-        this.screenData.currentHeight = document.body.scrollTop;                
-        this.screenData.rate = (this.screenData.currentHeight / this.screenData.totalHeight * 100).toFixed(2);
+        this.scrollingData.previousPosition = this.scrollingData.currentPosition;
+        this.scrollingData.currentPosition = document.body.scrollTop;                
+        this.scrollingData.rate = (this.scrollingData.currentPosition / this.screenData.totalHeight * 100).toFixed(2);
     }
     placeScrollbar(){       
-        this.el.style.height = (this.screenData.rate/100*this.screenData.screenHeight).toFixed(2)+"px";
+        this.el.style.height = (this.scrollingData.rate/100*this.screenData.screenHeight).toFixed(2)+"px";
+    }
+    /**
+     * Scroll 방향 결정
+     */
+    calcDirection(){
+        let previousDirection = this.scrollingData.direction;
+        if(this.scrollingData.currentPosition > this.scrollingData.previousPosition){
+            this.scrollingData.direction = true;
+        }else{
+            this.scrollingData.direction = false;
+        }
+        if(previousDirection != this.scrollingData.direction){
+            this.emit("@direction", this.scrollingData.direction);
+        }        
     }
     /**
      * Scroll 이동
@@ -89,7 +106,7 @@ class ScrollView extends View{
             cancelAnimationFrame(this.scrollingData.scrollStatus);
         }            
         let delta = 0;
-        if(this.screenData.currentHeight < position){
+        if(this.scrollingData.currentPosition < position){
             delta = 1;
         }else{
             delta = -1;

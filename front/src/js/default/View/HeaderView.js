@@ -54,6 +54,20 @@ class HeaderView extends View{
                 break;                
         }
     }
+    /**     
+     * HeaderView 감추기(Direction)
+     */
+    hide(direction){
+        console.log(direction)
+        //True - 아래, False - 위
+        if(direction){
+            if(!this.el.classList.contains("hide")){
+                this.el.classList.add("hide");
+            }
+        }else{
+            this.el.classList.remove("hide");
+        }            
+    }
 }
 
 export default HeaderView;

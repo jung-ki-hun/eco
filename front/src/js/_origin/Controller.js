@@ -21,9 +21,9 @@ class Controller{
      * @param {String} specifier
      * @returns {HTMLElement}
      */
-    get(specifier){
+    get(specifier){        
         let element = document.querySelector(specifier);
-        if(!element){
+        if(element){
             return element;
         }else{
             this.push("Can't find Element!!");

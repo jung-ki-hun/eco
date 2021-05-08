@@ -1,3 +1,5 @@
 import Controller from "../Controller/DefaultController.js"
 
-const controller = new Controller();
+window.addEventListener('load', ()=>{    
+    const controller = new Controller();
+})
