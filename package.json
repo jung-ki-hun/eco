@@ -20,6 +20,7 @@
   "dependencies": {
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
+    "express-error-handler": "^1.1.0",
     "express-mysql-session": "^2.1.5",
     "express-session": "^1.17.1",
     "mysql": "^2.18.1",

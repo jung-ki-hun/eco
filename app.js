@@ -1,17 +1,15 @@
 var express = require("express");
-var http = require('http');
 var path = require('path');
 var static = require('serve-static');
 var session = require('express-session');
 var db = require('./db.js');
 var MySQLStore = require("express-mysql-session")(session);
 var router = require(`./api/router.js`);
-var expressErrorHandler = require('express-error-hWandler');
-const { error } = require("console");
+var expressErrorHandler = require('express-error-handler');
 var argv_ip = process.argv[2];
 const app = express();
 const dataset = {
-	port: 3000,
+	port: process.env.PORT,
 	host: argv_ip != null ? argv_ip.toString() : '127.0.0.1'
 }
 var db_info = db.getConnection();
@@ -26,7 +24,7 @@ app.use(
 	})
 );
 app.use('/', router);
-app.use('/web', static(path.join(__dirname, 'web')));
+app.use('/w', static(path.join(__dirname, 'web')));
 var errorHandler = expressErrorHandler({
 	static: {
 		'404': './web/error/404.html',
@@ -40,7 +38,7 @@ app.listen(dataset.port, dataset.host, () => {
 	console.log(str);
 	console.log(__dirname);
 	console.log(argv_ip);
-	console.log(db_info);
-	
+	console.log(db_info);	
 });
 
+ 
