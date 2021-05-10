@@ -4,29 +4,31 @@
  */
 class Model{
     /**
+     * 가져온 데이터 저장
+     * @type {JSON}
+     */
+    jdata = null;
+    /**
      * Model Name
      * @type {String}
      */
-    m_name = "";
-    /**     
-     * Destination URL.
-     * @type {String}
-     */
-    urlpath = "";
+    m_name = "";    
     /**
-     * Check status, whether can Message or not.
-     * @type {Boolean}
+     * @typedef {Object} ModelSetting
+     * @property {Boolean} canMessage
+     * @property {number} errorDuplicated
+     * @property {String} urlpath
+     * @property {RequestInit} fetchSetting
      */
-    canMessage = false; 
     /**
-     * @type {number}
+     * @type {ModelSetting}     
      */
-    errorDuplicated = 0;
-    /**
-     * Message Setting
-     * @type {RequestInit}
-     */    
-    fetchSetting = null;
+    setting = {
+        canMessage : false,
+        errorDuplicated : 0,
+        fetchSetting : null,
+        urlpath : ""
+    }   
     /**
      * @constructor
      * @param {String} name
@@ -43,13 +45,13 @@ class Model{
      */
     setURL(url){
         if(url.length != 0){
-            this.urlpath = url;
-            this.canMessage = true;
+            this.setting.urlpath = url;
+            this.setting.canMessage = true;
             return true;
         }            
         else{
             this.push("Error not right URL!!");
-            this.canMessage = false;
+            this.setting.canMessage = false;
             return false;
         } 
     }
@@ -57,48 +59,74 @@ class Model{
      * @param {RequestInit} resInit 
      */
     fetchInit(resInit){
-        this.fetchSetting = resInit;
+        this.setting.fetchSetting = resInit;
+    }
+    /**
+     * @param {JSON} data
+     * @returns {Promise}
+     */
+    async sentRequest(){
+        return new Promise((response)=>{
+            if(this.setting.canMessage){            
+                if(this.setting.fetchSetting != null){
+                    fetch(this.setting.urlpath, this.setting.fetchSetting).then((res)=>{                        
+                        response(res);
+                    });
+                }else{
+                    fetch(this.setting.urlpath).then((res)=>{                        
+                        response(res);
+                    });
+                }
+            }            
+            else{
+                this.push("Error you can't message!");
+                response(false);
+            }
+        });  
     }
     /**     
      * @param {JSON} data 
+     * @returns {Promise}
      */
-    message(data){
-        if(this.canMessage){            
-            if(this.fetchSetting != null){
-                fetch(this.urlpath, this.fetchSetting).then((res)=>this.fetchCallBack(res));
-            }else{
-                fetch(this.urlpath).then((res)=>this.fetchCallBack(res));
-            }
-        }            
-        else{
-            this.push("Error you can't message!");
-        }            
+    async message(data){        
+        let response = await this.sentRequest(data);            
+        if(!response) return false;
+        let value = await this.processResponse(response);
+        if(!value) return false;
+        this.callback(value);
+        return value;        
     }
     /**
+     * message가 성공하면 호출됨, 오버라이딩 필요...
      * @callback
-     * @type {Function}
-     * @param {Response} res
+     * @param {String} value
      */
-    fetchCallBack(res){                
-        if(res.status != 404){            
-            res.text().then(this.onGet);
-            this.errorDuplicated = 0;
-        }else{                        
-            this.push("Error Not Good Communication...");
-            this.errorDuplicated++;
-            if(this.errorDuplicated >= 3){
-                this.canMessage = false;
-                this.push("Error Duplicated(3 times), Refresh page...");
+    callback(value){
+
+    }
+    /**
+     * 
+     * @param {Response} response 
+     */
+    async processResponse(response){
+        return new Promise((res,rej)=>{
+            if(response.status != 404){
+                this.setting.errorDuplicated = 0;
+                response.text().then((value)=>{
+                    res(value);
+                })
+            }else{
+                this.push("Error Not Good Communication...");
+                this.setting.errorDuplicated++;
+                if(this.setting.errorDuplicated >= 3){
+                    this.setting.canMessage = false;
+                    this.push("Error Duplicated(3 times), Refresh page...");
+                }
+                res(false);
             }
-        }
-    }
-    /** 
-     * Please Override, this function will run if message come.    
-     * @param {String} text 
-     */
-    onGet(text){
-        
-    }
+        })
+    }    
+    
     /**
      * Alert Something using Console...
      * @param {String} content

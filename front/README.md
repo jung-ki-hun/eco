@@ -157,3 +157,23 @@ Commit Log
    
     + 1.4.1
         + Improved READMD.md
+   
+    + 1.5.0
+        + Improved ScrollView.js
+            + JS Structure
+                + ScrollingData
+                    + created 'delta'
+            + Scrolling Speed
+                + not linear
+                + ease in
+        + Improved CSS
+            + responsive Width
+                + width:550px - inner width : 360px
+        + Improved Model.js
+            + async/await
+                + created sentRequest function
+                + remaked message function
+                + created processResponse function  
+                + created callback function
+                + deleted callBackFn function
+                + deleted onGet function

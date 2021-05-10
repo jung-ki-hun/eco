@@ -57,8 +57,7 @@ class HeaderView extends View{
     /**     
      * HeaderView 감추기(Direction)
      */
-    hide(direction){
-        console.log(direction)
+    hide(direction){        
         //True - 아래, False - 위
         if(direction){
             if(!this.el.classList.contains("hide")){

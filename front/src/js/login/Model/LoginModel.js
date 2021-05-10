@@ -12,7 +12,19 @@ class LoginModel extends Model{
     constructor(url){
         super(url);
     }
-    //ToDo
+    /**
+     * LoginData Json
+     * @typedef {Object} loginData
+     * @property {String} identification
+     * @property {String} password
+     */
+    /**
+     * @param {loginData} loginData
+     * @returns {Boolean}
+     */
+    async attach(loginData){
+        await this.message
+    }
 }
 
 export default LoginModel;

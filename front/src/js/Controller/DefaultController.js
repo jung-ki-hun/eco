@@ -44,7 +44,7 @@ class DefaultController extends Controller {
         //Views
         this.headerView = new HeaderView(this.get("header.top"));
         this.innerView = new InnerView(this.get("div.middle .inner"));        
-        this.scrollView = new ScrollView(this.get(".customScrollbar"), 25);
+        this.scrollView = new ScrollView(this.get(".customScrollbar"), 8);
         this.landingView = new LandingView(this.get(".landingWrapper"));        
         //Models
         this.pageModel = new PageModel();                
@@ -54,7 +54,7 @@ class DefaultController extends Controller {
         this.landingView.hear("@click", (e)=>this.onLandingClick(e));
         this.scrollView.hear("@direction", (e)=>this.onDirection(e.detail));
         this.headerView.hear("@click", (e)=>this.onHeaderClick(e));
-        this.pageModel.onGet = (text)=>this.onGetData(text);
+        this.pageModel.callback = (text)=>this.onGetData(text);
     }    
     /**     
      * @param {CustomEvent} e 
@@ -79,7 +79,7 @@ class DefaultController extends Controller {
     onDirection(d){
         //true - 아래, false - 위        
         this.headerView.hide(d);                    
-    }
+    }    
 }
 
 export default DefaultController;

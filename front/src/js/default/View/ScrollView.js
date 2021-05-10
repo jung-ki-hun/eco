@@ -23,6 +23,7 @@ class ScrollView extends View{
      * @property {number} currentPosition
      * @property {number} previousPosition
      * @property {number} rate
+     * @property {number} delta
      * @property {number} multiple 
      * @property {boolean} direction
      */
@@ -33,7 +34,8 @@ class ScrollView extends View{
         scrollStatus : null,
         currentPosition : 0,
         previousPosition : 0,
-        multiple : 5,
+        delta : 0,
+        multiple : 8,
         rate : 0,
         direction : true
     }    
@@ -105,13 +107,14 @@ class ScrollView extends View{
         if(!this.scrollingData.scrollStatus){
             cancelAnimationFrame(this.scrollingData.scrollStatus);
         }            
-        let delta = 0;
+        let direction = 0;
         if(this.scrollingData.currentPosition < position){
-            delta = 1;
+            direction = 1;
         }else{
-            delta = -1;
+            direction = -1;
         }
-        this.scrollingData.scrollStatus = requestAnimationFrame(()=>this.setScroll(position,delta));
+        this.scrollingData.delta = this.scrollingData.multiple;
+        this.scrollingData.scrollStatus = requestAnimationFrame(()=>this.setScroll(position,direction));
     }
     /**     
      * @param {number} position 
@@ -120,8 +123,9 @@ class ScrollView extends View{
     setScroll(position, delta){        
         if(document.body.scrollTop >= position){            
             cancelAnimationFrame(this.scrollingData.scrollStatus);
-        }else{
-            document.body.scrollTop += (delta * this.scrollingData.multiple);            
+        }else{                        
+            document.body.scrollTop += (delta * this.scrollingData.delta);            
+            this.scrollingData.delta += this.scrollingData.multiple;            
             requestAnimationFrame(()=>this.setScroll(position,delta));
         }
     }
