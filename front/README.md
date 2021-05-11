@@ -177,3 +177,15 @@ Commit Log
                 + created callback function
                 + deleted callBackFn function
                 + deleted onGet function
+   
+    + 1.5.1
+        + Improved Model.js
+            + URL -> URL + TYPE
+        + Improved LoginView.js
+            + created LoginData Object
+            + created LoginElements Object
+        + Improved DefaultController.js
+            + onGetData Function
+                + appendScript for running Script
+        + Improved InnerView.js
+            + created appendScript for running Script

@@ -18,6 +18,7 @@ class Model{
      * @property {Boolean} canMessage
      * @property {number} errorDuplicated
      * @property {String} urlpath
+     * @property {String} type
      * @property {RequestInit} fetchSetting
      */
     /**
@@ -27,16 +28,19 @@ class Model{
         canMessage : false,
         errorDuplicated : 0,
         fetchSetting : null,
-        urlpath : ""
+        urlpath : "",
+        type : ""
     }   
     /**
      * @constructor
      * @param {String} name
      * @param {String} url 
+     * @param {String} type
      */
-    constructor(name, url = ""){
+    constructor(name, url = "", type = ""){
         this.m_name = "["+name+"]";
         this.setURL(url);
+        this.setting.type = type;
     }
     /**
      * Set URL for Communication. Return Success or not;
@@ -55,6 +59,12 @@ class Model{
             return false;
         } 
     }
+    /**
+     * @param {String} t
+     */
+    setType(t){
+        this.setting.type = t;
+    }
     /**     
      * @param {RequestInit} resInit 
      */
@@ -66,14 +76,15 @@ class Model{
      * @returns {Promise}
      */
     async sentRequest(){
+        let totalURL = `${this.setting.urlpath}.${this.setting.type}`;
         return new Promise((response)=>{
             if(this.setting.canMessage){            
                 if(this.setting.fetchSetting != null){
-                    fetch(this.setting.urlpath, this.setting.fetchSetting).then((res)=>{                        
+                    fetch(totalURL, this.setting.fetchSetting).then((res)=>{                        
                         response(res);
                     });
                 }else{
-                    fetch(this.setting.urlpath).then((res)=>{                        
+                    fetch(totalURL).then((res)=>{                        
                         response(res);
                     });
                 }
@@ -88,7 +99,10 @@ class Model{
      * @param {JSON} data 
      * @returns {Promise}
      */
-    async message(data){        
+    async message(data){    
+        /**
+         * @type {Response}
+         */    
         let response = await this.sentRequest(data);            
         if(!response) return false;
         let value = await this.processResponse(response);

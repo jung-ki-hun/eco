@@ -9,7 +9,7 @@ class PageModel extends Model{
      * @constructor
      */
     constructor(){
-        super("PageModel", "answer_board.html");
+        super("PageModel", "answer_board", "html");
         this.message();
     }
 }

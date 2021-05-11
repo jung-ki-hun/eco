@@ -20,7 +20,7 @@ class LoginController extends Controller{
      * @constructor
      */
     constructor(){
-        super("LoginController");
+        super("LoginController");        
         //Views
         this.loginView = new LoginView(this.get(".loginWrapper"));        
         //Models

@@ -28,6 +28,19 @@ class InnerView extends View{
             this.el.innerHTML = data;   
         }
     }
+    /**
+     * 
+     * @param {String} url 
+     */
+    appendScript(url){
+        /**
+         * @type {HTMLElement}
+         */
+        let srcNode = document.createElement("script");
+        srcNode.setAttribute("type", "module");
+        srcNode.setAttribute("src", `./src/js/App/${url}App.js`);        
+        this.el.appendChild(srcNode);
+    }
 }
 
 export default InnerView;

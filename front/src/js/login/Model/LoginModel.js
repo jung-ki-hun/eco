@@ -6,11 +6,10 @@ import Model from "../../_origin/Model.js";
  */
 class LoginModel extends Model{
     /**
-     * @constructor
-     * @param {String} url
+     * @constructor     
      */
-    constructor(url){
-        super(url);
+    constructor(){
+        super("LoginModel", "");
     }
     /**
      * LoginData Json

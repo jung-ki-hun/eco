@@ -6,14 +6,19 @@ import View from "../../_origin/View.js";
  */
 class LoginView extends View{
     /**
-     * @typedef {Object} loginElements
+     * @typedef {Object} LoginData
+     * @property {String} identification
+     * @property {String} password
+     */
+    /**
+     * @typedef {Object} LoginElements
      * @property {HTMLElement} identificationEl
      * @property {HTMLElement} passwordEl
      * @property {HTMLElement} submitBtnEl
      * @property {HTMLElement} alertEl
      */
     /**
-     * @type {loginElements}
+     * @type {LoginElements}
      */
     loginElements = {
         identificationEl : null,
@@ -36,19 +41,37 @@ class LoginView extends View{
             this.bindEvents();
         }
     }
-    bindEvents(){
+    bindEvents(){        
         this.loginElements.submitBtnEl.addEventListener('click', ()=>this.submit());
     }
     getLoginData(){
+        /**
+         * @type {LoginData}
+         */
         const loginData = {
-            identification : this.loginElements.identificationEl.innerText,
-            password : this.loginElements.passwordEl.innerText
+            identification : this.loginElements.identificationEl.value,
+            password : this.loginElements.passwordEl.value
         }
         return loginData;
         //Todo Something
     }    
     submit(){
-        this.emit("@submit", this.getLoginData());
+        let data = this.getLoginData();
+        if(this.judgeSumbit(data)){
+            this.emit("@submit", data);
+        }
+    }
+    /**
+     * 5자리 제한
+     * @param {LoginData} d 
+     */
+    judgeSumbit(d){
+        if(d.identification.length < 5 || d.password < 5){
+            this.displaySomething("5자리 이상 입력해주세요.");
+            return false;
+        }else{
+            return true;
+        }
     }
     /**
      * 로그인 성공 유무

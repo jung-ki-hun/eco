@@ -61,13 +61,14 @@ class DefaultController extends Controller {
      */
      onHeaderClick(e){
         //TODO - check Logout html!!!!
-        if(this.pageModel.setURL(e.detail + ".html")){
+        if(this.pageModel.setURL(e.detail)){            
             this.pageModel.message();
             this.scrollView.goTo(this.contentEl.offsetTop);
         }            
     }
     onGetData(text){
         this.innerView.transformInner(text);
+        this.innerView.appendScript(this.pageModel.setting.urlpath);
     }
     onLandingClick(e){        
         this.scrollView.goTo(this.contentEl.offsetTop);
