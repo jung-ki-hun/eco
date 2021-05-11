@@ -106,7 +106,7 @@ class ScrollView extends View{
     goTo(position){
         if(!this.scrollingData.scrollStatus){
             cancelAnimationFrame(this.scrollingData.scrollStatus);
-        }            
+        }
         let direction = 0;
         if(this.scrollingData.currentPosition < position){
             direction = 1;
