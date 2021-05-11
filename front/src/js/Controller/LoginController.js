@@ -22,12 +22,20 @@ class LoginController extends Controller{
     constructor(){
         super("LoginController");
         //Views
-        
+        this.loginView = new LoginView(this.get(".loginWrapper"));        
         //Models
-
+        this.loginModel = new LoginModel();
         //Variables
 
         //Binding
+        this.loginView.hear("@submit", (e)=>this.onSubmit(e.detail));
+    }
+    /**
+     * 
+     * @param {Object} d 
+     */
+    onSubmit(d){
+        console.log(d);
     }
 }
 

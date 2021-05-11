@@ -10,6 +10,7 @@ class LoginView extends View{
      * @property {HTMLElement} identificationEl
      * @property {HTMLElement} passwordEl
      * @property {HTMLElement} submitBtnEl
+     * @property {HTMLElement} alertEl
      */
     /**
      * @type {loginElements}
@@ -18,6 +19,7 @@ class LoginView extends View{
         identificationEl : null,
         passwordEl : null,
         submitBtnEl : null,
+        alertEl : null,
     }
     /**
      * @constructor
@@ -27,6 +29,10 @@ class LoginView extends View{
         super("LoginView");
         this.setup(el);
         if(this.isElement()){
+            this.loginElements.identificationEl = this.get(".identification");
+            this.loginElements.passwordEl = this.get(".password");
+            this.loginElements.submitBtnEl = this.get(".submit");
+            this.loginElements.alertEl = this.get(".display");
             this.bindEvents();
         }
     }
@@ -38,22 +44,29 @@ class LoginView extends View{
             identification : this.loginElements.identificationEl.innerText,
             password : this.loginElements.passwordEl.innerText
         }
+        return loginData;
         //Todo Something
+    }    
+    submit(){
+        this.emit("@submit", this.getLoginData());
     }
     /**
-     * @param {loginData} 
-     * @returns {Boolean}
+     * 로그인 성공 유무
+     * @param {Boolean} success
      */
-    judgeValue(){
-        //Okay
-        return true;
-        //not okay
-        return false;
-    }
-    submit(){
-        if(this.judgeValue()){
-
+    onSubmit(success){
+        if(!success){
+            this.displaySomething("로그인 실패...");
+        }else{
+            //TODo
         }
+    }
+    /**
+     * Alert Element에 String을 표시함
+     * @param {String} content 
+     */
+    displaySomething(content){
+        this.loginElements.alertEl.innerText = content;
     }
 }
 

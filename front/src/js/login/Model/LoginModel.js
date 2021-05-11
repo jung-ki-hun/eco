@@ -23,7 +23,7 @@ class LoginModel extends Model{
      * @returns {Boolean}
      */
     async attach(loginData){
-        await this.message
+        
     }
 }
 
