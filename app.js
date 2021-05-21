@@ -8,17 +8,16 @@ var request = require('request');
 //var router = require(`./api/router.js`);
 var expressErrorHandler = require('express-error-handler');
 var argv_ip = process.argv[2];
-
 ///
-const webhook = require('webhook-discord');
-const Hook = new webhook.Webhook("https://discord.com/api/webhooks/841003466544381975/v0qBaAb3GI0Z2klkl5lP46K8RjTkYy7WRu6la1tdNkIJr9BJQ40kqBYXGYWOJSXFwHx7");
-////
+var jkh_function = require('./api/function/jkh_function');
+
 const app = express();
 
 const dataset = {
 	port: process.env.PORT,
 	host: process.env.T2_HOST
-}/*
+}
+/*
 var db_info = db.getConnection();
 var sessionStore = new MySQLStore(db_info);
 app.use(
@@ -30,16 +29,16 @@ app.use(
 		saveUninitialized: true,
 	})
 );*/
-const webhookUri = "https://discord.com/api/webhooks/840747097854050384/vOJzF6lKn13P_nrjiOsYoUr45DbzFVH2TwN4OkyiXtqHjXkubUASL8M6MbPAWaYjB-QH";
+// const webhookUri = process.env.WEB_HOOK;
 // option 설정
-const options = {
-	uri: webhookUri,
-	method: 'POST', // POST method 로 요청
-	body: {
-		text: 'value' // 내용
-	},
-	json: true // request 를 json 형태로 보내고자 한다면 true 로 꼭 설정해야한다.
-}
+// const options = {
+// 	uri: webhookUri,
+// 	method: 'POST', // POST method 로 요청
+// 	body: {
+// 		text: 'value' // 내용
+// 	},
+// 	json: true // request 를 json 형태로 보내고자 한다면 true 로 꼭 설정해야한다.
+// }
 
 // request 발송
 request.post(options, function (err, httpResponse, body) {
@@ -58,7 +57,8 @@ app.use(expressErrorHandler.httpError(404));
 app.use(errorHandler);
 app.listen(dataset.port, dataset.host, () => {
 	//var msg = new Webhook.MessageBuilder().setText("dddd");
-	Hook.info("NODE_SERVER","Info");
-	console.log('dd');
+	//Hook.info("NODE_SERVER","Info");
+	jkh_function.sendMessage('info','node.js server start !!');
+	//console.log('dd');
 });
 
