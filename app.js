@@ -40,10 +40,10 @@ app.use(
 // 	json: true // request 를 json 형태로 보내고자 한다면 true 로 꼭 설정해야한다.
 // }
 
-// request 발송
-request.post(options, function (err, httpResponse, body) {
+// // request 발송
+// request.post(options, function (err, httpResponse, body) {
 
-})
+// })
 //app.use('/', router);
 app.use('/w', static(path.join(__dirname, 'web')));
 var errorHandler = expressErrorHandler({
@@ -56,7 +56,7 @@ var errorHandler = expressErrorHandler({
 app.use(expressErrorHandler.httpError(404));
 app.use(errorHandler);
 app.listen(dataset.port, dataset.host, () => {
-	//var msg = new Webhook.MessageBuilder().setText("dddd");
+	//var msg = new Webhook.MessageBuilder().setText("dddd"
 	//Hook.info("NODE_SERVER","Info");
 	jkh_function.sendMessage('info','node.js server start !!');
 	//console.log('dd');
