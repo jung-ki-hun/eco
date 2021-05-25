@@ -2,7 +2,7 @@
 // null 값 찾아보기
 const webhook = require('webhook-discord');
 var stringToUrl = process.env.WEB_HOOK;
-const Hook = new webhook.Webhook("https://discord.com/api/webhooks/841003466544381975/v0qBaAb3GI0Z2klkl5lP46K8RjTkYy7WRu6la1tdNkIJr9BJQ40kqBYXGYWOJSXFwHx7");
+const Hook = new webhook.Webhook(stringToUrl);
 ///
 var isEmpty = (str) => {
 
