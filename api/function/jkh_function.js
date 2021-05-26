@@ -1,8 +1,8 @@
 // 정규식 전용 클래스 작성
 // null 값 찾아보기
 const webhook = require('webhook-discord');
-var stringToUrl = process.env.WEB_HOOK;
-const Hook = new webhook.Webhook(stringToUrl);
+var stringToUrl = process.env.WEB_HOOK +"";
+const Hook = new webhook.Webhook(stringToUrl+"");
 ///
 var isEmpty = (str) => {
 
