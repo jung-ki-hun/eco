@@ -3,7 +3,7 @@
 const webhook = require('webhook-discord');
 var stringToUrl = process.env.WEB_HOOK +"";
 const Hook = new webhook.Webhook(stringToUrl+"");
-///
+///url 삽입 문제 해결 필요
 var isEmpty = (str) => {
 
     if (typeof str == "undefined" || str == null || str == "")

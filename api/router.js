@@ -56,9 +56,8 @@ router.post('/suggest', (req, res) => {
         email: req.body.email,
         name: req.body.name,
         msg: req.body.message,
-        title:req.body.title
+        title:req.body.S
     }
-    jkh_suggest.addsuggest(req, res, conn, data_sug);
 });
 router.get('/suggest/list', (req, res) => {
 
@@ -75,7 +74,7 @@ router.post('/')
 //'//web/landing/industry/index.html' 일때 로그인의 유무를 판단하는 기능 구현
 router.get('/', (req, res) => {
     req.session;
-
+    
     res.redirect(302, '/web/index.html');
 });
 //메인페이지로 이동
