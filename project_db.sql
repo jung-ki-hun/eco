@@ -18,7 +18,7 @@ CREATE TABLE projecta.logstack(
     id BIGINT NOT NULL AUTO_INCREMENT,
     errCord VARCHAR(30) NOT NULL,
     content VARCHAR(200) NOT NULL,
-    errTime TIMESTAMP,
+    errTime TIMESTAMP NOT NULL,
     PRIMARY KEY(id)
 )
 CREATE TABLE projecta.apiDataR()
