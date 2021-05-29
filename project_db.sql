@@ -12,7 +12,8 @@ CREATE TABLE projecta.QnAdata(
     id INT NOT NULL AUTO_INCREMENT,
     userName VARCHAR(20) NOT NULL,
     title VARCHAR(300) NOT NULL,
-    postData TEXT NOT NULL
+    postData TEXT NOT NULL,
+    PRIMARY KEY(id)
 )default character set utf8 collate utf8_general_ci;
 CREATE TABLE projecta.logstack(
     id BIGINT NOT NULL AUTO_INCREMENT,
