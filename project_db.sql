@@ -21,6 +21,13 @@ CREATE TABLE projecta.logstack(
     content VARCHAR(200) NOT NULL,
     errTime TIMESTAMP NOT NULL,
     PRIMARY KEY(id)
+)default character set utf8 collate utf8_general_ci;
+CREATE TABLE projecta.users_community(
+    id INT NOT NULL AUTO_INCREMENT,
+    userName VARCHAR(20) NOT NULL,
+    friendName VARCHAR(20) NOT NULL,
+    community VARCHAR(5)NOT NULL,
+    PRIMARY KEY(id)
 )
 CREATE TABLE projecta.apiDataR()
 CREATE TABLE projecta.apiDataR()//요청
