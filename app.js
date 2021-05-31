@@ -17,7 +17,7 @@ const dataset = {
 	port: process.env.PORT,
 	host: process.env.T2_HOST
 }
-/*
+
 var db_info = db.getConnection();
 var sessionStore = new MySQLStore(db_info);
 app.use(
@@ -28,7 +28,7 @@ app.use(
 		resave: false,
 		saveUninitialized: true,
 	})
-);*/
+);
 // const webhookUri = process.env.WEB_HOOK;
 // option 설정
 // const options = {
