@@ -29,5 +29,5 @@ CREATE TABLE projecta.users_community(
     community VARCHAR(5)NOT NULL,
     PRIMARY KEY(id)
 )
-CREATE TABLE projecta.apiDataR()
+CREATE TABLE projecta.apiDataR()//dkd
 CREATE TABLE projecta.apiDataR()//요청
