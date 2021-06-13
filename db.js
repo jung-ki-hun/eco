@@ -25,7 +25,7 @@ module.exports = {
                 console.error('mysql connection error : ' + err);
             }
             else {
-                console.log('mysql connection disconnectting');
+                console.log('mysql connection disconnecttingg');
             }
         });
     },
