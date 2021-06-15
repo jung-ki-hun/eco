@@ -12,6 +12,7 @@ var date_time = () => {
 }
 var date_ymd = () => {
     const date = new Date();
+    const sring_Regular = '';
     var str = `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
     return str;
 }
