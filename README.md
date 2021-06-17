@@ -4,3 +4,10 @@
 # 패치 노트
 Jkh 1.0.0 - 초기 셋팅
 Jkh 1.0.2 - discord web hook 추가
+jkh 1.0.3
+jkh 1.0.4
+jkh 1.0.5 - 
+jkh 1.0.6 - mysql문 수정
+jkh 1.0.7 - jkh_webhook파일 생성 
+            
+
