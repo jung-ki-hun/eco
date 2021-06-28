@@ -29,12 +29,13 @@ var cipher = (password)=>{
     var cipstr = cc.final('base64');
     return cipstr;
 }//암호화 함수
+
 var dcipher = (password)=>{
     var dc = crypto.createDecipheriv('aes192',key);
     dc.update(password, 'base64','utf-8');
     var dcipstr = dc.final('utf-8');
     return dcipstr;
-}
+}//복호화 함수
 
 module.exports = {
     isEmpty,
