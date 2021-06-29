@@ -4,13 +4,8 @@ var router = express.Router();
 /*******사용자 등록 관련*******/
 /*****************************/
 
-router.post('/login', (req, res) => {
-    var req_data = {
-        email: req.body.id,
-        pw: req.body.password
-    }
-    
-    jkh_db_config.userSelect_post(req, res, conn, req_data);
+router.post('/login', (req, res) => {    
+    jkh_db_config.userSelect_post(req, res, conn);
 
 });
 //로그인 - 세션등록
