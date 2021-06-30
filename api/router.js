@@ -73,5 +73,5 @@ router.get('/', (req, res) => {
     res.redirect(302, '/web/index.html');
 });
 //메인페이지로 이동
-
+//010
 module.exports = router;
