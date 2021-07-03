@@ -13,10 +13,10 @@ const app = express();
 
 const dataset = {
 	port: process.env.PORT ||"3000",
-	host: process.env.T3_HOST ||"192.168.219.101" 
+	host: process.env.T3_HOST ||"192.168.219.12" 
 }
 const response ={
-    test : "name",
+    test : "name", 
     status : 1,
     mag : 'nice connet'
 }
