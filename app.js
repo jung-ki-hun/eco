@@ -44,7 +44,10 @@ app.use(
 // request.post(options, function (err, httpResponse, body) {
 
 // })
-//app.use('/', router);
+//app.use('/', router); // 메인 진입점
+//app.use('/',require()); //사용자
+//app.use('/',require()); //관리자
+//app.use('/',require()); //etc
 app.use('/w', static(path.join(__dirname, 'web')));
 var errorHandler = expressErrorHandler({
 	static: {
