@@ -13,7 +13,7 @@ const app = express();
 
 const dataset = {
 	port: process.env.PORT ||"3000",
-	host: process.env.T3_HOST ||"192.168.219.12" 
+	host: process.env.T3_HOST ||"192.168.0.12" 
 }
 const response ={
     test : "name", 
