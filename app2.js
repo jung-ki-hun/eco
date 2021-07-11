@@ -13,7 +13,7 @@ const app = express();
 
 const dataset = {
 	port: process.env.PORT ||"3000",
-	host: process.env.T3_HOST ||"192.168.0.12" 
+	host: process.env.T3_HOST ||"192.168.219.101" 
 }
 const response ={
     test : "name", 
@@ -21,7 +21,7 @@ const response ={
     mag : 'nice connet'
 }
 app.get('/login', (req, res, next)=>{
-    return res.status(200).json(JSON.stringify(response));
+    return res.status(200).json(JSON.stringify(response));//res.send('11111asnlsdakjalsjsdalsd')//
     next();
 })
 app.listen(dataset.port, dataset.host, () => {
