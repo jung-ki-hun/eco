@@ -1,7 +1,7 @@
 const app =express.Router();
-const in = (req,res)=>{
+const index = (req,res)=>{
     
 }
 module.exports = {
-
+index
 }
