@@ -27,7 +27,7 @@ var sendMessage = (type, msg) => {
             console.error("do not send discord");
             break;
     }
-}//함수ㄴㅇㄹㄴㅁㅇㄹㄴㅇㄹ
+}//함수
 
 module.exports = sendMessage;
 
