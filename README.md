@@ -9,5 +9,8 @@ jkh 1.0.4
 jkh 1.0.5 - 
 jkh 1.0.6 - mysql문 수정
 jkh 1.0.7 - jkh_webhook파일 생성 
-            
+
+
+jkh 1.1.0 - java Test01 class제작
+jkh 1.1.1 - db sql동작 함수제작
 
