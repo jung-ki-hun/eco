@@ -8,7 +8,11 @@ var db_info = {
     password: process.env.DB_PW,
     database: process.env.DB_NAME,
 }
-
+var response = {
+    state: 1,  //sql 탐색도중에러 0/sql  결과 없음 1/sql 결과 조회 성공 2
+    query: null,
+    msg: 'Succesful'
+}
 module.exports = {
     init: function () {
         return mysql.createConnection(db_info);
@@ -31,5 +35,36 @@ module.exports = {
     },
     getConnection: function(){
         return db_info;
+    },
+    selectSql:(sql,errmsg,succmsg)=>{
+        conn = this.init();
+        this.connect(conn)
+        conn.query(sql,params,(err,rows)=>{
+            if(err)
+            {
+                console.error(`${jkh_fun.date_time()} : ${errmsg} => ${err}`);
+                response.state = 0;
+                return response;
+            }
+            else{
+                try{
+                    if (jkh_fun.isEmpty(results)) {
+                        console.log(`${jkh_fun.date_time()} : ${errmsg}`);
+                        response.query = false;
+                        response.msg = 'failed';
+                        response.state = 1;
+                        return response;
+                    }//조회 실패
+                    else {
+                        var resultsTojson = JSON.stringify(results);
+                        console.log(`${jkh_fun.date_time()} : ${succmsg} => good!`);
+                        response.query = resultsTojson;
+                        response.msg = 'Succesful';
+                        response.state = 2;
+                        return response;
+                    }
+                }
+            }
+        })
     }
 }
