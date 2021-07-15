@@ -13,4 +13,5 @@ jkh 1.0.7 - jkh_webhook파일 생성
 
 jkh 1.1.0 - java Test01 class제작
 jkh 1.1.1 - db sql동작 함수제작
+jkh 1.1.2 - db sql 생성함수 작성 완료
 
