@@ -36,7 +36,7 @@ module.exports = {
     getConnection: function(){
         return db_info;
     },
-    selectSql:(sql,errmsg,succmsg)=>{
+    selectSql:(sql,errmsg,succmsg,params)=>{
         conn = this.init();
         this.connect(conn)
         conn.query(sql,params,(err,rows)=>{
