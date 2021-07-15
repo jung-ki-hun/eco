@@ -1,6 +1,6 @@
 const request = require('request');
 const jkh_fun = require('../function/jkh_function');
-const pg =require('../../../db/db');
+const mysql_s =require('../../../db/db');
 async function index(req, res) {
     // 지역 
     // 원하는 대기정보
@@ -17,7 +17,7 @@ async function index(req, res) {
     const sql = `insert `;//db에 공공에이피아이 데이터 저장
     const err ='do not save';
     const suc ='save success';
-    pg.selectSql(sql,err,suc,sqlParams)
+    mysql_s.selectSql(sql,err,suc,sqlParams)
     return res.status(200).json(JSON.stringify(response));
 }
 module.exports= (app)=> {
