@@ -42,7 +42,7 @@ CREATE TABLE projecta.sendair(
     temp  VARCHAR(10) NOT NULL,
     hiep VARCHAR(10) NOT NULL,
     coler VARCHAR(30) NOT NUll,
-    state_air INT NOT NULL --0 off 1 on 2 (2off) 3mon 4 aon 5 (2on)
+    state_air INT NOT NULL, --0 off 1 on 2 (2off) 3mon 4 aon 5 (2on)
     PRIMARY KEY(sa_no)
 )default character set utf8 collate utf8_general_ci;
 CREATE TABLE projecta.data_log(
