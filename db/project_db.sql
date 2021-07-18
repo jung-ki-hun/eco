@@ -28,6 +28,7 @@ CREATE TABLE projecta.apiDataR(
     n_time TIMESTAMP NOT NULL,
     PRIMARY KEY(api_no)
 )default character set utf8 collate utf8_general_ci;
+
 CREATE TABLE projecta.colers_list(
     col_no int NOT NULL AUTO_INCREMENT,
     coler VARCHAR(30) NOT Null,
@@ -35,6 +36,7 @@ CREATE TABLE projecta.colers_list(
     PRIMARY KEY(col_no)
 
 )default character set utf8 collate utf8_general_ci;
+
 CREATE TABLE projecta.sendair(
     sa_no int NOT NULL AUTO_INCREMENT,
     user_id  INT NOT NULL,
@@ -45,18 +47,21 @@ CREATE TABLE projecta.sendair(
     state_air INT NOT NULL, --0 off 1 on 2 (2off) 3mon 4 aon 5 (2on)
     PRIMARY KEY(sa_no)
 )default character set utf8 collate utf8_general_ci;
+
 CREATE TABLE projecta.data_log(
     dl_no int NOT NULL AUTO_INCREMENT,
     user_id  INT NOT NULL,
     sa_no INT NOT NULL
     PRIMARY KEY(dl_no)
 )default character set utf8 collate utf8_general_ci;
+
 CREATE TABLE projecta.login_log(
     ll_no int NOT NULL AUTO_INCREMENT,
     user_id INT NOT NULL,
     log_time TIMESTAMP,
     PRIMARY KEY(dl_no)
 )default character set utf8 collate utf8_general_ci;
+
 -- CREATE TABLE projecta.QnAdata(
 --     id INT NOT NULL AUTO_INCREMENT,
 --     userName VARCHAR(20) NOT NULL,
