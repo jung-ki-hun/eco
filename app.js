@@ -4,6 +4,7 @@ var static = require('serve-static');
 var session = require('express-session');
 var request = require('request');
 var db = require('./db/db.js');
+global.find = __dirname;
 //var MySQLStore = require("express-mysql-session")(session);
 //var router = require(`./api/router.js`);
 var expressErrorHandler = require('express-error-handler');
