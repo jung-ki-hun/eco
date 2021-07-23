@@ -6,7 +6,6 @@ var session = require('express-session');
 //var db = require('./db/db.js');
 var expressErrorHandler = require('express-error-handler');
 var argv_ip = process.argv[2];
-///
 var jkh_function = require('./api/v1/function/jkh_function');
 
 const app = express();

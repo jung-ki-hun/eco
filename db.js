@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+const db_set = require("./api/v1/function/jkh_config")
 //const dataset = require('./app.js');
 //var argv_ip  = process.argv[2]
 var db_info = {
