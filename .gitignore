@@ -1,3 +1,4 @@
 .env
 /node_modules/
 /api/v1/function/jkh_webhook.js
+./db.js
