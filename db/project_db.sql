@@ -84,5 +84,5 @@ CREATE TABLE projecta.login_log(
 --     PRIMARY KEY(id)
 -- )
 -- CREATE TABLE projecta.apiDataR()//요청
-
+-- 안녕
 -- CREATE TABLE projecta.apiDataR()//요청
