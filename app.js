@@ -9,7 +9,6 @@ global.find = __dirname;
 //var router = require(`./api/router.js`);
 var expressErrorHandler = require('express-error-handler');
 var argv_ip = process.argv[2];
-///
 var jkh_function = require('./api/function/jkh_function');
 
 const app = express();
