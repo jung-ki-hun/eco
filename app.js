@@ -42,7 +42,6 @@ app.use(
 
 // // request 발송
 // request.post(options, function (err, httpResponse, body) {
-
 // })
 //app.use('/', router); // 메인 진입점
 //app.use('/',require()); //사용자
