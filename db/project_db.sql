@@ -11,7 +11,7 @@ CREATE TABLE projecta.users(
     UNIQUE KEY email_idx(email),
     PRIMARY KEY(user_id)
 )default character set utf8 collate utf8_general_ci;
-
+-- 외래키 어케하노?
 CREATE TABLE projecta.misea(
     misea_no int NOT NULL AUTO_INCREMENT,
     api_no INT NOT NULL,

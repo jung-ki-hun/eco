@@ -39,7 +39,6 @@ app.use(
 // 	},
 // 	json: true // request 를 json 형태로 보내고자 한다면 true 로 꼭 설정해야한다.
 // }
-
 // // request 발송
 // request.post(options, function (err, httpResponse, body) {
 // })
