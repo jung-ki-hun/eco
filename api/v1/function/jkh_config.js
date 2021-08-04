@@ -11,7 +11,7 @@ const config = {
     port: process.env.DB_PORT || "3306",
     user: process.env.DB_ID || "root",
     password: process.env.DB_PW || "rlgns123",
-    database: process.env.DB_NAME|| "projecta",
+    database: process.env.DB_NAME|| "projectb",
  }
 }
 module.exports = {
