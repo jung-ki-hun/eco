@@ -21,11 +21,11 @@ CREATE TABLE projecta.login_log(
     PRIMARY KEY(ll_no)
 )default character set utf8 collate utf8_general_ci;--로그인 기록
 CREATE TABLE projecta.logstack(
-    id BIGINT NOT NULL AUTO_INCREMENT,
+    log_id BIGINT NOT NULL AUTO_INCREMENT,
     errCord VARCHAR(30) NOT NULL,
     content VARCHAR(200) NOT NULL,
     errTime TIMESTAMP NOT NULL,
-    PRIMARY KEY(id)
+    PRIMARY KEY(log_id)
 )default character set utf8 collate utf8_general_ci;--에러로그
 -- CREATE TABLE projecta.data_log(
 --     dl_no int NOT NULL AUTO_INCREMENT,
