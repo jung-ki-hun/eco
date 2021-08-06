@@ -23,5 +23,5 @@ CREATE TABLE projecta.logstack(
     errCord VARCHAR(30) NOT NULL,
     content VARCHAR(200) NOT NULL,
     errTime TIMESTAMP NOT NULL,
-    PRIMARY KEY(log_id)
+    PRIMARY KEY(log_id) --
 )default character set utf8 collate utf8_general_ci;--에러로그

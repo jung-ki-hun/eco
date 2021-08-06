@@ -1,4 +1,5 @@
 -- FOREIGN KEY REFERENCES
+-- mysql
 CREATE SCHEMA 'projectb' DEFAULT CHARCTER SET utf8;
 
 CREATE TABLE projecta.users(
