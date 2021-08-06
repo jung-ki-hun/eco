@@ -28,7 +28,7 @@ CREATE TABLE projecta.users_community(
     userName VARCHAR(20) NOT NULL,
     friendName VARCHAR(20) NOT NULL,
     community VARCHAR(5)NOT NULL,
-    PRIMARY KEY(id)
+    PRIMARY KEY(id)--
 )
 CREATE TABLE projecta.apiDataR()
 
