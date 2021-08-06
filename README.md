@@ -15,3 +15,8 @@ jkh 1.1.0 - java Test01 class제작
 jkh 1.1.1 - db sql동작 함수제작
 jkh 1.1.2 - db sql 생성함수 작성 완료
 
+jkh 1.3.1 - db sql 종류별 쿼리문 분리
+jkh 1.3.2 - db sql 포스트그래 방식생성
+
+
+
