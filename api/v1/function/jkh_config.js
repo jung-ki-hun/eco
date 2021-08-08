@@ -12,6 +12,9 @@ const config = {
     user: process.env.DB_ID || "root",
     password: process.env.DB_PW || "rlgns123",
     database: process.env.DB_NAME|| "projectb",
+ },
+ nodb:{
+     url: process.env.MONDB_URL ||""
  }
 }
 module.exports = {
