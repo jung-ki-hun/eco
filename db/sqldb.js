@@ -37,7 +37,7 @@ module.exports = {
         return db_info;
     },
     selectSql: (sql, errmsg, succmsg, params) => {
-        conn = this.init();
+        let conn = this.init();
         this.connect(conn)
         conn.query(sql, params, (err, rows) => {
             if (err) {
@@ -67,5 +67,12 @@ module.exports = {
                 }
             }
         })
+    },
+    updateSql: ()=>{
+
+    },
+    insertSql: ()=>{
+        
     }
+
 }
