@@ -18,7 +18,7 @@ module.exports = {
     init: ()=>{
         const { Pool, Client } = require('pg');
         const client = new Client();
-        return client(db_info.db_info);
+        return client(db_info.db);
     },
     connect: (conn) => {
         conn.connect((err) => {
@@ -29,5 +29,5 @@ module.exports = {
     getConnection: function () {
         return db_info;
     },
-    
+
 }
