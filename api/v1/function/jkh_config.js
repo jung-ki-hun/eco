@@ -1,10 +1,10 @@
 require("dotenv").config();
-
+// import dotenv from 'dotenv';
+// dotenv.config();
 const config = {
  app:{
      host:process.env.T_HOST || '127.0.0.1',
-     port:process.env.T_PORT || '3000',
-     db_host:process.env.DB_IP || '127.0.0.1'
+     port:process.env.T_PORT || '3000'
  },
  db:{
     host: process.env.DB_IP || "127.0.0.1",//argv_ip != '192.168.219.102' ?  '180.83.98.144':argv_ip.toString(),
@@ -15,8 +15,11 @@ const config = {
  },
  nodb:{
      url: process.env.MONDB_URL ||""
+ },
+ hook:{
+
  }
 }
 module.exports = {
-    config,
+    config
 };
