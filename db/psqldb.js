@@ -23,7 +23,7 @@ module.exports = {
     connect: (conn) => {
         conn.connect((err) => {
             if (err) console.log(err);
-            else console.log("postgre successfully");
+            else console.log("postgre successfully!");
         });
     },
     getConnection: function () {
