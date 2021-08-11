@@ -1,110 +1,219 @@
-<!doctype html>
+<!-- ������ũ https://lucidmaj7.tistory.com/251-->
+
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>Admiria - Responsive Flat Admin Dashboard</title>
-    <meta content="Admin Dashboard" name="description" />
-    <meta content="Themesbrand" name="author" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <!-- App Icons -->
-    <link rel="shortcut icon" href="assets2/images/favicon.png">
-
-    <!-- Basic Css files -->
-    <link href="assets2/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="assets2/css/icons.css" rel="stylesheet" type="text/css">
-    <link href="assets2/css/style.css" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/51db22a717.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
 
     <style>
-        .btn-primary {
-            background-color: #ffd700;
-            color: black;
+        :root {}
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Alata', sans-serif;
+        }
+
+        .page-container {
+            width: 100vw;
+            height: 100vh;
+            background: #eff0f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .shadow {
+            -webkit-box-shadow: 27px 43px 43px -26px rgba(89, 89, 89, 0.39);
+            -moz-box-shadow: 27px 43px 43px -26px rgba(89, 89, 89, 0.39);
+            box-shadow: 27px 43px 43px -26px rgba(89, 89, 89, 0.39);
+        }
+
+        /*
+.shadow-light{
+    -webkit-box-shadow: 45px 45px 104px -33px rgba(38,38,38,0.92);
+    -moz-box-shadow: 45px 45px 104px -33px rgba(38,38,38,0.92);
+    box-shadow: 45px 45px 104px -33px rgba(38,38,38,0.92);
+
+}*/
+        .login-form-container {
+
+            background: #f5f5f5;
+            width: 860px;
+            height: 540px;
+            display: flex;
+            flex-direction: row;
+            box-shadow: 10px black;
+            border-radius: 10px;
+
+        }
+
+        .login-form-right-side {
+            width: 50%;
+            border-radius: 10px 0px 0px 10px;
+            padding: 75px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background-image:
+                radial-gradient(ellipse farthest-corner at 0 140%, #5d9dff 0%, #2178ff 70%, #3585ff 70%);
+        }
+
+        .login-form-right-side h1 {
+            color: white;
             width: 100%;
+            text-align: right;
+            opacity: 0.9;
+
+        }
+
+        .login-form-right-side p {
+            padding-top: 50px;
+            font-size: 12px;
+            text-align: right;
+            opacity: 0.8;
+        }
+
+        .login-form-left-side {
+            width: 50%;
+            border-radius: 0px 10px 10px 0px;
+            display: flex;
+
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            background: rgb(255, 255, 255);
+            background: linear-gradient(287deg, rgba(255, 255, 255, 1) 0%, rgba(243, 244, 244, 1) 0%, rgba(255, 255, 255, 1) 100%);
+        }
+
+        .login-form-left-side .login-top-wrap {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+        }
+
+        .login-form-left-side .login-top-wrap span {
+            color: gray;
+            font-size: 11px;
+            padding-right: 20px;
+
+        }
+
+        .login-form-left-side .login-top-wrap .create-account-btn {
+            background: white;
+            border: 0;
+            width: 85px;
+            height: 35px;
+            font-size: 11px;
+            color: #2178ff;
+            border-radius: 3px;
+
+        }
+
+        .login-input-container {
+            padding-top: 120px;
+            width: 300px;
+        }
+
+        .login-input-container .login-input-wrap {
+            width: 300px;
+            height: 45px;
+            margin-top: 20px;
+            border-radius: 2px;
+            border-bottom: solid 2px #2178ff;
+
+        }
+
+        .login-input-container .login-input-wrap i {
+            color: #2178ff;
+            line-height: 45px;
+        }
+
+        .login-input-container .login-input-wrap input {
+            background: none;
+
+            border: none;
+            line-height: 45px;
+            padding-left: 10px;
+            width: 267px;
+        }
+
+        .login-input-container .login-input-wrap input:focus {
+            outline: none;
+        }
+
+        .login-btn-wrap {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            ;
+        }
+
+        .login-btn-wrap .login-btn {
+            width: 95px;
+            height: 35px;
+            color: white;
+            border: 0;
+            border-radius: 4px;
+
+            background: rgb(105, 163, 255);
+            background: linear-gradient(162deg, rgba(105, 163, 255, 1) 0%, rgba(43, 125, 254, 1) 50%, rgba(43, 125, 254, 1) 100%);
+        }
+
+        .login-btn-wrap a {
+            margin-top: 10px;
+            text-decoration: none;
+            font-size: 11px;
+            color: gray;
+
         }
     </style>
 </head>
 
+<body>
+    <div class="page-container">
+        <div class="login-form-container shadow">
+            <div class="login-form-right-side">
+                <div class="top-logo-wrap">
 
-<body class="fixed-left">
-
-
-    <!-- Loader -->
-    <div id="preloader">
-        <div id="status">
-            <div class="spinner"></div>
-        </div>
-    </div>
-
-
-    <!-- Begin page -->
-    <div class="accountbg"></div>
-    <div class="wrapper-page">
-
-        <div class="card">
-            <div class="card-body">
-
-                <h3 class="text-center m-0">
-                    <a href="index.html" class="logo logo-admin"><img src="./images/boardMain1.png" height="10%"
-                            alt="logo"></a>
-                </h3>
-
-                <div class="p-3">
-                    <h4 class="font-18 m-b-5 text-center">환영합니다 !</h4>
-                    <!-- <p class="text-muted text-center">로그인하기</p> -->
-
-                    <!-- <form class="form-horizontal m-t-30" method="POST" action="/process/login"> -->
-
-                    <div class="form-group">
-                        <label for="useremail">Email</label>
-                        <input type="email" class="form-control" id="id" name="id" placeholder="Enter email">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="userpassword">Password</label>
-                        <input type="password" class="form-control" id="password" name="password"
-                            placeholder="Enter password">
-                    </div>
-
-                    <div class="form-group row">
-                        <button class="btn btn-primary w-md waves-effect waves-light" id="button"
-                            type="submit">로그인</button>
-                    </div>
-                    <!-- 
-                    <div class="form-group m-t-10 mb-0 row">
-                        <div class="col-12 m-t-20">
-                            <a href="pages-recoverpw.html" class="text-muted"><i class="mdi mdi-lock"></i>비밀번호 찾기</a>
-                        </div>
-                    </div> -->
-                    <!-- </form> -->
                 </div>
-
+                <h1>How does a login system work?</h1>
+                <p>In computer security, logging in is the process by which an individual gains access to a computer
+                    system by identifying and authenticating themselves.</p>
+            </div>
+            <div class="login-form-left-side">
+                <div class="login-top-wrap">
+                    <span>Don't have an account?</span>
+                    <button class="create-account-btn shadow-light">Create Profile</button>
+                </div>
+                <div class="login-input-container">
+                    <div class="login-input-wrap input-id">
+                        <i class="far fa-envelope"></i>
+                        <input placeholder="Email" type="text">
+                    </div>
+                    <div class="login-input-wrap input-password">
+                        <i class="fas fa-key"></i>
+                        <input placeholder="Password" type="password">
+                    </div>
+                </div>
+                <div class="login-btn-wrap">
+                    <button class="login-btn">Login</button>
+                    <a href="#">Forgot password?</a>
+                </div>
             </div>
         </div>
-
-        <!-- <div class="m-t-40 text-center">
-            <p class="text-white">아이디가 없으신가요?<a href="pages-register.html"
-                    class="font-500 font-14 text-white font-secondary"> 회원가입</a> </p>
-
-        </div> -->
-
     </div>
-
-
-    <!-- jQuery  -->
-    <script src="assets2/js/jquery.min.js"></script>
-    <script src="assets2/js/bootstrap.bundle.min.js"></script>
-    <script src="assets2/js/modernizr.min.js"></script>
-    <script src="assets2/js/jquery.slimscroll.js"></script>
-    <script src="assets2/js/waves.js"></script>
-    <script src="assets2/js/jquery.nicescroll.js"></script>
-    <script src="assets2/js/jquery.scrollTo.min.js"></script>
-
-    <!-- App js -->
-    <script src="assets2/js/app.js"></script>
-    <script src="js/pages-login.js"></script>
 </body>
 
 </html>
