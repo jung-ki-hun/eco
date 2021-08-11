@@ -7,3 +7,5 @@
 관리자버전게시판리스트페이지	    adminboardMain.html           KIUP-7
 게시글작성페이지			    boardAdd.html                       KIUP-8
 게시글확인페이지			    boardLook.html                      KIUP-9
+
+> 테스트페이지는 언더바(_) 로 구분해놓음.
