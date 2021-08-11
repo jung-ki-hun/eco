@@ -17,8 +17,8 @@ client.query('SELECT * FROM users', (err, res) => {
 module.exports = {
     init: ()=>{
         const { Pool, Client } = require('pg');
-        const client = new Client();
-        return client(db_info.db);
+        const client = new Client(db_info.db);
+        return client 
     },
     connect: (conn) => {
         conn.connect((err) => {
