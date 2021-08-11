@@ -1,24 +1,24 @@
-const vals = require('./const.js');
-const { Pool, Client } = require('pg');
-const
+//const vals = require('./const.js');
+// const { Pool, Client } = require('pg');
+// const client = new Client({
+//     user: vals.user,
+//     password: vals.pass,
+//     host: vals.host, port: vals.port, database: vals.db
+// });
+// const ss;
+// client.connect();
+// client.query(SQL``, (err, res) => {
+
+//     console.log(res); client.end();
+// })
 const db_info = require("../api/v1/function/jkh_config.js")//설정관련 데이터
-const client = new Client({
-    user: vals.user,
-    password: vals.pass,
-    host: vals.host, port: vals.port, database: vals.db
-});
-
-client.connect();
-client.query('SELECT * FROM users', (err, res) => {
-
-    console.log(res); client.end();
-})
+const SQL = require("sql-template-strings");
 
 module.exports = {
-    init: ()=>{
+    init: () => {
         const { Pool, Client } = require('pg');
         const client = new Client(db_info.db);
-        return client 
+        return client
     },
     connect: (conn) => {
         conn.connect((err) => {
@@ -27,7 +27,10 @@ module.exports = {
         });
     },
     getConnection: function () {
-        return db_info;
+        return db_info.db;
     },
+    Q(string,...rest){
+        return SQL(string,...rest.map(((x)=>(typeof x === object && x !==null? JSON.stringify(x) : x))))
+    }///쿼리 만드는 거
 
 }
