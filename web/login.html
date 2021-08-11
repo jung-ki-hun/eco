@@ -1,4 +1,4 @@
-<!-- ������ũ https://lucidmaj7.tistory.com/251-->
+﻿<!-- 참고링크 https://lucidmaj7.tistory.com/251-->
 
 <html lang="en">
 
@@ -23,7 +23,7 @@
         .page-container {
             width: 100vw;
             height: 100vh;
-            background: #eff0f2;
+            background: #16778a;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -43,6 +43,11 @@
     box-shadow: 45px 45px 104px -33px rgba(38,38,38,0.92);
 
 }*/
+.login-kdh{
+    text-align: center;
+    font-size:24px;
+    font-weight:bold;
+}
         .login-form-container {
 
             background: #f5f5f5;
@@ -64,8 +69,14 @@
             justify-content: center;
             align-items: center;
             color: white;
+            /*
             background-image:
-                radial-gradient(ellipse farthest-corner at 0 140%, #5d9dff 0%, #2178ff 70%, #3585ff 70%);
+                radial-gradient(ellipse farthest-corner at 0 140%, #5d9dff 0%, #23B6C8 70%, #3585ff 70%);
+                url('./images/boardMain1.png');
+                */
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color:#23B6C8;    
         }
 
         .login-form-right-side h1 {
@@ -110,18 +121,19 @@
         }
 
         .login-form-left-side .login-top-wrap .create-account-btn {
-            background: white;
+            background: #FFD700;
             border: 0;
             width: 85px;
             height: 35px;
             font-size: 11px;
-            color: #2178ff;
+            /* color: #23B6C8; */
             border-radius: 3px;
+            
 
         }
 
         .login-input-container {
-            padding-top: 120px;
+            padding-top: 75px;
             width: 300px;
         }
 
@@ -130,12 +142,12 @@
             height: 45px;
             margin-top: 20px;
             border-radius: 2px;
-            border-bottom: solid 2px #2178ff;
+            border-bottom: solid 2px #23B6C8;
 
         }
 
         .login-input-container .login-input-wrap i {
-            color: #2178ff;
+            color: #23B6C8;
             line-height: 45px;
         }
 
@@ -161,14 +173,14 @@
         }
 
         .login-btn-wrap .login-btn {
-            width: 95px;
+            width: 300px;
             height: 35px;
-            color: white;
+            color: black;
             border: 0;
             border-radius: 4px;
 
-            background: rgb(105, 163, 255);
-            background: linear-gradient(162deg, rgba(105, 163, 255, 1) 0%, rgba(43, 125, 254, 1) 50%, rgba(43, 125, 254, 1) 100%);
+            background: rgb(255, 215, 0);
+            background: linear-gradient(162deg, rgba(255, 215, 0, 1) 0%, rgba(255, 215, 0, 1) 50%, rgba(255, 215, 0, 1) 100%);
         }
 
         .login-btn-wrap a {
@@ -185,19 +197,18 @@
     <div class="page-container">
         <div class="login-form-container shadow">
             <div class="login-form-right-side">
-                <div class="top-logo-wrap">
-
-                </div>
-                <h1>How does a login system work?</h1>
-                <p>In computer security, logging in is the process by which an individual gains access to a computer
-                    system by identifying and authenticating themselves.</p>
+                <a href="index.html"><img src="./images/boardMain1.png" style="width:400px;" alt="logo"></a>
             </div>
             <div class="login-form-left-side">
                 <div class="login-top-wrap">
-                    <span>Don't have an account?</span>
-                    <button class="create-account-btn shadow-light">Create Profile</button>
+                    <span>계정이 없으신가요?</span>
+                    <button class="create-account-btn shadow-light">회원가입</button>
                 </div>
+              
                 <div class="login-input-container">
+                    <div class="login-kdh">
+                        로그인
+                    </div>
                     <div class="login-input-wrap input-id">
                         <i class="far fa-envelope"></i>
                         <input placeholder="Email" type="text">
@@ -208,8 +219,8 @@
                     </div>
                 </div>
                 <div class="login-btn-wrap">
-                    <button class="login-btn">Login</button>
-                    <a href="#">Forgot password?</a>
+                    <button class="login-btn" type="submit">로그인</button>
+                    <a href="#">비밀번호를 잊으셨나요?</a>
                 </div>
             </div>
         </div>
