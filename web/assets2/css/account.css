@@ -1,0 +1,95 @@
+body{
+    background-color:#03a9f4;
+}
+
+.register{
+    display:flex;
+    height:calc(100% - var(--size-header));
+    align-items:center;
+    justify-content: center;
+}
+
+#wrap {
+    margin-top:-50px;
+    width: 390px;
+    margin-left: 40px;
+    text-align:left;
+    background-color:rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    padding:5px;
+
+}
+
+#wrap .title{
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom:15px;
+    background-color:#0076aa;
+    padding:5px;
+    border-radius: 10px;
+}
+
+#wrap table th{
+    width:75px;
+    font-size:17px;
+    text-align:center;
+}
+
+#wrap #address{
+    width:285px;
+}
+
+#wrap #Birthday{
+    margin-left:5px;
+}
+
+#wrap #year{
+    width:80px;
+}
+
+#wrap #month{
+    width:50px;
+    position: relative;
+    top:-2px;
+    height:23px;
+    left:0;
+}
+
+#wrap #day{
+    width:50px;
+}
+
+#wrap #email{
+    width:150px;
+}
+
+#wrap #subEmail{
+    width:90px;
+}
+
+#wrap #emailInput{
+    float:right;
+}
+
+#wrap .btn{
+    float:right;
+    margin: -5px 10px 15px 0px;
+
+}
+
+input[type="text"],input[type="password"]{
+    height: 12px;
+    padding: 5px;
+    width:150px;
+    font-size:15px;
+    border-radius: 8px;
+    border-color:#fff;
+    margin:2px;
+}
+
+#title {
+    border-radius: 10px;
+    background-color: rgba(160, 255, 231, 0.349);
+}

@@ -1,0 +1,236 @@
+:root{
+    --color-border-explain:#bdbdbd;
+    --color-background-explain:rgba(228,228,228,0.7);
+    --color-border-sp-explain:rgba(141, 141, 141, 0.7);
+    --padding-border-explain:1.3em;
+}
+ /* 기기 특징 */
+.explain{
+    display:flex;
+    justify-content: center;
+    flex-flow:column;
+    margin-top:2em;   
+    width:100%;
+}
+.explain > .character{
+    display:flex;
+    justify-content: center;
+    flex-flow:column;
+    align-self: center;
+    width: 70em;
+}
+.explain > .character > span{
+    display: block;
+    margin-bottom:0.5em;        
+    font-weight: bold;
+    color:#000;
+    font-size:1.3em;
+}
+.explain > .character .character-explain{
+    align-self: center;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;    
+}
+.explain > .character .character-explain li{
+    display:block;
+    border:1px solid var(--color-border-explain);
+    border-radius: 1.3em;
+    width:31em;
+    padding: var(--padding-border-explain);    
+    margin-bottom: 1.5em;
+    background:var(--color-background-explain);
+} 
+.explain > .character .character-explain li img{
+    float:left;
+    width: 8em;
+    height:8em;
+    margin:0.5em;
+}
+.explain > .character .character-explain li .explain-sub{
+    font-size:0.9em;
+    margin-left:9.5em;    
+    width:25em;
+}
+.explain > .character .character-explain li .explain-sub .title{    
+    display: block;
+    margin-bottom:0.5em;
+    word-spacing: -0.2em;
+    font-weight:bold;
+    font-size:1.3em;
+}
+@media screen and (max-width: 1230px)
+{
+    .explain > .character{        
+        width: 55em;
+    }
+    .explain > .character .character-explain{
+        flex-flow:column;
+        width:inherit;                   
+    }
+    .explain > .character .character-explain li:nth-child(even){
+        align-self:flex-end;
+    }
+    .explain > .character .character-explain li:nth-child(even) .explain-sub{        
+        margin-left:0em;                         
+    }
+    .explain > .character .character-explain li:nth-child(even) img{
+        float:right;        
+    }
+}
+@media screen and (max-width: 965px)
+{
+    .explain > .character{        
+        width: 35em;
+    }    
+    .explain > .character .character-explain li:nth-child(even){
+        align-self:center;
+    }
+    .explain > .character .character-explain li{
+        align-self: center;
+        border-radius: 1em;        
+        margin-bottom: 1em;
+    }
+    .explain > .character .character-explain li img{
+        float:left;
+        width: 6em;
+        height:6em;
+        margin:0.3em;
+    }
+    .explain > .character .character-explain li:nth-child(even) .explain-sub{        
+        margin-left:9.5em;                         
+    }
+    .explain > .character .character-explain li:nth-child(even) img{
+        float:left;        
+    }
+    .explain > .character .character-explain li .explain-sub .title{            
+        font-size:1.2em;
+    }
+}
+@media screen and (max-width: 650px)
+{
+    .explain > .character{        
+        width: 30em;
+    }        
+    .explain > .character .character-explain li{
+        width: 26em;
+        align-self: center;
+        border-radius: 1em;        
+        margin-bottom: 1em;
+    }    
+    .explain > .character .character-explain li .explain-sub{        
+        width: 21em;
+    }    
+    .explain > .character .character-explain li .explain-sub .title{            
+        font-size:1.1em;
+    }
+}
+@media screen and (max-width: 560px)
+{
+    .explain > .character{        
+        width: 28em;
+    }        
+    .explain > .character .character-explain li{
+        width: 24em;
+        align-self: center;
+        border-radius: 1em;        
+        margin-bottom: 1em;
+        padding: 1em;
+    }    
+    .explain > .character .character-explain li .explain-sub{        
+        width: 18em;
+    }    
+    .explain > .character .character-explain li .explain-sub .title{            
+        font-size:1em;
+    }
+}
+
+/* 기기 사양 */
+.explain > .specification{
+    display:flex;
+    justify-content: center;
+    flex-flow:column;
+    word-spacing: 0em;
+    width: 70em;
+    align-self: center;
+    margin-top:3em;
+}
+.explain > .specification > span{
+    display:block;
+    align-items: left;
+    font-weight:bold;
+    font-size: 1.2em;
+
+}
+.explain > .specification .specification-explain{
+    font-size: 1.1em;
+    padding:0px;
+    margin:0px;
+    border:1px solid var(--color-border-explain);    
+    border-radius: 1em;
+    border-spacing: 0;
+    background-color: var(--color-background-explain);
+}
+.explain > .specification .specification-explain th{
+    padding: 0.3em 0 0.3em 0.5em;
+    border-right: 2px var(--color-border-sp-explain) dashed;    
+    border-bottom:0.1px var(--color-border-sp-explain) solid;
+    font-weight: normal;
+    text-align:left;
+    width:15em;
+}
+.explain > .specification .specification-explain tr:first-child th{
+    border-top-left-radius: 1em;    
+}
+.explain > .specification .specification-explain tr:last-child th{
+    border-bottom-left-radius: 1em;
+    border-bottom: none;
+}
+.explain > .specification .specification-explain td{
+    padding: 0.5em 0 0.5em 0.5em;
+    background-color:#fff;    
+    border-bottom:0.1px var(--color-border-sp-explain) solid;
+}
+.explain > .specification .specification-explain tr:first-child td{
+    border-top-right-radius: 1em;      
+}
+.explain > .specification .specification-explain tr:last-child td{
+    border-bottom-right-radius: 1em;
+    border-bottom: none;
+}
+.explain > .specification .dot{
+    display:inline-block;
+    margin: 0 0.5em;
+    color:red;
+}
+@media screen and (max-width: 1230px)
+{
+    .explain > .specification{
+        width: 55em;
+    }
+}
+@media screen and (max-width: 965px)
+{
+    .explain > .specification{
+        width: 34em;
+    }
+    .explain > .specification .specification-explain{
+        font-size: 1em;
+    }
+    .explain > .specification .specification-explain th{
+        width:9em;
+    }
+}
+@media screen and (max-width: 650px)
+{
+    .explain > .specification{
+        width: 26em;
+    }
+    .explain > .specification .specification-explain{
+        font-size: 1em;
+    }
+    .explain > .specification .specification-explain th{
+        width:8em;
+    }
+}
+
