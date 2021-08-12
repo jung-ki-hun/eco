@@ -17,7 +17,7 @@ const config = {
      url: process.env.MONDB_URL ||""
  },
  hook:{
-
+    url:
  }
 }
 module.exports = {
