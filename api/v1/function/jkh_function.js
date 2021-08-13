@@ -37,11 +37,15 @@ var dcipher = (password)=>{
     return dcipstr;
 }//복호화 함수
 
+var webhook =require("./jkh_webhook");
+
 module.exports = {
     isEmpty,
     date_time,
     date_ymd,
     cipher,
-    dcipher
+    dcipher,
+    webhook,
+    
 }
 // log save 
