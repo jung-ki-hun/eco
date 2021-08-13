@@ -10,6 +10,7 @@ CREATE TABLE users(
 CREATE TABLE users_level(
     level_id SERIAL NOT NULL,
     user_id SERIAL REFERENCES users(user_id),
+    level_u int NOT NULL,
     PRIMARY KEY(level_id)
 );--권한 테이블 
 CREATE TABLE login_log(
