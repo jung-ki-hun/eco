@@ -19,3 +19,7 @@ router.use(bodyParser.urlencoded({ express: true }));
 const db_config = require('../db.js')
 const conn = db_config.init()
 db_config.connect(conn)
+
+/*****************************/
+/******파일 응집화 하기******/
+/*****************************/
