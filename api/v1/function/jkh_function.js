@@ -1,9 +1,10 @@
-var isEmpty = (str) => {
-
-    if (typeof str == "undefined" || str == null || str == "")
+var isEmpty = (...str) => {
+    for(let i_str of str){
+    if (typeof i_str == "undefined" || i_str == null || i_str == "")
         return true;
     else
         return false;
+    }
 }
 var date_time = () => {
     const date = new Date();
