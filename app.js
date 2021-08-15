@@ -5,19 +5,14 @@ var session = require('express-mysql-session');
 var request = require('request');
 var db = require('./db/sqldb.js');
 var morgan = require("morgan");
-var fs = require('fs');
 var jkh_function = require('./api/v1/function/jkh_function');
 var jkh = require('./api/v1/function/jkh_config');
-
-
-//var router = require(`./api/router.js`); //삭제 예정
-//var expressErrorHandler = require('express-error-handler');
-var MySQLStore = require("express-mysql-session")(session);
 const app = express();
+//-------------------------------//
+//-------------------------------//
+//-------------------------------//
 
-const logstream = fs.createWriteStream(`
-${__dirname}/log/access.log`, { flags: "a" });
-app.use(morgan("dev", { stream:logstream}));
+var MySQLStore = require("express-mysql-session")(session);
 var db_info = db.getConnection();
 var sessionStore = new MySQLStore(db_info);
 app.use(
@@ -30,12 +25,20 @@ app.use(
 	})
 );//세션 생성
 app.use(cookieParser());//쿠키 생성
-//app.use('/', router); // 메인 진입점 //아마 필요 x
 
+//-----------------------------------//
+//-----------------------------------//
+//-----------------------------------//
+app.use(morgan('dev',{stream: jkh_function.logstream}))//로그파일로 관리 함
+
+//var expressErrorHandler = require('express-error-handler');
+//app.use('/', router); // 메인 진입점 //아마 필요 x
 app.use('/', require('./api/v1/user/index.js')); //사용자
 app.use('/', require('./api/v1/admin/index.js')); //관리자
 //app.use('/',require()); //etc
 app.use('/w', static(path.join(__dirname, 'web')));//웹페이지 미들웨어
+
+
 // var errorHandler = expressErrorHandler({
 // 	static: {
 // 		'404': './web/error/404.html',
@@ -45,7 +48,7 @@ app.use('/w', static(path.join(__dirname, 'web')));//웹페이지 미들웨어
 
 app.use(expressErrorHandler.httpError(404));
 app.use(errorHandler);
-app.listen(jkh.config.app.port,jkh.config.app.host, () => {
+app.listen(jkh.config.app.port, jkh.config.app.host, () => {
 	/*//var msg = new Webhook.MessageBuilder().setText("dddd"
 	//Hook.info("NODE_SERVER","Info");
 	//jkh_function.sendMessage('info','node.js server start !!');
