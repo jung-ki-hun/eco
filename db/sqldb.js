@@ -35,44 +35,37 @@ module.exports = {
     },
     getConnection: function () {
         return db_info;
-    },
-    selectSql: (sql, errmsg, succmsg, params) => {
-        let conn = this.init();
-        this.connect(conn)
-        conn.query(sql, params, (err, rows) => {
-            if (err) {
-                console.error(`${jkh_fun.date_time()} : ${errmsg} => ${err}`);
-                response.state = 0;
-                return response;
-            }
-            else {
-                try {
-                    if (jkh_fun.isEmpty(results)) {
-                        console.log(`${jkh_fun.date_time()} : ${errmsg}`);
-                        response.query = false;
-                        response.msg = 'failed';
-                        response.state = 1;
-                        return response;
-                    }//조회 실패
-                    else {
-                        var resultsTojson = JSON.stringify(results);
-                        console.log(`${jkh_fun.date_time()} : ${succmsg} => good!`);
-                        response.query = resultsTojson;
-                        response.msg = 'Succesful';
-                        response.state = 2;
-                        return response;
-                    }
-                } catch (e) {
-                    console.log(`${jkh_fun.date_time()} : ${errmsg} ->  ${e}  // db조회중 오류 발생`);
-                }
-            }
-        })
-    },
-    updateSql: ()=>{
-
-    },
-    insertSql: ()=>{
-        
-    }
-
+    }//,
+    // selectSql: (sql, errmsg, succmsg, params) => {
+    //     let conn = this.init();
+    //     this.connect(conn)
+    //     conn.query(sql, params, (err, rows) => {
+    //         if (err) {
+    //             console.error(`${jkh_fun.date_time()} : ${errmsg} => ${err}`);
+    //             response.state = 0;
+    //             return response;
+    //         }
+    //         else {
+    //             try {
+    //                 if (jkh_fun.isEmpty(results)) {
+    //                     console.log(`${jkh_fun.date_time()} : ${errmsg}`);
+    //                     response.query = false;
+    //                     response.msg = 'failed';
+    //                     response.state = 1;
+    //                     return response;
+    //                 }//조회 실패
+    //                 else {
+    //                     var resultsTojson = JSON.stringify(results);
+    //                     console.log(`${jkh_fun.date_time()} : ${succmsg} => good!`);
+    //                     response.query = resultsTojson;
+    //                     response.msg = 'Succesful';
+    //                     response.state = 2;
+    //                     return response;
+    //                 }
+    //             } catch (e) {
+    //                 console.log(`${jkh_fun.date_time()} : ${errmsg} ->  ${e}  // db조회중 오류 발생`);
+    //             }
+    //         }
+    //     })
+    
 }
