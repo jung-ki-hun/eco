@@ -1,23 +1,23 @@
 var express = require("express");
 var path = require('path');
 var static = require('serve-static');
-var session = require('express-session');
+var session = require('express-mysql-session');
 var request = require('request');
-var db = require('./db/db.js');
-global.find = __dirname;
-//var MySQLStore = require("express-mysql-session")(session);
-//var router = require(`./api/router.js`);
-var expressErrorHandler = require('express-error-handler');
-var argv_ip = process.argv[2];
-var jkh_function = require('./api/function/jkh_function');
+var db = require('./db/sqldb.js');
+var morgan = require("morgan");
+var fs = require('fs');
+var jkh_function = require('./api/v1/function/jkh_function');
+var jkh = require('./api/v1/function/jkh_config');
 
+
+//var router = require(`./api/router.js`); //삭제 예정
+//var expressErrorHandler = require('express-error-handler');
+var MySQLStore = require("express-mysql-session")(session);
 const app = express();
 
-const dataset = {
-	port: process.env.PORT,
-	host: process.env.T2_HOST
-}
-
+const logstream = fs.createWriteStream(`
+${__dirname}/log/access.log`, { flags: "a" });
+app.use(morgan("dev", { stream:logstream}));
 var db_info = db.getConnection();
 var sessionStore = new MySQLStore(db_info);
 app.use(
@@ -28,38 +28,32 @@ app.use(
 		resave: false,
 		saveUninitialized: true,
 	})
-);
-// const webhookUri = process.env.WEB_HOOK;
-// option 설정
-// const options = {
-// 	uri: webhookUri,
-// 	method: 'POST', // POST method 로 요청
-// 	body: {
-// 		text: 'value' // 내용
-// 	},
-// 	json: true // request 를 json 형태로 보내고자 한다면 true 로 꼭 설정해야한다.
-// }
-// // request 발송
-// request.post(options, function (err, httpResponse, body) {
-// })
-//app.use('/', router); // 메인 진입점
-//app.use('/',require()); //사용자
-//app.use('/',require()); //관리자
+);//세션 생성
+app.use(cookieParser());//쿠키 생성
+//app.use('/', router); // 메인 진입점 //아마 필요 x
+
+app.use('/', require('./api/v1/user/index.js')); //사용자
+app.use('/', require('./api/v1/admin/index.js')); //관리자
 //app.use('/',require()); //etc
-app.use('/w', static(path.join(__dirname, 'web')));
-var errorHandler = expressErrorHandler({
-	static: {
-		'404': './web/error/404.html',
-		'500': './web/error/pages-500.html'
-	}
-})
+app.use('/w', static(path.join(__dirname, 'web')));//웹페이지 미들웨어
+// var errorHandler = expressErrorHandler({
+// 	static: {
+// 		'404': './web/error/404.html',
+// 		'500': './web/error/pages-500.html'
+// 	}
+// })//안드로이드에서도 최적화 진행예정
 
 app.use(expressErrorHandler.httpError(404));
 app.use(errorHandler);
-app.listen(dataset.port, dataset.host, () => {
-	//var msg = new Webhook.MessageBuilder().setText("dddd"
+app.listen(jkh.config.app.port,jkh.config.app.host, () => {
+	/*//var msg = new Webhook.MessageBuilder().setText("dddd"
 	//Hook.info("NODE_SERVER","Info");
-	jkh_function.sendMessage('info','node.js server start !!');
-	//console.log('dd');
+	//jkh_function.sendMessage('info','node.js server start !!');
+	//console.log('dd');*/
+	let str = `http://${jkh.config.app.host}:${jkh.config.app.port}/`
+	console.log('start server');
+	jkh_function.webhook('info', 'node.js server starting!!');
+	jkh_function.webhook('info', str);
+
 });
 

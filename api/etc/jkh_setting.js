@@ -2,9 +2,6 @@
 /*******초기 환경 설정*********/
 /*****************************/
 
-var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
 var jkh_db_config = require('./process/login_db');
 var jkh_suggest = require('./process/suggest_db');
 var jkh_product = require('./process/product_db');

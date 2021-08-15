@@ -1,11 +1,22 @@
+/********************************
+ * ************기본함수 **********
+ *********************************/
 var isEmpty = (...str) => {
     for(let i_str of str){
-    if (typeof i_str == "undefined" || i_str == null || i_str == "")
+        if (typeof i_str == "undefined" || i_str == null || i_str == "")
         return true;
-    else
+        else
         return false;
     }
 }
+const dataset = {
+    port: process.env.PORT,
+    host: process.env.T2_HOST
+}
+const appRoot = require("app-root-path");
+/********************************
+ * **********시간 관련함수********
+*********************************/
 var date_time = () => {
     const date = new Date();
     var str = date;
@@ -39,7 +50,7 @@ var dcipher = (password)=>{
 }//복호화 함수
 
 var webhook =require("./jkh_webhook");
-
+const logstream = fs.createWriteStream(`${appRoot}}/log/access.log`, { flags: "a" });
 module.exports = {
     isEmpty,
     date_time,
@@ -47,6 +58,7 @@ module.exports = {
     cipher,
     dcipher,
     webhook,
+    appRoot,
 
 }
 // log save 

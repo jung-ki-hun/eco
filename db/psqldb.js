@@ -16,7 +16,7 @@ const SQL = require("sql-template-strings");
 const pool_set = {
     init: () => {
         const { Pool, Client } = require('pg');
-        const client = new Client(db_info.db);
+        const client = new Pool(db_info.db);
         return client
     },
     connect: (conn) => {
@@ -26,12 +26,12 @@ const pool_set = {
         });
     }
 };
-const pool = pool_set.connect(pool_set.init());
+//const pool = pool_set.connect(pool_set.init());
 module.exports = {
     getConnection: function () {
         return db_info.db;
     },
-    pool,
+    pool = pool_set.init(),
     Q(string, ...rest) {
         return SQL(string, ...rest.map(((x) => (typeof x === object && x !== null ? JSON.stringify(x) : x))))
     }///쿼리 만드는 거
