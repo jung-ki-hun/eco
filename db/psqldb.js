@@ -13,11 +13,10 @@
 // })
 const db_info = require("../api/v1/function/jkh_config.js")//설정관련 데이터
 const SQL = require("sql-template-strings");
-
-module.exports = {
+const pool_set = {
     init: () => {
         const { Pool, Client } = require('pg');
-        const client = new Client(db_info.db);
+        const client = new Pool(db_info.db);
         return client
     },
     connect: (conn) => {
@@ -25,12 +24,16 @@ module.exports = {
             if (err) console.log(err);
             else console.log("postgre successfully!");
         });
-    },
+    }
+};
+//const pool = pool_set.connect(pool_set.init());
+module.exports = {
     getConnection: function () {
         return db_info.db;
     },
-    Q(string,...rest){
-        return SQL(string,...rest.map(((x)=>(typeof x === object && x !==null? JSON.stringify(x) : x))))
+    pool = pool_set.init(),
+    Q(string, ...rest) {
+        return SQL(string, ...rest.map(((x) => (typeof x === object && x !== null ? JSON.stringify(x) : x))))
     }///쿼리 만드는 거
 
 }
