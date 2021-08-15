@@ -64,11 +64,14 @@ async const index = (req, res) => {
   return res.state(200).join(response);//데이터 전송 !!
 
 }//login 
+async const del_logi = (req,res) ={
+  
+}
 
 module.exports = (app) => {
   app.group([],(router)=>{
     ///router.get('/login', get_name),//사용자 닉네임 요청
-    router.post('login',index)
+    router.post('/in',index)
     ///router.post('/regiser', regiser)//회원가입
     });
 }

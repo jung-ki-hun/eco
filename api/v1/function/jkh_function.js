@@ -34,7 +34,7 @@ var date_ymd = () => {
 *********************************/
 var crypto = require('crypto');
 var shasum = crypto.createHash('sha256');
-var key = '$!@T!EFQT@##!@$$%!#TWGW@T!#@%^';// 비밀키
+var key = '$!@T!EFQT@#%!#TWGW@T!#@%^';// 비밀키
 var cipher = (password) => {
     var cc = crypto.createCipher('aes192', key);
     cc.update(password, 'utf-8', 'base64');
