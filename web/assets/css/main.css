@@ -2404,7 +2404,8 @@
 		text-align: center;
 		text-decoration: none;
 		white-space: nowrap;
-		text-transform: uppercase;}
+		text-transform: uppercase;
+	}
 
 	input[type="submit"],
 	input[type="reset"],
