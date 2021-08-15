@@ -1584,7 +1584,7 @@
 
 	.inner {
 		margin: 0 auto;
-		max-width: 65em;
+		max-width: 100%;
 	}
 
 		@media screen and (max-width: 1280px) {
@@ -1598,7 +1598,7 @@
 		@media screen and (max-width: 980px) {
 
 			.inner {
-				max-width: 70%;
+				max-width: 85%;
 			}
 
 		}
@@ -1606,7 +1606,7 @@
 		@media screen and (max-width: 736px) {
 
 			.inner {
-				max-width: 85%;
+				max-width: 80%;
 			}
 
 		}
@@ -2317,7 +2317,7 @@
 
 	.table-wrapper {
 		-webkit-overflow-scrolling: touch;
-		overflow-x: auto;
+		overflow-x: unset;
 	}
 
 	table {
@@ -3165,12 +3165,28 @@
 /* Footer */
 
 	#footer {
-		padding: 6em 0 4em 0;
-		background: #25a2c3;
-		text-align: center;
+		padding:3em;
+		background: rgb(112,112,112);
+		/*text-align: center;*/
 		color: #c8e7f0;
 	}
-
+	
+	.kdh-footer{
+		left: 45%;
+		position: relative;
+		overflow: visible;
+		width: 522px;
+		white-space: nowrap;
+		line-height: 29px;
+		margin-top: -4.5px;
+		text-align: left;
+		font-family: Segoe UI;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 20px;
+		color: rgba(212,212,212,1);
+	}
+	
 		#footer h2 {
 			color: #fff;
 		}
