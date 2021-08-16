@@ -30,9 +30,8 @@ const app = express();
 //-----------------------------------//
 //-----------------------------------//
 app.use(morgan('dev',{stream: jkh_function.logstream}))//로그파일로 관리 함
-
+require('./api/v1/function/jkh_group');
 //var expressErrorHandler = require('express-error-handler');
-//app.use('/', router); // 메인 진입점 //아마 필요 x
 app.use('/api/v1/user', require('./api/v1/user/index.js')); //사용자
 app.use('/api/v1/admin', require('./api/v1/admin/index.js')); //관리자
 //app.use('/',require()); //etc
