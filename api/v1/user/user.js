@@ -1,9 +1,9 @@
-const app = express.Router();
+// const app = express.Router();
 const jkh = require("../function/jkh_function")
 const { Q, pool } = require('../../../db/psqldb');
 
 
-async const regiser = (req, res) => {
+ const regiser = async (req, res) => {
     const response = {
         state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
@@ -46,7 +46,7 @@ async const regiser = (req, res) => {
     return res.state(200).join(response);//데이터 전송 !!
 
 }//다시 만들기
-async const get_name = (req, res) => {
+const get_name = async (req, res) => {
     const response = {
         state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
@@ -88,7 +88,7 @@ async const get_name = (req, res) => {
     }
     return res.state(200).join(response);//데이터 전송 !!
 }//안드로이드에서 사용할듯? 추후 수정 하기
-async const find_pw = (req, res) => {
+ const find_pw = async (req, res) => {
     const response = {
         state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나

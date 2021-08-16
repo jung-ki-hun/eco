@@ -12,19 +12,19 @@ const app = express();
 //-------------------------------//
 //-------------------------------//
 
-var MySQLStore = require("express-mysql-session")(session);
-var db_info = db.getConnection();
-var sessionStore = new MySQLStore(db_info);
-app.use(
-	session({
-		key: "session_cookie_name#@",
-		secret: "session_cookie_secret",
-		store: sessionStore,
-		resave: false,
-		saveUninitialized: true,
-	})
-);//세션 생성
-app.use(cookieParser());//쿠키 생성
+// var MySQLStore = require("express-mysql-session")(session);
+// var db_info = db.getConnection();
+// var sessionStore = new MySQLStore(db_info);
+// app.use(
+// 	session({
+// 		key: "session_cookie_name#@",
+// 		secret: "session_cookie_secret",
+// 		store: sessionStore,
+// 		resave: false,
+// 		saveUninitialized: true,
+// 	})
+// );//세션 생성
+//app.use(cookieParser());//쿠키 생성
 
 //-----------------------------------//
 //-----------------------------------//
@@ -33,8 +33,8 @@ app.use(morgan('dev',{stream: jkh_function.logstream}))//로그파일로 관리 
 
 //var expressErrorHandler = require('express-error-handler');
 //app.use('/', router); // 메인 진입점 //아마 필요 x
-app.use('/', require('./api/v1/user/index.js')); //사용자
-app.use('/', require('./api/v1/admin/index.js')); //관리자
+app.use('/api/v1/user', require('./api/v1/user/index.js')); //사용자
+app.use('/api/v1/admin', require('./api/v1/admin/index.js')); //관리자
 //app.use('/',require()); //etc
 app.use('/w', static(path.join(__dirname, 'web')));//웹페이지 미들웨어
 

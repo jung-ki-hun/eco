@@ -2,28 +2,9 @@ require("dotenv").config();
 // import dotenv from 'dotenv';
 // dotenv.config();
 const config = {
-<<<<<<< HEAD
- app:{
-     host:process.env.T_HOST || '127.0.0.1',
-     port:process.env.T_PORT || '3000'
- },
- db:{
-    host: process.env.DB_IP || "127.0.0.1",//argv_ip != '192.168.219.102' ?  '180.83.98.144':argv_ip.toString(),
-    port: process.env.DB_PORT || "3306",
-    user: process.env.DB_ID || "root",
-    password: process.env.DB_PW || "rlgns123",
-    database: process.env.DB_NAME|| "projectb",
- },
- nodb:{
-     url: process.env.MONDB_URL ||""
- },
- hook:{
-    url:
- }
-=======
     app: {
-        host: process.env.T_HOST || '127.0.0.1',
-        port: process.env.T_PORT || '3000'
+        host: process.env.T3_HOST || '192.168.219.107',
+        port: process.env.T_PORT || '4000'
     },
     db: {
         host: process.env.DB_IP || "127.0.0.1",//argv_ip != '192.168.219.102' ?  '180.83.98.144':argv_ip.toString(),
@@ -51,7 +32,6 @@ const config = {
     hook: {
         url: process.env.WEB_HOOK || "",
     }
->>>>>>> server
 }
 var argv_ip = process.argv[2];
 module.exports = {

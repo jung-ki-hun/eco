@@ -13,6 +13,7 @@
 // })
 const db_info = require("../api/v1/function/jkh_config.js")//설정관련 데이터
 const SQL = require("sql-template-strings");
+const { Pool, Client } = require('pg');
 const pool_set = {
     init: () => {
         const { Pool, Client } = require('pg');
@@ -26,12 +27,13 @@ const pool_set = {
         });
     }
 };
+const pool = new Pool();
 //const pool = pool_set.connect(pool_set.init());
 module.exports = {
     getConnection: function () {
         return db_info.db;
     },
-    pool = pool_set.init(),
+    pool, //= pool_set.init(),
     Q(string, ...rest) {
         return SQL(string, ...rest.map(((x) => (typeof x === object && x !== null ? JSON.stringify(x) : x))))
     }///쿼리 만드는 거

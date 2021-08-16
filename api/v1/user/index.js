@@ -1,9 +1,10 @@
 const express = require('express');
 var app = express.Router();
-app.group((router)=>{
-router.group('/chat',require('./chat.js'));
+require('express-group-routes');
+
+app.group('/',(router)=>{
+router.group('/context',require('./context.js'));
 router.group('/login',require('./login.js'));
-router.group('/passport',require('./passport.js'));
-router.group('/api_open',require('./api_open.js'));
-})
+router.group('/user',require('./user.js'));
+});
 module.exports = app;

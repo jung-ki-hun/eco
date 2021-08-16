@@ -49,10 +49,6 @@ var dcipher = (password) => {
     return dcipstr;
 }//복호화 함수
 
-<<<<<<< HEAD
-var webhook =require("./jkh_webhook");
-
-=======
 
 /********************************
  * ***********로그 관리***********
@@ -60,11 +56,10 @@ var webhook =require("./jkh_webhook");
 var webhook = require("./jkh_webhook");
 var fs = require('fs');
 var rfs = require('rotating-file-stream');//로그 하루단위로 절샥
-const logstream = fs.createStream(`access.log`, {
+const logstream = fs.createWriteStream(`access.log`, {
     interval: '1d',
     path: `${appRoot}/log/log` });
      
->>>>>>> server
 module.exports = {
     isEmpty,
     date_time,
@@ -72,12 +67,8 @@ module.exports = {
     cipher,
     dcipher,
     webhook,
-<<<<<<< HEAD
-    
-=======
     appRoot,
     logstream,
 
->>>>>>> server
 }
 // log save
