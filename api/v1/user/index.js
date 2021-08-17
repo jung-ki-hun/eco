@@ -1,10 +1,15 @@
 const express = require('express');
 var app = express.Router();
-require('express-group-routes');
+// app.group((router)=>{
+//     router.group('/user',require('./user.js'));
+//     router.group('/login',require('./login.js'));
+//     router.group('/context',require('./context.js'));
+// })
 
-app.group('/',(router)=>{
-router.group('/context',require('./context.js'));
-router.group('/login',require('./login.js'));
-router.group('/user',require('./user.js'));
-});
+var ress = {
+    data:"hi 성덕 hangul"
+}
+app.get('/', (req,res)=> {
+    return res.status(200).json(ress)
+})
 module.exports = app;

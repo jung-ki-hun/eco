@@ -4,10 +4,10 @@ const { Q, pool } = require('../../../db/psqldb');
 
 const test =  (req,res)=>{
     var ress = {
-        data:'hi 성덕 hangul'
+        data:"hi 성덕 hangul"
     }
     return res.status(200).json(ress);
-}
+}///xpx
 
 module.exports = (app) => {
     app.group([],(router)=>{
