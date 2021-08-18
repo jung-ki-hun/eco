@@ -11,8 +11,6 @@ const test =  (req,res)=>{
 }///xpx
 
 module.exports = (app) => {
-      ///router.get('/login', get_name),//사용자 닉네임 요청
       app.get('/test',test);//api/v1/user/context/test
-      ///router.post('/regiser', regiser)//회원가입
       
   }
