@@ -13,3 +13,6 @@
 [0mGET /api/v1/user/context [33m404[0m 3.873 ms - 158[0m
 [0mGET /api/v1/user/context/test [33m404[0m 1.679 ms - 163[0m
 [0mGET /api/v1/user/context/test [32m200[0m 2.778 ms - 27[0m
+[0mGET /api/v1/user/ [33m404[0m 2.273 ms - 151[0m
+[0mGET /api/v1/user/login/in2 [33m404[0m 2.822 ms - 160[0m
+[0mGET /api/v1/user/login/in2 [32m200[0m 2.539 ms - 3[0m

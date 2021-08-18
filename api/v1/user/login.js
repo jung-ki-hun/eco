@@ -67,11 +67,8 @@ const { Q, pool } = require('../../../db/psqldb');
 const del_logi = async (req,res) =>{
   
 }
-
 module.exports = (app) => {
   app.group([],(router)=>{
-    ///router.get('/login', get_name),//사용자 닉네임 요청
     router.post('/in',index)
-    ///router.post('/regiser', regiser)//회원가입
     });
 }

@@ -30,43 +30,17 @@ var date_ymd = () => {
 }
 
 /********************************
- * ************암호화************
-*********************************/
-var crypto = require('crypto');
-var shasum = crypto.createHash('sha256');
-var key = '$!@T!EFQT@#%!#TWGW@T!#@%^';// 비밀키
-var cipher = (password) => {
-    var cc = crypto.createCipher('aes192', key);
-    cc.update(password, 'utf-8', 'base64');
-    var cipstr = cc.final('base64');
-    return cipstr;
-}//암호화 함수
-
-var dcipher = (password) => {
-    var dc = crypto.createDecipheriv('aes192', key);
-    dc.update(password, 'base64', 'utf-8');
-    var dcipstr = dc.final('utf-8');
-    return dcipstr;
-}//복호화 함수
-
-
-/********************************
  * ***********로그 관리***********
 *********************************/
-var webhook = require("./jkh_webhook");
-var fs = require('fs');
 var rfs = require('rotating-file-stream');//로그 하루단위로 절샥
-const logstream = fs.createStream(`access.log`, {
+const logstream = rfs.createStream(`access.log`, {
     interval: '1d',
-    path: `${appRoot}/log/log` });
+    path: `${appRoot}/log` });
      
 module.exports = {
     isEmpty,
     date_time,
     date_ymd,
-    cipher,
-    dcipher,
-    webhook,
     appRoot,
     logstream,
 
