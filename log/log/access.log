@@ -1,0 +1,15 @@
+[0mGET /api/v1/user/context/test [33m404[0m 1.430 ms - 163[0m
+[0mGET /api/v1/user/context/test [33m404[0m 1.382 ms - 163[0m
+[0mGET /api/v1/user/context/test [33m404[0m 2.325 ms - 163[0m
+[0mGET /api/v1/user/ [32m200[0m 3.339 ms - 27[0m
+[0mGET / [31m500[0m 2.156 ms - 1305[0m
+[0mGET / [31m500[0m 1.541 ms - 1305[0m
+[0mGET / [31m500[0m 2.339 ms - 1305[0m
+[0mGET / [31m500[0m 1.319 ms - 1305[0m
+[0mGET / [31m500[0m 1.473 ms - 1305[0m
+[0mGET / [31m500[0m 1.522 ms - 1305[0m
+[0mGET / [32m200[0m 1.657 ms - 16[0m
+[0mGET /api/v1/user/ [36m304[0m 2.554 ms - -[0m
+[0mGET /api/v1/user/context [33m404[0m 3.873 ms - 158[0m
+[0mGET /api/v1/user/context/test [33m404[0m 1.679 ms - 163[0m
+[0mGET /api/v1/user/context/test [32m200[0m 2.778 ms - 27[0m

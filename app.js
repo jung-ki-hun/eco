@@ -5,10 +5,11 @@ var session = require('express-mysql-session');
 var request = require('request');
 var db = require('./db/sqldb.js');
 var morgan = require("morgan");
+require('./api/v1/function/jkh_group.js');
 var jkh_function = require('./api/v1/function/jkh_function');
 var jkh = require('./api/v1/function/jkh_config');
 
-const users = require('./api/v1/user/index.js');
+const users = require('./api/v1/user');
 //const admin = require('./api/v1/admin/index.js');
 const app = express();
 //-------------------------------//
@@ -33,16 +34,15 @@ const app = express();
 //-----------------------------------//
 //-----------------------------------//
 app.use(morgan('dev',{stream: jkh_function.logstream}))//로그파일로 관리 함
-require('./api/v1/function/jkh_group');
 app.get('/',(req,res)=>{
-	const str = '제성덕 바봉';s
+	const str = '제성덕 바봉';
 	return res.send(str);
 })
 //var expressErrorHandler = require('express-error-handler');
 app.use('/api/v1/user/', users); //사용자
 //app.use('/api/v1/admin', admin); //관리자
 //app.use('/',require()); //etc
-app.use('/w', static(path.join(__dirname, 'web')));//웹페이지 미들웨어
+//app.use('/w', static(path.join(__dirname, 'web')));//웹페이지 미들웨어
 
 
 // var errorHandler = expressErrorHandler({
