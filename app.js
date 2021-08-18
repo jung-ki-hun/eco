@@ -35,7 +35,7 @@ const app = express();
 //-----------------------------------//
 app.use(morgan('dev',{stream: jkh_function.logstream}))//로그파일로 관리 함
 app.get('/',(req,res)=>{
-	const str = '제성덕 바봉';
+	const str = '제성덕 여기가 진입점인데 바봉';
 	return res.send(str);
 })
 //var expressErrorHandler = require('express-error-handler');
