@@ -31,6 +31,10 @@ const app = express();
 //-----------------------------------//
 app.use(morgan('dev',{stream: jkh_function.logstream}))//로그파일로 관리 함
 require('./api/v1/function/jkh_group');
+app.get('/',(req,res)=>{
+	const str = '제성덕 바봉';
+	return res.send(str);
+})
 //var expressErrorHandler = require('express-error-handler');
 app.use('/api/v1/user', require('./api/v1/user/index.js')); //사용자
 app.use('/api/v1/admin', require('./api/v1/admin/index.js')); //관리자
@@ -45,8 +49,8 @@ app.use('/w', static(path.join(__dirname, 'web')));//웹페이지 미들웨어
 // 	}
 // })//안드로이드에서도 최적화 진행예정
 
-app.use(expressErrorHandler.httpError(404));
-app.use(errorHandler);
+// app.use(expressErrorHandler.httpError(404));
+// app.use(errorHandler);
 app.listen(jkh.config.app.port, jkh.config.app.host, () => {
 	/*//var msg = new Webhook.MessageBuilder().setText("dddd"
 	//Hook.info("NODE_SERVER","Info");
@@ -54,7 +58,7 @@ app.listen(jkh.config.app.port, jkh.config.app.host, () => {
 	//console.log('dd');*/
 	let str = `http://${jkh.config.app.host}:${jkh.config.app.port}/`
 	console.log('start server');
-	jkh_function.webhook('info', 'node.js server starting!!');
+	jkh_function.webhook('info', `${jkh_function.date_time()}node.js server starting!!`);
 	jkh_function.webhook('info', str);
 
 });
