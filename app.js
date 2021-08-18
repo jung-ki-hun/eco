@@ -10,7 +10,7 @@ var jkh_function = require('./api/v1/function/jkh_function');
 var jkh = require('./api/v1/function/jkh_config');
 
 const users = require('./api/v1/user');
-//const admin = require('./api/v1/admin/index.js');
+const admin = require('./api/v1/admin');
 const app = express();
 //-------------------------------//
 //-------------------------------//
@@ -40,20 +40,8 @@ app.get('/',(req,res)=>{
 })
 //var expressErrorHandler = require('express-error-handler');
 app.use('/api/v1/user/', users); //사용자
-//app.use('/api/v1/admin', admin); //관리자
+app.use('/api/v1/admin', admin); //관리자
 //app.use('/',require()); //etc
-//app.use('/w', static(path.join(__dirname, 'web')));//웹페이지 미들웨어
-
-
-// var errorHandler = expressErrorHandler({
-// 	static: {
-// 		'404': './web/error/404.html',
-// 		'500': './web/error/pages-500.html'
-// 	}
-// })//안드로이드에서도 최적화 진행예정
-
-// app.use(expressErrorHandler.httpError(404));
-// app.use(errorHandler);
 app.listen(jkh.config.app.port, jkh.config.app.host, () => {
 	/*//var msg = new Webhook.MessageBuilder().setText("dddd"
 	//Hook.info("NODE_SERVER","Info");
