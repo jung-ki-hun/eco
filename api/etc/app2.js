@@ -6,13 +6,13 @@ var session = require('express-session');
 //var db = require('./db/db.js');
 var expressErrorHandler = require('express-error-handler');
 var argv_ip = process.argv[2];
-var jkh_function = require('./api/v1/function/jkh_function');
+var jkh_function = require('../v1/function/jkh_function');
 
 const app = express();
 
 const dataset = {
-	port: process.env.PORT ||"4000",
-	host: process.env.T3_HOST ||"192.168.219.107" 
+	port: process.env.PORT ||"3000",
+	host: process.env.T3_HOST ||"192.168.219.101" 
 }
 const response ={
     test : "name", 
