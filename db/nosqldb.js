@@ -10,15 +10,19 @@ db.once('open', function () {
 
 //schema ~~!!
 const command = new mongoose.Schema({
-
+    command_id:{type:OdjectId,require:true,unique:true},
+    name : {type:String,require:true},
+    create_d:{type:Date,require:true},
+    contents:{type:String,require:true}
 });//뎃글
 const context = new mongoose.Schema({
-    id: {},
-    context_id:{type:OdjectId,},
-    name : {},
-    create_d:{},
-    data:{},
-    command:[command]
+    context_id:{type:OdjectId,require:true,unique:true},
+    name : {type:String,require:true},
+    id : {type:String,require:true},
+    create_d : {type:Date,require:true},
+    title : {type:String,require:true},
+    content : {type:Mixed,require:true},
+    command : [command]
 });//게시글
 
 mongoose.connect(url);
@@ -32,9 +36,12 @@ module.exports = {
     },
     connect: () => {
         const database = mongoose.connection;
-        database.once('open', ()=>{
+        database.on('open', ()=>{
             console.log('mongodb connect!!');
-
+            mongoose.model('context',context);
+        })
+        database.on('disconnected',()=>{
+            this.init();
         })
     },
 
