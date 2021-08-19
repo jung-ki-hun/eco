@@ -1,0 +1,55 @@
+<HTML>
+
+<HEAD>
+    <TITLE> 관리자 로긴</TITLE>
+</HEAD>
+
+<BODY>
+    <script language="javascript">
+    //<!--
+            function pasuser(form) {
+                if (form.id.value == "khkh0130") { // 원하는 아이디를 입력 하세요
+                    if (form.pass.value == "rlgns130") { // 원하는 비밀번호를 입력 하세요
+                        location = "http://www.naver.com/" // 이곳에 로그인 성공하였을때 이동할 페이지를 입력 하세요
+                    } else {
+                        alert("비밀번호가 맞지 않습니다") // 비밀번호가 안맞을때의 메세지 입니다
+                    }
+                } else {
+                    alert("아이디가 맞지 않습니다.") // 아이디가 안맞을때의 메세지 입니다
+                }
+            }
+    //-->
+    </script>
+
+    <p align=center>
+
+    <form name="login">
+        <table bgcolor="#FFCC00" border="0" width=250>
+            <tr>
+                <td colspan="2" align=center height=30><b>관리자님! 로그인 해 주세요</b></td>
+            </tr>
+
+            <tr bgColor=EEEEEE height=30>
+                <td><b>아이디</b></td>
+                <td align=center><input name="id" type="text">
+                </td>
+            </tr>
+            <tr bgColor=EEEEEE height=30>
+                <td><b>비밀번호</b></td>
+                <td align=center><input name="pass" type="password"></td>
+            </tr>
+            <tr bgColor=EEEEEE height=30>
+                <td colspan=2 align=center>
+                    <input type="button" value="로그인" onClick="pasuser(this.form)">
+                    <input type="submit" value="회원가입" name="newmember">
+                </td>
+            </tr>
+        </table>
+
+    </form>
+
+    <!-------------------- 여기까지 ---------------------->
+
+</BODY>
+
+</html>

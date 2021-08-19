@@ -9,7 +9,7 @@
 
 -->
 
-<html  lang="ko">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
@@ -52,11 +52,12 @@
     box-shadow: 45px 45px 104px -33px rgba(38,38,38,0.92);
 
 }*/
-.login-kdh{
-    text-align: center;
-    font-size:24px;
-    font-weight:bold;
-}
+        .login-kdh {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
         .login-form-container {
 
             background: #f5f5f5;
@@ -85,7 +86,7 @@
                 */
             background-repeat: no-repeat;
             background-position: center;
-            background-color:#23B6C8;    
+            background-color: #23B6C8;
         }
 
         .login-form-right-side h1 {
@@ -137,7 +138,7 @@
             font-size: 11px;
             /* color: #23B6C8; */
             border-radius: 3px;
-            
+
 
         }
 
@@ -213,24 +214,26 @@
                     <span>계정이 없으신가요?</span>
                     <button class="create-account-btn shadow-light">회원가입</button>
                 </div>
-              
-                <div class="login-input-container">
-                    <div class="login-kdh">
-                        로그인
+                <form action="/test" name="loginForm" method="POST">
+                    <div class="login-input-container">
+
+                        <div class="login-kdh">
+                            로그인
+                        </div>
+                        <div class="login-input-wrap input-id">
+                            <i class="far fa-envelope"></i>
+                            <input placeholder="Email" type="text" name="email">
+                        </div>
+                        <div class="login-input-wrap input-password">
+                            <i class="fas fa-key"></i>
+                            <input placeholder="Password" type="password" name="password">
+                        </div>
                     </div>
-                    <div class="login-input-wrap input-id">
-                        <i class="far fa-envelope"></i>
-                        <input placeholder="Email" type="text">
+                    <div class="login-btn-wrap">
+                        <button class="login-btn" type="submit">로그인</button>
+                        <a href="#">비밀번호를 잊으셨나요?</a>
                     </div>
-                    <div class="login-input-wrap input-password">
-                        <i class="fas fa-key"></i>
-                        <input placeholder="Password" type="password">
-                    </div>
-                </div>
-                <div class="login-btn-wrap">
-                    <button class="login-btn" type="submit">로그인</button>
-                    <a href="#">비밀번호를 잊으셨나요?</a>
-                </div>
+                </form>
             </div>
         </div>
     </div>
