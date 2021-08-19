@@ -21,3 +21,34 @@
 > 500 페이지만들기
 >
 > Ajax 페이지 잡기(데이터들) echo써서
+
+필드명, 파라미터 정리
+
+
+
+게시판
+number	
+title	
+id	
+username	
+time	
+
+게시글보기
+number	
+title	
+id	
+username	
+time	
+content	
+
+답글
+c_id	
+c_username	
+c_time	
+c_comment	
+
+로그인
+email	
+password	
+
+http://서버주소/login?email=123@naver.com&&password=123123
