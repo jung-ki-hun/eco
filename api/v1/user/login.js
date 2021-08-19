@@ -116,9 +116,13 @@ const del_log = async (req,res) =>{
   }
   return res.state(200).join(response);//데이터 전송 !!
 }
+const test = (req,res)=>{
+  return res.send("aoifhjaslj");
+}
 module.exports = (app) => {
   app.group([],(router)=>{
     router.post('/in',index),
-    router.post('/out',del_log)
+    router.post('/out',del_log),
+    router.get('/test',test)
     });
 }

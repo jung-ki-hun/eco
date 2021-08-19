@@ -43,10 +43,6 @@ app.use('/api/v1/user/', users); //사용자
 app.use('/api/v1/admin', admin); //관리자
 //app.use('/',require()); //etc
 app.listen(jkh.config.app.port, jkh.config.app.host, () => {
-	/*//var msg = new Webhook.MessageBuilder().setText("dddd"
-	//Hook.info("NODE_SERVER","Info");
-	//jkh_function.sendMessage('info','node.js server start !!');
-	//console.log('dd');*/
 	let str = `http://${jkh.config.app.host}:${jkh.config.app.port}/`
 	console.log('start server');
 	jkh_function.webhook('info', `${jkh_function.date_time()}node.js server starting!!`);
