@@ -1,19 +1,41 @@
 const mongoose = require('mongoose');
-const url = 'mongodb://localhost:/';
+const jkh_c = require('../api/v1/function/jkh_config.js');
+const url = `${jkh_c.config.nodb.url}/ ${jkh_c.config.nodb.database}`;
 var db = mongoose.connection;
 db.on('error', console.error);
-db.once('open', function(){
+db.once('open', function () {
     // CONNECTED TO MONGODB SERVER
     console.log("Connected to mongod server");
 });
 
-mongoose.connect('mongodb://localhost/mongodb_tutorial');
-module.exports ={
-    init:()=>{
-        return mongoose.connection;
+//schema ~~!!
+const command = new mongoose.Schema({
+
+});//뎃글
+const context = new mongoose.Schema({
+    id: {},
+    context_id:{type:OdjectId},
+    name : {},
+    create_d:{},
+    data:{}
+
+})//게시글
+
+mongoose.connect(url);
+module.exports = {
+    init: () => {
+
+        mongoose
+            .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+            .then(() => console.log('Successfully connected to mongodb'))
+            .catch(e => console.error(e));
     },
-    connect:()=>{
-        
+    connect: () => {
+        const database = mongoose.connection;
+        database.once('open', ()=>{
+            console.log('mongodb connect!!');
+
+        })
     },
 
 }
