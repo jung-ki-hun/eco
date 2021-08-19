@@ -14,12 +14,12 @@ const command = new mongoose.Schema({
 });//뎃글
 const context = new mongoose.Schema({
     id: {},
-    context_id:{type:OdjectId},
+    context_id:{type:OdjectId,},
     name : {},
     create_d:{},
-    data:{}
-
-})//게시글
+    data:{},
+    command:[command]
+});//게시글
 
 mongoose.connect(url);
 module.exports = {
