@@ -3,7 +3,7 @@ require("dotenv").config();
 // dotenv.config();
 const config = {
     app: {
-        host: process.env.T3_HOST || '192.168.219.107',
+        host: process.env.T_HOST || '127.0.0.1',
         port: process.env.T_PORT || '4000'
     },
     db: {
@@ -22,8 +22,8 @@ const config = {
     },
     nodb: {
 
-        url: process.env.MONDB_URL || "",
-        port: process.env.MON_PORT || "",
+        url: process.env.MONDB_URL || "127.0.0.1",
+        port: process.env.MON_PORT || "27017",
         database: process.env.MON_NAME || "",
         id: process.env.MON_ID || "",
         password: process.env.MON_PW || ""
