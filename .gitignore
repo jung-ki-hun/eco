@@ -1,0 +1,6 @@
+.env
+/node_modules/
+/api/v1/function/jkh_webhook.js
+#/api/v1/function/jkh_config.js
+./db.js
+.eco/web_server/web

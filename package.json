@@ -1,0 +1,30 @@
+{
+  "name": "eco",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chanmin07/eco.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chanmin07/eco/issues"
+  },
+  "homepage": "https://github.com/chanmin07/eco#readme",
+  "dependencies": {
+    "app-root-path": "^3.0.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-error-handler": "^1.1.0",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "port": "^0.8.1",
+    "rotating-file-stream": "^2.1.5",
+    "static": "^2.0.0"
+  }
+}
