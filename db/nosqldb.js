@@ -28,7 +28,6 @@ const context = new mongoose.Schema({
 mongoose.connect(url);
 module.exports = {
     init: () => {
-
         mongoose
             .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
             .then(() => console.log('Successfully connected to mongodb'))
