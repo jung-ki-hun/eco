@@ -7,7 +7,7 @@ const test =  (req,res)=>{
     var ress = {
         context_id : 1,
         data:"hi 성덕 hangul sjdjxuejd dkdkdkd this is apple",
-        title : "나는 개인이요 -제성덕",
+        title : "제서어덕  ㅇㅇ",
         user : "김동훈",
         count : 30,
         date : jkh.date_ymd(),

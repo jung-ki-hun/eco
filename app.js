@@ -1,7 +1,8 @@
 var express = require("express");
+const cors = require('cors');
 var path = require('path');
-var static = require('serve-static');
-var session = require('express-mysql-session');
+//var static = require('serve-static');
+//var session = require('express-mysql-session');
 var request = require('request');
 var db = require('./db/sqldb.js');
 var morgan = require("morgan");
@@ -12,6 +13,7 @@ var jkh = require('./api/v1/function/jkh_config');
 const users = require('./api/v1/user');
 const admin = require('./api/v1/admin');
 const app = express();
+app.disable('x-powered-by'); // x-powered-by 헤더 비활성화
 //-------------------------------//
 //-------------------------------//
 //-------------------------------//
