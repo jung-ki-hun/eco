@@ -54,13 +54,16 @@
             background: #f5f5f5;
             width: 50%;
             height: 540px;
-            display: flex;
-            flex-direction: row;
+            display: inline-block;
             box-shadow: 10px black;
             border-radius: 10px;
-            align-items: center;
-            justify-content: center;
+            text-align: center;
+            line-height: normal;
+            
+        }
 
+        .page-404-form-container div{
+            transform: translate(0%,200%);
         }
 
     </style>
@@ -69,10 +72,8 @@
 <body>
     <div class="page-container">
         <div class="page-404-form-container shadow">
-          <p>404 Page Not Found</p>
-          <p>
-              홈페이지로 돌아가기
-          </p>
+          <div>404 Page Not Found</div>
+          <a href="./index.html"><div>홈페이지로 돌아가기</div></a>
         </div>
     </div>
 </body>
