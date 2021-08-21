@@ -6,84 +6,56 @@ const sql = require('../../../db/sqldb');
 
 // Local Strategy
 passport.use(
-    // 'user.local',
-    // new LocalStrategy(
-    //   {
-    //     usernameField: 'user_id',
-    //     passwordField: 'user_pw',
-    //     session: false, // 세션 사용안함
-    //   },
-    //   async (user_id, user_pw, done) => {
-    //     const client = await pool.connect();
-    //     try {
-    //       await client.query('BEGIN');
-    //       // user_id, user_pw로 사용자 인증 확인. 해당 값이 없으면 400 리턴
-    //       const sql = $`
-    //       SELECT
-    //         user_no,
-    //         user_pw,
-    //         state
-    //       FROM users
-    //       WHERE 1 = 1
-    //         AND user_id = ${user_id}
-    //       `;
-  
-    //       const query = (await client.query(sql)).rows;
-    //       if (query.length === 0) {
-    //         // 없는 사용자
-    //         return done(null, { error: true, state: -1, message: 'User not found' }, {});
-    //       }
-    //       const user = query[0];
-  
-    //       const check = await bcrypt.compare(user_pw, user.user_pw);
-    //       if (!check) {
-    //         // 비밀번호 틀림
-    //         return done(null, { error: true, state: -2, message: 'Incorrect email or password' }, {});
-    //       }
-  
-    //       if (user.state === 0) {
-    //         // 비활성화된 사용자
-    //         return done(null, { error: true, state: -3, message: 'Disabled user' }, {});
-    //       }
-  
-    //       if (user.state === 2) {
-    //         // 탈퇴 대기중
-    //         return done(null, { error: true, state: -4, message: 'Waiting Left' }, {});
-    //       }
-  
-    //       if (user.state === 3) {
-    //         // 탈퇴한 사용자
-    //         return done(null, { error: true, state: -5, message: 'Left user' }, {});
-    //       }
-  
-    //       const sql2 = $`
-    //       SELECT
-    //         stl_no
-    //       FROM
-    //         stylists
-    //       WHERE
-    //         stl_no = ${user.user_no}
-    //       `;
-    //       const query2 = (await client.query(sql2)).rows;
-    //       console.log(query2.length > 0 ? 'stl' : 'cstm')
-  
-    //       // JWT 토큰 생성
-    //       const token = jwt.sign({ user_no: user.user_no, user_type: query2.length > 0 ? 'stl' : 'cstm' }, config.auth.jwtSecretUser, {
-    //         expiresIn: config.auth.jwtExpireUser, // https://github.com/zeit/ms
-    //       });
-  
-    //       await client.query('COMMIT');
-    //       // 로그인 체크 성공
-    //       return done(null, { token }, {});
-    //     } catch (e) {
-    //       await client.query('ROLLBACK');
-    //       // 로그인 확인 중 에러 발생 시
-    //       console.error(e);
-    //       return done(null, { error: true, state: 0, message: 'Internal Error' }, {});
-    //     } finally {
-    //       client.release();
-    //     }
-    //   },
-    // ),
-  );
-  
+    'user.local',
+    new LocalStrategy(
+        {
+            usernameField: 'user_id',
+            passwordField: 'user_pw',
+            session: false, // 세션 사용안함
+        },
+        async (user_id, user_pw, done) => {
+            try {
+                //로그인 확인 구현 자리
+
+                // JWT 토큰 생성 
+                jkh_fun.createToken();//userid 인자 전달
+
+                //로그인 처리관련 콜백 함수 제작 자리 //추후 개발예정                 
+                //   const token = jwt.sign({ user_no: user.user_no, user_type: query2.length > 0 ? 'stl' : 'cstm' }, config.auth.jwtSecretUser, {
+                //     expiresIn: config.auth.jwtExpireUser, // https://github.com/zeit/ms
+                //   });
+
+                // 로그인 체크 성공
+                return done(null, { token }, {});
+            } catch (e) {
+                // 로그인 확인 중 에러 발생 시
+                console.error(e);
+                return done(null, { error: true, state: 0, message: 'Internal Error' }, {});
+            } finally {
+                client.release();
+            }
+        },
+    ),
+    // async (username, password, cb) => {
+    //     User.findOne({username: username})
+    //         .then((user) => {
+    //             if (!user) {
+    //                 return cb(null, false)
+    //             }
+
+    //             // 위에서 만들어준 함수
+    //             const isValid =jkh_fun.createToken// validPassword(password, user.hash, user.salt);
+
+    //             if (isValid) {
+    //                 return cb(null, user);
+    //             } else {
+    //                 return cb(null, false);
+    //             }
+
+    //         })
+    //         .catch((err) => {
+    //             cb(err);
+    //         });
+    // }
+);
+module.exports = passport;
