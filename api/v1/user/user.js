@@ -139,7 +139,7 @@ const test =  (req,res)=>{
         ...req.query,
         ...req.params,
         ...req.body,
-        id: req.email,
+        id: req.uesr.email
     }
     var ress = {
         context_id : 1,
@@ -149,8 +149,9 @@ const test =  (req,res)=>{
         count : 30,
         date : jkh.date_ymd(),
         date2 : jkh.date_time(),
-        id : params.id
+        id : params.email
     }
+    console.log(params.id);
     return res.status(200).json(ress);
 }///xpx
 module.exports = (app) => {

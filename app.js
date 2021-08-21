@@ -14,8 +14,8 @@ const admin = require('./api/v1/admin');
 const app = express();
 
 
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extends: true }));
 //-------------------------------//
 //-------------------------------//
 //-------------------------------//
