@@ -1,0 +1,10 @@
+[0mGET /api/v1/user/login/test [32m200[0m 1.904 ms - 10[0m
+[0mGET /favicon.ico [33m404[0m 4.056 ms - 150[0m
+[0mGET /api/v1/user/login/ [33m404[0m 3.740 ms - 157[0m
+[0mGET /api/v1/user/login [33m404[0m 1.866 ms - 156[0m
+[0mGET /api/v1/user/context/test [32m200[0m 2.033 ms - 199[0m
+[0mGET /favicon.ico [33m404[0m 4.303 ms - 150[0m
+[0mGET /api/v1/user/context/test [32m200[0m 2.173 ms - 199[0m
+[0mGET /favicon.ico [33m404[0m 1.678 ms - 150[0m
+[0mGET / [32m200[0m 1.727 ms - 42[0m
+[0mGET / [32m200[0m 1.385 ms - 42[0m

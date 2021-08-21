@@ -56,7 +56,7 @@ var dcipher = (password) => {
 var webhook = require("./jkh_webhook");
 var fs = require('fs');
 var rfs = require('rotating-file-stream');//로그 하루단위로 절샥
-const logstream = fs.createStream(`access.log`, {
+const logstream = rfs.createStream(`access.log`, {
     interval: '1d',
     path: `${appRoot}/log/log` });
      
