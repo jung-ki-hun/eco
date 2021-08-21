@@ -59,7 +59,13 @@ var rfs = require('rotating-file-stream');//로그 하루단위로 절샥
 const logstream = fs.createStream(`access.log`, {
     interval: '1d',
     path: `${appRoot}/log/log` });
-     
+
+/********************************
+ * ***********token ***********
+*********************************/
+
+
+
 module.exports = {
     isEmpty,
     date_time,
