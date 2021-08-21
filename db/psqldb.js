@@ -14,20 +14,20 @@
 const db_info = require("../api/v1/function/jkh_config.js")//설정관련 데이터
 const SQL = require("sql-template-strings");
 const { Pool, Client } = require('pg');
-const pool_set = {
-    init: () => {
-        const { Pool, Client } = require('pg');
-        const client = new Pool(db_info.db);
-        return client
-    },
-    connect: (conn) => {
-        conn.connect((err) => {
-            if (err) console.log(err);
-            else console.log("postgre successfully!");
-        });
-    }
-};
-const pool = new Pool();
+// const pool_set = {
+//     init: () => {
+//         const { Pool, Client } = require('pg');
+//         const client = new Pool(db_info.db);
+//         return client
+//     },
+//     connect: (conn) => {
+//         conn.connect((err) => {
+//             if (err) console.log(err);
+//             else console.log("postgre successfully!");
+//         });
+//     }
+// };
+const pool = new Pool(db_info.db);
 //const pool = pool_set.connect(pool_set.init());
 module.exports = {
     getConnection: function () {

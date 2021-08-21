@@ -63,6 +63,15 @@ const logstream = rfs.createStream(`access.log`, {
 /********************************
  * ***********token ***********
 *********************************/
+const jwt = require('jsonwebtoken');
+const jkh_key = require('./jkh_config');
+createToken =  (user_id)=>{
+const token = jwt.sign({user_id: user_id}, jkh_key.config.app.key, {expiresIn: '1h'});
+    return token;
+}
+
+
+
 
 
 
@@ -73,6 +82,7 @@ module.exports = {
     cipher,
     dcipher,
     webhook,
+    createToken,
     appRoot,
     logstream,
 

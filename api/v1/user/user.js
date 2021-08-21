@@ -56,7 +56,7 @@ const get_name = async (req, res) => {
         ...req.query,
         ...req.params,
         ...req.body,
-        id: req.uesr.email,
+        id: req.body.id
     }
     console.log(params.id);
     try {
@@ -99,7 +99,7 @@ const get_name = async (req, res) => {
         ...req.params,
         ...req.body,
         id: req.uesr.email,
-        pw: req.user.password,        
+        pw: req.user.password,
         name: req.user.username
     }
     try {
@@ -109,12 +109,12 @@ const get_name = async (req, res) => {
             return res.state(404).json(response);
         }
         const sql1 = Q`
-            UPDATE 
-            user 
-            set pw = ${jkh.cipher(params.pw)} 
-            WHERE 
-            username = ${params.name} 
-            AND 
+            UPDATE
+            user
+            set pw = ${jkh.cipher(params.pw)}
+            WHERE
+            username = ${params.name}
+            AND
             email = ${params.id}
             `;//
         const query1 = await pool.query(sql1);//조회 알고리즘
@@ -139,7 +139,7 @@ const test =  (req,res)=>{
         ...req.query,
         ...req.params,
         ...req.body,
-        id: req.uesr.email
+        id: req.body.id
     }
     var ress = {
         context_id : 1,
@@ -149,7 +149,7 @@ const test =  (req,res)=>{
         count : 30,
         date : jkh.date_ymd(),
         date2 : jkh.date_time(),
-        id : params.email
+        id : params.id
     }
     console.log(params.id);
     return res.status(200).json(ress);

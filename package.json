@@ -27,6 +27,7 @@
     "express-mysql-session": "^2.1.5",
     "express-session": "^1.17.1",
     "fs": "0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.7",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
