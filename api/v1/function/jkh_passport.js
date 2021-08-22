@@ -18,7 +18,7 @@ passport.use(
                 //로그인 확인 구현 자리
 
                 // JWT 토큰 생성 
-                jkh_fun.createToken();//userid 인자 전달
+                const token = jkh_fun.createToken();//userid 인자 전달
 
                 //로그인 처리관련 콜백 함수 제작 자리 //추후 개발예정                 
                 //   const token = jwt.sign({ user_no: user.user_no, user_type: query2.length > 0 ? 'stl' : 'cstm' }, config.auth.jwtSecretUser, {
