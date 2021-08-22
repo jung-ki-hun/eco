@@ -2799,8 +2799,12 @@
 				left: 0em;
 			}
 
-			#header nav.right {
-				display: none;
+			#header nav.right .button {
+				padding: 0.2em 0.7em;
+				height: 2.2em;
+				line-height: 2.2em;
+				font-size:0.9em;
+
 			}
 
 	}
