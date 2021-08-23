@@ -18,3 +18,8 @@ Commit History
 + KIUP-126
     + Fixed Issue : Board-Cursor Effect
     + created CSS(board.css)
+
++ KIUP-120
+    + Fixed Issue : Board-Layout Width Margin
+    + revised CSS(main.css)
+        + line 2321~2322

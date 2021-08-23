@@ -2318,6 +2318,8 @@
 	.table-wrapper {
 		-webkit-overflow-scrolling: touch;
 		overflow-x: unset;
+		width:calc(100% - 6em);
+		margin:3em;
 	}
 
 	table {
