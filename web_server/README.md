@@ -11,6 +11,10 @@ Commit History
     + writed README.md
 
 + KIUP-119
-    + Fix issue : Header-Login Button Disappear
+    + Fixed Issue : Header-Login Button Disappear
     + revised CSS(main.css)
         + line 2802
+   
++ KIUP-126
+    + Fixed Issue : Board-Cursor Effect
+    + created CSS(board.css)
