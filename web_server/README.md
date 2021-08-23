@@ -22,4 +22,4 @@ Commit History
 + KIUP-120
     + Fixed Issue : Board-Layout Width Margin
     + revised CSS(main.css)
-        + line 2321~2322
+        + line 2321 ~ 2322
