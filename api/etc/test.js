@@ -16,9 +16,7 @@ const dbtest = async () => {
             WHERE        
               ul.level_u in (select level_u form users_level ul2, users u2 WHERE u2.user_id = ul2.user_id)
               AND
-              u.email = ${params.id}
-              AND
-              u.pw = ${params.pw}
+              u.email = 1@1
             `;//
         const query1 = await pool.query(sql1);//조회 알고리즘
         if (jkh.isEmpty(query1.rows)) {
@@ -31,5 +29,9 @@ const dbtest = async () => {
 
 
     }
+    catch {
+        
+        console.log('no');
+    }
 }
-console.log(dbtest());
+console.log(dbtest())
