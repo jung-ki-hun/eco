@@ -35,7 +35,8 @@ module.exports = {
     },
     getConnection: function () {
         return db_info;
-    }//,
+    }
+    //,
     // selectSql: (sql, errmsg, succmsg, params) => {
     //     let conn = this.init();
     //     this.connect(conn)
