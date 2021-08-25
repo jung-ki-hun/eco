@@ -9,14 +9,11 @@ const dbtest = async () => {
     try {
         const sql1 = Q`
             SELECT 
-              u.username,
-              ul.level_u
+              u.username
             FORM
-              users u, users_level ul
-            WHERE        
-              ul.level_u in (select level_u form users_level ul2, users u2 WHERE u2.user_id = ul2.user_id)
-              AND
-              u.email = 1@1
+              users u
+            WHERE       
+             u.email = 1@1
             `;//
         const query1 = await pool.query(sql1);//조회 알고리즘
         if (jkh.isEmpty(query1.rows)) {
@@ -24,14 +21,18 @@ const dbtest = async () => {
             return 'empty';
         }
         else {
-            return query1.rows;
+            const s =query1.row;
+            console.log(s);
+            console.log('ddd');
+
+            return s;
         }
 
 
     }
-    catch {
-        
-        console.log('no');
+    catch (e) {
+        //console.error(e.message);
+        console.log(e);
     }
 }
 console.log(dbtest())
