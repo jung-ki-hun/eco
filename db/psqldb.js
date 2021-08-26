@@ -33,7 +33,7 @@ const pool = new Pool(db_info.pgdb);
 // }
 module.exports = {
     getConnection: function () {
-        return db_info.db;
+        return db_info.gpdb;
     },
     pool, //= pool_set.init(),
     Q(string, ...rest) {

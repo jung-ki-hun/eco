@@ -24,7 +24,6 @@ const dbtest = async () => {
             const s =query1.row;
             console.log(s);
             console.log('ddd');
-
             return s;
         }
 
@@ -32,7 +31,7 @@ const dbtest = async () => {
     }
     catch (e) {
         //console.error(e.message);
-        console.log(e);
+        console.log(e.);
     }
 }
 console.log(dbtest())
