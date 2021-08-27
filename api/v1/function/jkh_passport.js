@@ -100,6 +100,8 @@ passport.use(
         },
     ),
 );
+//jwtstrategy
+
 // passport.use(
 //     'user.jwt',
 //     new JWTStrategy(
