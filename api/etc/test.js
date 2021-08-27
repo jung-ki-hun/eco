@@ -29,7 +29,7 @@ const dbtest = async () => {
     }
     catch (e) {
         //console.error(e.message);
-        console.log(e.);
+        console.log(e);
     }
 }
 console.log(dbtest())
