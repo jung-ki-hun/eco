@@ -1,9 +1,9 @@
 var express = require("express");
 var path = require('path');
-var static = require('serve-static');
-var session = require('express-mysql-session');
-var request = require('request');
-var db = require('./db/sqldb.js');
+//var static = require('serve-static');
+//var session = require('express-mysql-session');
+//var request = require('request');
+//var db = require('./db/sqldb.js');
 var morgan = require("morgan");
 require('./api/v1/function/jkh_group.js');
 var jkh_function = require('./api/v1/function/jkh_function');
@@ -12,6 +12,10 @@ var jkh = require('./api/v1/function/jkh_config');
 const users = require('./api/v1/user');
 const admin = require('./api/v1/admin');
 const app = express();
+
+
+app.use(express.json());
+app.use(express.urlencoded({ extends: true }));
 //-------------------------------//
 //-------------------------------//
 //-------------------------------//
@@ -33,7 +37,7 @@ const app = express();
 //-----------------------------------//
 //-----------------------------------//
 //-----------------------------------//
-app.use(morgan('dev',{stream: jkh_function.logstream}))//로그파일로 관리 함
+app.use(morgan('combined',{stream: jkh_function.logstream}))//로그파일로 관리 함
 app.get('/',(req,res)=>{
 	const str = '제성덕 여기가 진입점인데 바봉';
 	return res.send(str);

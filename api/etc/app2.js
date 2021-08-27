@@ -11,8 +11,8 @@ var jkh_function = require('../v1/function/jkh_function');
 const app = express();
 
 const dataset = {
-	port: process.env.PORT ||"3000",
-	host: process.env.T3_HOST ||"192.168.219.101" 
+	port: process.env.PORT ||"4000",
+	host: process.env.T3_HOST ||"192.168.219.107" 
 }
 const response ={
     test : "name", 

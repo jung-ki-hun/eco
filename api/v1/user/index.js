@@ -10,11 +10,4 @@ app.group('/',(router)=>{
     router.group('/login',path_u.login);
     router.group('/context',path_u.context);
 })
-
-// var ress = {
-//     data:"hangul"
-// }
-// app.get('/', (req,res)=> {
-//     return res.status(200).json(ress)
-// })
 module.exports = app;
