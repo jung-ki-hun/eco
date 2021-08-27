@@ -26,32 +26,7 @@
 const db_info = require("../api/v1/function/jkh_config.js")//설정관련 데이터
 const SQL = require("sql-template-strings");
 const { Pool, Client } = require('pg');
-const pool = new Pool(db_info.pgdb);
-Client.prototype.query = function push(...rest) {
-    const { stack } = new Error();
-    const callback = rest[2];
-  
-    // Callback 일 때
-    if (callback) {
-      // eslint-disable-next-line no-param-reassign
-      rest[2] = function wrapper(error, res) {
-        if (error) {
-          // eslint-disable-next-line no-param-reassign
-          error.message += `\nFrom previous event:\n${stack}`;
-        }
-        callback(error, res);
-      };
-  
-      return clientQueryRunner.call(this, ...rest);
-    }
-  
-    // Promise 일 때
-    return clientQueryRunner.call(this, ...rest).catch((error) => {
-      // eslint-disable-next-line no-param-reassign
-      error.message += `\nFrom previous event:\n${stack}`;
-      throw error;
-    });
-  };
+const pool = new Pool(db_info.config.pgdb);
 module.exports = {
     getConnection: function () {
         return db_info.gpdb;
