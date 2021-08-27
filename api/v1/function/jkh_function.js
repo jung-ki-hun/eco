@@ -1,7 +1,7 @@
 /********************************
  * ************기본함수 **********
  *********************************/
-var isEmpty = (...str) => { //데이터 유무 확인
+var isEmpty = (...str) => {
     for (let i_str of str) {
         if (typeof i_str == "undefined" || i_str == null || i_str == "")
             return true;
@@ -17,12 +17,12 @@ const appRoot = require("app-root-path");
 /********************************
  * **********시간 관련함수********
 *********************************/
-var date_time = () => { //시간
+var date_time = () => {
     const date = new Date();
     var str = date;
     return str;
 }
-var date_ymd = () => { //년 월 일
+var date_ymd = () => {
     const date = new Date();
     const sring_Regular = ' ';
     var str = `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
@@ -69,8 +69,11 @@ const createToken =  (user_id)=>{
 const token = jwt.sign({user_id: user_id}, jkh_key.config.app.key, {expiresIn: '1h'});
     return token;
 }
-
-
+/********************************
+ * ***********ip 차단 ***********
+*********************************/
+var geoip = require('geoip-country');
+var ipfiter = require('express-ipfilter');
 
 
 

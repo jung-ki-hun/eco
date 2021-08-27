@@ -32,9 +32,14 @@ const config = {
     },
     hook: {
         url: process.env.WEB_HOOK || "",
+    },
+    naver:{
+
+    },
+    kakao:{
+
     }    
 }
-var argv_ip = process.argv[2];
 module.exports = {
     config
 };

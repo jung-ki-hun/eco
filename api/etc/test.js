@@ -3,8 +3,8 @@
 // const h = 1.5;
 // console.log(pi*r*r*h);
 
-// const { pool, Q } = require('../../db/psqldb');
-// const jkh = require('../v1/function/jkh_function');
+//const { pool, Q } = require('../../db/psqldb');
+const jkh = require('../v1/function/jkh_function');
 // const dbtest = async () => {
 
 //     try {
@@ -36,3 +36,5 @@
 //     }
 // }
 // console.log(dbtest())
+
+console.log(jkh.cipher('1234'));
