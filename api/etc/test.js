@@ -3,7 +3,7 @@
 // const h = 1.5;
 // console.log(pi*r*r*h);
 const { pool, Q } = require('../../db/psqldb');
-
+const jkh = require('../v1/function/jkh_function');
 const dbtest = async () => {
 
     try {
@@ -23,7 +23,7 @@ const dbtest = async () => {
             return 'empty';
         }
         else {
-            const s = query1.row;
+            const s = query1.rows;
             console.log(s);
             console.log('ddd');
             return s;
