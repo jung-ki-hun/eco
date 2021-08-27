@@ -1,7 +1,7 @@
 /********************************
  * ************기본함수 **********
  *********************************/
-var isEmpty = (...str) => {
+var isEmpty = (...str) => { //데이터 유무 확인
     for (let i_str of str) {
         if (typeof i_str == "undefined" || i_str == null || i_str == "")
             return true;
@@ -17,12 +17,12 @@ const appRoot = require("app-root-path");
 /********************************
  * **********시간 관련함수********
 *********************************/
-var date_time = () => {
+var date_time = () => { //시간
     const date = new Date();
     var str = date;
     return str;
 }
-var date_ymd = () => {
+var date_ymd = () => { //년 월 일
     const date = new Date();
     const sring_Regular = ' ';
     var str = `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;

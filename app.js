@@ -1,9 +1,9 @@
 var express = require("express");
 var path = require('path');
-var static = require('serve-static');
-var session = require('express-mysql-session');
-var request = require('request');
-var db = require('./db/sqldb.js');
+//var static = require('serve-static');
+//var session = require('express-mysql-session');
+//var request = require('request');
+//var db = require('./db/sqldb.js');
 var morgan = require("morgan");
 require('./api/v1/function/jkh_group.js');
 var jkh_function = require('./api/v1/function/jkh_function');

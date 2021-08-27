@@ -7,11 +7,12 @@ const config = {
         port: process.env.T_PORT || '4000',
         key: process.env.SECRET_KEY || '!%@^^!&#$'
     },
-    db: {
-        host: process.env.DB_IP || "127.0.0.1",//argv_ip != '192.168.219.102' ?  '180.83.98.144':argv_ip.toString(),
-        port: process.env.DB_PORT || "3306",
-        user: process.env.DB_ID || "postgre",
+    pgdb: {
+        host: process.env.DB_IP || "127.0.0.1",
+        port: process.env.DB_PORT || "5432",
+        user: process.env.DB_ID || "postgres",
         password: process.env.DB_PW || "rlgns123",
+        database : process.env.DB_NAME || "projectb"
     },
     mysql: {
         host: process.env.SDB_IP || "127.0.0.1",//argv_ip != '192.168.219.102' ?  '180.83.98.144':argv_ip.toString(),

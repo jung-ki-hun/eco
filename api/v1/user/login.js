@@ -5,7 +5,7 @@ const { Q, pool } = require('../../../db/psqldb');
 
  const index = async (req, res) => {
   const response = {
-    state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
+    state: 1, // 상태표시 0: 실패, 1: 성공, 2 : 변수없음, 3 : 조회결과없음
     query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
     msg: 'Successful',
   };
@@ -34,7 +34,7 @@ const { Q, pool } = require('../../../db/psqldb');
         `;//
     const query1 = await pool.query(sql1);//조회 알고리즘
     if (jkh.isEmpty(query1.rows)) {
-      response.state = 2;
+      response.state = 3;
       response.msg = 'login failed';
       jkh.webhook('err', response.msg)//log 보내는 역활
       return res.state(404).send(json(response));
@@ -47,6 +47,9 @@ const { Q, pool } = require('../../../db/psqldb');
         email: req_data.email
       }//새션생성
       res.cookie('auth',true);//쿠키생성 추후 수정예정
+      response.state = 1; 
+      response.msg = 'login Success';
+      jkh.webhook('Success', response.msg)//log 보내는 역활 -> 디스코드
     }
 
 
@@ -95,7 +98,7 @@ const del_log = async (req,res) =>{
         `;//
     const query1 = await pool.query(sql1);//조회 알고리즘
     if (jkh.isEmpty(query1.rows)) {
-      response.state = 2;
+      response.state = 3;
       response.msg = 'login failed';
       jkh.webhook('err', response.msg)//log 보내는 역활
       return res.state(404).send(json(response));
@@ -108,6 +111,9 @@ const del_log = async (req,res) =>{
         email: req_data.email
       }//새션생성
       res.cookie('auth',true);//쿠키생성 추후 수정예정
+      response.state = 1; 
+      response.msg = 'login Success';
+      jkh.webhook('Success', response.msg)//log 보내는 역활 -> 디스코드
     }
   }
   catch (err) {
