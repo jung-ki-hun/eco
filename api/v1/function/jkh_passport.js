@@ -24,7 +24,7 @@ passport.serializeUser((user, done) => { // Strategy 성공 시 호출됨
 
 const index = async (id, pw) => {
     var pw_c = jkh.cipher(pw);
-    const user;
+    var user;
     try {
         const sql1 = Q`
           SELECT 
