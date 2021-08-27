@@ -26,8 +26,6 @@ const dbtest = async () => {
             console.log('ddd');
             return s;
         }
-
-
     }
     catch (e) {
         //console.error(e.message);
