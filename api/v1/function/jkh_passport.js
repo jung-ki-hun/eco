@@ -80,16 +80,13 @@ passport.use(
         async (email, password, done) => {
             try {
                 //로그인 확인 구현 자리
-                const user  = index(email, password);//login 확인 함수
+                const user  = index(email, password);//login 확인 함수                
                 // JWT 토큰 생성 
-
                 const token = jkh_fun.createToken(user.user_id);//userid 인자 전달
-
                 //로그인 처리관련 콜백 함수 제작 자리 //추후 개발예정                 
                 //   const token = jwt.sign({ user_no: user.user_no, user_type: query2.length > 0 ? 'stl' : 'cstm' }, config.auth.jwtSecretUser, {
                 //     expiresIn: config.auth.jwtExpireUser, // https://github.com/zeit/ms
                 //   });
-
                 // 로그인 체크 성공
                 return done(null, { token }, {});
             } catch (e) {
