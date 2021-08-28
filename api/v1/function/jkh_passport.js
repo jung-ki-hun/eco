@@ -23,7 +23,7 @@ passport.serializeUser((user, done) => { // Strategy 성공 시 호출됨
   });
 
 const index = async (id, pw) => {
-    var pw_c = jkh.cipher(pw);
+    var pw_c = jkh.cipher(pw);//암호화 진행
     var user;
     try {
         const sql1 = Q`
@@ -39,7 +39,7 @@ const index = async (id, pw) => {
             u.email = ${id}
             AND
             u.pw = ${pw_c}
-          `;//
+          `;//암호화 한 데이터(pw)를 기반으로 검색 진행
         const query1 = await pool.query(sql1);//조회 알고리즘
         if (jkh.isEmpty(query1.rows)) {
             response.state = 2;

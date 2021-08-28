@@ -34,10 +34,10 @@ const config = {
         url: process.env.WEB_HOOK || "",
     },
     naver:{
-
+        url: process.env.WEB_HOOK || "",
     },
     kakao:{
-
+        url: process.env.WEB_HOOK || "",
     }    
 }
 module.exports = {
