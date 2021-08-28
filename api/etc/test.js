@@ -37,4 +37,4 @@ const jkh = require('../v1/function/jkh_function');
 // }
 // console.log(dbtest())
 
-console.log(jkh.cipher('1234'));
+console.log(jkh.cipheriv('1234'));
