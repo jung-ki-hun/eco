@@ -14,13 +14,13 @@ const NaverStrategy = passport_naver.Strategy;
 const KakaoStrategy = passport_kakao.Strategy;
 
 
-passport.serializeUser((user, done) => { // Strategy 성공 시 호출됨
-    done(null, user); // 여기의 user가 deserializeUser의 첫 번째 매개변수로 이동
-  });
+// passport.serializeUser((user, done) => { // Strategy 성공 시 호출됨
+//     done(null, user); // 여기의 user가 deserializeUser의 첫 번째 매개변수로 이동
+//   });
 
-  passport.deserializeUser((user, done) => { // 매개변수 user는 serializeUser의 done의 인자 user를 받은 것
-    done(null, user); // 여기의 user가 req.user가 됨
-  });
+//   passport.deserializeUser((user, done) => { // 매개변수 user는 serializeUser의 done의 인자 user를 받은 것
+//     done(null, user); // 여기의 user가 req.user가 됨
+//   });
 
 const index = async (id, pw) => {
     var pw_c = jkh.cipher(pw);//암호화 진행
@@ -48,7 +48,7 @@ const index = async (id, pw) => {
         }
         else {
             const user_id = query1.rows[0].user_id;//사용자 key 추출
-            user = query1[0];
+            user = query1[0].rows;
             //res.cookie('auth', true);//쿠키생성 추후 수정예정
         }
         const sql2 = Q`
@@ -59,7 +59,7 @@ const index = async (id, pw) => {
             console.log(query2.errors);
             jkh.webhook.sendMessage('err', 'login sql insert err(500)');
         }
-        return user;
+        return user =null;
     }
     catch (err) {
         console.error(err);
@@ -80,7 +80,7 @@ passport.use(
         async (email, password, done) => {
             try {
                 //로그인 확인 구현 자리
-                const user  = index(email, password);//login 확인 함수                
+                const user  = jkh_fun.isEmpty(index(email, password));//login 확인 함수                
                 // JWT 토큰 생성 
                 const token = jkh_fun.createToken(user.user_id);//userid 인자 전달
                 //로그인 처리관련 콜백 함수 제작 자리 //추후 개발예정                 

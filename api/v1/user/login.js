@@ -74,7 +74,7 @@ const passport = require('../function/jkh_passport');
 
   // 로그인 성공 시
   const { token } = req.user;
-
+res.send(`token :   ${token}`);
   return res.json({ token });
 }//login 
 const del_log = async (req,res) =>{

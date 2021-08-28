@@ -74,7 +74,7 @@ const token = jwt.sign({user_id: user_id}, jkh_key.config.app.key, {expiresIn: '
 *********************************/
 var geoip = require('geoip-country');
 var ipfiter = require('express-ipfilter');
-
+//국가 단위로 찾아보기
 
 
 
