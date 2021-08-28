@@ -6,7 +6,7 @@ const passport_jwt = require('passport-jwt');
 const jkh_fun = require('./jkh_function');
 const jkh_config = require('./jkh_config');
 const pgsql = require('../../../db/psqldb');//db 조회 용
-const ExtractJWT = passportJWT.ExtractJwt;
+const ExtractJWT = passport_jwt.ExtractJwt;
 
 const JWTStrategy = passport_jwt.Strategy;
 const LocalStrategy = passport_local.Strategy;

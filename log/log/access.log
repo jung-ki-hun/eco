@@ -5,3 +5,4 @@
 159.89.127.171 - - [26/Aug/2021:16:27:55 +0000] "GET /stalker_portal/c/version.js HTTP/1.1" 404 166 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
 159.89.127.171 - - [26/Aug/2021:16:27:55 +0000] "GET /stream/live.php HTTP/1.1" 404 154 "-" "AlexaMediaPlayer/2.1.4676.0 (Linux;Android 5.1.1) ExoPlayerLib/1.5.9"
 159.89.127.171 - - [26/Aug/2021:16:27:56 +0000] "GET /flu/403.html HTTP/1.1" 404 151 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
+74.120.14.114 - - [27/Aug/2021:15:46:05 +0000] "GET / HTTP/1.1" 200 42 "-" "Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)"
