@@ -12,14 +12,14 @@ const dataset = {
 	port: process.env.T2_PORT ||"80",
 	host: process.env.T3_HOST ||"192.168.219.107" 
 }
-// var errorHandler = expressErrorHandler({
-// 	static: {
-// 		'404': './web/error/404.html',
-// 		'500': './web/error/500.html'
-// 	}
-// })
-// app.use(expressErrorHandler.httpError(404));
-// app.use(errorHandler);
+var errorHandler = expressErrorHandler({
+	static: {
+		'404': './web_server/web/error/404.html',
+		'500': './web_server/web/error/500.html'
+	}
+})
+app.use(expressErrorHandler.httpError(404));
+app.use(errorHandler);
 app.listen(dataset.port, dataset.host, () => {
 	console.log(`${dataset.host}:${dataset.port} server start!!!`);
 	jkh_function.webhook('info',`open web server`);
