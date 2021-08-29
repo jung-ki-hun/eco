@@ -5,7 +5,7 @@ var jkh_function = require('./api/lib/jkh_wfuncfion');
 var path = require('path');
 var static = require('serve-static');
 var morgan = require("morgan");
-app.use(morgan('dev',{stream: jkh_function.logstream}))//로그파일로 관리 함
+app.use(morgan('combined',{stream: jkh_function.logstream}))//로그파일로 관리 함
 app.use('/',require('./api/router.js'));
 app.use('/w', static(path.join(__dirname, 'web')));//웹페이지 미들웨어
 const dataset = {
@@ -17,11 +17,13 @@ var errorHandler = expressErrorHandler({
 		'404': './web/error/404.html',
 		'500': './web/error/pages-500.html'
 	}
-})//안드로이드에서도 최적화 진행예정
-
+})
 app.use(expressErrorHandler.httpError(404));
 app.use(errorHandler);
 app.listen(dataset.port, dataset.host, () => {
 	console.log(`${dataset.host}:${dataset.port} server start!!!`);
+	jkh_function.webhook('info',`open web server`);
+	jkh_function.webhook('info',`http://${dataset.host}:${dataset.port}/`);
+
 });
 
