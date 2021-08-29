@@ -43,8 +43,11 @@ const index = async (id, pw) => {
           insert into login_log(user_id,log_time) values (${user_id},${jkh.date_time()})
           `;
         const query2 = await pool.query(sql2);
-        if (query2.errors)
-
+        if (query2.errors){
+            console.log(query2.errors);
+            jkh.webhook.sendMessage('err', 'login sql insert err(500)');
+        }
+        return user;
     }
     catch (err) {
         console.error(err);
@@ -60,11 +63,13 @@ passport.use(
             usernameField: 'email',
             passwordField: 'password',
             session: false, // 세션 사용안함
+            passReqToCallback: false,//req 사용관련 함수
         },
         async (email, password, done) => {
             try {
                 //로그인 확인 구현 자리
-                index(email, password);//login 확인 함수
+                //index(email, password);//login 확인 함수
+                const user  = index(email, password);//login 확인 함수   
                 // JWT 토큰 생성 
                 const token = jkh_fun.createToken();//userid 인자 전달
 
