@@ -23,9 +23,9 @@ const KakaoStrategy = passport_kakao.Strategy;
 //   });
 
 const index = async (id, pw) => {
-    console.log(pw);
-    var pw_c = jkh_fun.cipher(pw);//암호화 진행 //iv 버전으로 수정 필수 !!!!
-    var user;
+    console.log(id,pw);
+    var pw_c = jkh_fun.cipheriv(pw);//암호화 진행 //iv 버전으로 수정 필수 !!!!
+    var user, user_id;
     try {
         const sql1 = Q`
           SELECT 
@@ -42,14 +42,14 @@ const index = async (id, pw) => {
             u.pw = ${pw_c}
           `;//암호화 한 데이터(pw)를 기반으로 검색 진행
         const query1 = await pool.query(sql1);//조회 알고리즘
-        if (jkh_fun.isEmpty(query1.rows)) {
-            response.state = 2;
-            response.msg = 'login failed';
+        console.log(`abc ${query1.rows[0]}`);
+        if (jkh_fun.isEmpty(query1.rows[0])) {
+             console.log('login fail');
             jkh_fun.webhook('err', response.msg)//log 보내는 역활
         }
         else {
-            const user_id = query1.rows.user_id;//사용자 key 추출
-            user = query1.rows;
+            user_id = query1.rows[0].user_id;//사용자 key 추출
+            user = query1.rows[0];
             //res.cookie('auth', true);//쿠키생성 추후 수정예정
         }
         const sql2 = Q`
@@ -60,7 +60,7 @@ const index = async (id, pw) => {
             console.log(query2.errors);
             jkh_fun.webhook('err', 'login sql insert err(500)');
         }
-        return user =null;
+        return user;
     }
     catch (err) {
         console.error(err);

@@ -6,7 +6,8 @@ const config = {
         host: process.env.T3_HOST || '192.168.219.107',
         port: process.env.T_PORT || '4000',
         key: process.env.SECRET_KEY || '!%@^^!&#$',
-        ckey: process.env.CRYPTO_KEY ||'!@!#!@%&^YSDJFS!@$!'
+        ckey: process.env.CRYPTO_KEY ||'!@!#!@%&^YSDJFS!@$!',
+        carl: process.env.CRYPTO_ARL || 'aes-256-cbc'
     },
     pgdb: {
         host: process.env.DB_IP || "127.0.0.1",
