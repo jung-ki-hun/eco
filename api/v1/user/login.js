@@ -74,7 +74,7 @@ const passport = require('../function/jkh_passport');
 
   // 로그인 성공 시
   const { token } = req.user;
-
+res.send(`token :   ${token}`);
   return res.json({ token });
 }//login 
 const del_log = async (req,res) =>{
@@ -138,8 +138,8 @@ const test = (req,res)=>{
 module.exports = (app) => {
   app.group([],(router)=>{
     router.post('/in',[passport.authenticate('user.local', { session: false })],index),//로그인
-    router.post('/in/naver',[passport.authenticate('user.local', { session: false })],index),//로그인
-    router.post('/in/kakao',[passport.authenticate('user.local', { session: false })],index),//로그인
+    router.post('/in/naver',[passport.authenticate('user.naver', { session: false })],index),//로그인
+    router.post('/in/kakao',[passport.authenticate('user.kakao', { session: false })],index),//로그인
     router.post('/out',del_log),//로그아웃
     router.get('/test',test)//테스트
     });

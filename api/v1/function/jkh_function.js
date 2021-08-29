@@ -1,3 +1,4 @@
+const jkh_key = require('./jkh_config');
 /********************************
  * ************기본함수 **********
  *********************************/
@@ -34,7 +35,8 @@ var date_ymd = () => {
 *********************************/
 var crypto = require('crypto');
 var shasum = crypto.createHash('sha256');
-var key = '$!@T!EFQT@#%!#TWGW@T!#@%^';// 비밀키
+var iv = crypto.randomBytes(16);
+var key = jkh_key.config.app.ckey; //'$!@T!EFQT@#%!#TWGW@T!#@%^';// 비밀키
 var cipher = (password) => {
     var cc = crypto.createCipher('aes192', key);
     cc.update(password, 'utf-8', 'base64');
@@ -48,7 +50,21 @@ var dcipher = (password) => {
     var dcipstr = dc.final('utf-8');
     return dcipstr;
 }//복호화 함수
+////////////////////////////////////////////
 
+var cipheriv = (password) => {
+    var cc = crypto.createCipheriv('aes-256-cbc',Buffer.from(key),iv);
+    cc.update(password, 'utf-8', 'base64');
+    var cipstr = cc.final('base64');
+    return cipstr;
+}//암호화 함수
+
+var dcipheriv = (password) => {
+    var dc = crypto.createDecipheriv('aes-256-cbc', key);
+    dc.update(password, 'base64', 'utf-8');
+    var dcipstr = dc.final('utf-8');
+    return dcipstr;
+}//복호화 함수
 
 /********************************
  * ***********로그 관리***********
@@ -64,7 +80,6 @@ const logstream = rfs.createStream(`access.log`, {
  * ***********token ***********
 *********************************/
 const jwt = require('jsonwebtoken');
-const jkh_key = require('./jkh_config');
 const createToken =  (user_id)=>{
 const token = jwt.sign({user_id: user_id}, jkh_key.config.app.key, {expiresIn: '1h'});
     return token;
@@ -74,7 +89,7 @@ const token = jwt.sign({user_id: user_id}, jkh_key.config.app.key, {expiresIn: '
 *********************************/
 var geoip = require('geoip-country');
 var ipfiter = require('express-ipfilter');
-
+//국가 단위로 찾아보기
 
 
 
@@ -84,6 +99,8 @@ module.exports = {
     date_ymd,
     cipher,
     dcipher,
+    cipheriv,
+    dcipheriv,
     webhook,
     createToken,
     appRoot,
