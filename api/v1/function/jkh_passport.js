@@ -3,6 +3,7 @@ const passport_local = require('passport-local');
 const passport_kakao = require('passport-kakao');
 const passport_naver = require('passport-naver');
 const passport_jwt = require('passport-jwt');
+
 const jkh_fun = require('./jkh_function');
 const jkh_config = require('./jkh_config');
 const {pool,Q} = require('../../../db/psqldb');//db 조회 용
