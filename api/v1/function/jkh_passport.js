@@ -6,7 +6,7 @@ const passport_jwt = require('passport-jwt');
 
 const jkh_fun = require('./jkh_function');
 const jkh_config = require('./jkh_config');
-const {pool,Q} = require('../../../db/psqldb');//db 조회 용
+const { pool, Q } = require('../../../db/psqldb');//db 조회 용
 const ExtractJWT = passport_jwt.ExtractJwt;
 
 const JWTStrategy = passport_jwt.Strategy;
@@ -24,9 +24,10 @@ const KakaoStrategy = passport_kakao.Strategy;
 //   });
 
 const index = async (id, pw) => {
-    console.log(id,pw);
+    console.log(id, pw);
     var pw_c = jkh_fun.cipheriv(pw);//암호화 진행 //iv 버전으로 수정 필수 !!!!
-    var user, user_id;
+    console.log(id, pw_c);
+    var user;
     try {
         const sql1 = Q`
           SELECT 
@@ -45,22 +46,22 @@ const index = async (id, pw) => {
         const query1 = await pool.query(sql1);//조회 알고리즘
         console.log(`abc ${query1.rows[0]}`);
         if (jkh_fun.isEmpty(query1.rows[0])) {
-             console.log('login fail');
+            console.log('login fail');
             jkh_fun.webhook('err', response.msg)//log 보내는 역활
         }
         else {
-            user_id = query1.rows[0].user_id;//사용자 key 추출
+            let user_id = query1.rows[0].user_id;//사용자 key 추출
             user = query1.rows[0];
             //res.cookie('auth', true);//쿠키생성 추후 수정예정
+            const sql2 = 
+            Q`insert into login_log(user_id,log_time) values (${user_id},${jkh_fun.date_time()})`;
+            const query2 = await pool.query(sql2);
+            if (query2.errors) {
+                console.log(query2.errors);
+                jkh_fun.webhook('err', 'login sql insert err(500)');
+            }
         }
-        const sql2 = Q`
-          insert into login_log(user_id,log_time) values (${user_id},${jkh_fun.date_time()})
-          `;
-        const query2 = await pool.query(sql2);
-        if (query2.errors) {
-            console.log(query2.errors);
-            jkh_fun.webhook('err', 'login sql insert err(500)');
-        }
+
         return user;
     }
     catch (err) {
@@ -82,7 +83,7 @@ passport.use(
         async (email, password, done) => {
             try {
                 //로그인 확인 구현 자리
-                const user  = index(email, password);//login 확인 함수                
+                const user = index(email, password);//login 확인 함수                
                 // JWT 토큰 생성 
                 console.log(user);
                 const token = jkh_fun.createToken(user.user_id);//userid 인자 전달
@@ -112,11 +113,11 @@ passport.use(
 //       async (jwtPayload, done) => {
 //         try {
 //           // JWT로 사용자 인증 확인
-  
+
 //           // 필요시 사용자 정보 조회하는 DB 쿼리 실행
-  
+
 //           // 사용자 정보 조회 성공
-  
+
 //           return done(null, jwtPayload);
 //         } catch (e) {
 //           // 사용자 인증 체크 중 에러 발생 시
@@ -136,16 +137,16 @@ passport.use(
 //       },
 //       async (accessToken, refreshToken, profile, done) => {
 //         const client = await pool.connect();
-  
+
 //         try {
 //           await client.query('BEGIN');
-  
+
 //           console.log(JSON.stringify(profile));
-  
+
 //           // 토큰 값 저장
 //           profile.accessToken = accessToken;
 //           profile.refreshToken = refreshToken;
-  
+
 //           const user_id = _.get(profile, 'emails[0].value') || null; // 이메일을 ID로
 //           if (!user_id) {
 //             // 이메일 없을 시 연동 해제
@@ -161,9 +162,9 @@ passport.use(
 //                 },
 //               },
 //             );
-  
+
 //             console.log(data);
-  
+
 //             // 로그인 에러처리
 //             return done(null, {
 //               error: true,
@@ -171,7 +172,7 @@ passport.use(
 //               message: '이메일 정보가 있어야 가입가능합니다',
 //             });
 //           }
-  
+
 //           // 사용자 정보 불러오기
 //           const sql = $`
 //           SELECT
@@ -182,7 +183,7 @@ passport.use(
 //             AND user_social_provider = 'naver'
 //             AND (user_social_info ->> 'id') = (${profile.id})::text
 //           `;
-  
+
 //           const query = (await client.query(sql)).rows;
 //           let user = null;
 //           if (query.length > 0) {
@@ -197,7 +198,7 @@ passport.use(
 //             WHERE 1 = 1
 //               AND user_id = ${user_id}
 //             `;
-  
+
 //             const query1 = (await client.query(sql1)).rows;
 //             if (query1.length > 0) {
 //               return done(null, {
@@ -206,10 +207,10 @@ passport.use(
 //                 message: '이미 사용중인 이메일입니다',
 //               });
 //             }
-  
+
 //             // 비밀번호 생성
 //             const user_pw = await bcrypt.hash(`${profile.id}_${user_id}`, saltRounds);
-  
+
 //             // 사용자 코드 생성
 //             /* let user_code = null;
 //             const randomString = (length, chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') => {
@@ -217,7 +218,7 @@ passport.use(
 //               for (let i = length; i > 0; i -= 1) result += chars[Math.floor(Math.random() * chars.length)];
 //               return result;
 //             };
-  
+
 //             let count = 0;
 //             // eslint-disable-next-line no-constant-condition
 //             while (true) {
@@ -225,9 +226,9 @@ passport.use(
 //               if (count > 100) {
 //                 throw new Error('Too many user_codes');
 //               }
-  
+
 //               user_code = randomString(8);
-  
+
 //               const sql1b = $`
 //               SELECT
 //                 user_no
@@ -236,14 +237,14 @@ passport.use(
 //               WHERE
 //                 user_code = ${user_code}
 //               `;
-  
+
 //               // eslint-disable-next-line no-await-in-loop
 //               const query1b = await client.query(sql1b);
 //               if (query1b.rows.length === 0) {
 //                 break;
 //               }
 //             } */
-  
+
 //             // 없는 사용자면 생성
 //             const sql2 = $`
 //             INSERT INTO users (
@@ -261,34 +262,34 @@ passport.use(
 //             )
 //             RETURNING user_no
 //             `;
-  
+
 //             const query2 = (await client.query(sql2)).rows;
 //             user = query2[0];
 //             user.state = 1;
 //           }
-  
+
 //           if (user.state === 0) {
 //             // 비활성화된 사용자
 //             return done(null, { error: true, state: -3, message: '비활성화된 사용자입니다' }, {});
 //           }
-  
+
 //           if (user.state === 2) {
 //             // 탈퇴 대기중
 //             return done(null, { error: true, state: -4, message: '탈퇴 대기중인 사용자입니다' }, {});
 //           }
-  
+
 //           if (user.state === 3) {
 //             // 탈퇴한 사용자
 //             return done(null, { error: true, state: -5, message: '탈퇴한 사용자입니다' }, {});
 //           }
-  
+
 //           // JWT 토큰 생성
 //           const token = jwt.sign({ user_no: user.user_no }, config.auth.jwtSecretUser, {
 //             expiresIn: config.auth.jwtExpireUser, // https://github.com/zeit/ms
 //           });
-  
+
 //           await client.query('COMMIT');
-  
+
 //           // 로그인 체크 성공
 //           return done(
 //             null,
@@ -297,7 +298,7 @@ passport.use(
 //           );
 //         } catch (e) {
 //           await client.query('ROLLBACK');
-  
+
 //           // 로그인 확인 중 에러 발생 시
 //           console.error(e);
 //           return done(e);
@@ -307,7 +308,7 @@ passport.use(
 //       },
 //     ));
 //   }
-  
+
 //   if (config.kakao.clientKey && config.kakao.callbackUrl) {
 //     // Kakao Strategy
 //     passport.use(new KakaoStrategy(
@@ -317,16 +318,16 @@ passport.use(
 //       },
 //       async (accessToken, refreshToken, profile, done) => {
 //         const client = await pool.connect();
-  
+
 //         try {
 //           await client.query('BEGIN');
-  
+
 //           console.log(JSON.stringify(profile));
-  
+
 //           // 토큰 값 저장
 //           profile.accessToken = accessToken;
 //           profile.refreshToken = refreshToken;
-  
+
 //           const user_id = _.get(profile, '_json.kakao_account.email') || null; // 이메일을 ID로
 //           if (!user_id) {
 //             // 이메일 없을 시 연동 해제
@@ -337,9 +338,9 @@ passport.use(
 //                 headers: { Authorization: `Bearer ${accessToken}` },
 //               },
 //             );
-  
+
 //             console.log(data);
-  
+
 //             // 로그인 에러처리
 //             return done(null, {
 //               error: true,
@@ -347,7 +348,7 @@ passport.use(
 //               message: '이메일 정보가 있어야 가입가능합니다. 먼저 카카오계정을 등록해주시기 바랍니다',
 //             });
 //           }
-  
+
 //           // 사용자 정보 불러오기
 //           const sql = $`
 //           SELECT
@@ -359,7 +360,7 @@ passport.use(
 //             user_social_provider = 'kakao'
 //             AND (user_social_info ->> 'id') = (${profile.id})::text
 //           `;
-  
+
 //           const query = (await client.query(sql)).rows;
 //           let user = null;
 //           if (query.length > 0) {
@@ -374,7 +375,7 @@ passport.use(
 //             WHERE
 //               user_id = ${user_id}
 //             `;
-  
+
 //             const query1 = (await client.query(sql1)).rows;
 //             if (query1.length > 0) {
 //               return done(null, {
@@ -383,10 +384,10 @@ passport.use(
 //                 message: '이미 사용중인 이메일입니다',
 //               });
 //             }
-  
+
 //             // 비밀번호 생성
 //             const user_pw = await bcrypt.hash(`${profile.id}_${user_id}`, saltRounds);
-  
+
 //             // 사용자 코드 생성
 //             /* let user_code = null;
 //             const randomString = (length, chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') => {
@@ -394,7 +395,7 @@ passport.use(
 //               for (let i = length; i > 0; i -= 1) result += chars[Math.floor(Math.random() * chars.length)];
 //               return result;
 //             };
-  
+
 //             let count = 0;
 //             // eslint-disable-next-line no-constant-condition
 //             while (true) {
@@ -402,9 +403,9 @@ passport.use(
 //               if (count > 100) {
 //                 throw new Error('Too many user_codes');
 //               }
-  
+
 //               user_code = randomString(8);
-  
+
 //               const sql1b = $`
 //               SELECT
 //                 user_no
@@ -413,14 +414,14 @@ passport.use(
 //               WHERE
 //                 user_code = ${user_code}
 //               `;
-  
+
 //               // eslint-disable-next-line no-await-in-loop
 //               const query1b = await client.query(sql1b);
 //               if (query1b.rows.length === 0) {
 //                 break;
 //               }
 //             } */
-  
+
 //             // 없는 사용자면 생성
 //             const sql2 = $`
 //             INSERT INTO users (
@@ -440,34 +441,34 @@ passport.use(
 //             )
 //             RETURNING user_no
 //             `;
-  
+
 //             const query2 = (await client.query(sql2)).rows;
 //             user = query2[0];
 //             user.state = 1;
 //           }
-  
+
 //           if (user.state === 0) {
 //             // 비활성화된 사용자
 //             return done(null, { error: true, state: -3, message: '비활성화된 사용자입니다' }, {});
 //           }
-  
+
 //           if (user.state === 2) {
 //             // 탈퇴 대기중 사용자
 //             return done(null, { error: true, state: -4, message: '탈퇴 대기중인 사용자입니다' }, {});
 //           }
-  
+
 //           if (user.state === 3) {
 //             // 탈퇴한 사용자
 //             return done(null, { error: true, state: -5, message: '탈퇴한 사용자입니다' }, {});
 //           }
-  
+
 //           // JWT 토큰 생성
 //           const token = jwt.sign({ user_no: user.user_no }, config.auth.jwtSecretUser, {
 //             expiresIn: config.auth.jwtExpireUser, // https://github.com/zeit/ms
 //           });
-  
+
 //           await client.query('COMMIT');
-  
+
 //           // 로그인 체크 성공
 //           return done(
 //             null,
@@ -476,7 +477,7 @@ passport.use(
 //           );
 //         } catch (e) {
 //           await client.query('ROLLBACK');
-  
+
 //           // 로그인 확인 중 에러 발생 시
 //           console.error(e);
 //           return done(e);
