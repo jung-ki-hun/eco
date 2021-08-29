@@ -15,7 +15,7 @@ const dataset = {
 var errorHandler = expressErrorHandler({
 	static: {
 		'404': './web/error/404.html',
-		'500': './web/error/pages-500.html'
+		'500': './web/error/500.html'
 	}
 })
 app.use(expressErrorHandler.httpError(404));
