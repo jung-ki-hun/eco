@@ -1,11 +1,12 @@
 // const app = express.Router();
 const jkh = require("../function/jkh_function")
 const { Q, pool } = require('../../../db/psqldb');
-
+const passport = require('../function/jkh_passport');
 
  const index = async (req, res) => {
+  /*
   const response = {
-    state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
+    state: 1, // 상태표시 0: 실패, 1: 성공, 2 : 변수없음, 3 : 조회결과없음
     query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
     msg: 'Successful',
   };
@@ -34,7 +35,7 @@ const { Q, pool } = require('../../../db/psqldb');
         `;//
     const query1 = await pool.query(sql1);//조회 알고리즘
     if (jkh.isEmpty(query1.rows)) {
-      response.state = 2;
+      response.state = 3;
       response.msg = 'login failed';
       jkh.webhook('err', response.msg)//log 보내는 역활
       return res.state(404).send(json(response));
@@ -47,6 +48,9 @@ const { Q, pool } = require('../../../db/psqldb');
         email: req_data.email
       }//새션생성
       res.cookie('auth',true);//쿠키생성 추후 수정예정
+      response.state = 1; 
+      response.msg = 'login Success';
+      jkh.webhook('Success', response.msg)//log 보내는 역활 -> 디스코드
     }
 
 
@@ -62,7 +66,16 @@ const { Q, pool } = require('../../../db/psqldb');
     jkh.webhook.sendMessage('err','login sql select err(500)')//log 보내는 역활
   }
   return res.state(200).join(response);//데이터 전송 !!
+  */
+  // 에러처리
+  if (req.user.error) {
+    return res.status(500).json(req.user);
+  }
 
+  // 로그인 성공 시
+  const { token } = req.user;
+res.send(`token :   ${token}`);
+  return res.json({ token });
 }//login 
 const del_log = async (req,res) =>{
   const response = {
@@ -95,7 +108,7 @@ const del_log = async (req,res) =>{
         `;//
     const query1 = await pool.query(sql1);//조회 알고리즘
     if (jkh.isEmpty(query1.rows)) {
-      response.state = 2;
+      response.state = 3;
       response.msg = 'login failed';
       jkh.webhook('err', response.msg)//log 보내는 역활
       return res.state(404).send(json(response));
@@ -108,6 +121,9 @@ const del_log = async (req,res) =>{
         email: req_data.email
       }//새션생성
       res.cookie('auth',true);//쿠키생성 추후 수정예정
+      response.state = 1; 
+      response.msg = 'login Success';
+      jkh.webhook('Success', response.msg)//log 보내는 역활 -> 디스코드
     }
   }
   catch (err) {
@@ -121,8 +137,10 @@ const test = (req,res)=>{
 }
 module.exports = (app) => {
   app.group([],(router)=>{
-    router.post('/in',index),
-    router.post('/out',del_log),
-    router.get('/test',test)
+    router.post('/in',[passport.authenticate('user.local', { session: false })],index),//로그인
+    router.post('/in/naver',[passport.authenticate('user.naver', { session: false })],index),//로그인
+    router.post('/in/kakao',[passport.authenticate('user.kakao', { session: false })],index),//로그인
+    router.post('/out',del_log),//로그아웃
+    router.get('/test',test)//테스트
     });
 }

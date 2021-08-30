@@ -23,7 +23,7 @@ const { Q, pool } = require('../../../db/psqldb');
         SELECT 
           u.username,
           ul.level_u
-        FORM
+        FROM
           users u, users_level ul
         WHERE        
           ul.level_u in (select level_u form users_level ul2, users u2 WHERE u2.user_id = ul2.user_id)

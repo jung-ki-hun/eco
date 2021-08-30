@@ -1,0 +1,1 @@
+nodemon ./web_server/w_app.js

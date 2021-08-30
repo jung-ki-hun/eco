@@ -21,14 +21,13 @@ const context = new mongoose.Schema({
     id : {type:String,require:true},
     create_d : {type:Date,require:true},
     title : {type:String,require:true},
-    content : {type:Mixed,require:true},
+    content : {type:Buffer,require:true},
     command : [command]
 });//게시글
 
 mongoose.connect(url);
 module.exports = {
     init: () => {
-
         mongoose
             .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
             .then(() => console.log('Successfully connected to mongodb'))

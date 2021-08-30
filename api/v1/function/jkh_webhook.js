@@ -1,5 +1,5 @@
 // null 값 찾아보기
-const webhook = require('webhook-discord');
+const webhook = require('webhook-discord'); //디스코드에 오류 목록 전송
 var stringToUrl = process.env.WEB_HOOK +"";
 const Hook = new webhook.Webhook("https://discord.com/api/webhooks/876266259103252531/xidU2wyVolJE_077O2Z7FuCyEFdwPQCJ9lPGH2bXwOHrpUcY0SnG7TY1SS2ZBBZPAht6")//stringToUrl+"");
 ///url 삽입 문제 해결 필요

@@ -1,13 +1,6 @@
 const mysql = require('mysql');
+const config = require('../api/v1/function/jkh_config');
 //const dataset = require('./app.js');
-//var argv_ip  = process.argv[2]
-var db_info = {
-    host: process.env.DB_IP,//argv_ip != '192.168.219.102' ?  '180.83.98.144':argv_ip.toString(),
-    port: process.env.DB_PORT,
-    user: process.env.DB_ID,
-    password: process.env.DB_PW,
-    database: process.env.DB_NAME,
-}
 var response = {
     state: 1,  //sql 탐색도중에러 0/sql  결과 없음 1/sql 결과 조회 성공 2
     query: null,
@@ -15,7 +8,7 @@ var response = {
 }
 module.exports = {
     init: function () {
-        return mysql.createConnection(db_info);
+        return mysql.createConnection(config.mysql);
     },
     connect: function (conn) {
         conn.connect(function (err) {
@@ -35,7 +28,8 @@ module.exports = {
     },
     getConnection: function () {
         return db_info;
-    }//,
+    }
+    //,
     // selectSql: (sql, errmsg, succmsg, params) => {
     //     let conn = this.init();
     //     this.connect(conn)

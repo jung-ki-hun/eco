@@ -1,7 +1,11 @@
+const router = require('express').Router();
 /*****************************/
 /******최상위 환경 페이지******/
 /*****************************/
-router.post('/')
+router.post('/',(req,res)=>{
+
+})
+
 
 //'//web/landing/industry/index.html' 일때 로그인의 유무를 판단하는 기능 구현
 router.get('/', (req, res) => {
