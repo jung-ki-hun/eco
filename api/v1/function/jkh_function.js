@@ -34,9 +34,9 @@ var date_ymd = () => {
  * ************암호화************
 *********************************/
 var crypto = require('crypto');
-var shasum = crypto.createHash('sha256');
-var iv = crypto.randomBytes(16);
-var key = jkh_key.config.app.ckey; //'$!@T!EFQT@#%!#TWGW@T!#@%^';// 비밀키
+//var shasum = crypto.createHash('sha256');
+var iv = Buffer.alloc(16,0);
+var key =crypto.scryptSync(jkh_key.config.app.ckey,'salt',32); //'$!@T!EFQT@#%!#TWGW@T!#@%^';// 비밀키
 var cipher = (password) => {
     var cc = crypto.createCipher('aes192', key);
     cc.update(password, 'utf-8', 'base64');
@@ -53,14 +53,14 @@ var dcipher = (password) => {
 ////////////////////////////////////////////
 
 var cipheriv = (password) => {
-    var cc = crypto.createCipheriv('aes-256-cbc',Buffer.from(key),iv);
+    var cc = crypto.createCipheriv(jkh_key.config.app.carl,key,iv);//return -> cipher
     cc.update(password, 'utf-8', 'base64');
     var cipstr = cc.final('base64');
     return cipstr;
 }//암호화 함수
 
 var dcipheriv = (password) => {
-    var dc = crypto.createDecipheriv('aes-256-cbc', key);
+    var dc = crypto.createDecipheriv(jkh_key.config.app.carl, key,iv);
     dc.update(password, 'base64', 'utf-8');
     var dcipstr = dc.final('utf-8');
     return dcipstr;

@@ -11,7 +11,7 @@ router.post('/',(req,res)=>{
 router.get('/', (req, res) => {
     req.session;
     
-    res.redirect(302, '/web/index.html');
+    res.redirect(302, '/w/user/index.html');
 });
 //메인페이지로 이동
 

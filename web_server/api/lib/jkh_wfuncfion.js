@@ -36,11 +36,13 @@ var rfs = require('rotating-file-stream');//로그 하루단위로 절샥
 const logstream = rfs.createStream(`access.log`, {
     interval: '1d',
     path: `${appRoot}/log` });
-     
+const webhook = require('./jkh_wwebhook');
+
 module.exports = {
     isEmpty,
     date_time,
     date_ymd,
+    webhook,
     appRoot,
     logstream,
 

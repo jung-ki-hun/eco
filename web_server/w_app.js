@@ -2,26 +2,29 @@ const express = require('express');
 const app = express();
 var expressErrorHandler = require('express-error-handler');
 var jkh_function = require('./api/lib/jkh_wfuncfion');
+var jkh = require('./api/lib/jkh_wconfig')//jkh_wconfig에서 config를 호출하기위한 변수
 var path = require('path');
 var static = require('serve-static');
 var morgan = require("morgan");
-app.use(morgan('dev',{stream: jkh_function.logstream}))//로그파일로 관리 함
+app.use(morgan('combined',{stream: jkh_function.logstream}))//로그파일로 관리 함
 app.use('/',require('./api/router.js'));
 app.use('/w', static(path.join(__dirname, 'web')));//웹페이지 미들웨어
-const dataset = {
+/*const dataset = {
 	port: process.env.T2_PORT ||"80",
 	host: process.env.T3_HOST ||"192.168.219.107" 
-}
+}*/
 var errorHandler = expressErrorHandler({
 	static: {
-		'404': './web/error/404.html',
-		'500': './web/error/pages-500.html'
+		'404': './web_server/web/error/404.html',
+		'500': './web_server/web/error/500.html'
 	}
-})//안드로이드에서도 최적화 진행예정
-
+})
 app.use(expressErrorHandler.httpError(404));
 app.use(errorHandler);
-app.listen(dataset.port, dataset.host, () => {
+app.listen(jkh.config.app.port, jkh.config.app.host, () => {
 	console.log(`${dataset.host}:${dataset.port} server start!!!`);
+	jkh_function.webhook('info',`open web server`);
+	jkh_function.webhook('info',`http://${dataset.host}:${dataset.port}/`);
+
 });
 
