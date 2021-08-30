@@ -91,6 +91,11 @@ var geoip = require('geoip-country');
 var ipfiter = require('express-ipfilter');
 //국가 단위로 찾아보기
 
+/********************************
+ * ********** 페이징  ***********
+*********************************/
+const pageid;
+
 
 
 module.exports = {

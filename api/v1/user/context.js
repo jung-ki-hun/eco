@@ -15,7 +15,14 @@ const test =  (req,res)=>{
     }
     return res.status(200).json(ress);
 }///xpx
-
+const index = (req,res) =>{
+    var parmas ={
+        ...req.body,
+        ...req.parmas,
+        ...req.query
+    }
+    var 
+}
 module.exports = (app) => {
       app.get('/test',test);//api/v1/user/context/test
       
