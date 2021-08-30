@@ -2,8 +2,13 @@ const router = require('express').Router();
 /*****************************/
 /******최상위 환경 페이지******/
 /*****************************/
-router.post('/',(req,res)=>{
+router.post('/login',(req,res)=>{
+    jkh_db_config.userSelect_post(req, res, conn); //유저 정보를 찾고
+})
 
+//권한을 구분 유저/관리자
+router.get('/login', (req, res) => {
+    
 })
 
 
@@ -19,3 +24,10 @@ router.get('/', (req, res) => {
 /******최상위 환경 페이지******/
 /*****************************/
 module.exports = router;
+
+//1단계 최종 목표 : 유저 페이지 어드민 페이지 나누기
+//유저 권한 어드민 권한 구분
+//구분을 하려면 최상위 접근을 바꿔야하나?
+//쿠키에서 나누어야하나?
+//좀더 세분해서는 무엇이 있을까?
+//
