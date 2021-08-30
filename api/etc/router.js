@@ -5,7 +5,7 @@ var router = express.Router();
 /*****************************/
 
 router.post('/login', (req, res) => {    
-    jkh_db_config.userSelect_post(req, res, conn);
+    jkh_db_config.userSelect_post(req, res, conn);//유저의 정보를 찾아주는 함수 userSelect_post
 
 });
 //로그인 - 세션등록
