@@ -23,3 +23,10 @@ Commit History
     + Fixed Issue : Board-Layout Width Margin
     + revised CSS(main.css)
         + line 2321 ~ 2322
+   
++ KIUP-129
+    + created SCSS Folder
+        + created SCSS(boastBoard)
+    + revised CSS(main)
+        + wrapper size control
+    + created HTML(boastBoard)

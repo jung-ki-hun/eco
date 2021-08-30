@@ -1587,30 +1587,6 @@
 		max-width: 100%;
 	}
 
-		@media screen and (max-width: 1280px) {
-
-			.inner {
-				max-width: 90%;
-			}
-
-		}
-
-		@media screen and (max-width: 980px) {
-
-			.inner {
-				max-width: 85%;
-			}
-
-		}
-
-		@media screen and (max-width: 736px) {
-
-			.inner {
-				max-width: 80%;
-			}
-
-		}
-
 /* Type */
 
 	body, input, select, textarea {
