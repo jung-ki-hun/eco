@@ -91,7 +91,7 @@ passport.use(
                 //   const token = jwt.sign({ user_no: user.user_no, user_type: query2.length > 0 ? 'stl' : 'cstm' }, config.auth.jwtSecretUser, {
                 //     expiresIn: config.auth.jwtExpireUser, // https://github.com/zeit/ms
                 //   });
-                // 로그인 체크 성공
+                // 로그인 체크 성공  ->  관련 자료 보기
                 return done(null, { token }, {});
             } catch (e) {
                 // 로그인 확인 중 에러 발생 시
