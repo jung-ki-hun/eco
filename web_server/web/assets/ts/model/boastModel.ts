@@ -3,13 +3,9 @@
  */
 import Model from "./Model.js"
 
-const model = Model("/fetch_test.json", {
-    method:"GET",
-    headers:{
-     "Access-Control-Allow-Origin":"*"
-    },
-    body: null
-});
+const model = Model("/fetch_test.json");
+
+console.log(model.getApiPath());
 
 const foo = async function(){
     const data = await model.read();

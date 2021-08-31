@@ -1,6 +1,4 @@
 interface ModelObj{
-    api_path:string
-    api_info:RequestInit
     getApiPath:()=>string
     getApiInfo:()=>RequestInit    
     read: ()=>Promise<ModelResult>
@@ -16,9 +14,7 @@ interface ModelResult{
  * @returns {ModelObj} api에 접근하는 Object 반환
  */
 export default function(api_path:string, api_info:RequestInit = null): ModelObj{    
-    return {
-        api_path,        
-        api_info,        
+    return {              
         getApiPath : function():string{
             return api_path;
         },        

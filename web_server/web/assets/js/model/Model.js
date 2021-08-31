@@ -6,8 +6,6 @@
  */
 export default function (api_path, api_info = null) {
     return {
-        api_path,
-        api_info,
         getApiPath: function () {
             return api_path;
         },
