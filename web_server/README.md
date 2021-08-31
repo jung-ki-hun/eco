@@ -30,3 +30,10 @@ Commit History
     + revised CSS(main)
         + wrapper size control
     + created HTML(boastBoard)
+   
++ 08/31
+    + changed Folder Structure
+        + made 'assets' in Web
+        + made 'ts' in assets for TypeScript
+    + created Model
+        + basic getting data model from api server    

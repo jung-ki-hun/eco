@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {           
+        "target":"ESNext",
+        "watch": true,
+        "lib": ["DOM", "ES2017"],
+        "sourceMap": true,
+        "outDir": "web_server/web/assets/js"
+    },
+    "include": [        
+        "web_server/web/"
+    ]
+}
