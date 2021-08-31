@@ -28,20 +28,16 @@ const context = new mongoose.Schema({
 mongoose.connect(url);
 module.exports = {
     init: () => {
-        mongoose
-            .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
-            .then(() => console.log('Successfully connected to mongodb'))
-            .catch(e => console.error(e));
+       mongoose.connect(url, (err)=>{
+        if (err) {
+            console.error('mongodb connection error', err);
+          }
+          console.log('mongodb connected');
+       });
+       this.init();
+       mongoose.connection.on('disconnected', connect);
     },
-    connect: () => {
-        const database = mongoose.connection;
-        database.on('open', ()=>{
-            console.log('mongodb connect!!');
-            mongoose.model('context',context);
-        })
-        database.on('disconnected',()=>{
-            this.init();
-        })
-    },
+    save:()=>{
 
+    }
 }
