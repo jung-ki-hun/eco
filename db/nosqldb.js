@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const jkh_c = require('../api/v1/function/jkh_config.js');
+const jkh_f = require('../api/v1/function/jkh_function');
 const url = `${jkh_c.config.nodb.url}/ ${jkh_c.config.nodb.database}`;
 var db = mongoose.connection;
 db.on('error', console.error);
@@ -25,7 +26,8 @@ const context = new mongoose.Schema({
     command : [command]
 });//게시글
 
-mongoose.connect(url);
+const schema_j = mongoose.models('boast',context);
+const schema_q = mongoose.models('qnalist',context);
 module.exports = {
     init: () => {
        mongoose.connect(url, (err)=>{
@@ -37,7 +39,42 @@ module.exports = {
        this.init();
        mongoose.connection.on('disconnected', connect);
     },
-    save:()=>{
+    save:(data, type)=>{ //데이터, 저장위치 확인 // type -> 1 질문하기 2 자랑하기
+        if(type == 1){
+            let j_data = new schema_j();
+            j_data.context_id 
+            j_data.name = data.name;
+            j_data.id = data.id;
+            j_data.create_d = data.date;
+            j_data.title = data.title;
+            j_data.content = data.content;
+            j_data.save((err)=>{
+                console.log(err);
+                jkh_f.webhook('err','게시글 저장 실패');
+            });
+        }//질문하기 저장
+        else if(type == 2){
+            let j_data = new schema_j();
+            j_data.context_id 
+            j_data.name = data.name;
+            j_data.id = data.id;
+            j_data.create_d = data.date;
+            j_data.title = data.title;
+            j_data.content = data.content;
+            j_data.save((err)=>{
+                console.log(err);
+                jkh_f.webhook('err','게시글 저장 실패');
+            });
+        }//자랑하기 저장
+        else{
+            console.log(`type is defind`);
+            jkh_f.webhook('err',`type is defind`);
+        }//type 값저장
+    },
+    find:()=>{
+
+    },
+    addcommand:()=>{
 
     }
 }
