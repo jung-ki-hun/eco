@@ -2,7 +2,7 @@ const express = require("express");
 const path = require('path');
 const morgan = require("morgan");
 const passport = require('passport');
-const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser'); //쿠키제공
 const cors = require('cors');
 require('./api/v1/function/jkh_group.js');
 const jkh_function = require('./api/v1/function/jkh_function');
