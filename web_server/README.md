@@ -36,4 +36,14 @@ Commit History
         + made 'assets' in Web
         + made 'ts' in assets for TypeScript
     + created Model
-        + basic getting data model from api server    
+        + basic getting data model from api server   
+   
++ 09/01
+    + changed Folder Structure
+        + moved scss folder
+    + improved TS
+        + Model.ts
+        + boastModel.ts
+        + loginModel.ts
+    + created TS
+        + loginModel.ts for api test
