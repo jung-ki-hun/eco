@@ -1,11 +1,20 @@
-interface ModelObj{
-    getApiPath:()=>string
+interface ModelObj{    
+    /** API 주소 반환
+     * @returns {String}
+     */
+    getApiPath:()=>string    
+    /** API 접근 설정 반환
+     * @returns {String}
+     */
     getApiInfo:()=>RequestInit    
+    /** API 접속
+     * @returns {Promise<ModelResult>}
+     */
     read: ()=>Promise<ModelResult>
 }
 interface ModelResult{
     error:Error
-    response:Response
+    data:JSON
 }
 /**
  * Model Object
@@ -14,25 +23,25 @@ interface ModelResult{
  * @returns {ModelObj} api에 접근하는 Object 반환
  */
 export default function(api_path:string, api_info:RequestInit = null): ModelObj{    
-    return {              
+    return {       
         getApiPath : function():string{
             return api_path;
         },        
         getApiInfo: function():RequestInit{
             return api_info;
         }, 
-        read : async function():Promise<ModelResult>{
+        read : function():Promise<ModelResult>{
             return new Promise(resolve=>{        
                 try{
                     fetch(api_path, api_info).then((response)=>{                    
                         if(response.status == 200 || response.status == 201)
-                            resolve({error:null, response});  
-                        else                      
+                            response.json().then(data=>resolve({error:null, data}));
+                        else  
                             throw Error(`${api_path} : not good response`);            
                     });
                 }catch(error){
                     console.error(error);
-                    resolve({error, response:null});
+                    resolve({error, data:null});
                 }                 
             });            
         },

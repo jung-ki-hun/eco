@@ -3,17 +3,11 @@
  */
 import Model from "./Model.js"
 
-const model = Model("/fetch_test.json");
+(async function(){     
+    const {getApiInfo, getApiPath, read} = Model("/fetch_test.json");    
+    const {error, data} = await read();    
 
-console.log(model.getApiPath());
-
-const foo = async function(){
-    const data = await model.read();
-    data.response.json().then(val=>{
-        console.log(val)
-    })    
-}
-
-foo();
-
-
+    if(error == null)
+        console.log(data);
+    console.table({path:getApiPath(), info:getApiInfo()});
+})();

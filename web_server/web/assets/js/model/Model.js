@@ -12,19 +12,19 @@ export default function (api_path, api_info = null) {
         getApiInfo: function () {
             return api_info;
         },
-        read: async function () {
+        read: function () {
             return new Promise(resolve => {
                 try {
                     fetch(api_path, api_info).then((response) => {
                         if (response.status == 200 || response.status == 201)
-                            resolve({ error: null, response });
+                            response.json().then(data => resolve({ error: null, data }));
                         else
                             throw Error(`${api_path} : not good response`);
                     });
                 }
                 catch (error) {
                     console.error(error);
-                    resolve({ error, response: null });
+                    resolve({ error, data: null });
                 }
             });
         },
