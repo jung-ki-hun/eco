@@ -33,8 +33,8 @@ context.plugin(autoIncrement.plugin,{
     
 }) // 자동 카운트
 
-const schema_j = mongoose.models('boast',context);
-const schema_q = mongoose.models('qnalist',context);
+const schema_j = mongoose.models('boast',context); //자랑하기 
+const schema_q = mongoose.models('qnalist',context); //질문하기
 module.exports = {
     init: () => {
        mongoose.connect(url, (err)=>{
@@ -94,4 +94,4 @@ module.exports = {
         
 
     }
-}
+}//code
