@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 app.use('/api/v1/user/', users); //사용자
 app.use('/api/v1/admin', admin); //관리자
 app.listen(jkh.config.app.port, jkh.config.app.host, () => {
-	let str = `http://${jkh.config.app.host}:${jkh.config.app.port}/`
+	let str = `http://${jkh.config.app.host}:${jkh.config.app.port}/`;//api 접근 최상위 주소
 	console.log(`${jkh_function.date_time()}start server`);
 	jkh_function.webhook('info', `${jkh_function.date_time()}node.js server starting!!`);
 	jkh_function.webhook('info', str);
