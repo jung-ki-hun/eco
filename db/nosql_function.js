@@ -31,7 +31,7 @@ const schema_q = nodb.models('qnalist', context); //질문하기
 
 module.exports = {
     qna:{
-        addboard:()=>{},
+        addboard:(data)=>{},
         deleteboard:()=>{},
         selectboard:()=>{},
         addcommand:()=>{},
