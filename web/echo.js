@@ -217,6 +217,9 @@ app.get("/boardMain", (req, res) => {
   res.render("boardMain", { rows: rows });
 });
 
+app.get("/adminboardMain",(req,res)=>{
+  res.render("adminboardMain",{rows:rows});
+})
 // 3000 포트로 서버 오픈
 app.listen(3000, function () {
   console.log("start! express server on port http://127.0.0.1:3000");
@@ -229,7 +232,6 @@ app.listen(3000, function () {
 //   res.json(req.user.user_id);
 // });
 app.post("/login", (req, res) => {
-  console.log("반갑다");
   res.sendFile(__dirname + "/404.html");
 });
 
