@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express.Router();
 const jkh = require("../function/jkh_function")
+const nosql = require('../../../db/nosql_function');
 //const { Q, pool } = require('../../../db/psqldb');
 
 const test = (req, res) => {
@@ -25,7 +26,7 @@ const index = (req, res) => {
 }
 module.exports = (app) => {
     app.group([], (router) => {
-        router.get('/test', test);//api/v1/user/context/test
+        router.get('/test', test);//api/v1/user/context/test  // 통신 테스트용 링크
         router.get('/board/list:id', [passport.authenticate('user.local', { session: false })], index),//가져오기
         router.post('/board/write', [passport.authenticate('user.local', { session: false })], index),// 글쓰기
         router.get('/board/:id', [passport.authenticate('user.local', { session: false })], index),//게시판 글찿기
