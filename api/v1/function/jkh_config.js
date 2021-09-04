@@ -1,6 +1,4 @@
 require("dotenv").config();
-// import dotenv from 'dotenv';
-// dotenv.config();
 const config = {
     app: {
         host: process.env.T3_HOST || '192.168.219.107',

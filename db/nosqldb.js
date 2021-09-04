@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
-const autoIncrement = require('mongoose-auto-increment');
+const mongoose = require('mongoose'); //자동카운트 필요
+const autoIncrement = require('mongoose-auto-increment'); //자동카운트 필요
 const jkh_c = require('../api/v1/function/jkh_config.js');
 const jkh_f = require('../api/v1/function/jkh_function');
 const url = `${jkh_c.config.nodb.url}/ ${jkh_c.config.nodb.database}`;
 var db = mongoose.connection;
-autoIncrement.initialize(mongoose.connection);
+autoIncrement.initialize(mongoose.connection); //자동카운트 필요
 db.on('error', console.error);
 db.once('open', function () {
     // CONNECTED TO MONGODB SERVER
@@ -19,7 +19,7 @@ const command = new mongoose.Schema({
     contents:{type:String,require:true}
 });//뎃글
 const context = new mongoose.Schema({
-    context_id:{type:Number,require:true,unique:true},
+    context_id:{type:Number,require:true,unique:true}, //넘버
     name : {type:String,require:true},
     id : {type:String,require:true},
     create_d : {type:Date,require:true},
@@ -28,9 +28,12 @@ const context = new mongoose.Schema({
     command : [command]
 });//게시글
 
-//auto-increment
-context.plugin(autoIncrement.plugin,{
-    
+//auto-increment 
+context.plugin(autoIncrement.plugin,{ //뎃글 자동 증가값
+    model : context, //뎃글 함수(?)
+    field : context_id, //증가해야하는 값
+    statAt : 1, //시작 카운트
+    increment :1 //증가 값
 }) // 자동 카운트
 
 const schema_j = mongoose.models('boast',context); //자랑하기 
@@ -94,4 +97,4 @@ module.exports = {
         
 
     }
-}
+}//code
