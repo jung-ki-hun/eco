@@ -4,6 +4,10 @@ const { Q, pool } = require('../../../db/psqldb');
 const passport = require('../function/jkh_passportU');
 
  const index = async (req, res) => {
+  //쿠키에 담아줘야될것
+   // 닉네임
+   // id
+   // jwt
   // 에러처리
   if (req.user.error) {
     return res.status(500).json(req.user);
