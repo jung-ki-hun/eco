@@ -1660,8 +1660,8 @@
 		}
 
 	a {
-		color: #25a2c3;
-		text-decoration: underline;
+		color: white !important; 
+		text-decoration: none !important;
 	}
 
 		a:hover {

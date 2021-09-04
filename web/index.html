@@ -15,17 +15,10 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body>
+		
 
 		<!-- Header -->
-		<header id="header">
-			<nav class="left">
-				<a href="./index.html"><img src="./images/boardMain1.png"></a>
-			</nav>
-			<a href="boardMain" class="logo">질문게시판</a>
-			<nav class="right">
-				<a href="./login.html" class="button alt">Log in</a>
-			</nav>
-		</header>
+		<header id="header" include-html='./header.html'></header>
 
 		<!-- Menu -->
 			<!-- <nav id="menu">
@@ -150,6 +143,9 @@
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
+			<script src="./js/includeHTML.js"></script>
+			<script>
+				includeHTML();
+			</script>
 	</body>
 </html>

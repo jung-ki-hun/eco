@@ -14,7 +14,8 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css" />
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
-
+    <script src="./js/includeHTML.js"></script>
+    
     <style>
         #table1 {
             margin: 0 auto;
@@ -22,7 +23,7 @@
         }
     </style>
     <script>
-
+        includeHTML();
         jQuery(function ($) {
             $("#table1").dataTable({
             });
@@ -33,15 +34,7 @@
 <body class="subpage">
 
     <!-- Header -->
-    <header id="header">
-        <nav class="left">
-            <a href="index.html" class="logo"><img src="./images/boardMain1.png" alt="logo"></a>
-        </nav>
-        <a href="boardMain.html" class="logo">게시글리스트</a>
-        <nav class="right">
-            <a href="login.html" class="button alt">Log in</a>
-        </nav>
-    </header>
+    <header id="header" include-html='./header.html'></header>
 
     <!-- Main -->
     <section id="main" class="wrapper">
