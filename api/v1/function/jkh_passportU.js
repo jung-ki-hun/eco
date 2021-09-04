@@ -5,7 +5,7 @@ const passport_naver = require('passport-naver');
 const passport_jwt = require('passport-jwt');
 
 const jkh_fun = require('./jkh_function');
-const jkh_config = require('./jkh_config');
+const jkh_c = require('./jkh_config');
 const { pool, Q } = require('../../../db/psqldb');//db 조회 용
 const ExtractJWT = passport_jwt.ExtractJwt;
 
@@ -45,7 +45,7 @@ const index = async (id, pw) => {
           `;//암호화 한 데이터(pw)를 기반으로 검색 진행
         const query1 = await pool.query(sql1);//조회 알고리즘
         console.log(`abc ${query1.rows[0]}`);
-        if (jkh_fun.isEmpty(query1.rows[0])) {
+        if (jkh_fun.isEmpty(query1.rows[0].username)) {
             console.log('login fail');
             jkh_fun.webhook('err', response.msg)//log 보내는 역활
         }
@@ -91,7 +91,7 @@ passport.use(
                 //   const token = jwt.sign({ user_no: user.user_no, user_type: query2.length > 0 ? 'stl' : 'cstm' }, config.auth.jwtSecretUser, {
                 //     expiresIn: config.auth.jwtExpireUser, // https://github.com/zeit/ms
                 //   });
-                // 로그인 체크 성공  ->  관련 자료 보기
+                // 로그인 체크 성공
                 return done(null, { token }, {});
             } catch (e) {
                 // 로그인 확인 중 에러 발생 시

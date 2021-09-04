@@ -4,7 +4,7 @@ const passport_kakao = require('passport-kakao');
 const passport_naver = require('passport-naver');
 const passport_jwt = require('passport-jwt');
 const jkh_fun = require('./jkh_function');
-const jkh_config = require('./jkh_config');
+const jkh_c = require('./jkh_config');
 const pgsql = require('../../../db/psqldb');//db 조회 용
 const ExtractJWT = passportJWT.ExtractJwt;
 

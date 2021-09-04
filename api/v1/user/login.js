@@ -1,7 +1,7 @@
 // const app = express.Router();
 const jkh = require("../function/jkh_function")
 const { Q, pool } = require('../../../db/psqldb');
-const passport = require('../function/jkh_passport');
+const passport = require('../function/jkh_passportU');
 
  const index = async (req, res) => {
   // 에러처리
@@ -27,7 +27,7 @@ const del_log = async (req,res) =>{
     id: req.uesr.email,
     pw: req.user.password
   }
-  var session = req.session; //새선 만듬
+ // var session = req.session; //새선 만듬 사용 x
   var pw_c = jkh.cipher(params.pw);
     try {
     const sql1 = Q`

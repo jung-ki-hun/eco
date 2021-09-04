@@ -2,7 +2,7 @@ const mongoose = require('mongoose'); // 몽구스 라이브러리
 const autoIncrement = require('mongoose-auto-increment'); //자동카운트 라이브러리 
 const jkh_c = require('../api/v1/function/jkh_config.js'); //설정
 const jkh_f = require('../api/v1/function/jkh_function'); // 기본함수
-const url = `${jkh_c.config.nodb.url}/${jkh_c.config.nodb.database}`; // unl 설정
+const url = `${jkh_c.nodb.url}/${jkh_c.nodb.database}`; // unl 설정
 var db = mongoose.connection;
 
 module.exports = {
