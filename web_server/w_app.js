@@ -23,6 +23,7 @@ app.use(expressErrorHandler.httpError(404));
 app.use(errorHandler);
 app.listen(jkh.config.app.port, jkh.config.app.host, () => {
 	console.log(`${jkh.config.app.host}:${jkh.config.app.port} server start!!!`);
+	console.log(jkh_function.appRoot);
 	jkh_function.webhook('info',`open web server`);
 	jkh_function.webhook('info',`http://${jkh.config.app.host}:${jkh.config.app.port}/`);
 
