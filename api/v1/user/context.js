@@ -29,7 +29,7 @@ module.exports = (app) => {
         router.get('/board/list:id', [passport.authenticate('user.local', { session: false })], index),//가져오기
         router.post('/board/write', [passport.authenticate('user.local', { session: false })], index),// 글쓰기
         router.get('/board/:id', [passport.authenticate('user.local', { session: false })], index),//게시판 글찿기
-        router.post('/comment/write', del_log),//뎃글작성
+        router.post('/comment/write', del_log)//뎃글작성
         //router.get('/test', test)//글삭제
     });
 }
