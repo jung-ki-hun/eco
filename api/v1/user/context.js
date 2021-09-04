@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express.Router();
 const jkh = require("../function/jkh_function")
-const { Q, pool } = require('../../../db/psqldb');
+//const { Q, pool } = require('../../../db/psqldb');
 
 const test = (req, res) => {
     var ress = {
@@ -26,8 +26,8 @@ const index = (req, res) => {
 module.exports = (app) => {
     app.group([], (router) => {
         router.get('/test', test);//api/v1/user/context/test
-        router.get('/write', [passport.authenticate('user.local', { session: false })], index),//글작성
-        router.post('/board/write', [passport.authenticate('user.local', { session: false })], index),//
+        router.get('/board/list:id', [passport.authenticate('user.local', { session: false })], index),//가져오기
+        router.post('/board/write', [passport.authenticate('user.local', { session: false })], index),// 글쓰기
         router.get('/board/:id', [passport.authenticate('user.local', { session: false })], index),//게시판 글찿기
         router.post('/comment/write', del_log),//뎃글작성
         //router.get('/test', test)//글삭제

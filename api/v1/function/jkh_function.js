@@ -89,12 +89,22 @@ const token = jwt.sign({user_id: user_id}, jkh_key.config.app.key, {expiresIn: '
 *********************************/
 var geoip = require('geoip-country');
 var ipfiter = require('express-ipfilter');
+const { query } = require('express');
 //국가 단위로 찾아보기
 
 /********************************
  * ********** 페이징  ***********
 *********************************/
-const pageid;
+const pageid =(query,offset,limit)=>{
+    const result = {
+        offset: 0, // 시작 인덱스
+        limit: Number(limit), // 조회할 갯수
+        count: 0, // 전체 열 갯수
+      };
+      //if()
+      //
+      return result;
+}
 
 
 
@@ -108,6 +118,7 @@ module.exports = {
     dcipheriv,
     webhook,
     createToken,
+    pageid,
     appRoot,
     logstream,
 
