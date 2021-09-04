@@ -1,5 +1,5 @@
 const nodb = require('./nosqldb').init();
-
+const jkh = require('../api/v1/function/jkh_function');
 
 //schema ~~!!
 const command = new nodb.Schema({
@@ -31,7 +31,10 @@ const schema_q = nodb.models('qnalist', context); //질문하기
 
 module.exports = {
     qna:{
-        addboard:(data)=>{},
+        addboard:async (data)=>{
+            const qnacontext = new schema_j(data.name);
+            await qnacontext.save();
+        },
         deleteboard:()=>{},
         selectboard:()=>{},
         addcommand:()=>{},
