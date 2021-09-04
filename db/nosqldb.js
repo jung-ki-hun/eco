@@ -5,33 +5,6 @@ const jkh_f = require('../api/v1/function/jkh_function'); // 기본함수
 const url = `${jkh_c.config.nodb.url}/${jkh_c.config.nodb.database}`; // unl 설정
 var db = mongoose.connection;
 
-//schema ~~!!
-const command = new mongoose.Schema({
-    command_id: { type: OdjectId, require: true, unique: true },
-    name: { type: String, require: true },
-    create_d: { type: Date, require: true },
-    contents: { type: String, require: true }
-});//뎃글
-const context = new mongoose.Schema({
-    context_id: { type: Number, require: true, unique: true }, //넘버
-    name: { type: String, require: true },
-    id: { type: String, require: true },
-    create_d: { type: Date, require: true },
-    title: { type: String, require: true },
-    content: { type: Buffer, require: true },
-    command: [command]
-});//게시글
-
-//auto-increment 
-context.plugin(autoIncrement.plugin, {
-    model: context, //
-    field: context_id, //증가해야하는 값
-    statAt: 1, //시작 카운트
-    increment: 1 //증가 값
-}) // 자동 카운트
-
-const schema_j = mongoose.models('boast', context); //자랑하기 
-const schema_q = mongoose.models('qnalist', context); //질문하기
 module.exports = {
     init: () => {
         mongoose.connect(url, (err) => {

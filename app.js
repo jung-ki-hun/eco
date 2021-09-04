@@ -24,9 +24,9 @@ app.options('*', cors()); // CORS Pre-Flight 활성화
 app.use(express.json());
 app.use(express.urlencoded({ extends: true }));
 app.use(cookieParser());
-app.use(passport.initialize());
+app.use(passport.initialize());//passport 실행
 
-app.use(morgan('combined', { stream: jkh_function.logstream }))//로그파일로 관리 함
+app.use(morgan('combined', { stream: jkh_function.logstream }))//로그파일로 관리 함 1일단위
 
 app.get('/', (req, res) => {
 	const str = 'api server gate';
