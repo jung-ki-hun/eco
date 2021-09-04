@@ -15,7 +15,7 @@ const app = express();
 - cors 설정 확인
 - 쿠키 사용할때 생각좀 잘해보기
 */
-
+//코드 스타일 -> commonjs
 app.disable('x-powered-by'); // x-powered-by 헤더 비활성화
 app.use(cors({
 	exposedHeaders: ['Content-Disposition'], // 다운로드 시 파일명 첨부 허용
