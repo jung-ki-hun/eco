@@ -28,10 +28,10 @@ const add_borad =  async (req, res) => {
         ...req.query,
     }
     if (isEmpty(
-        params.name,
-        params.id,        
-        params.title,
-        params.content,
+        parmas.name,
+        parmas.id,        
+        parmas.title,
+        parmas.content,
     )) {
         response.state = 2;
         response.msg = 'parmas is empty';
@@ -54,7 +54,31 @@ const add_borad =  async (req, res) => {
 
 }
 const index = (req, res) => {
-   
+     const response = {
+            state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
+            query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
+            msg: 'Successful',
+        };
+        var parmas = {
+            ...req.body,
+            ...req.parmas,
+            ...req.query,
+        }
+        if (isEmpty( arams.selector)) {
+            response.state = 2;
+            response.msg = 'parmas is empty';
+            jkh.webhook('err', 'parmas is empty');
+            return res.status(400).json(response)
+        }
+        else {
+            let data = {
+                selector : params.selector
+            }
+            await nosqldb.qna.addboard(data);
+            response.state = 1;
+            response.msg = 'Successful';
+            return res.status(200).json(response); //클라이언트에게 완료 메시지 보내줌
+        }
 }
 module.exports = (app) => {
     app.group([], (router) => {
