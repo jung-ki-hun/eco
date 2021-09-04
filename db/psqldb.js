@@ -1,7 +1,7 @@
 const db_info = require("../api/v1/function/jkh_config.js")//설정관련 데이터
 const SQL = require("sql-template-strings");
 const { Pool, Q } = require('pg');
-const pool = new Pool(db_info.config.pgdb);
+const pool = new Pool(db_info.pgdb);
 module.exports = {
     getConnection: function () {
         return db_info.gpdb;

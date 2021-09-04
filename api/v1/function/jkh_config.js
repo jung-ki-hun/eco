@@ -40,6 +40,4 @@ const config = {
         url: process.env.WEB_HOOK || "",
     }    
 }
-module.exports = {
-    config
-};
+module.exports = config;

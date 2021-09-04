@@ -280,3 +280,4 @@
 118.47.158.225 - - [04/Sep/2021:11:54:16 +0000] "GET /w/user/images/boardMain1.png HTTP/1.1" 304 - "http://180.83.98.139/w/user/login.html" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36 Edg/93.0.961.38"
 118.47.158.225 - - [04/Sep/2021:11:54:17 +0000] "GET /favicon.ico HTTP/1.1" 200 - "http://180.83.98.139/w/user/login.html" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36 Edg/93.0.961.38"
 118.47.158.225 - - [04/Sep/2021:11:54:19 +0000] "GET /favicon.ico HTTP/1.1" 200 - "http://180.83.98.139/w/user/index.html" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36 Edg/93.0.961.38"
+54.198.55.229 - - [04/Sep/2021:13:17:22 +0000] "GET /w/user/index.html HTTP/1.1" 200 5040 "-" "Mozilla/5.0 (compatible)"

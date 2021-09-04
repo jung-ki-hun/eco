@@ -4,17 +4,21 @@ const jkh_key = require('./jkh_config');
  *********************************/
 var isEmpty = (...str) => {
     for (let i_str of str) {
-        if (typeof i_str == "undefined" || i_str == null || i_str == "")
+        if (typeof i_str == "undefined" || i_str == null || i_str == "" )
             return true;
         else
             return false;
     }
 }
-const dataset = {
-    port: process.env.PORT,
-    host: process.env.T2_HOST
+var isNan = (...num) =>{
+    for (let i_str of str) {
+        if (typeof i_str == "undefined" || i_str == null || i_str == NaN )
+            return true;
+        else
+            return false;
+    }
 }
-const appRoot = require("app-root-path");
+const appRoot = require("app-root-path");//진입점 루트함수
 /********************************
  * **********시간 관련함수********
 *********************************/
@@ -36,7 +40,7 @@ var date_ymd = () => {
 var crypto = require('crypto');
 //var shasum = crypto.createHash('sha256');
 var iv = Buffer.alloc(16,0);
-var key =crypto.scryptSync(jkh_key.config.app.ckey,'salt',32); //'$!@T!EFQT@#%!#TWGW@T!#@%^';// 비밀키
+var key =crypto.scryptSync(jkh_key.app.ckey,'salt',32); //'$!@T!EFQT@#%!#TWGW@T!#@%^';// 비밀키
 var cipher = (password) => {
     var cc = crypto.createCipher('aes192', key);
     cc.update(password, 'utf-8', 'base64');
@@ -53,14 +57,14 @@ var dcipher = (password) => {
 ////////////////////////////////////////////
 
 var cipheriv = (password) => {
-    var cc = crypto.createCipheriv(jkh_key.config.app.carl,key,iv);//return -> cipher
+    var cc = crypto.createCipheriv(jkh_key.app.carl,key,iv);//return -> cipher
     cc.update(password, 'utf-8', 'base64');
     var cipstr = cc.final('base64');
     return cipstr;
 }//암호화 함수
 
 var dcipheriv = (password) => {
-    var dc = crypto.createDecipheriv(jkh_key.config.app.carl, key,iv);
+    var dc = crypto.createDecipheriv(jkh_key.app.carl, key,iv);
     dc.update(password, 'base64', 'utf-8');
     var dcipstr = dc.final('utf-8');
     return dcipstr;
@@ -81,7 +85,7 @@ const logstream = rfs.createStream(`access.log`, {
 *********************************/
 const jwt = require('jsonwebtoken');
 const createToken =  (user_id)=>{
-const token = jwt.sign({user_id: user_id}, jkh_key.config.app.key, {expiresIn: '1h'});
+const token = jwt.sign({user_id: user_id}, jkh_key.app.key, {expiresIn: '1h'});
     return token;
 }
 /********************************
@@ -110,6 +114,7 @@ const pageid =(query,offset,limit)=>{
 
 module.exports = {
     isEmpty,
+    isNan,
     date_time,
     date_ymd,
     cipher,

@@ -1,7 +1,7 @@
 // const app = express.Router();
 const jkh = require("../function/jkh_function")
 const { Q, pool } = require('../../../db/psqldb');
-const passport = require('../function/jkh_passport');
+const passport = require('../function/jkh_passportU');
 
  const index = async (req, res) => {
   // 에러처리
