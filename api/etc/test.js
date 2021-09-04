@@ -43,3 +43,4 @@ const jkh = require('../v1/function/jkh_function');
 // }
 // console.log(dbtest())
 console.log(jkh.cipheriv(`1234`));//테스트해보기
+

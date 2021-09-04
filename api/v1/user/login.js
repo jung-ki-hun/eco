@@ -27,7 +27,7 @@ const del_log = async (req,res) =>{
     id: req.uesr.email,
     pw: req.user.password
   }
-  var session = req.session; //새선 만듬
+ // var session = req.session; //새선 만듬 사용 x
   var pw_c = jkh.cipher(params.pw);
     try {
     const sql1 = Q`
