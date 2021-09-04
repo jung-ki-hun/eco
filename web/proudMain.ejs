@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<!--
+	Intensify by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html lang="ko">
+
+<head>
+    <title>Elements - Intensify by TEMPLATED</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css" />
+    <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+    <script src="./assets/js/includeHTML.js"></script>
+    <script src="./assets/js/loadHTML.js"></script>
+    <style>
+        #table1 {
+            margin: 0 auto;
+            width: 100%;
+        }
+    </style>
+    <script>
+        includeHTML();
+        jQuery(function ($) {
+            $("#table1").dataTable({
+            });
+        });
+    </script>
+</head>
+
+<body class="subpage">
+
+    <!-- Header -->
+    <header id="header" >
+     <script>loadHTML("./publicHTML/header.html");</script>
+    </header>
+
+    <!-- Main -->
+    <section id="main" class="wrapper">
+        <div class="inner">
+            <!-- Table -->
+            <h3>자랑게시판</h3>
+
+
+            <div class="table-wrapper">
+                <table id="table1">
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                            <th>날짜</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0;i<rows.length;i++){ %>
+                            <tr>
+                                <td>
+                                    <%=rows[i].no%>
+                                </td>
+                                <td>
+                                    <%=rows[i].title%>
+                                </td>
+                                <td>
+                                    <%=rows[i].user%>
+                                </td>
+                                <td>
+                                    <%=rows[i].date%>
+                                </td>
+
+                            </tr>
+                            <%}%>
+                    </tbody>
+
+                </table>
+            </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="kdh-footer">
+            <p>경상남도 김해시 활천동 인제로 197 E동 장영실관 122B호실</p>
+            <p>email : khkh0130@naver.com</p>
+            <p>Copyright(c) 2021. 인제간단하죠 All rights reserved.</p>
+
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

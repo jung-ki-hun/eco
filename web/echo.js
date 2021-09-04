@@ -125,7 +125,7 @@ app.engine("html", require("ejs").renderFile);
 // });
 app.use("/", express.static(__dirname));
 
-rows = [
+var rows = [
   {
     no: 1,
     title: "'인제간단하죠' 사이트를 이용해 주셔서 감사합니다!",
@@ -213,13 +213,24 @@ rows = [
   },
 ];
 
+var proud=[
+  {
+  no:1,
+  title:"아두이노로 피아노 만들었어요!",
+  user:"한석봉",
+  date:"2021-09-01",
+},];
 app.get("/boardMain", (req, res) => {
   res.render("boardMain", { rows: rows });
 });
 
-app.get("/adminboardMain",(req,res)=>{
-  res.render("adminboardMain",{rows:rows});
-})
+app.get("/adminboardMain", (req, res) => {
+  res.render("adminboardMain", { rows: rows });
+});
+
+app.get("/proudMain", (req, res) => {
+  res.render("proudMain", { rows: proud });
+});
 // 3000 포트로 서버 오픈
 app.listen(3000, function () {
   console.log("start! express server on port http://127.0.0.1:3000");
