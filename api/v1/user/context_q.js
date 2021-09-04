@@ -16,7 +16,7 @@ const test = (req, res) => {
     }
     return res.status(200).json(ress);
 }/// 테스트 함수
-const add_borad = (req, res) => {
+const add_borad =  async (req, res) => {
     const response = {
         state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
@@ -40,16 +40,16 @@ const add_borad = (req, res) => {
     }
     else {
         let data = {
-            name : params.name,
+            name : params.name,   // -> 닉네임
             id : params.id,
-            create_d : jkh.date_time(),
+            create_d : jkh.date_time(),    //서버 시간으로 저장
             title : params.title,
             content : params.content,
         }
-        nosqldb.qna.addboard(data);
+        await nosqldb.qna.addboard(data);
         response.state = 1;
         response.msg = 'Successful';
-        return res.status(200).json(response);
+        return res.status(200).json(response); //클라이언트에게 완료 메시지 보내줌
     }
 
 }
