@@ -29,8 +29,8 @@ const context = new mongoose.Schema({
 });//게시글
 
 //auto-increment 
-context.plugin(autoIncrement.plugin,{
-    model : context, //
+context.plugin(autoIncrement.plugin,{ //뎃글 자동 증가값
+    model : context, //뎃글 함수(?)
     field : context_id, //증가해야하는 값
     statAt : 1, //시작 카운트
     increment :1 //증가 값
