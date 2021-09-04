@@ -34,7 +34,7 @@ var server = http
 
   */
 
-  /*
+/*
 const express = require('express');
 const app = express();
 const PORT = 3000;
@@ -49,20 +49,116 @@ app.listen(PORT,()=>{
 })
 */
 
+
+
+/*
 // node_modules 에 있는 express 관련 파일을 가져온다.
-var express = require('express')
+var express = require("express");
 
 // express 는 함수이므로, 반환값을 변수에 저장한다.
-var app = express()
+var app = express();
+
+// ejs 사용해보자
+app.set("views", __dirname);
+app.set("view engine", "ejs");
+app.engine("html", require("ejs").renderFile);
 
 // Express에서 정적 파일 제공
-app.use('/',express.static(__dirname));
+app.use("/", express.static(__dirname));
+
+rows = [
+  {
+    no: 1,
+    title: "'인제간단하죠' 사이트를 이용해 주셔서 감사합니다!",
+    user: "인제간단하죠",
+    date: "2021-08-01",
+  },
+  {
+    no: 2,
+    title: "질문게시판 글 작성법 및 이용 수칙",
+    user: "관리자",
+    date: "2021-08-01",
+  },
+  {
+    no:3,
+    title:"안녕하세요!!",
+    user:"철수",
+    date:"2021-08-01",
+  },
+  {
+    no:4,
+    title:"반갑습니다.",
+    user:"영희",
+    date:"2021-08-01",
+  },
+];
+
+app.get("/boardMain", (req, res) => {
+  res.render("boardMain", { rows: rows });
+});
 
 // 3000 포트로 서버 오픈
-app.listen(3000, function() {
-    console.log("start! express server on port http://127.0.0.1:3000")
-})
+app.listen(3000, function () {
+  console.log("start! express server on port http://127.0.0.1:3000");
+});
 
-/*app.get('/',(req,res)=>{
-  res.sendFile(__dirname+"/index.html");
-});*/
+// app.get('/',(req,res)=>{
+//   res.sendFile(__dirname+"/index.html");
+// });
+
+*/
+
+
+// node_modules 에 있는 express 관련 파일을 가져온다.
+var express = require("express");
+
+// express 는 함수이므로, 반환값을 변수에 저장한다.
+var app = express();
+
+// ejs 사용해보자
+app.set("views", __dirname);
+app.set("view engine", "ejs");
+app.engine("html", require("ejs").renderFile);
+
+// Express에서 정적 파일 제공
+app.use("/", express.static(__dirname));
+
+rows = [
+  {
+    no: 1,
+    title: "'인제간단하죠' 사이트를 이용해 주셔서 감사합니다!",
+    user: "인제간단하죠",
+    date: "2021-08-01",
+  },
+  {
+    no: 2,
+    title: "질문게시판 글 작성법 및 이용 수칙",
+    user: "관리자",
+    date: "2021-08-01",
+  },
+  {
+    no:3,
+    title:"안녕하세요!!",
+    user:"철수",
+    date:"2021-08-01",
+  },
+  {
+    no:4,
+    title:"반갑습니다.",
+    user:"영희",
+    date:"2021-08-01",
+  },
+];
+
+app.get("/boardMain", (req, res) => {
+  res.render("boardMain", { rows: rows });
+});
+
+// 3000 포트로 서버 오픈
+app.listen(3000, function () {
+  console.log("start! express server on port http://127.0.0.1:3000");
+});
+
+// app.get('/',(req,res)=>{
+//   res.sendFile(__dirname+"/index.html");
+// });
