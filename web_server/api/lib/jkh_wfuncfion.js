@@ -35,7 +35,7 @@ var date_ymd = () => {
 var rfs = require('rotating-file-stream');//로그 하루단위로 절샥
 const logstream = rfs.createStream(`access.log`, {
     interval: '1d',
-    path: `${appRoot}/log` });
+    path: `${appRoot}/web_server/log` });
 const webhook = require('./jkh_wwebhook');
 
 module.exports = {
