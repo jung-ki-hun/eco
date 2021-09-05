@@ -27,6 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extends: true }));
 app.use(cookieParser());
 app.use(passport.initialize());//passport 실행
+//// ip  확인 코드
 app.get('/', (req, res) => {
 	var rrq_ip = jkh_function.ip_denying(req);
 	if (rrq_ip.state == 1) {
@@ -38,6 +39,7 @@ app.get('/', (req, res) => {
 	jkh_function.webhook('success', `${req.ip} api '/' enter`);
 	return res.send(str);
 })
+/////
 app.use(morgan('combined', { stream: jkh_function.logstream }))//로그파일로 관리 함 1일단위
 
 app.use('/api/v1/user/', users); //사용자
