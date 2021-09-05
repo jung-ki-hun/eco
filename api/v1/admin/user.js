@@ -2,7 +2,7 @@
 const jkh = require("../function/jkh_function")
 const { Q, pool } = require('../../../db/psqldb');
 
-
+//user admin 동기회
  const regiser = async (req, res) => {
     const response = {
         state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
