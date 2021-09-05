@@ -1,9 +1,31 @@
 // const app = express.Router();
 const jkh = require("../function/jkh_function")
 const { Q, pool } = require('../../../db/psqldb');
-
-
+const passport = require('../function/jkh_passportU');
+/*
  const index = async (req, res) => {
+  const response = {
+    state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
+    query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
+    msg: 'Successful',
+  };
+  */
+const index = async (req, res) => {
+   //쿠키에 담아줘야될것
+    // 닉네임
+    // id
+    // jwt
+    // 에러처리
+   if (req.user.error) {
+     return res.status(500).json(req.user);
+   }
+
+   // 로그인 성공 시
+const { token } = req.user;
+res.send(`token :   ${token}`);
+  return res.json({ token });
+}//login 
+const del_log = async (req,res) =>{
   const response = {
     state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
     query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
@@ -16,7 +38,7 @@ const { Q, pool } = require('../../../db/psqldb');
     id: req.uesr.email,
     pw: req.user.password
   }
-  var session = req.session; //새선 만듬
+  //var session = req.session; //새선 만듬
   var pw_c = jkh.cipher(params.pw);
     try {
     const sql1 = Q`
@@ -47,14 +69,14 @@ const { Q, pool } = require('../../../db/psqldb');
         email: req_data.email
       }//새션생성
       res.cookie('auth',true);//쿠키생성 추후 수정예정
+      response.state = 1; 
+      response.msg = 'login Success';
+      jkh.webhook('Success', response.msg)//log 보내는 역활 -> 디스코드
     }
-
-
-
-    const sql2 = Q`
-        insert into login_log(user_id,log_time) values (${user_id},${jkh.date_time()})
-        `;
-    const query2 = await pool.query(sql2);
+    //const sql2 = Q`
+    //    insert into login_log(user_id,log_time) values (${user_id},${jkh.date_time()})
+    //    `;
+    //const query2 = await pool.query(sql2);
 
   }
   catch (err) {
@@ -62,13 +84,17 @@ const { Q, pool } = require('../../../db/psqldb');
     jkh.webhook.sendMessage('err','login sql select err(500)')//log 보내는 역활
   }
   return res.state(200).join(response);//데이터 전송 !!
-
 }//login 
-const del_logi = async (req,res) =>{
-  
+//const del_logi = async (req,res) =>{}
+const test = (req,res)=>{
+  return res.send("aoifhjaslj");
 }
 module.exports = (app) => {
   app.group([],(router)=>{
-    router.post('/in',index)
+    router.post('/in',[passport.authenticate('user.local', { session: false })],index),//로그인
+    router.post('/in/naver',[passport.authenticate('user.naver', { session: false })],index),//로그인
+    router.post('/in/kakao',[passport.authenticate('user.kakao', { session: false })],index),//로그인
+    router.post('/out',del_log),//로그아웃
+    router.get('/test',test)//테스트
     });
 }

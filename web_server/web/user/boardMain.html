@@ -14,7 +14,7 @@
 
 	<link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css" />
 	<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
-
+	<script src="./assets/js/includeHTML.js"></script>
 	<style>
 		#table1
 		{
@@ -23,6 +23,7 @@
 		}
 	</style>
 	<script>
+		includeHTML();
 		jQuery(function ($) {
 			$("#table1").dataTable({
 			});
@@ -33,22 +34,14 @@
 <body class="subpage">
 
 	<!-- Header -->
-	<header id="header">
-		<nav class="left">
-			<a href="index.html" class="logo"><img src="./images/boardMain1.png" alt="logo"></a>
-		</nav>
-		<a href="boardMain.html" class="logo">게시글리스트</a>
-		<nav class="right">
-			<a href="login.html" class="button alt">Log in</a>
-		</nav>
-	</header>
+	<header id="header" w3-include-html='./publicHTML/header.html'></header>
 
 	<!-- Main -->
 	<section id="main" class="wrapper">
 		<div class="inner">
 			<!-- Table -->
 			<h3>질문게시판</h3>
-
+			
 			<div class="table-wrapper">
 				<table id="table1">
 					<thead>
@@ -62,10 +55,10 @@
 					<tbody>
 						<tr>
 							<td>1</td>
-							<a href='#'><td>'인제간단하죠' 사이트를 이용해 주셔서 감사합니다!</td></a>
+							<td>'인제간단하죠' 사이트를 이용해 주셔서 감사합니다!</td>
 							<td>인제간단하죠</td>
 							<td>2021-08-01</td>
-
+						
 						</tr>
 						<tr>
 							<td>2</td>

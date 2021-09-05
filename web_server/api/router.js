@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const jkh_f = require('./lib/jkh_wfuncfion');
 /*****************************/
 /******최상위 환경 페이지******/
 /*****************************/
@@ -12,12 +13,10 @@ router.get('/login' ,(req, res) => {
 })
 
 
+
 //'//web/landing/industry/index.html' 일때 로그인의 유무를 판단하는 기능 구현
-router.get('/', (req, res) => {
-    req.session;
-    
-    res.redirect(302, '/w/user/index.html');
-});
+//router
+// '/' get 요청 작성 금지
 //메인페이지로 이동
 
 /*****************************/
@@ -26,5 +25,4 @@ router.get('/', (req, res) => {
 module.exports = router;
 
 //유저 페이지 어드민 페이지 나누기
-//유저 권한 어드민 권한 구분
-//카카오, 네이버 발급키 따오는 방법
+//유저 권한 어드민 권한 구분 -> 쿠키사용 예정
