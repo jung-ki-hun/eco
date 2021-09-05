@@ -69,7 +69,7 @@ passport.use(
             try {
                 //로그인 확인 구현 자리
                 //index(email, password);//login 확인 함수
-                const user  = index(email, password);//login 확인 함수   
+                const user  = await index(email, password);//login 확인 함수   
                 // JWT 토큰 생성 
                 const token = jkh_fun.createToken();//userid 인자 전달
 

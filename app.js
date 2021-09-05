@@ -9,13 +9,15 @@ const jkh_function = require('./api/v1/function/jkh_function');
 const jkh = require('./api/v1/function/jkh_config');
 const users = require('./api/v1/user');
 const admin = require('./api/v1/admin');
+const ipfilter = require('express-ipfilter').IpFilter
 const app = express();
+var iplist;
 //해야될것
 /*
 - cors 설정 확인
 - 쿠키 사용할때 생각좀 잘해보기
 */
-
+app.use(ipfilter(iplist));//디폴트 deny //https://www.npmjs.com/package/express-ipfilter
 app.disable('x-powered-by'); // x-powered-by 헤더 비활성화
 app.use(cors({
 	exposedHeaders: ['Content-Disposition'], // 다운로드 시 파일명 첨부 허용
@@ -25,14 +27,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extends: true }));
 app.use(cookieParser());
 app.use(passport.initialize());//passport 실행
-
-app.use(morgan('combined', { stream: jkh_function.logstream }))//로그파일로 관리 함 1일단위
-
 app.get('/', (req, res) => {
+	var rrq_ip = jkh_function.ip_denying(req);
+	if (rrq_ip.state == 1) {
+		iplist.push(rrq_ip.ip);
+		console.log(`ip 차단 : ${rrq_ip.ip}`);
+		jkh_function.webhook('warn', `${req.ip} api '/' enter and denying`);
+	}
 	const str = 'api server gate';
-	jkh_function.webhook('success',`${req.ip} api '/' enter`);
+	jkh_function.webhook('success', `${req.ip} api '/' enter`);
 	return res.send(str);
 })
+app.use(morgan('combined', { stream: jkh_function.logstream }))//로그파일로 관리 함 1일단위
+
 app.use('/api/v1/user/', users); //사용자
 app.use('/api/v1/admin', admin); //관리자
 app.listen(jkh.app.port, jkh.app.host, () => {
