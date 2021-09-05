@@ -130,6 +130,9 @@ const fs = require('fs');
 const file_r =(path,name,data)=>{
     
 }
+const file_w =(path,name,data)=>{
+    
+}
 
 
 
