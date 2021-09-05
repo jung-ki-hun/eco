@@ -11,7 +11,7 @@ const users = require('./api/v1/user');
 const admin = require('./api/v1/admin');
 const ipfilter = require('express-ipfilter').IpFilter
 const app = express();
-var iplist;
+var iplist=[];
 //해야될것
 /*
 - cors 설정 확인
