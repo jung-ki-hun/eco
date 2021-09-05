@@ -9,24 +9,16 @@
 -->
 <html lang="ko">
 	<head>
-		<title>Intensify by TEMPLATED</title>
+		<title>인제간단하죠</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<script sec="https://developsers.kakao.com/sdk/js/kakao.min.js"></script> <!--카카오 인증키-->
 	</head>
 	<body>
 		
+
 		<!-- Header -->
-		<header id="header">
-			<nav class="left">
-				<a href="index.html"><img src="./images/boardMain1.png"></a>
-			</nav>
-			<a href="boardMain.html" class="logo">게시글리스트</a>
-			<nav class="right">
-				<a href="login.html" class="button alt">Log in</a>
-			</nav>
-		</header>
+		<header id="header" w3-include-html='./publicHTML/header.html'></header>
 
 		<!-- Menu -->
 			<!-- <nav id="menu">
@@ -43,10 +35,10 @@
 		<!-- Banner -->
 			<section id="banner">
 				<div class="content">
-					<h1>Ipsum sed lorem</h1>
-					<p>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod<br />sed arcu cras consecuat lorem ipsum dolor sit amet.</p>
+					<h1>질문게시판</h1>
+					<p>질문게시판을 확인합니다.</p>
 					<ul class="actions">
-						<li><a href="#one" class="button scrolly">Get Started</a></li>
+						<li><a href="../user/boardMain.html" class="button scrolly">Get Started</a></li>
 					</ul>
 				</div>
 			</section>
@@ -150,6 +142,9 @@
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
+			<script src="./assets/js/includeHTML.js"></script>
+			<script>
+				includeHTML();
+			</script>
 	</body>
 </html>
