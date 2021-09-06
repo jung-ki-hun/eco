@@ -92,17 +92,24 @@ const token = jwt.sign({user_id: user_id}, jkh_key.app.key, {expiresIn: '1h'});
  * ***********ip 차단 ***********
 *********************************/
 var geoip = require('geoip-country'); // 대상 찾기용
-var ipfiter = require('express-ipfilter').ipfiter; //벤용
+//var ipfiter = require('express-ipfilter').ipfiter; //벤용
 //const { query } = require('express');
 //국가 단위로 찾아보기
 const ip_denying = (req)=>{
-    let ip = req.publicip;
+    let ip = req.ip;
     let geo = geoip.lookup(ip);
+    var return_data ={
+        ip:ip,
+        state:0
+    }
     if(geo != null && geo.country != 'KR'){
-        return ip;
+        return_data.state =1;
+        return return_data;
+    }
+    else{
+        return return_data;
     }
 }
-ipfiter();
 /********************************
  * ********** 페이징  ***********
 *********************************/
@@ -115,6 +122,16 @@ const pageid =(query,offset,limit)=>{
       //if()
       //
       return result;
+}
+/********************************
+ * ********** 파일생성  ***********
+*********************************/
+const fs = require('fs');
+const file_r =(path,name,data)=>{
+    
+}
+const file_w =(path,name,data)=>{
+    
 }
 
 

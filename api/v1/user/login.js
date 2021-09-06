@@ -18,6 +18,7 @@ const passport = require('../function/jkh_passportU');
 res.send(`token :   ${token}`);
   return res.json({ token });
 }//login 
+
 const del_log = async (req,res) =>{
   const response = {
     state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
