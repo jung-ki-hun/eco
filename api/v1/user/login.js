@@ -26,8 +26,8 @@ res.send(`token :   ${token}`);
 
   
   // 로그인 성공 시
-  const { token } = req.user;
-res.send(`token :   ${token} + "님 환영합니다"`);
+const { token } = req.user;
+res.send(`token :   ${token}`);
   return res.json({ token });
 }//login 
 
@@ -87,9 +87,17 @@ const del_log = async (req,res) =>{
   }
   return res.state(200).join(response);//데이터 전송 !!
 }
+
+/*
 const test = (req,res)=>{
   return res.send("aoifhjaslj");
 }
+*/
+
+const test = (req,res)=>{
+  return res.send("Welcome!!");
+
+
 module.exports = (app) => {
   app.group([],(router)=>{
     router.post('/in',[passport.authenticate('user.local', { session: false })],index),//로그인
