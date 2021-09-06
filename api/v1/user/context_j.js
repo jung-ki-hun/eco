@@ -13,6 +13,19 @@ const test = (req, res) => {
         date: jkh.date_ymd(),
         date2: jkh.date_time()
     }
+    // 동훈이의 100개 보내기 테스트, 배열에 100개추가함.
+    // var ress = [];
+    // for (const i = 0; i < 100; i++) {
+    //   ress.push({
+    //     context_id: i + 1,
+    //     data: "데이터값" + (i + 1) + "번",
+    //     title: "제목" + (i + 1) + "번째",
+    //     user: "사용자명",
+    //     count: 30,
+    //     date: jkh.date_ymd(),
+    //     date2: jkh.date_time(),
+    //   });
+    // }
     return res.status(200).json(ress);
 }/// 테스트 함수
 const add_borad = (req, res) => {
