@@ -13,11 +13,24 @@ const passport = require('../function/jkh_passportU');
     return res.status(500).json(req.user);
   }
 
+
+/*
   // 로그인 성공 시
   const { token } = req.user;
 res.send(`token :   ${token}`);
   return res.json({ token });
 }//login 
+*/
+
+
+
+  
+  // 로그인 성공 시
+  const { token } = req.user;
+res.send(`token :   ${token} + "님 환영합니다"`);
+  return res.json({ token });
+}//login 
+
 
 const del_log = async (req,res) =>{
   const response = {
