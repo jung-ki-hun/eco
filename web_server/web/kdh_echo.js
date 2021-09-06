@@ -123,7 +123,12 @@ app.engine("html", require("ejs").renderFile);
 // app.get('/',(req,res)=>{
 //   res.sendFile(__dirname+"/index.html");
 // });
-app.use("/", express.static(__dirname));
+//app.use("/", express.static(__dirname+"/user"));
+
+app.use("/user",express.static("user"));
+app.use("/error",express.static("error"));
+app.use("/admin",express.static("admin"));
+
 
 var rows = [
   {
@@ -236,6 +241,10 @@ app.listen(3000, function () {
   console.log("start! express server on port http://127.0.0.1:3000");
 });
 
+app.get("/",(req,res)=>{
+  res.sendFile(__dirname+"/user/index.html");
+})
+
 // 참고  :  https://velog.io/@hyeinisfree/Node.js-express-Session%EC%9C%BC%EB%A1%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
 // //로그인
 //  app.post("/login", passport.authenticate("local"), (req, res) => {
@@ -262,3 +271,4 @@ app.post("/login", (req, res) => {
 //   if (req.isAuthenticated()) return res.json(req.user);
 //   return res.json({ message: "user 없음" });
 // });
+
