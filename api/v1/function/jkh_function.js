@@ -126,13 +126,15 @@ const pageid =(query,offset,limit)=>{
 /********************************
  * ********** 파일생성  ***********
 *********************************/
-const fs = require('fs');
+
 const file_r =(path,name,data)=>{
-    
+    const file = fs.readFile(path,(err)=>{
+        
+    });
 }
-const file_w =(path,name,data)=>{
+// const file_w =(path,name,data)=>{
     
-}
+// }
 
 
 

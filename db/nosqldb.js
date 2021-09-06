@@ -13,7 +13,6 @@ module.exports = {
             }
             console.log('mongodb connected');
         });
-        this.init();
         //mongoose.connection.on('disconnected', connect);
         autoIncrement.initialize(db); //자동카운트
         db.on('error', console.error);
@@ -21,7 +20,8 @@ module.exports = {
             // CONNECTED TO MONGODB SERVER
             console.log("Connected to mongod server");
         });
-
+        //this.init();
+        
         return mongoose;
     }
     // save:(data, type)=>{ //데이터, 저장위치 확인 // type -> 1 질문하기 2 자랑하기
