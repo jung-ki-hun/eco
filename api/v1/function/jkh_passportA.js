@@ -5,14 +5,93 @@ const passport_naver = require('passport-naver');
 const passport_jwt = require('passport-jwt');
 const jkh_fun = require('./jkh_function');
 const jkh_c = require('./jkh_config');
-const pgsql = require('../../../db/psqldb');//db 조회 용
-const ExtractJWT = passportJWT.ExtractJwt;
+const { pool, Q } = require('../../../db/psqldb');//const pgsql = require('../../../db/psqldb'); //db 조회 용
+const ExtractJWT = passport_jwt.ExtractJwt;//const ExtractJWT = passportJWT.ExtractJwt;
 
 const JWTStrategy = passport_jwt.Strategy;
 const LocalStrategy = passport_local.Strategy;
 const NaverStrategy = passport_naver.Strategy;
 const KakaoStrategy = passport_kakao.Strategy;
 
+const index = async (id, pw) => {
+    console.log(id, pw);
+    var pw_c = jkh_fun.cipheriv(pw);//암호화 진행 //iv 버전으로 수정 필수 !!!!
+    console.log(id, pw_c);
+    var user;
+    try {
+        const sql1 = Q`
+          SELECT 
+            u.username,
+            ul.level_u,
+            u.user_id
+          FROM
+            users u, users_level ul
+          WHERE        
+            ul.level_u in (select level_u from users_level ul2, users u2 WHERE u2.user_id = ul2.user_id)
+            AND
+            u.email = ${id}
+            AND
+            u.pw = ${pw_c}
+          `;//암호화 한 데이터(pw)를 기반으로 검색 진행
+        const query1 = await pool.query(sql1);//조회 알고리즘
+        console.log(`abc ${query1.rows[0]}`);
+        if (jkh_fun.isEmpty(query1.rows[0].username)) {
+            console.log('login fail');
+            jkh_fun.webhook('err', response.msg)//log 보내는 역활
+        }
+        else {
+            let user_id = query1.rows[0].user_id;//사용자 key 추출
+            user = query1.rows[0];
+            //res.cookie('auth', true);//쿠키생성 추후 수정예정
+            const sql2 = 
+            Q`insert into login_log(user_id,log_time) values (${user_id},${jkh_fun.date_time()})`;
+            const query2 = await pool.query(sql2);
+            if (query2.errors) {
+                console.log(query2.errors);
+                jkh_fun.webhook('err', 'login sql insert err(500)');
+            }
+        }
+
+        return user;
+    }
+    catch (err) {
+        console.error(err);
+        jkh_fun.webhook('err', 'login sql select err(500)')//log 보내는 역활
+    }
+}//login 
+
+// Local Strategy
+passport.use(
+    'user.local',
+    new LocalStrategy(
+        {
+            usernameField: 'email',
+            passwordField: 'password',
+            session: false, // 세션 사용안함
+            passReqToCallback: false,//req 사용관련 함수
+        },
+        async (email, password, done) => {
+            try {
+                //로그인 확인 구현 자리
+                const user = index(email, password);//login 확인 함수                
+                // JWT 토큰 생성 
+                console.log(user);
+                const token = jkh_fun.createToken(user.user_id);//userid 인자 전달
+                //로그인 처리관련 콜백 함수 제작 자리 //추후 개발예정                 
+                //   const token = jwt.sign({ user_no: user.user_no, user_type: query2.length > 0 ? 'stl' : 'cstm' }, config.auth.jwtSecretUser, {
+                //     expiresIn: config.auth.jwtExpireUser, // https://github.com/zeit/ms
+                //   });
+                // 로그인 체크 성공
+                return done(null, { token }, {});
+            } catch (e) {
+                // 로그인 확인 중 에러 발생 시
+                console.error(e);
+                return done(null, { error: true, state: 0, message: 'Internal Error' }, {});
+            }
+        },
+    ),
+);
+/*
 const index = async (id, pw) => {
     var pw_c = jkh.cipher(pw);
     try {
@@ -87,5 +166,5 @@ passport.use(
             }
         },
     ),  
-);
+);*/
 module.exports = passport;
