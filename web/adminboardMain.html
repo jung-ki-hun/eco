@@ -7,46 +7,57 @@
 <html lang="ko">
 
 <head>
-	<title>Elements - Intensify by TEMPLATED</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" href="assets/css/main.css" />
+    <title>Elements - Intensify by TEMPLATED</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
 
-	<link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>
-	<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
-	<script src="./assets/js/includeHTML.js"></script>
-	<script>
-		jQuery(function ($) {
-			$("#table1").dataTable();
-		});
-		
-	</script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css" />
+    <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+    <script src="./assets/js/includeHTML.js"></script>
+    <script src="./assets/js/loadHTML.js"></script>
+    <style>
+        #table1 {
+            margin: 0 auto;
+            width: 100%;
+        }
+    </style>
+    <script>
+        includeHTML();
+        jQuery(function ($) {
+            $("#table1").dataTable({
+            });
+        });
+    </script>
 </head>
 
 <body class="subpage">
 
-	<!-- Header -->
-	<header id="header" w3-include-html='./publicHTML/header.html'></header>
+    <!-- Header -->
+    <header id="header" >
+     <script>loadHTML("./publicHTML/header.html");</script>
+    </header>
 
-	<!-- Main -->
-	<section id="main" class="wrapper">
-		<div class="inner">
-			<!-- Table -->
-			<h3>질문게시판</h3>
+    <!-- Main -->
+    <section id="main" class="wrapper">
+        <div class="inner">
+            <!-- Table -->
+            <h3>질문게시판</h3>
 
-			<div class="table-wrapper">
-				<table id="table1">
-					<thead>
-						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>날짜</th>
-							<th>관리</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
+
+            <div class="table-wrapper">
+                <table id="table1">
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                            <th>날짜</th>
+                            <th>글삭제</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
 							<td>1</td>
 							<td>'인제간단하죠' 사이트를 이용해 주셔서 감사합니다!</td>
 							<td>인제간단하죠</td>
@@ -145,34 +156,28 @@
 							<td>2021-08-01</td>
 							<td><a href="#" class="kdh-button">글삭제</a></td>
 						</tr>
-					</tbody>
-					
-				</table>
-			</div>
-	</section>
+                    </tbody>
 
-	<!-- Footer -->
-	<footer id="footer">
-		<div class="inner">
-			<h2>Get In Touch</h2>
-			<ul class="actions">
-				<li><span class="icon fa-phone"></span> <a href="#">(000) 000-0000</a></li>
-				<li><span class="icon fa-envelope"></span> <a href="#">information@untitled.tld</a></li>
-				<li><span class="icon fa-map-marker"></span> 123 Somewhere Road, Nashville, TN 00000</li>
-			</ul>
-		</div>
-		<div class="copyright">
-			&copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>. Images <a
-				href="https://unsplash.com">Unsplash</a>.
-		</div>
-	</footer>
+                </table>
+            </div>
+    </section>
 
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/skel.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="kdh-footer">
+            <p>경상남도 김해시 활천동 인제로 197 E동 장영실관 122B호실</p>
+            <p>email : khkh0130@naver.com</p>
+            <p>Copyright(c) 2021. 인제간단하죠 All rights reserved.</p>
+
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 
 </body>
 
