@@ -110,6 +110,7 @@ app.listen(3000, function () {
 
 // node_modules 에 있는 express 관련 파일을 가져온다.
 var express = require("express");
+var fs = require("fs");
 
 // express 는 함수이므로, 반환값을 변수에 저장한다.
 var app = express();
@@ -242,7 +243,7 @@ app.listen(3000, function () {
 });
 
 app.get("/",(req,res)=>{
-  res.sendFile(__dirname+"/user/index.html");
+  res.redirect("./user/index.html");
 })
 
 // 참고  :  https://velog.io/@hyeinisfree/Node.js-express-Session%EC%9C%BC%EB%A1%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
@@ -252,7 +253,7 @@ app.get("/",(req,res)=>{
 //   res.json(req.user.user_id);
 // });
 app.post("/login", (req, res) => {
-  res.sendFile(__dirname + "/404.html");
+  res.redirect("./error/404.html");
 });
 
 // // 로그아웃
