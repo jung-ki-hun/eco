@@ -2,7 +2,7 @@ const express = require('express');
 const app = express.Router();
 const jkh = require("../function/jkh_function")
 //const { Q, pool } = require('../../../db/psqldb');
-
+/*
 const test = (req, res) => {
     var ress = {
         context_id: 1,
@@ -14,7 +14,25 @@ const test = (req, res) => {
         date2: jkh.date_time()
     }
     return res.status(200).json(ress);
-}/// 테스트 함수
+}/// 테스트 함수 원본 */
+
+const test = (req, res) => {
+    const x = []   
+    for(let i = 0; i < 100; i++){
+        var ress = {
+            context_id: 1,
+            data: "hi 성덕 hangul sjdjxuejd dkdkdkd this is apple",
+            title: "제서어덕  ㅇㅇ",
+            user: "김동훈",
+            count: 30,
+            date: jkh.date_ymd(),
+            date2: jkh.date_time()
+        } 
+        x.push(ress);
+    }
+    return res.status(200).json(x);
+}
+
 const add_borad = (req, res) => {
     var parmas = {
         ...req.body,

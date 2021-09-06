@@ -16,6 +16,7 @@ const test = (req, res) => {
     }
     return res.status(200).json(ress);
 }/// 테스트 함수
+
 const add_borad =  async (req, res) => {
     const response = {
         state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음

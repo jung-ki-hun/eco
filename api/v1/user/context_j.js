@@ -15,6 +15,7 @@ const test = (req, res) => {
     }
     return res.status(200).json(ress);
 }/// 테스트 함수
+
 const add_borad = (req, res) => {
     var parmas = {
         ...req.body,
