@@ -30,7 +30,7 @@ var date_time = () => {
 var date_ymd = () => {
     const date = new Date();
     const sring_Regular = ' ';
-    var str = `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
+    var str = `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`;
     return str;
 }
 
@@ -128,13 +128,14 @@ const pageid =(query,offset,limit)=>{
 *********************************/
 
 const file_r =(path,name,data)=>{
-    const file = fs.readFile(path,(err)=>{
-        
+    let str = `${path}/${name}.txt`;
+    const file = fs.readFile(str,(err)=>{
+        console.log(err);
     });
 }
-// const file_w =(path,name,data)=>{
+const file_w =(path,name,data)=>{
     
-// }
+}
 
 
 
@@ -151,6 +152,8 @@ module.exports = {
     createToken,
     pageid,
     ip_denying,
+    file_r,
+    file_w,
     appRoot,
     logstream,
 

@@ -9,7 +9,7 @@ const path_u = {
 app.group('/',(router)=>{
     router.group('/user',path_u.user);
     router.group('/login',path_u.login);
-    router.group('/context_j',path_u.contextq);
-    router.group('/context_q',path_u.contextj);
+    router.group('/context_j',path_u.contextj);
+    router.group('/context_q',path_u.contextq);
 })
 module.exports = app;
