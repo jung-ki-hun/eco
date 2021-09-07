@@ -126,14 +126,39 @@ const pageid =(query,offset,limit)=>{
 /********************************
  * ********** 파일생성  ***********
 *********************************/
-const fs = require('fs');
+const fs = require('fs');//fs 모듈 연결
 const file_r =(path,name,data)=>{ //읽어오기
-    let str = `${path}/${name}.txt`;
-    const file
+    fs.readFile('Read.txt', 'utf8', function(error, data){ //읽기
+        if (error) {
+            console.log("읽기 실패");
+            throw error
+        };
+        console.log("읽기 성공" + data);
+      });
 }
-const file_w =(path,name,data)=>{ //불러오기
+const file_w =(path,name,data)=>{ //내보내기
+    fs.writeFile('WriteASync.txt', data ,'utf8', function(error, data){ //쓰기
+        if (error) {
+            console.log("쓰기 실패");
+            throw error
+        };
+        console.log("읽기 성공");
+    });
+    fs.writeFileSync('WriteSync.txt', data, 'utf8');
+    console.log("Sync Write Complete");
+}
+
+/*
+const file_r =(path,name,data)=>{
+    let str = `${path}/${name}.txt`;
+    const file = fs.readFile(str,(err)=>{
+        console.log(err);
+    });
+}
+const file_w =(path,name,data)=>{
     
 }
+*/
 
 
 
