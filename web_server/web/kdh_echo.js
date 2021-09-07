@@ -116,8 +116,8 @@ var fs = require("fs");
 var app = express();
 
 // ejs 사용해보자
-app.set("views", __dirname);
-app.set("view engine", "ejs");
+// app.set("views", __dirname);
+// app.set("view engine", "ejs");
 app.engine("html", require("ejs").renderFile);
 
 // Express에서 정적 파일 제공
@@ -226,21 +226,25 @@ var proud=[
   user:"한석봉",
   date:"2021-09-01",
 },];
-app.get("/boardMain", (req, res) => {
-  res.render("boardMain", { rows: rows });
-});
 
-app.get("/adminboardMain", (req, res) => {
-  res.render("adminboardMain", { rows: rows });
-});
+// EJS(디버깅용)
+// app.get("/boardMain", (req, res) => {
+//   res.render("boardMain", { rows: rows });
+// });
 
-app.get("/proudMain", (req, res) => {
-  res.render("proudMain", { rows: proud });
-});
+// app.get("/adminboardMain", (req, res) => {
+//   res.render("adminboardMain", { rows: rows });
+// });
+
+// app.get("/proudMain", (req, res) => {
+//   res.render("proudMain", { rows: proud });
+// });
+
 // 3000 포트로 서버 오픈
 app.listen(3000, function () {
   console.log("start! express server on port http://127.0.0.1:3000");
 });
+
 
 app.get("/",(req,res)=>{
   res.redirect("./user/index.html");
