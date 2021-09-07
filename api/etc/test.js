@@ -3,8 +3,8 @@
 // const h = 1.5;
 // console.log(pi*r*r*h);
 
-const { pool, Q } = require('../../db/psqldb');
-const jkh = require('../v1/function/jkh_function');
+// const { pool, Q } = require('../../db/psqldb');
+// const jkh = require('../v1/function/jkh_function');
 // const dbtest = async () => {
 //     let id = '1@1',pw ='T1UTH4GycT4fS/zRUGddGQ=='
 //     try {
@@ -42,5 +42,14 @@ const jkh = require('../v1/function/jkh_function');
 //     }
 // }
 // console.log(dbtest())
-console.log(jkh.cipheriv(`1234`));//테스트해보기
+//console.log(jkh.cipheriv(`1234`));//테스트해보기
 
+const a = { 
+    a1:1,
+    a2:2
+}
+const b = {
+    ...a,
+    bb:5
+}
+console.log(b.a1);
