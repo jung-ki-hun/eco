@@ -19,7 +19,7 @@ const index = async (req, res) => {
    if (req.user.error) {
      return res.status(500).json(req.user);
    }
-
+  
    // 로그인 성공 시
 const { token } = req.user;
 res.send(`token :   ${token}`);
@@ -109,7 +109,7 @@ const test = (req, res)=>{//테스트 함수
     }*/
     return res.send("로그인 성공");
 }
-
+//1일 1커밋 ^^
 module.exports = (app) => {
   app.group([],(router)=>{
     router.post('/in',[passport.authenticate('user.local', { session: false })],index),//로그인
