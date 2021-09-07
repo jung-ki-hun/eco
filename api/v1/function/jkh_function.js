@@ -30,7 +30,7 @@ var date_time = () => {
 var date_ymd = () => {
     const date = new Date();
     const sring_Regular = ' ';
-    var str = `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
+    var str = `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`;
     return str;
 }
 
@@ -126,39 +126,33 @@ const pageid =(query,offset,limit)=>{
 /********************************
  * ********** 파일생성  ***********
 *********************************/
-const fs = require('fs');//fs 모듈 연결
-const file_r =(path,name,data)=>{ //읽어오기
-    fs.readFile('Read.txt', 'utf8', function(error, data){ //읽기
-        if (error) {
-            console.log("읽기 실패");
-            throw error
-        };
-        console.log("읽기 성공" + data);
-      });
-}
-const file_w =(path,name,data)=>{ //내보내기
-    fs.writeFile('WriteASync.txt', data ,'utf8', function(error, data){ //쓰기
-        if (error) {
-            console.log("쓰기 실패");
-            throw error
-        };
-        console.log("읽기 성공");
-    });
-    fs.writeFileSync('WriteSync.txt', data, 'utf8');
-    console.log("Sync Write Complete");
-}
 
-/*
-const file_r =(path,name,data)=>{
+const file_r = (path,name,data)=>{ //읽기
     let str = `${path}/${name}.txt`;
     const file = fs.readFile(str,(err)=>{
-        console.log(err);
+        if(err == null){
+            console.log("파일 읽기 성공");
+        }
+        else{
+            console.log("파일 읽기 실패 : " + err);
+        }
     });
 }
-const file_w =(path,name,data)=>{
-    
+const file_w = (path,name,data)=>{ //쓰기
+    let str = `${path}/${name}.txt`;
+    const file = fs.writeFile(str,(err)=>{
+        if(err == null){
+            console.log("파일 생성 성공");
+        }
+        else{
+            console.log("파일 생성 실패 : " + err);
+        }
+    });
 }
-*/
+const file_rename = (path,name,data)=>{ //이름 수정
+    let str = `${path}/${name}.txt`;
+    const file = fs.rename(str)
+}
 
 
 
@@ -175,6 +169,8 @@ module.exports = {
     createToken,
     pageid,
     ip_denying,
+    file_r,
+    file_w,
     appRoot,
     logstream,
 
