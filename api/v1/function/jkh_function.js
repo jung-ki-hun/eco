@@ -127,10 +127,11 @@ const pageid =(query,offset,limit)=>{
  * ********** 파일생성  ***********
 *********************************/
 const fs = require('fs');
-const file_r =(path,name,data)=>{
-    
+const file_r =(path,name,data)=>{ //읽어오기
+    let str = `${path}/${name}.txt`;
+    const file
 }
-const file_w =(path,name,data)=>{
+const file_w =(path,name,data)=>{ //불러오기
     
 }
 
