@@ -16,11 +16,11 @@ const test = (req, res) => {
     return res.status(200).json(ress);
 }/// 테스트 함수 원본 */
 
-const test = (req, res) => {
+const test = (req, res) => { //테스트 함수
     const x = []   
     for(let i = 0; i < 100; i++){
         var ress = {
-            context_id: 1,
+            context_id: i + 1,
             data: "hi 성덕 hangul sjdjxuejd dkdkdkd this is apple",
             title: "제서어덕  ㅇㅇ",
             user: "김동훈",
@@ -34,7 +34,7 @@ const test = (req, res) => {
 }
 
 const add_borad = (req, res) => {
-    var parmas = {
+    var parmas = {  //모든 파일에서 중요함 => req에서 받아서 사용
         ...req.body,
         ...req.parmas,
         ...req.query,

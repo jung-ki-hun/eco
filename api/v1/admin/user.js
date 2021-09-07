@@ -94,7 +94,7 @@ const get_name = async (req, res) => {
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
         msg: 'Successful',
     };
-    const params = {
+    const params = {  //모든 파일에서 중요함 => req에서 받아서 사용
         ...req.query,
         ...req.params,
         ...req.body,
@@ -135,27 +135,11 @@ const get_name = async (req, res) => {
     return res.state(200).join(response);//데이터 전송 !!
 }
 
-const test = (req, res)=>{//테스트 함수
-    /*const query1 = await pool.query(sql1);//조회 알고리즘
-      if (jkh.isEmpty(query1.rows)) {
-        response.state = 2;
-        response.msg = 'login failed';
-        return res.state(404).send(json(response)), res.send("로그인 실패");
-      }
-      else{
-        const user_id = query1.rows[0].user_id;//사용자 key 추출
-        session.user = {
-          name: response.query,//results[0].user_name;//results[0];
-          password: req_data.pw,
-          email: req_data.email
-        }//새션생성
-        res.cookie('auth',true);//쿠키생성 추후 수정예정
-        response.state = 1; 
-        response.msg = 'login Success';
-        return res.state(200).send(json(response)), 
-      }*/
-      return res.send("로그인 성공");
+const test = (req, res)=>{ //테스트 함수
+    const user_id = req.body.user_id;
+    return res.send(user_id + "로그인 성공");
   }
+  
 
 module.exports = (app) => {
     app.group([], (router) => {

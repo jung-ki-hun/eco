@@ -4,11 +4,11 @@ const app = express.Router();
 const jkh = require("../function/jkh_function")
 //const { Q, pool } = require('../../../db/psqldb');
 
-const test = (req, res) => {
+const test = (req, res) => { //테스트 함수
     const x = []   
     for(let i = 0; i < 100; i++){
         var ress = {
-            context_id: 1,
+            context_id: i + 1,
             data: "hi 성덕 hangul sjdjxuejd dkdkdkd this is apple",
             title: "제서어덕  ㅇㅇ",
             user: "김동훈",
@@ -27,7 +27,7 @@ const add_borad =  async (req, res) => {
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
         msg: 'Successful',
     };
-    var parmas = {
+    var parmas = { //모든 파일에서 중요함 => req에서 받아서 사용
         ...req.body,
         ...req.parmas,
         ...req.query,
