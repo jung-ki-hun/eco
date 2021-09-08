@@ -42,6 +42,10 @@ app.get('/', (req, res) => {
 
 var errorHandler = expressErrorHandler({
 	static: {
+		'400': './web_server/web/error/400.html',
+		'401': './web_server/web/error/401.html',
+		'402': './web_server/web/error/402.html',
+		'403': './web_server/web/error/403.html',
 		'404': './web_server/web/error/404.html',
 		'500': './web_server/web/error/500.html'
 	}
