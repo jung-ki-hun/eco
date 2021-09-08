@@ -7,13 +7,15 @@ var db = mongoose.connection;
 
 module.exports = {
     init: () => {
-        const connect = ()=>{
-        mongoose.connect(url, (err) => {
-            if (err) {
-                console.error('mongodb connection error', err);
-            }
-            console.log('mongodb connected');
-        });}
+        console.log(url);
+        const connect = () => {
+            mongoose.connect(url, (err) => {
+                if (err) {
+                    console.error('mongodb connection error', err);
+                }
+                console.log('mongodb connected');
+            });
+        }
         connect();
         //mongoose.connection.on('disconnected', connect);
         autoIncrement.initialize(db); //자동카운트
@@ -27,7 +29,7 @@ module.exports = {
         });
         db.on('error', console.error);
         //this.init();
-        
+
         return mongoose;
     }
     // save:(data, type)=>{ //데이터, 저장위치 확인 // type -> 1 질문하기 2 자랑하기
