@@ -127,6 +127,7 @@ const pageid =(query,offset,limit)=>{
  * ********** 파일생성  ***********
 *********************************/
 
+//<<<<<<< HEAD
 const file_r = (path,name,data)=>{ //읽기
     let str = `${path}/${name}.txt`;
     const file = fs.readFile(str,(err)=>{
@@ -149,11 +150,6 @@ const file_w = (path,name,data)=>{ //쓰기
         }
     });
 }
-const file_rename = (path,name,data)=>{ //이름 수정
-    let str = `${path}/${name}.txt`;
-    const file = fs.rename(str)
-}
-
 
 
 module.exports = {
@@ -174,5 +170,4 @@ module.exports = {
     appRoot,
     logstream,
 
-}
-// log save
+}//log save

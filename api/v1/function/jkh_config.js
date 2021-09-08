@@ -25,7 +25,7 @@ const config = {
 
         url: process.env.MONDB_URL || "127.0.0.1",
         port: process.env.MON_PORT || "27017",
-        database: process.env.MON_NAME || "",
+        database: process.env.MON_NAME || "projectb",
         id: process.env.MON_ID || "",
         password: process.env.MON_PW || ""
 

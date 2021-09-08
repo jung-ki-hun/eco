@@ -75,7 +75,9 @@ const del_log = async (req,res) =>{
   return res.state(200).join(response);//데이터 전송 !!
 }
 const test = (req,res)=>{
-  return res.send("aoifhjaslj");
+  //req!!!
+
+  return res.join(u);
 }
 module.exports = (app) => {
   app.group([],(router)=>{
