@@ -1,18 +1,21 @@
-interface ModelObj{    
+/**
+ * Model Interface
+ */
+export interface ModelObj{    
     /** API 주소 반환
      * @returns {String}
      */
-    getApiPath:()=>string    
+    getApiPath():string,
     /** API 접근 설정 반환
      * @returns {String}
      */
-    getApiInfo:()=>RequestInit    
+    getApiInfo():RequestInit    
     /** API 접속
      * @returns {Promise<ModelResult>}
      */
-    read: ()=>Promise<ModelResult>
+    read():Promise<ModelResult>
 }
-interface ModelResult{
+export interface ModelResult{
     error:Error
     data:JSON
 }
@@ -22,15 +25,15 @@ interface ModelResult{
  * @param api_info api에 접근에 필요한 정보
  * @returns {ModelObj} api에 접근하는 Object 반환
  */
-export default function(api_path:string, api_info:RequestInit = null): ModelObj{    
+export function CreateModel(api_path:string, api_info:RequestInit = null): ModelObj{    
     return {       
-        getApiPath : function():string{
+        getApiPath():string{
             return api_path;
         },        
-        getApiInfo: function():RequestInit{
+        getApiInfo():RequestInit{
             return api_info;
         }, 
-        read : function():Promise<ModelResult>{
+        read():Promise<ModelResult>{
             return new Promise(resolve=>{        
                 try{
                     fetch(api_path, api_info).then((response)=>{                    

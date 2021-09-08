@@ -4,15 +4,15 @@
  * @param api_info api에 접근에 필요한 정보
  * @returns {ModelObj} api에 접근하는 Object 반환
  */
-export default function (api_path, api_info = null) {
+export function CreateModel(api_path, api_info = null) {
     return {
-        getApiPath: function () {
+        getApiPath() {
             return api_path;
         },
-        getApiInfo: function () {
+        getApiInfo() {
             return api_info;
         },
-        read: function () {
+        read() {
             return new Promise(resolve => {
                 try {
                     fetch(api_path, api_info).then((response) => {

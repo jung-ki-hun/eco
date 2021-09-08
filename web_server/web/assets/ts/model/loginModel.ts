@@ -2,14 +2,12 @@
  * Login을 위한 Model
  */
 
-import Model from "./Model.js"
-
-const certi = {"email" : "123@123", "password":"100"};
+import {CreateModel} from "./Model.js"
 
 (async function() {
-    const {getApiPath, getApiInfo, read} = Model("/api/v1/user/login/in", {
+    const {getApiPath, getApiInfo, read} = CreateModel("/api/v1/user/login/in", {
         method: 'POST',
-        body: JSON.stringify(certi),
+        body: JSON.stringify({"email" : "123@123", "password":"100"}),
         headers: {
             "Content-Type": "application/json"
         }
