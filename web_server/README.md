@@ -47,3 +47,14 @@ Commit History
         + loginModel.ts
     + created TS
         + loginModel.ts for api test
+   
++ 09/08
+    + changed Model interface
+    + created View interface
+        + created View Function
+    + created Controller interface
+    + tested boardMainTest
+
++ KIUP-161
+    + created Page(Warning.html)
+        + created scss(warning.scss)    
