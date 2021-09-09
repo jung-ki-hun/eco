@@ -3148,17 +3148,15 @@
 /* Footer */
 
 	#footer {
+		display:flex;	
+		justify-content: flex-end;
 		padding:3em;
 		background: rgb(112,112,112);
 		/*text-align: center;*/
 		color: #c8e7f0;
 	}
-	
-	.kdh-footer{
-		left: 45%;
-		position: relative;
-		overflow: visible;
-		width: 522px;
+
+	.kdh-footer{								
 		white-space: nowrap;
 		line-height: 29px;
 		margin-top: -4.5px;

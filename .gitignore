@@ -4,3 +4,4 @@
 #/api/v1/function/jkh_config.js
 ./db.js
 ./log/log/
+./log

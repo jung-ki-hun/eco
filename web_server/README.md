@@ -58,3 +58,8 @@ Commit History
 + KIUP-161
     + created Page(Warning.html)
         + created scss(warning.scss)    
+   
++ KIUP-121
+    + improved CSS(main.css, footer)
+        + lines 3151 ~ 3152
+        + control layout

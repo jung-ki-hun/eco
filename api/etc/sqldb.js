@@ -1,5 +1,9 @@
+/*
+    mysql 용 설정파일 ~!!
+*/
+
 const mysql = require('mysql');
-const config = require('../api/v1/function/jkh_config');
+const config = require('../v1/function/jkh_config');
 //const dataset = require('./app.js');
 var response = {
     state: 1,  //sql 탐색도중에러 0/sql  결과 없음 1/sql 결과 조회 성공 2

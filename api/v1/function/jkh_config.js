@@ -1,12 +1,11 @@
 require("dotenv").config();
-// import dotenv from 'dotenv';
-// dotenv.config();
 const config = {
     app: {
         host: process.env.T3_HOST || '192.168.219.107',
         port: process.env.T_PORT || '4000',
         key: process.env.SECRET_KEY || '!%@^^!&#$',
-        ckey: process.env.CRYPTO_KEY ||'!@!#!@%&^YSDJFS!@$!'
+        ckey: process.env.CRYPTO_KEY ||'!@!#!@%&^YSDJFS!@$!',
+        carl: process.env.CRYPTO_ARL || 'aes-256-cbc'
     },
     pgdb: {
         host: process.env.DB_IP || "127.0.0.1",
@@ -26,7 +25,7 @@ const config = {
 
         url: process.env.MONDB_URL || "127.0.0.1",
         port: process.env.MON_PORT || "27017",
-        database: process.env.MON_NAME || "",
+        database: process.env.MON_NAME || "projectb",
         id: process.env.MON_ID || "",
         password: process.env.MON_PW || ""
 
@@ -41,6 +40,4 @@ const config = {
         url: process.env.WEB_HOOK || "",
     }    
 }
-module.exports = {
-    config
-};
+module.exports = config;

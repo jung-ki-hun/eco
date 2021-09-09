@@ -35,12 +35,38 @@ var date_ymd = () => {
 var rfs = require('rotating-file-stream');//로그 하루단위로 절샥
 const logstream = rfs.createStream(`access.log`, {
     interval: '1d',
-    path: `${appRoot}/log` });
-     
+    path: `${appRoot}/web_server/log` });
+const webhook = require('./jkh_wwebhook');
+
+/********************************
+ * ***********ip 차단 ***********
+*********************************/
+var geoip = require('geoip-country'); // 대상 찾기용
+//var ipfiter = require('express-ipfilter').ipfiter; //벤용
+//const { query } = require('express');
+//국가 단위로 찾아보기
+const ip_denying = (req)=>{
+    let ip = req.ip;
+    let geo = geoip.lookup(ip);
+    var return_data ={
+        ip:ip,
+        state:0
+    }
+    if(geo != null && geo.country != 'KR'){
+        return_data.state =1;
+        return return_data;
+    }
+    else{
+        return return_data;
+    }
+}
+
 module.exports = {
     isEmpty,
     date_time,
     date_ymd,
+    webhook,
+    ip_denying,
     appRoot,
     logstream,
 
