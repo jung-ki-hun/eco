@@ -154,10 +154,10 @@ const file_a = (path,name,data)=>{
     let str = `${path}/${name}.txt`;
     const file = fs.appendFile(str,data,(err)=>{
         if(isEmpty(err)){ //undifind
-            console.log("파일 생성 성공");
+            console.log("내용 추가 성공");
         }
         else{
-            console.log("파일 생성 실패 : " + err);
+            console.log("내용 추가 실패 : " + err);
         }
     });
 }
