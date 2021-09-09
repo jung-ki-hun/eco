@@ -19,7 +19,7 @@ const index = async (req, res) => {
    if (req.user.error) {
      return res.status(500).json(req.user);
    }
-
+  
    // 로그인 성공 시
 const { token } = req.user;
 res.send(`token :   ${token}`);
@@ -27,11 +27,11 @@ res.send(`token :   ${token}`);
 }//login 
 const del_log = async (req,res) =>{
   const response = {
-    state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
+    state: 1, // 상태표시 0: 실패, 1: 성공, 2: 변수없음, 3: 조회결과없음
     query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
     msg: 'Successful',
   };
-  const params = {
+  const params = {  //모든 파일에서 중요함 => req에서 받아서 사용
     ...req.query,
     ...req.params,
     ...req.body,
@@ -86,9 +86,12 @@ const del_log = async (req,res) =>{
   return res.state(200).join(response);//데이터 전송 !!
 }//login 
 //const del_logi = async (req,res) =>{}
-const test = (req,res)=>{
-  return res.send("aoifhjaslj");
+
+const test = (req, res)=>{ //테스트 함수
+  const user_id = req.body.user_id;
+  return res.send(user_id + "로그인 성공");
 }
+
 module.exports = (app) => {
   app.group([],(router)=>{
     router.post('/in',[passport.authenticate('user.local', { session: false })],index),//로그인

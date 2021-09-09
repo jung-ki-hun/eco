@@ -2,7 +2,7 @@ const jkh_key = require('./jkh_config');
 /********************************
  * ************기본함수 **********
  *********************************/
-var isEmpty = (...str) => {
+var isEmpty = (...str) => { //null을 대신해 비어있음을 확인
     for (let i_str of str) {
         if (typeof i_str == "undefined" || i_str == null || i_str == "" )
             return true;
@@ -96,8 +96,8 @@ var geoip = require('geoip-country'); // 대상 찾기용
 //const { query } = require('express');
 //국가 단위로 찾아보기
 const ip_denying = (req)=>{
-    let ip = req.ip;
-    let geo = geoip.lookup(ip);
+    let ip = req.ip; //->ip를 받아와서
+    let geo = geoip.lookup(ip); //-> 내부 모듈 
     var return_data ={
         ip:ip,
         state:0
@@ -127,17 +127,40 @@ const pageid =(query,offset,limit)=>{
  * ********** 파일생성  ***********
 *********************************/
 
-const file_r =(path,name,data)=>{
+//<<<<<<< HEAD
+const file_r = (path,name,data)=>{ //읽기
     let str = `${path}/${name}.txt`;
     const file = fs.readFile(str,(err)=>{
-        console.log(err);
+        if(isEmpty(err)){
+            console.log("파일 읽기 성공");
+        }
+        else{
+            console.log("파일 읽기 실패 : " + err);
+        }
     });
 }
-const file_w =(path,name,data)=>{
-    
+const file_w = (path,name,data)=>{ //쓰기
+    let str = `${path}/${name}.txt`;
+    const file = fs.writeFile(str, data,'utf8',(err)=>{
+        if(isEmpty(err)){ //undifind
+            console.log("파일 생성 성공");
+        }
+        else{
+            console.log("파일 생성 실패 : " + err);
+        }
+    });
 }
-
-
+const file_a = (path,name,data)=>{
+    let str = `${path}/${name}.txt`;
+    const file = fs.appendFile(str,data,(err)=>{
+        if(isEmpty(err)){ //undifind
+            console.log("파일 생성 성공");
+        }
+        else{
+            console.log("파일 생성 실패 : " + err);
+        }
+    });
+}
 
 module.exports = {
     isEmpty,
@@ -157,5 +180,4 @@ module.exports = {
     appRoot,
     logstream,
 
-}
-// log save
+}//log save
