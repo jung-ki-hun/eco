@@ -6,7 +6,8 @@
 ![Architecture](./Architecture.png)
 
 - db 아키텍처
-![db uml](./db uml.png)
+
+![db uml](./Dbuml.png)
 
 ## 기능
 - 학생들 작품 자랑하는 기능 플랫폼 제공
