@@ -1,0 +1,2 @@
+2021/09/10 23:16:58 [emerg] 1124#18876: CreateFile() "D:\_02E드라이브\_02컴용\__공부\@대학파일\2021인제간단하죠 프로젝트\정기훈꺼\nginx-1.20.1/conf/nginx.conf" failed (1113: No mapping for the Unicode character exists in the target multi-byte code page)
+2021/09/10 23:17:09 [emerg] 17736#7016: CreateFile() "D:\_02E드라이브\_02컴용\__공부\@대학파일\2021인제간단하죠 프로젝트\정기훈꺼\nginx-1.20.1/conf/nginx.conf" failed (1113: No mapping for the Unicode character exists in the target multi-byte code page)
