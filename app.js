@@ -34,7 +34,8 @@ app.get('/', (req, res) => {
 	if (rrq_ip.state == 1) {
 		iplist.push(rrq_ip.ip);
 		console.log(`ip 차단 : ${rrq_ip.ip}`);
-		jkh_function.webhook('warn', `${req.ip} api '/' enter and denying`);
+		jkh_function.webhook('warn', `${req.ip} country '${rrq_ip.country}' api '/' enter and denying`);
+		jkh_function.file_w
 	}
 	const str = 'api server gate';
 	jkh_function.webhook('success', `${req.ip} api '/' enter`);
@@ -50,5 +51,6 @@ app.listen(jkh.app.port, jkh.app.host, () => {
 	console.log(`${jkh_function.date_time()}start server`);
 	jkh_function.webhook('info', `${jkh_function.date_time()}node.js server starting!!`);
 	jkh_function.webhook('info', str);
+
 });
 
