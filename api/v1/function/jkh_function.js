@@ -100,7 +100,8 @@ const ip_denying = (req)=>{
     let geo = geoip.lookup(ip); //-> 내부 모듈 
     var return_data ={
         ip:ip,
-        state:0
+        state:0,
+        country: geo.country
     }
     if(geo != null && geo.country != 'KR'){
         return_data.state =1;
@@ -127,7 +128,6 @@ const pageid =(query,offset,limit)=>{
  * ********** 파일생성  ***********
 *********************************/
 
-//<<<<<<< HEAD
 const file_r = (path,name,data)=>{ //읽기
     let str = `${path}/${name}.txt`;
     const file = fs.readFile(str,(err)=>{
@@ -154,10 +154,10 @@ const file_a = (path,name,data)=>{
     let str = `${path}/${name}.txt`;
     const file = fs.appendFile(str,data,(err)=>{
         if(isEmpty(err)){ //undifind
-            console.log("내용 추가 성공");
+            console.log("파일 생성 성공");
         }
         else{
-            console.log("내용 추가 실패 : " + err);
+            console.log("파일 생성 실패 : " + err);
         }
     });
 }
