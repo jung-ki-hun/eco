@@ -50,7 +50,8 @@ const ip_denying = (req)=>{
     let geo = geoip.lookup(ip);
     var return_data ={
         ip:ip,
-        state:0
+        state:0,
+        country: geo.country
     }
     if(geo != null && geo.country != 'KR'){
         return_data.state =1;
