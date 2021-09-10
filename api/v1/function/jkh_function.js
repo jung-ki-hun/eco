@@ -177,6 +177,7 @@ module.exports = {
     ip_denying,
     file_r,
     file_w,
+    file_a,
     appRoot,
     logstream,
 
