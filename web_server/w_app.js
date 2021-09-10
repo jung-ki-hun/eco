@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 	if (rrq_ip.state == 1) {
 		iplist.push(rrq_ip.ip);
 		console.log(`ip 차단 : ${rrq_ip.ip}`);
-		jkh_f.webhook('warn', `${req.ip} web '/' enter and denying`);
+		jkh_f.webhook('warn', `${req.ip} country '${rrq_ip.country}' api '/' enter and denying`);
 	}
 	const str = 'web server gate';
 	jkh_f.webhook('success', `${req.ip} web '/' enter`);
