@@ -29,14 +29,14 @@ app.use('/w', static(path.join(__dirname, 'web')));//웹페이지 미들웨어
 }*/
 
 app.get('/', (req, res) => {
-	var rrq_ip = jkh_f.ip_denying(req);
-	if (rrq_ip.state == 1) {
-		iplist.push(rrq_ip.ip);
-		console.log(`ip 차단 : ${rrq_ip.ip}`);
-		jkh_f.webhook('warn', `${req.ip} country '${rrq_ip.country}' api '/' enter and denying`);
-	}
-	const str = 'web server gate';
-	jkh_f.webhook('success', `${req.ip} web '/' enter`);
+	// var rrq_ip = jkh_f.ip_denying(req);
+	// if (rrq_ip.state == 1) {
+	// 	iplist.push(rrq_ip.ip);
+	// 	console.log(`ip 차단 : ${rrq_ip.ip}`);
+	// 	jkh_f.webhook('warn', `${req.ip} country api '/' enter and denying`);
+	// }
+	// const str = 'web server gate';
+	// jkh_f.webhook('success', `${req.ip} web '/' enter`);
 	res.redirect(302, '/w/user/index.html');
 });
 
