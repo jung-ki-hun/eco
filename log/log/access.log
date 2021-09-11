@@ -89,3 +89,7 @@
 192.168.219.1 - - [07/Sep/2021:11:47:12 +0000] "GET /api/v1/user/login/test HTTP/1.1" 500 1327 "-" "PostmanRuntime/7.28.4"
 192.168.219.1 - - [07/Sep/2021:11:47:29 +0000] "GET /api/v1/user/login/test HTTP/1.1" 500 1327 "-" "PostmanRuntime/7.28.4"
 118.47.158.225 - - [07/Sep/2021:13:19:30 +0000] "GET /api/v1/user/context_j/test HTTP/1.1" 200 188 "-" "PostmanRuntime/7.28.4"
+192.168.219.1 - - [11/Sep/2021:06:53:26 +0000] "GET /api/v1/login/in?email=1@1&password=1234 HTTP/1.1" 404 154 "-" "PostmanRuntime/7.28.4"
+192.168.219.1 - - [11/Sep/2021:06:54:27 +0000] "POST /api/v1/login/in?email=1@1&password=1234 HTTP/1.1" 404 155 "-" "PostmanRuntime/7.28.4"
+192.168.219.1 - - [11/Sep/2021:06:54:52 +0000] "POST /api/v1/user/login/in?email=1@1&password=1234 HTTP/1.1" 200 138 "-" "PostmanRuntime/7.28.4"
+192.168.219.1 - - [11/Sep/2021:06:57:29 +0000] "POST /api/v1/user/login/in?email=1@1&password=1234 HTTP/1.1" 200 138 "-" "PostmanRuntime/7.28.4"
