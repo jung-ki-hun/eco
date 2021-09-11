@@ -9,10 +9,23 @@
             return false;
     }
 }
+/* bk설명
+str의 모든 데이터를 매개 변수로 받는다
+str의 데이터를 i_str로 하나씩 for문으로 진행시키면서
+i_str이 undefined 이거나 null 이거나 빈텍스트라면 true를 아니면 false를 리턴
+*/
+
 const dataset = {
     port: process.env.PORT,
     host: process.env.T2_HOST
 }
+
+/* bk설명
+dataset이라는 변수?객체?에 port는 process.env.Port의 데이터를,
+host는 process.env.T2_Host의 데이터를 넣는다.
+*/
+
+
 const appRoot = require("app-root-path");
 /********************************
  * **********시간 관련함수********
@@ -22,12 +35,26 @@ var date_time = () => {
     var str = date;
     return str;
 }
+
+/* bk설명
+date_time이라는 함수는 
+date의 변수에 new Date()를 통해 날짜 값을 가져온다
+그 날짜값을 str에 넣고 리턴한다
+*/
+
+
 var date_ymd = () => {
     const date = new Date();
     const sring_Regular = ' ';
     var str = `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
     return str;
 }
+
+
+/* bk설명
+date_ymd라는 함수는 date에 날짜 값을 넣고
+str에 년 월 일? 을 넣고 리턴한다
+*/
 
 /********************************
  * ***********로그 관리***********
@@ -37,6 +64,15 @@ const logstream = rfs.createStream(`access.log`, {
     interval: '1d',
     path: `${appRoot}/web_server/log` });
 const webhook = require('./jkh_wwebhook');
+
+/* bk설명
+rfs로 stream을 불러와? logstream에 stream을 만들고  access.log라는 파일명으로,
+interval에는 1d라는 값, 경로는  web_server/log로?설정
+
+*/
+
+
+
 
 /********************************
  * ***********ip 차단 ***********

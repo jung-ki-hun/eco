@@ -29,4 +29,3 @@ var sendMessage = (type, msg) => {
 }//함수
 
 module.exports = sendMessage;
-

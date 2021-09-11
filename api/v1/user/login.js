@@ -96,7 +96,7 @@ const test = (req,res)=>{
 
 const test = (req,res)=>{
   return res.send("Welcome!!");
-
+}
 
 module.exports = (app) => {
   app.group([],(router)=>{
