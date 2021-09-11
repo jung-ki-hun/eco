@@ -53,7 +53,7 @@ const ip_denying = (req)=>{
         state:0,
         country: geo.country
     }
-    if(geo != null && geo.country != 'KR'){
+    if(geo != null && geo.country != 'KR' && ip == '127.0.0.1'){
         return_data.state =1;
         return return_data;
     }
