@@ -129,14 +129,16 @@ const pageid =(query,offset,limit)=>{
  * ********** 파일생성  ***********
 *********************************/
 
-const file_r = (path,name,data)=>{ //읽기
+const file_r = (path,name)=>{ //읽기
     let str = `${path}/${name}.txt`;
-    const file = fs.readFile(str,(err)=>{
+    const file = fs.readFile(str,(err,data)=>{
         if(isEmpty(err)){
             console.log("파일 읽기 성공");
+            return data;
         }
         else{
             console.log("파일 읽기 실패 : " + err);
+            return null;//사용하기전에 isnull체크 필수 
         }
     });
 }
@@ -150,7 +152,7 @@ const file_w = (path,name,data)=>{ //쓰기
             console.log("파일 생성 실패 : " + err);
         }
     });
-}
+}//신규 파일이나 파일 전체 갱신후 생성시 사용
 const file_a = (path,name,data)=>{
     let str = `${path}/${name}.txt`;
     const file = fs.appendFile(str,data,(err)=>{
@@ -161,7 +163,7 @@ const file_a = (path,name,data)=>{
             console.log("파일 생성 실패 : " + err);
         }
     });
-}
+}//파일에 데이터 추가용 함수
 
 module.exports = {
     isEmpty,
