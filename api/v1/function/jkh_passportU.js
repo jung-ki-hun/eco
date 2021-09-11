@@ -298,7 +298,7 @@ passport.use(
 //         } catch (e) {
 //           await client.query('ROLLBACK');
 
-//           // 로그인 확인 중 에러 발생 시
+//           // 로그인 확인 중 에러 발생 시 
 //           console.error(e);
 //           return done(e);
 //         } finally {
