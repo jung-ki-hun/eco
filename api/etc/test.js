@@ -79,6 +79,7 @@ const index = async (id, pw) => {
         if (jkh_fun.isEmpty(query1.rows[0].username)) {
             console.log('login fail');
             jkh_fun.webhook('err', response.msg)//log 보내는 역활
+            return null;
         }
         else {
             let user_id = query1.rows[0].user_id;//사용자 key 추출
@@ -100,4 +101,4 @@ const index = async (id, pw) => {
         jkh_fun.webhook('err', 'login sql select err(500)')//log 보내는 역활
     }
 }//login 
-index('1@1','1234');
+console.log('sad'+index('1@1','1234'));
