@@ -12,13 +12,17 @@ const admin = require('./api/v1/admin');
 const ipfilter = require('express-ipfilter').IpFilter
 const app = express();
 var iplist = [];
-
+const iplist_maker = ()=>{
+	//file 읽어 와서 배열화 시키는 함수 로직 구성
+	//기존의 iplist에 add해주는 방식!!
+	return iplist;
+}
 //해야될것
 /*
 - cors 설정 확인
 - 쿠키 사용할때 생각좀 잘해보기
 */
-app.use(ipfilter(iplist));//디폴트 deny //https://www.npmjs.com/package/express-ipfilter
+app.use(ipfilter(iplist_maker()));//디폴트 deny //https://www.npmjs.com/package/express-ipfilter
 app.disable('x-powered-by'); // x-powered-by 헤더 비활성화
 app.use(cors({
 	exposedHeaders: ['Content-Disposition'], // 다운로드 시 파일명 첨부 허용
@@ -32,15 +36,14 @@ app.use(passport.initialize());//passport 실행
 app.get('/', (req, res) => {
 	var rrq_ip = jkh_function.ip_denying(req);
 	if (rrq_ip.state == 1) {
-		iplist.push(rrq_ip.ip);
+		iplist.push(rrq_ip.ip);//차단리스트 등록
 		console.log(`ip 차단 : ${rrq_ip.ip}`);
 		jkh_function.webhook('warn', `${req.ip} country '${rrq_ip.country}' api '/' enter and denying`);
-		jkh_function.file_w
-	}
-	const str = 'api server gate';
+		jkh_function.file_a(); //'./api/vi/function'    //'config'      //rrq_ip.ip  //인자값
+	}	
 	jkh_function.webhook('success', `${req.ip} api '/' enter`);
 	return res.send(str);
-})
+}) 
 /////
 app.use(morgan('combined', { stream: jkh_function.logstream }))//로그파일로 관리 함 1일단위
 
