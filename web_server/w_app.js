@@ -40,6 +40,18 @@ app.get('/', (req, res) => {
 	res.redirect(302, '/w/user/index.html');
 });
 
+/*bk설명
+rrq_ip의 변수에 jkh_f의 폴더에 ip_denying라는 함수에 받은값(req)를 넣어 반환값을 저장,
+1)그 반환값이 1일경우 
+iplist의 배열에 rrq_ip의 ip를 푸쉬, log로 차단한 ip표시, jkh_f파일의 webhook함수에 warn과 메세지 전달 하고 아래 설명까지 추가
+
+2)그 반환값이 1이 아닐경우 if문의 내용을 제외하고 여기서부터 시작
+const str은 사용되지않아서 잘 모르겠습니다.
+jkh_f의 파일의 webHook에 success와 req의 ip를 전달
+전송하는? res 매개변수의 redirect에 status 넘버 302 와 url전송  //이부분은 무슨 의미인지는 잘모르겠지만 매개변수를 통해 추측
+*/
+
+
 var errorHandler = expressErrorHandler({
 	static: {
 		'404': './web_server/web/error/404.html',
@@ -56,3 +68,9 @@ app.listen(jkh.config.app.port, jkh.config.app.host, () => {
 
 });
 
+/* bk설명
+잘 모르겠으나 errorHandler에 404의 번호가 뜰때는 404.html이 표시되도록
+500일경우 500.html이 표시되도록 설정한것 처럼 보임.
+app의 listen 함수가 무슨일을 하는지는 잘 모르겟지만 port번호, host이름을 매개변수로 넣어 
+로그를 띄운다 host,포트 그리고 서버시작, appRoot, 그리고 jkh_f파일의 webhook폴더에 메세지 전달
+*/
