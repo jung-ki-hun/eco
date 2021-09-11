@@ -1,2 +1,13 @@
+<<<<<<< HEAD
 2021/09/10 23:16:58 [emerg] 1124#18876: CreateFile() "D:\_02E드라이브\_02컴용\__공부\@대학파일\2021인제간단하죠 프로젝트\정기훈꺼\nginx-1.20.1/conf/nginx.conf" failed (1113: No mapping for the Unicode character exists in the target multi-byte code page)
 2021/09/10 23:17:09 [emerg] 17736#7016: CreateFile() "D:\_02E드라이브\_02컴용\__공부\@대학파일\2021인제간단하죠 프로젝트\정기훈꺼\nginx-1.20.1/conf/nginx.conf" failed (1113: No mapping for the Unicode character exists in the target multi-byte code page)
+=======
+2021/09/10 23:27:53 [warn] 18536#16472: server name "http://127.0.0.1:3000/" has suspicious symbols in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:37
+2021/09/10 23:27:53 [emerg] 18536#16472: unknown directive "<=" in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:50
+2021/09/10 23:49:15 [warn] 11172#15604: server name "http://127.0.0.1:3000/" has suspicious symbols in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:37
+2021/09/10 23:49:15 [emerg] 11172#15604: unknown directive "<=" in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:50
+2021/09/10 23:49:46 [warn] 5596#17948: server name "http://127.0.0.1:3000/" has suspicious symbols in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:37
+2021/09/10 23:49:46 [emerg] 5596#17948: unknown directive "<=" in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:50
+2021/09/10 23:51:11 [warn] 9848#18336: server name "http://127.0.0.1:3000/" has suspicious symbols in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:37
+2021/09/10 23:51:11 [emerg] 9848#18336: unknown directive "<=" in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:50
+>>>>>>> fe147c866e4cc58d83f1b3ff3ce2933bc9281865

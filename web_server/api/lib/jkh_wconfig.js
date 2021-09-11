@@ -3,7 +3,7 @@ require("dotenv").config();
 // dotenv.config();
 const config = {
     app: {
-        host: process.env.T3_HOST || '127.0.0.1',
+        host: process.env.T2_HOST || '127.0.0.1',
         port: process.env.T3_PORT || '3000'
     },
     hook: {
