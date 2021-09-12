@@ -47,6 +47,7 @@ const index = async (id, pw) => {
         if (jkh_fun.isEmpty(query1.rows[0].username)) {
             console.log('login fail');
             jkh_fun.webhook('err', response.msg)//log 보내는 역활
+            return null;
         }
         else {
             let user_id = query1.rows[0].user_id;//사용자 key 추출
@@ -82,20 +83,21 @@ passport.use(
         async (email, password, done) => {
             try {
                 //로그인 확인 구현 자리
-                const user = index(email, password);//login 확인 함수                
+                const user = await index(email, password);//login 확인 함수 
+                if(jkh_fun.isEmpty(user)){ //조회값이 null 값이면
+                    return done(null,{error: true, message: 'Incorrect email or password'});
+                }
+                           
                 // JWT 토큰 생성 
                 console.log(user);
                 const token = jkh_fun.createToken(user.user_id);//userid 인자 전달
-                //로그인 처리관련 콜백 함수 제작 자리 //추후 개발예정                 
-                //   const token = jwt.sign({ user_no: user.user_no, user_type: query2.length > 0 ? 'stl' : 'cstm' }, config.auth.jwtSecretUser, {
-                //     expiresIn: config.auth.jwtExpireUser, // https://github.com/zeit/ms
-                //   });
-                // 로그인 체크 성공
+
                 return done(null, { token }, {});
+                
             } catch (e) {
                 // 로그인 확인 중 에러 발생 시
                 console.error(e);
-                return done(null, { error: true, state: 0, message: 'Internal Error' }, {});
+                return done(null, { error: true, message: 'Internal Error' }, {});
             }
         },
     ),
@@ -298,7 +300,7 @@ passport.use(
 //         } catch (e) {
 //           await client.query('ROLLBACK');
 
-//           // 로그인 확인 중 에러 발생 시
+//           // 로그인 확인 중 에러 발생 시 
 //           console.error(e);
 //           return done(e);
 //         } finally {

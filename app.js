@@ -11,10 +11,17 @@ const users = require('./api/v1/user');
 const admin = require('./api/v1/admin');
 const ipfilter = require('express-ipfilter').IpFilter
 const app = express();
+
 var iplist = [];
-const iplist_maker = ()=>{
+const ip_ban = require('./api/ip_ban_log')
+const iplist_maker = (list)=>{
 	//file 읽어 와서 배열화 시키는 함수 로직 구성
 	//기존의 iplist에 add해주는 방식!!
+	const data = jkh_function.file_r('./api/vi/function','config');
+	if(jkh_function.isEmpty(data)){
+		var ip = list.split(' ');
+		iplist.push(ip);
+	}
 	return iplist;
 }
 //해야될것
@@ -47,7 +54,7 @@ app.get('/', (req, res) => {
 /////
 app.use(morgan('combined', { stream: jkh_function.logstream }))//로그파일로 관리 함 1일단위
 
-app.use('/api/v1/user/', users); //사용자
+app.use('/api/v1/user', users); //사용자
 app.use('/api/v1/admin', admin); //관리자
 app.listen(jkh.app.port, jkh.app.host, () => {
 	let str = `http://${jkh.app.host}:${jkh.app.port}/`;//api 접근 최상위 주소
