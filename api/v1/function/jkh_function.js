@@ -102,8 +102,8 @@ const ip_denying = (req)=>{
         state:0,
         country: geo.country
     }
-    if(geo != null && geo.country != 'KR' && ip == '127.0.0.1'){
-        return_data.state =1;
+    if(geo != null && geo.country != 'KR' && ip != '127.0.0.1'){
+        return_data.state = 1;//밴 먹은 ip state = 1
         return return_data;
     }
     else{
@@ -163,7 +163,6 @@ const file_a = (path,name,data)=>{
         }
     });
 }//파일에 데이터 추가용 함수
-
 module.exports = {
     isEmpty,
     isNan,
