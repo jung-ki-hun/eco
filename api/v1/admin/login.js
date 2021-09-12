@@ -21,7 +21,7 @@ const index = async (req, res) => {
    }
   
    // 로그인 성공 시
-const { token } = req.user;
+const { token } = req;
 res.send(`token :   ${token}`);
   return res.json({ token });
 }//login 

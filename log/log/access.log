@@ -93,3 +93,6 @@
 192.168.219.1 - - [11/Sep/2021:06:54:27 +0000] "POST /api/v1/login/in?email=1@1&password=1234 HTTP/1.1" 404 155 "-" "PostmanRuntime/7.28.4"
 192.168.219.1 - - [11/Sep/2021:06:54:52 +0000] "POST /api/v1/user/login/in?email=1@1&password=1234 HTTP/1.1" 200 138 "-" "PostmanRuntime/7.28.4"
 192.168.219.1 - - [11/Sep/2021:06:57:29 +0000] "POST /api/v1/user/login/in?email=1@1&password=1234 HTTP/1.1" 200 138 "-" "PostmanRuntime/7.28.4"
+192.168.219.1 - - [12/Sep/2021:08:51:23 +0000] "POST /api/v1/user/login/in?email=1@1&password=1234 HTTP/1.1" - - "-" "PostmanRuntime/7.28.4"
+192.168.219.1 - - [12/Sep/2021:08:51:23 +0000] "POST /api/v1/user/login/in?email=1@1&password=1234 HTTP/1.1" - - "-" "PostmanRuntime/7.28.4"
+192.168.219.1 - - [12/Sep/2021:08:55:34 +0000] "POST /api/v1/user/login/in?email=1@1&password=1234 HTTP/1.1" 500 41 "-" "PostmanRuntime/7.28.4"

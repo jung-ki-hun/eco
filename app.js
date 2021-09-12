@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
 /////
 app.use(morgan('combined', { stream: jkh_function.logstream }))//로그파일로 관리 함 1일단위
 
-app.use('/api/v1/user/', users); //사용자
+app.use('/api/v1/user', users); //사용자
 app.use('/api/v1/admin', admin); //관리자
 app.listen(jkh.app.port, jkh.app.host, () => {
 	let str = `http://${jkh.app.host}:${jkh.app.port}/`;//api 접근 최상위 주소

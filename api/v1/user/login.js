@@ -9,13 +9,18 @@ const passport = require('../function/jkh_passportU');
    // id
    // jwt
   // 에러처리
+  const { token } = req.user; //req.user은 passport가 보내
+  const cookie_d = {
+    id : req.user.id,
+    jwt : token,
+    name : req.user.name
+  }
   if (req.user.error) {
     return res.status(500).json(req.user);
   }
-
   // 로그인 성공 시
-  const { token } = req.user;
-res.send(`token :   ${token}`);
+  res.cookie();
+  //res.send(`token :   ${token}`); //토근 보내주는 구간
   return res.json({ token });
 }//login 
 
