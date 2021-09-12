@@ -23,7 +23,7 @@ const config = {
     },
     nodb: {
 
-        url: process.env.MON_URL || "127.0.0.1",
+        url: process.env.MON_URL || "mongodb://127.0.0.1",
         port: process.env.MON_PORT || "27017",
         database: process.env.MON_NAME || "projectb",
         id: process.env.MON_ID || "",
