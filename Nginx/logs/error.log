@@ -1,0 +1,8 @@
+2021/09/10 23:27:53 [warn] 18536#16472: server name "http://127.0.0.1:3000/" has suspicious symbols in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:37
+2021/09/10 23:27:53 [emerg] 18536#16472: unknown directive "<=" in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:50
+2021/09/10 23:49:15 [warn] 11172#15604: server name "http://127.0.0.1:3000/" has suspicious symbols in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:37
+2021/09/10 23:49:15 [emerg] 11172#15604: unknown directive "<=" in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:50
+2021/09/10 23:49:46 [warn] 5596#17948: server name "http://127.0.0.1:3000/" has suspicious symbols in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:37
+2021/09/10 23:49:46 [emerg] 5596#17948: unknown directive "<=" in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:50
+2021/09/10 23:51:11 [warn] 9848#18336: server name "http://127.0.0.1:3000/" has suspicious symbols in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:37
+2021/09/10 23:51:11 [emerg] 9848#18336: unknown directive "<=" in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:50
