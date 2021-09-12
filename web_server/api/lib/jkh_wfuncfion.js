@@ -62,12 +62,12 @@ const ip_denying = (req)=>{
         state:0,
         country: geo.country
     }
-    if(geo != null && geo.country != 'KR' && ip == '127.0.0.1'){
-        return_data.state =1;
+    if(geo != null && geo.country != 'KR' && ip != '127.0.0.1'){
+        return_data.state =1; //차단
         return return_data;
     }
     else{
-        return return_data;
+        return return_data; //허용
     }
 }
 
