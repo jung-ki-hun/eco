@@ -32,6 +32,7 @@ const iplist_maker = (list) => {
 */
 app.use(ipfilter(iplist_maker()));//디폴트 deny //https://www.npmjs.com/package/express-ipfilter
 //ip 재요청(2번째부터) 접속 차단
+//app.use(mongodb.init())
 app.disable('x-powered-by'); // x-powered-by 헤더 비활성화
 app.use(cors({
 	exposedHeaders: ['Content-Disposition'], // 다운로드 시 파일명 첨부 허용
