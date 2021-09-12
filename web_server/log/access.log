@@ -104,3 +104,8 @@
 192.168.219.1 - - [12/Sep/2021:12:07:35 +0000] "GET /w/user/publicHTML/header.html HTTP/1.1" 304 - "http://180.83.98.139/w/user/index.html" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.229 Whale/2.10.123.42 Safari/537.36"
 192.168.219.1 - - [12/Sep/2021:12:07:35 +0000] "GET /w/user/images/boardMain1.png HTTP/1.1" 304 - "http://180.83.98.139/w/user/index.html" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.229 Whale/2.10.123.42 Safari/537.36"
 192.168.219.1 - - [12/Sep/2021:12:07:35 +0000] "GET /favicon.ico HTTP/1.1" 200 - "http://180.83.98.139/w/user/index.html" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.229 Whale/2.10.123.42 Safari/537.36"
+52.204.27.85 - - [12/Sep/2021:12:13:54 +0000] "GET /w/admin HTTP/1.1" 301 181 "-" "Mozilla/5.0 (compatible)"
+52.204.27.85 - - [12/Sep/2021:12:13:54 +0000] "GET /w/admin/ HTTP/1.1" 200 - "-" "Mozilla/5.0 (compatible)"
+49.247.27.116 - - [12/Sep/2021:12:51:45 +0000] "GET /.git/HEAD HTTP/1.1" 200 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:40.0) Gecko/20100101 Firefox/40.0"
+220.64.104.4 - - [12/Sep/2021:13:05:37 +0000] "GET / HTTP/1.1" 302 40 "-" "facebookexternalhit/1.1; kakaotalk-scrap/1.0; +https://devtalk.kakao.com/t/scrap/33984"
+220.64.105.5 - - [12/Sep/2021:13:05:37 +0000] "GET /w/user/index.html HTTP/1.1" 200 5607 "http://180.83.98.139/" "facebookexternalhit/1.1; kakaotalk-scrap/1.0; +https://devtalk.kakao.com/t/scrap/33984"

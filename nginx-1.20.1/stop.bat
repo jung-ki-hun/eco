@@ -1,1 +1,0 @@
-nginx.exe –s stop

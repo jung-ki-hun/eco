@@ -13,11 +13,10 @@ const ipfilter = require('express-ipfilter').IpFilter
 const app = express();
 
 var iplist = [];
-const ip_ban = require('./api/ip_ban_log')
 const iplist_maker = (list) => {
 	//file 읽어 와서 배열화 시키는 함수 로직 구성
 	//기존의 iplist에 add해주는 방식!!
-	const data = jkh_function.file_r('./api/vi/function', 'config');
+	const data = jkh_function.file_r(path.join(__dirname,'api/v1/function'), 'config');
 	if (jkh_function.isEmpty(data)) { //null 이면
 		return iplist;
 	} else {
@@ -44,7 +43,7 @@ app.use(cookieParser());
 app.use(passport.initialize());//passport 실행
 //// ip  확인 코드
 app.get('/', (req, res) => {
-	var rrq_ip = jkh_function.ip_denying(req);
+	var rrq_ip = jkh_function.ip_denying(req);//요청을 바탕으로 분석하여 해외여부 판단
 	if (rrq_ip.state == 1) {
 		iplist.push(rrq_ip.ip);//차단리스트 등록
 		console.log(`ip 차단 : ${rrq_ip.ip}`);
