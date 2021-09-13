@@ -1,4 +1,4 @@
-const jkh_key = require('./jkh_config');
+const jkh_key = require('./jkh_wconfig');
 /********************************
  * ************기본함수 **********
  *********************************/
@@ -18,10 +18,7 @@ var isNan = (...num) =>{
             return false;
     }
 }
-/*const dataset = {
-    port: process.env.PORT,
-    host: process.env.T2_HOST
-}*/
+
 const appRoot = require("app-root-path");
 /********************************
  * **********시간 관련함수********
@@ -37,60 +34,19 @@ var date_ymd = () => {
     var str = `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
     return str;
 }
-/********************************
- * ************암호화************
-*********************************/
-var crypto = require('crypto');
-//var shasum = crypto.createHash('sha256');
-var iv = Buffer.alloc(16,0);
-var key =crypto.scryptSync(jkh_key.app.ckey,'salt',32); //'$!@T!EFQT@#%!#TWGW@T!#@%^';// 비밀키
-var cipher = (password) => {
-    var cc = crypto.createCipher('aes192', key);
-    cc.update(password, 'utf-8', 'base64');
-    var cipstr = cc.final('base64');
-    return cipstr;
-}//암호화 함수
 
-var dcipher = (password) => {
-    var dc = crypto.createDecipheriv('aes192', key);
-    dc.update(password, 'base64', 'utf-8');
-    var dcipstr = dc.final('utf-8');
-    return dcipstr;
-}//복호화 함수
-////////////////////////////////////////////
-
-var cipheriv = (password) => {
-    var cc = crypto.createCipheriv(jkh_key.app.carl,key,iv);//return -> cipher
-    cc.update(password, 'utf-8', 'base64');
-    var cipstr = cc.final('base64');
-    return cipstr;
-}//암호화 함수
-
-var dcipheriv = (password) => {
-    var dc = crypto.createDecipheriv(jkh_key.app.carl, key,iv);
-    dc.update(password, 'base64', 'utf-8');
-    var dcipstr = dc.final('utf-8');
-    return dcipstr;
-}//복호화 함수
 
 /********************************
  * ***********로그 관리***********
 *********************************/
-var webhook = require("./jkh_webhook");
+var webhook = require("./jkh_wwebhook");
 var fs = require('fs');
 var rfs = require('rotating-file-stream');//로그 하루단위로 절샥
 const logstream = rfs.createStream(`access.log`, {
     interval: '1d',
-    path: `${appRoot}/log/log` });
+    path: `${appRoot}/web_server/log` });
 
-    /********************************
- * ***********token ***********
-*********************************/
-const jwt = require('jsonwebtoken');
-const createToken =  (user_id)=>{
-const token = jwt.sign({user_id: user_id}, jkh_key.app.key, {expiresIn: '1h'});
-    return token;
-}
+
 /********************************
  * ***********ip 차단 ***********
 *********************************/
@@ -106,27 +62,15 @@ const ip_denying = (req)=>{
         state:0,
         country: geo.country
     }
-    if(geo != null && geo.country != 'KR' && ip == '127.0.0.1'){
-        return_data.state =1;
+    if(geo != null && geo.country != 'KR' && ip != '127.0.0.1'){
+        return_data.state =1; //차단
         return return_data;
     }
     else{
-        return return_data;
+        return return_data; //허용
     }
 }
-/********************************
- * ********** 페이징  ***********
-*********************************/
-const pageid =(query,offset,limit)=>{
-    const result = {
-        offset: 0, // 시작 인덱스
-        limit: Number(limit), // 조회할 갯수
-        count: 0, // 전체 열 갯수
-      };
-      //if()
-      //
-      return result;
-}
+
 /********************************
  * ********** 파일생성  ***********
 *********************************/
@@ -170,13 +114,7 @@ module.exports = {
     isNan,
     date_time,
     date_ymd,
-    cipher,
-    dcipher,
-    cipheriv,
-    dcipheriv,
     webhook,
-    createToken,
-    pageid,
     ip_denying,
     file_r,
     file_w,

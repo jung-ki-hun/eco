@@ -13,14 +13,15 @@ const ipfilter = require('express-ipfilter').IpFilter
 const app = express();
 
 var iplist = [];
-const ip_ban = require('./api/ip_ban_log')
-const iplist_maker = (list)=>{
+const iplist_maker = (list) => {
 	//file 읽어 와서 배열화 시키는 함수 로직 구성
 	//기존의 iplist에 add해주는 방식!!
-	const data = jkh_function.file_r('./api/vi/function','config');
-	if(jkh_function.isEmpty(data)){
-		var ip = list.split(' ');
-		iplist.push(ip);
+	const data = jkh_function.file_r(path.join(__dirname,'api/v1/function'), 'config');
+	if (jkh_function.isEmpty(data)) { //null 이면
+		return iplist;
+	} else {
+		var ip = data.split(' '); //save_data lode	
+		iplist.push(ip);//save
 	}
 	return iplist;
 }
@@ -30,6 +31,8 @@ const iplist_maker = (list)=>{
 - 쿠키 사용할때 생각좀 잘해보기
 */
 app.use(ipfilter(iplist_maker()));//디폴트 deny //https://www.npmjs.com/package/express-ipfilter
+//ip 재요청(2번째부터) 접속 차단
+//app.use(mongodb.init())
 app.disable('x-powered-by'); // x-powered-by 헤더 비활성화
 app.use(cors({
 	exposedHeaders: ['Content-Disposition'], // 다운로드 시 파일명 첨부 허용
@@ -41,16 +44,17 @@ app.use(cookieParser());
 app.use(passport.initialize());//passport 실행
 //// ip  확인 코드
 app.get('/', (req, res) => {
-	var rrq_ip = jkh_function.ip_denying(req);
+	var rrq_ip = jkh_function.ip_denying(req);//요청을 바탕으로 분석하여 해외여부 판단
 	if (rrq_ip.state == 1) {
 		iplist.push(rrq_ip.ip);//차단리스트 등록
 		console.log(`ip 차단 : ${rrq_ip.ip}`);
 		jkh_function.webhook('warn', `${req.ip} country '${rrq_ip.country}' api '/' enter and denying`);
-		jkh_function.file_a(); //'./api/vi/function'    //'config'      //rrq_ip.ip  //인자값
-	}	
+		let str = rrq_ip.ip + ' ';
+		jkh_function.file_a('./api/vi/function', 'config', str); //경로 파일명 인자를 파래메타로 전달 // 전달된 파라메타를 바탕으로 파일에 추가
+	}
 	jkh_function.webhook('success', `${req.ip} api '/' enter`);
 	return res.send(str);
-}) 
+})
 /////
 app.use(morgan('combined', { stream: jkh_function.logstream }))//로그파일로 관리 함 1일단위
 
