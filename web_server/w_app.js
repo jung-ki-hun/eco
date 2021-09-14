@@ -9,8 +9,25 @@ const morgan = require("morgan");
 const cors = require('cors');
 const cookieParser = require('cookie-parser')
 const ipfilter = require('express-ipfilter').IpFilter
-var iplist =[];
-app.use(ipfilter(iplist));//디폴트 deny //https://www.npmjs.com/package/express-ipfilter
+
+
+
+
+
+var iplist = [];
+const iplist_maker = (list) => {
+	//file 읽어 와서 배열화 시키는 함수 로직 구성
+	//기존의 iplist에 add해주는 방식!!
+	const data = jkh_f.file_r('./web_server/api/lib', 'config');
+	if (jkh_f.isEmpty(data)) { //null 이면
+		return iplist;
+	} else {
+		var ip = data.split(' '); //save_data lode	
+		iplist.push(ip);//save
+	}
+	return iplist;
+}
+app.use(ipfilter(iplist_maker()));//디폴트 deny //https://www.npmjs.com/package/express-ipfilter
 app.disable('x-powered-by'); // x-powered-by 헤더 비활성화
 app.use(cors({
 	exposedHeaders: ['Content-Disposition'], // 다운로드 시 파일명 첨부 허용
@@ -33,12 +50,17 @@ app.get('/', (req, res) => {
 	if (rrq_ip.state == 1) {
 		iplist.push(rrq_ip.ip);
 		console.log(`ip 차단 : ${rrq_ip.ip}`);
-		jkh_f.webhook('warn', `${req.ip} web '/' enter and denying`);
+		jkh_f.webhook('warn', `${req.ip} country api '/' enter and denying`);
+		let str = rrq_ip.ip + ' ';
+		jkh_function.file_a('./web_server/api/lib', 'config', str); //경로 파일명 인자를 파래메타로 전달 // 전달된 파라메타를 바탕으로 파일에 추가
 	}
-	const str = 'web server gate';
-	jkh_f.webhook('success', `${req.ip} web '/' enter`);
-	res.redirect(302, '/w/user/index.html');
+	else {
+		const str = 'web server gate';
+		jkh_f.webhook('success', `${req.ip} web '/' enter`);
+		res.redirect(302, '/w/user/index.html');
+	}
 });
+
 
 var errorHandler = expressErrorHandler({
 	static: {

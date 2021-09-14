@@ -19,6 +19,7 @@
   "homepage": "https://github.com/jung-ki-hun/eco#readme",
   "dependencies": {
     "app-root-path": "^3.0.0",
+    "cheerio": "^1.0.0-rc.10",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
@@ -31,7 +32,7 @@
     "fs": "0.0.1-security",
     "geoip-country": "^4.0.83",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.13.7",
+    "mongoose": "^5.13.9",
     "mongoose-auto-increment": "^5.0.1",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",

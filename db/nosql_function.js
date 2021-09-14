@@ -60,7 +60,7 @@ module.exports = {
         selectboard:async(data)=>{
             nodb.find(1)//조건(offset) 원하는 데이터 정렬 
         }, //게시글 검색
-        addcommand:()=>{}, //뎃글 작성
+        addcommand:(data) =>{}, //뎃글 작성
         getlistboard:()=>{}, //리스트
         getviewboard:()=>{} //게시글 보기
     },
