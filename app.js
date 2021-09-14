@@ -52,8 +52,10 @@ app.get('/', (req, res) => {
 		let str = rrq_ip.ip + ' ';
 		jkh_function.file_a('./api/vi/function', 'config', str); //경로 파일명 인자를 파래메타로 전달 // 전달된 파라메타를 바탕으로 파일에 추가
 	}
+	else{
 	jkh_function.webhook('success', `${req.ip} api '/' enter`);
 	return res.send(str);
+	}
 })
 /////
 app.use(morgan('combined', { stream: jkh_function.logstream }))//로그파일로 관리 함 1일단위
