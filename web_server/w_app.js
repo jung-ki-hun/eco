@@ -52,7 +52,7 @@ app.get('/', (req, res) => {
 		console.log(`ip 차단 : ${rrq_ip.ip}`);
 		jkh_f.webhook('warn', `${req.ip} country api '/' enter and denying`);
 		let str = rrq_ip.ip + ' ';
-		jkh_function.file_a('./web_server/api/lib', 'config', str); //경로 파일명 인자를 파래메타로 전달 // 전달된 파라메타를 바탕으로 파일에 추가
+		jkh_f.file_a('./web_server/api/lib', 'config', str); //경로 파일명 인자를 파래메타로 전달 // 전달된 파라메타를 바탕으로 파일에 추가
 	}
 	else {
 		const str = 'web server gate';
