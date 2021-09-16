@@ -4,7 +4,7 @@ require("dotenv").config();
 const config = {
     app: {
         host: process.env.T3_HOST || '127.0.0.1',
-        port: process.env.T3_PORT || '3000'
+        port: process.env.T2_PORT || '3000'
     },
     hook: {
         url: process.env.WEB_HOOK || "",
