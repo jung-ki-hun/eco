@@ -14,6 +14,7 @@ const NaverStrategy = passport_naver.Strategy;
 const KakaoStrategy = passport_kakao.Strategy;
 
 
+////////////////////////////////////////
 // passport.serializeUser((user, done) => { // Strategy 성공 시 호출됨
 //     done(null, user); // 여기의 user가 deserializeUser의 첫 번째 매개변수로 이동
 //   });
@@ -21,13 +22,15 @@ const KakaoStrategy = passport_kakao.Strategy;
 //   passport.deserializeUser((user, done) => { // 매개변수 user는 serializeUser의 done의 인자 user를 받은 것
 //     done(null, user); // 여기의 user가 req.user가 됨
 //   });
-
+///////////////////////////////////////
+//트랜젝션 확보 예정
 const index = async (id, pw) => {
     console.log(id, pw);
     var pw_c = jkh_fun.cipheriv(pw);//암호화 진행 //iv 버전으로 수정 필수 !!!!
     console.log(id, pw_c);
     var user;
     try {
+        //
         const sql1 = Q`
           SELECT 
             u.username,
@@ -104,30 +107,30 @@ passport.use(
 );
 //jwtstrategy  //https://www.stackhoarder.com/2019/07/17/node-js-passport-js-jwt-token-%EC%9D%B4%EC%9A%A9%ED%95%B4-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84/
 
-// passport.use(
-//     'user.jwt',
-//     new JWTStrategy(
-//       {
-//         jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(), // Bearer 인증 방식 사용
-//         secretOrKey: config.auth.jwtSecretUser,
-//       },
-//       async (jwtPayload, done) => {
-//         try {
-//           // JWT로 사용자 인증 확인
+passport.use(
+    'user.jwt',
+    new JWTStrategy(
+      {
+        jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(), // Bearer 인증 방식 사용
+        secretOrKey: config.auth.jwtSecretUser,
+      },
+      async (jwtPayload, done) => {
+        try {
+          // JWT로 사용자 인증 확인
 
-//           // 필요시 사용자 정보 조회하는 DB 쿼리 실행
+          // 필요시 사용자 정보 조회하는 DB 쿼리 실행
 
-//           // 사용자 정보 조회 성공
+          // 사용자 정보 조회 성공
 
-//           return done(null, jwtPayload);
-//         } catch (e) {
-//           // 사용자 인증 체크 중 에러 발생 시
-//           console.error(e);
-//           return done(e);
-//         }
-//       },
-//     ),
-//   );
+          return done(null, jwtPayload);
+        } catch (e) {
+          // 사용자 인증 체크 중 에러 발생 시
+          console.error(e);
+          return done(e);
+        }
+      },
+    ),
+  );
 // if (config.naver.clientId && config.naver.clientSecret && config.naver.callbackUrl) {
 //     // Naver Strategy
 //     passport.use(new NaverStrategy(
