@@ -78,8 +78,8 @@ module.exports = {
             await qnacontext.save();
         },
         deleteboard:async(data)=>{}, //게시글 삭제 (admin)
-        selectboard:async(data)=>{
-            nodb.find(1)//조건(offset) 원하는 데이터 정렬 
+        selectboard:async(sql,data)=>{
+            nodb.find(sql).select(data).sort('context_id')//조건(offset) 원하는 데이터 정렬 
         }, //게시글 검색
         addcommand:(data) =>{
             
