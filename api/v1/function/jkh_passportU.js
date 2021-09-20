@@ -25,7 +25,7 @@ const KakaoStrategy = passport_kakao.Strategy;
 ///////////////////////////////////////
 //트랜젝션 확보 예정
 const index = async (id, pw) => {
-    console.log(id, pw);
+     console.log(id, pw);
     var pw_c = jkh_fun.cipheriv(pw);//암호화 진행 //iv 버전으로 수정 필수 !!!!
     console.log(id, pw_c);
     var user;
