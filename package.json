@@ -1,9 +1,10 @@
 {
   "name": "project_node_eco",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "project_eco",
+  "main": "app.js",
   "scripts": {
+    "app": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,7 +28,6 @@
     "express": "^4.17.1",
     "express-error-handler": "^1.1.0",
     "express-ipfilter": "^1.2.0",
-    "express-mysql-session": "^2.1.5",
     "express-session": "^1.17.1",
     "fs": "0.0.1-security",
     "geoip-country": "^4.0.83",
@@ -35,7 +35,6 @@
     "mongoose": "^5.13.9",
     "mongoose-auto-increment": "^5.0.1",
     "morgan": "^1.10.0",
-    "mysql": "^2.18.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-kakao": "^1.0.1",
@@ -46,6 +45,7 @@
     "rotating-file-stream": "^2.1.5",
     "serve-static": "^1.14.1",
     "sql-template-strings": "^2.2.2",
-    "webhook-discord": "^3.7.7"
+    "webhook-discord": "^3.7.7",
+    "winson": "^1.0.0"
   }
 }
