@@ -17,3 +17,4 @@ CREATE TABLE logstack(
     errTime TIMESTAMP NOT NULL,
     PRIMARY KEY(log_id)
 );--에러로그
+--편집후 wiki table make
