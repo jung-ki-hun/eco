@@ -58,7 +58,14 @@ app.get('/', (req, res) => {
 		const str = 'web server gate';
 		jkh_f.webhook('success', `${req.ip} web '/' enter`);
 		res.redirect(302, '/w/user/index.html');
-	}
+	}//ip 확인
+	if(req.cookies())//쿠기로 확인
+	{
+
+	}//로그인 유무확인해서 로그인 페이지 접근 제한걸기//로그인 했을때
+	else{
+
+	}//로그인
 });
 
 
