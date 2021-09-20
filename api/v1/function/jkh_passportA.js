@@ -90,7 +90,7 @@ passport.use(
             }
         },
     ),
-);
+);//로그인 확인 용?ㅇㅇ
 /*
 const index = async (id, pw) => {
     var pw_c = jkh.cipher(pw);
