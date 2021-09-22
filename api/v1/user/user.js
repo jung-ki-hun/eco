@@ -156,9 +156,9 @@ const test =  (req,res)=>{
 }///xpx
 module.exports = (app) => {
     app.group([], (router) => {
-        router.get('/login_n', get_name),//사용자 닉네임 요청
+        router.get('/login_n',[], get_name),//사용자 닉네임 요청
         router.post('/regiser', regiser)//회원가입
-        router.post('/pwfind', find_pw)//비밀번호 찾기
-        router.get('/test', test)//비밀번호 찾기
+        router.post('/pwfind',[], find_pw)//비밀번호 찾기
+        router.get('/test', test)//테스트용 모듈
     });
 }

@@ -45,7 +45,7 @@ var cipher = (password) => {
     cc.update(password, 'utf-8', 'base64');
     var cipstr = cc.final('base64');
     return cipstr;
-}//암호화 함수
+}//암호화 함수 구버전
 
 var dcipher = (password) => {
     var dc = crypto.createDecipheriv('aes192', key);

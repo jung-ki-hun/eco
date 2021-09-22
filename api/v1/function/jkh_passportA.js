@@ -62,7 +62,7 @@ const index = async (id, pw) => {
 
 // Local Strategy
 passport.use(
-    'user.local',
+    'admin.local',
     new LocalStrategy(
         {
             usernameField: 'email',
