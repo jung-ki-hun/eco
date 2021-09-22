@@ -131,7 +131,171 @@ passport.use(
       },
     ),
   );
-// if (config.naver.clientId && config.naver.clientSecret && config.naver.callbackUrl) {
+  if (config.kakao.clientKey && config.kakao.callbackUrl) {
+        // Kakao Strategy
+        passport.use(new KakaoStrategy(
+          {
+            clientID: config.kakao.clientKey,
+            callbackURL: config.kakao.callbackUrl,
+          },
+          async (accessToken, refreshToken, profile, done) => {
+            const client = await pool.connect();
+    
+            try {
+              await client.query('BEGIN');
+    
+              console.log(JSON.stringify(profile));
+    
+              // 토큰 값 저장
+              profile.accessToken = accessToken;
+              profile.refreshToken = refreshToken;
+    
+              const user_id = _.get(profile, '_json.kakao_account.email') || null; // 이메일을 ID로
+              if (!user_id) {
+                // 이메일 없을 시 연동 해제
+                const { data } = await axios.post(
+                  'https://kapi.kakao.com/v1/user/unlink',
+                  {},
+                  {
+                    headers: { Authorization: `Bearer ${accessToken}` },
+                  },
+                );
+    
+                console.log(data);
+    
+                // 로그인 에러처리
+                return done(null, {
+                  error: true,
+                  state: -1,
+                  message: '이메일 정보가 있어야 가입가능합니다. 먼저 카카오계정을 등록해주시기 바랍니다',
+                });
+              }
+    
+              // 사용자 정보 불러오기
+              const sql = $`
+              SELECT
+                user_no,
+                state
+              FROM 
+                users
+              WHERE
+                user_social_provider = 'kakao'
+                AND (user_social_info ->> 'id') = (${profile.id})::text
+              `;
+    
+              const query = (await client.query(sql)).rows;
+              let user = null;
+              if (query.length > 0) {
+                user = query[0];
+              } else {
+                // 이메일이 가입되어 있는지 체크
+                const sql1 = $`
+                SELECT
+                  user_no,
+                  state
+                FROM users
+                WHERE
+                  user_id = ${user_id}
+                `;
+    
+                const query1 = (await client.query(sql1)).rows;
+                if (query1.length > 0) {
+                  return done(null, {
+                    error: true,
+                    state: -2,
+                    message: '이미 사용중인 이메일입니다',
+                  });
+                }
+    
+                // 비밀번호 생성
+                const user_pw = await bcrypt.hash(`${profile.id}_${user_id}`, saltRounds);
+    
+                // 사용자 코드 생성
+                /* let user_code = null;
+                const randomString = (length, chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') => {
+                  let result = '';
+                  for (let i = length; i > 0; i -= 1) result += chars[Math.floor(Math.random() * chars.length)];
+                  return result;
+                };
+    
+                let count = 0;
+                // eslint-disable-next-line no-constant-condition
+                while (true) {
+                  count += 1;
+                  if (count > 100) {
+                    throw new Error('Too many user_codes');
+                  }
+    
+                  user_code = randomString(8);
+    
+                  const sql1b = $`
+                  SELECT
+                    user_no
+                  FROM
+                    users
+                  WHERE
+                    user_code = ${user_code}
+                  `;
+    
+                  // eslint-disable-next-line no-await-in-loop
+                  const query1b = await client.query(sql1b);
+                  if (query1b.rows.length === 0) {
+                    break;
+                  }
+                } */
+    
+                // 없는 사용자면 생성
+                const sql2 = $`
+                INSERT INTO users (
+                  user_id,
+                  user_pw,
+                  user_name,
+                  user_gender,
+                  user_social_provider,
+                  user_social_info
+                ) VALUES (
+                  ${user_id},
+                  ${user_pw},
+                  ${_.get(profile, 'displayName') || `사용자${user_code}`},
+                  ${{ female: 'F', male: 'M' }[_.get(profile, '_json.kakao_account.gender')] || null},
+                  ${profile.provider},
+                  ${JSON.stringify(profile)}
+                )
+                RETURNING user_no
+                `;
+    
+                const query2 = (await client.query(sql2)).rows;
+                user = query2[0];
+                user.state = 1;
+              }  
+
+    
+              // JWT 토큰 생성
+              const token = jwt.sign({ user_no: user.user_no }, config.auth.jwtSecretUser, {
+                expiresIn: config.auth.jwtExpireUser, // https://github.com/zeit/ms
+              });
+    
+              await client.query('COMMIT');
+    
+              // 로그인 체크 성공
+              return done(
+                null,
+                { user_no: user.user_no, token },
+                { error: false },
+              );
+            } catch (e) {
+              await client.query('ROLLBACK');
+    
+              // 로그인 확인 중 에러 발생 시
+              console.error(e);
+              return done(e);
+            } finally {
+              client.release();
+            }
+          },
+        ));
+      }
+// if (config.naver.clientId && config.naver.clientSecret && config.naver.callbackUrl) { //네이버 클라이언트 확인
 //     // Naver Strategy
 //     passport.use(new NaverStrategy(
 //       {
@@ -313,182 +477,5 @@ passport.use(
 //     ));
 //   }
 
-//   if (config.kakao.clientKey && config.kakao.callbackUrl) {
-//     // Kakao Strategy
-//     passport.use(new KakaoStrategy(
-//       {
-//         clientID: config.kakao.clientKey,
-//         callbackURL: config.kakao.callbackUrl,
-//       },
-//       async (accessToken, refreshToken, profile, done) => {
-//         const client = await pool.connect();
-
-//         try {
-//           await client.query('BEGIN');
-
-//           console.log(JSON.stringify(profile));
-
-//           // 토큰 값 저장
-//           profile.accessToken = accessToken;
-//           profile.refreshToken = refreshToken;
-
-//           const user_id = _.get(profile, '_json.kakao_account.email') || null; // 이메일을 ID로
-//           if (!user_id) {
-//             // 이메일 없을 시 연동 해제
-//             const { data } = await axios.post(
-//               'https://kapi.kakao.com/v1/user/unlink',
-//               {},
-//               {
-//                 headers: { Authorization: `Bearer ${accessToken}` },
-//               },
-//             );
-
-//             console.log(data);
-
-//             // 로그인 에러처리
-//             return done(null, {
-//               error: true,
-//               state: -1,
-//               message: '이메일 정보가 있어야 가입가능합니다. 먼저 카카오계정을 등록해주시기 바랍니다',
-//             });
-//           }
-
-//           // 사용자 정보 불러오기
-//           const sql = $`
-//           SELECT
-//             user_no,
-//             state
-//           FROM 
-//             users
-//           WHERE
-//             user_social_provider = 'kakao'
-//             AND (user_social_info ->> 'id') = (${profile.id})::text
-//           `;
-
-//           const query = (await client.query(sql)).rows;
-//           let user = null;
-//           if (query.length > 0) {
-//             user = query[0];
-//           } else {
-//             // 이메일이 가입되어 있는지 체크
-//             const sql1 = $`
-//             SELECT
-//               user_no,
-//               state
-//             FROM users
-//             WHERE
-//               user_id = ${user_id}
-//             `;
-
-//             const query1 = (await client.query(sql1)).rows;
-//             if (query1.length > 0) {
-//               return done(null, {
-//                 error: true,
-//                 state: -2,
-//                 message: '이미 사용중인 이메일입니다',
-//               });
-//             }
-
-//             // 비밀번호 생성
-//             const user_pw = await bcrypt.hash(`${profile.id}_${user_id}`, saltRounds);
-
-//             // 사용자 코드 생성
-//             /* let user_code = null;
-//             const randomString = (length, chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') => {
-//               let result = '';
-//               for (let i = length; i > 0; i -= 1) result += chars[Math.floor(Math.random() * chars.length)];
-//               return result;
-//             };
-
-//             let count = 0;
-//             // eslint-disable-next-line no-constant-condition
-//             while (true) {
-//               count += 1;
-//               if (count > 100) {
-//                 throw new Error('Too many user_codes');
-//               }
-
-//               user_code = randomString(8);
-
-//               const sql1b = $`
-//               SELECT
-//                 user_no
-//               FROM
-//                 users
-//               WHERE
-//                 user_code = ${user_code}
-//               `;
-
-//               // eslint-disable-next-line no-await-in-loop
-//               const query1b = await client.query(sql1b);
-//               if (query1b.rows.length === 0) {
-//                 break;
-//               }
-//             } */
-
-//             // 없는 사용자면 생성
-//             const sql2 = $`
-//             INSERT INTO users (
-//               user_id,
-//               user_pw,
-//               user_name,
-//               user_gender,
-//               user_social_provider,
-//               user_social_info
-//             ) VALUES (
-//               ${user_id},
-//               ${user_pw},
-//               ${_.get(profile, 'displayName') || `사용자${user_code}`},
-//               ${{ female: 'F', male: 'M' }[_.get(profile, '_json.kakao_account.gender')] || null},
-//               ${profile.provider},
-//               ${JSON.stringify(profile)}
-//             )
-//             RETURNING user_no
-//             `;
-
-//             const query2 = (await client.query(sql2)).rows;
-//             user = query2[0];
-//             user.state = 1;
-//           }
-
-//           if (user.state === 0) {
-//             // 비활성화된 사용자
-//             return done(null, { error: true, state: -3, message: '비활성화된 사용자입니다' }, {});
-//           }
-
-//           if (user.state === 2) {
-//             // 탈퇴 대기중 사용자
-//             return done(null, { error: true, state: -4, message: '탈퇴 대기중인 사용자입니다' }, {});
-//           }
-
-//           if (user.state === 3) {
-//             // 탈퇴한 사용자
-//             return done(null, { error: true, state: -5, message: '탈퇴한 사용자입니다' }, {});
-//           }
-
-//           // JWT 토큰 생성
-//           const token = jwt.sign({ user_no: user.user_no }, config.auth.jwtSecretUser, {
-//             expiresIn: config.auth.jwtExpireUser, // https://github.com/zeit/ms
-//           });
-
-//           await client.query('COMMIT');
-
-//           // 로그인 체크 성공
-//           return done(
-//             null,
-//             { user_no: user.user_no, token },
-//             { error: false },
-//           );
-//         } catch (e) {
-//           await client.query('ROLLBACK');
-
-//           // 로그인 확인 중 에러 발생 시
-//           console.error(e);
-//           return done(e);
-//         } finally {
-//           client.release();
-//         }
-//       },
-//     ));
-//   }
+//   
 module.exports = passport;
