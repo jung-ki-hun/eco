@@ -71,3 +71,4 @@
 167.179.84.61 - - [14/Sep/2021:11:42:30 +0000] "POST /pages/createpage-entervariables.action?SpaceKey=x HTTP/1.1" - - "-" "python-requests/2.18.4"
 50.228.252.210 - - [14/Sep/2021:11:42:30 +0000] "GET /.env HTTP/1.1" - - "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36"
 107.189.31.252 - - [14/Sep/2021:11:42:30 +0000] "GET /config/getuser?index=0 HTTP/1.1" - - "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:76.0) Gecko/20100101 Firefox/76.0"
+127.0.0.1 - - [21/Sep/2021:08:52:55 +0000] "GET / HTTP/1.1" 500 38 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.232 Whale/2.10.124.26 Safari/537.36"
