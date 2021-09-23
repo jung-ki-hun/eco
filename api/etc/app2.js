@@ -32,6 +32,7 @@
 
 const express = require('express');
 const app = express();
+const path = require('path');
 const static = require('serve-static');
 app.use('/w', static(path.join(__dirname, 'web')));//웹페이지 미들웨어
 app.get('/', (req,res)=>{
