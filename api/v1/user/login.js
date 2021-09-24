@@ -26,19 +26,19 @@ const passport = require('../function/jkh_passportU');
 const index_kakao = async (req, res) => {
   if (req.user.error) {
     // 로그인 실패 시
-    return res.redirect(
-      `${config.app.webUrl}/#/social-redirect/kakao?success=false&message=${encodeURIComponent(
-        req.user.message,
-      )}`,
-    );
-  }
+    // return res.redirect(
+    //   `${config.app.webUrl}/#/social-redirect/kakao?success=false&message=${encodeURIComponent(
+    //     req.user.message,
+    //   )}`,
+    //);
+  } 
 
   // 로그인 성공 시
   const { token } = req.user;
   return res.redirect(
-    `${config.app.webUrl}/#/social-redirect/kakao?success=true&token=${encodeURIComponent(
-      Buffer.from(token).toString('base64'),
-    )}`, //성공시 보내주는 콜백 url + 다른거 조합해 보내준다 이거 완성해보기
+    // `${config.app.webUrl}/#/social-redirect/kakao?success=true&token=${encodeURIComponent(
+    //   Buffer.from(token).toString('base64'),
+    // )}`, //성공시 보내주는 콜백 url + 다른거 조합해 보내준다 이거 완성해보기
   );
 }
 
