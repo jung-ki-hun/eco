@@ -99,18 +99,19 @@ const del_log = async (req,res) =>{
 }
 const test = (req,res)=>{
   //req!!!
-
+  const u = req.body.id;
   return res.join(u);
 }
 module.exports = (app) => {
   app.group([],(router)=>{
-    router.post('/in',[passport.authenticate('user.local', { session: false })],index),//로그인
-    router.post('/in/naver',[passport.authenticate('user.naver', { session: false })]),//로그인
+    router.get('/in',[passport.authenticate('user.local', { session: false })],index),//로그인
+    router.get('/in/naver',[passport.authenticate('user.naver', { session: false })]),//로그인
     
-    router.post('/in/kakao',[passport.authenticate('user.kakao', { session: false })]),//로그인
-    router.get('/in/kakao/callbake', )  
-    router.post('/out',del_log),//로그아웃
-    router.post(''),
+    router.get('/in/kakao',[passport.authenticate('user.kakao', { session: false })]),//로그인 요청
+    router.get('/in/kakao/callbake',[passport.authenticate('user.kakao', { session: false })],index_kakao ),//로그인 요청에대한 응답처리
+    router.get('/out/kakao'),
+
+    router.get('/out',del_log),//로그아웃
     router.get('/test',test)//테스트
     });
 }
