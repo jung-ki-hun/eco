@@ -87,8 +87,8 @@ const test = (req,res)=>{
 module.exports = (app) => {
   app.group([],(router)=>{
     router.post('/in',[passport.authenticate('user.local', { session: false })],index),//로그인
-    router.post('/in/naver',[passport.authenticate('user.naver', { session: false })],index),//로그인
-    router.post('/in/kakao',[passport.authenticate('user.kakao', { session: false })],index),//로그인
+    router.post('/in/naver',[passport.authenticate('user.naver', { session: false })]),//로그인
+    router.post('/in/kakao',[passport.authenticate('user.kakao', { session: false })]),//로그인
     router.post('/out',del_log),//로그아웃
     router.get('/test',test)//테스트
     });
