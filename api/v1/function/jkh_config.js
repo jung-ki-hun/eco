@@ -37,7 +37,7 @@ const config = {
         url: process.env.WEB_HOOK || "",
     },
     kakao:{
-        //url: process.env.WEB_HOOK || "",
+        url: process.env.KAKAO_URL || "",
         admin: process.env.KAKAO_ADMIN || "",
         appkey: process.env.KAKAO_APP || "",
         apikey: process.env.KAKAO_API || "",
