@@ -479,7 +479,7 @@ if (config.naver.clientId && config.naver.clientSecret && config.naver.callbackU
     ));
   }
 
-  if (config.kakao.clientKey && config.kakao.callbackUrl) {
+  if (jkh_c.kakao.apikey && config.kakao.callbackUrl) {
     // Kakao Strategy
     passport.use(new KakaoStrategy(
       {
