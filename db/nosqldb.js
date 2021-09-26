@@ -26,7 +26,7 @@ module.exports = {
         });
         db.on('disconnected', function () {
             console.log('데이터베이스 연결 끊어짐.')
-            //connect();  //무한 루프 해결되면 복구
+            connect();  //무한 루프 해결되면 복구
         });
         //db.on('error', console.error);
         

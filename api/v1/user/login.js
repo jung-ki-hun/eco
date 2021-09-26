@@ -112,7 +112,7 @@ module.exports = (app) => {
 
     router.get('/in/kakao',[passport.authenticate('user.kakao', { session: false })]),//로그인 요청
     router.get('/in/kakao/callbake',[passport.authenticate('user.kakao', { session: false })],index_kakao ),//로그인 요청결과에대한 응답처리
-    router.get('/out/kakao'),//로그아웃
+    router.get('/out/kakao'),//카카오 로그아웃
 
     router.get('/out',del_log),//로그아웃
     router.get('/test',test)//테스트
