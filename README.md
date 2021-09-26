@@ -16,7 +16,9 @@
 
 ## 설치방법
 
+npm install
 
+start.bat
 
 # 패치 노트
 - Jkh 1.0.0 - 초기 셋팅
