@@ -3,7 +3,7 @@
 ## 개요
 - 교육기부 동아리 인제간단하죠 전용 시스템
 - 시스템 아키텍처
-![Architecture](./Architecture.png)
+![Architecture](./Architecture2.png)
 
 - db 아키텍처
 
