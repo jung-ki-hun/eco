@@ -25,12 +25,6 @@ const iplist_maker = (list) => {
 	}
 	return iplist;
 }
-//해야될것
-/*
-- cors 설정 확인
-- 쿠키 사용할때 생각좀 잘해보기
-- 패턴조사하기
-*/
 app.use(ipfilter(iplist_maker()));//디폴트 deny //https://www.npmjs.com/package/express-ipfilter
 //ip 재요청(2번째부터) 접속 차단
 //app.use(mongodb.init())
