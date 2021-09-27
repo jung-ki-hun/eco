@@ -46,27 +46,27 @@ app.use('/w', static(path.join(__dirname, 'web')));//웹페이지 미들웨어
 }*/
 
 app.get('/', (req, res) => {
-	var rrq_ip = jkh_f.ip_denying(req);
-	if (rrq_ip.state == 1) {
-		iplist.push(rrq_ip.ip);
-		console.log(`ip 차단 : ${rrq_ip.ip}`);
-		jkh_f.webhook('warn', `${req.ip} country api '/' enter and denying`);
-		let str = rrq_ip.ip + ' ';
-		jkh_f.file_a('./web_server/api/lib', 'config', str); //경로 파일명 인자를 파래메타로 전달 // 전달된 파라메타를 바탕으로 파일에 추가
-	}
-	else {
-		const str = 'web server gate';
-		jkh_f.webhook('success', `${req.ip} web '/' enter`);
-		res.redirect(302, '/w/user/index.html');
-	}//ip 확인
-	if(req.cookies())//쿠기로 확인
-	{
+	// var rrq_ip = jkh_f.ip_denying(req);
+	// if (rrq_ip.state == 1) {
+	// 	iplist.push(rrq_ip.ip);
+	// 	console.log(`ip 차단 : ${rrq_ip.ip}`);
+	// 	jkh_f.webhook('warn', `${req.ip} country api '/' enter and denying`);
+	// 	let str = rrq_ip.ip + ' ';
+	// 	jkh_f.file_a('./web_server/api/lib', 'config', str); //경로 파일명 인자를 파래메타로 전달 // 전달된 파라메타를 바탕으로 파일에 추가
+	// }
+	// else {
+	// 	const str = 'web server gate';
+	// 	jkh_f.webhook('success', `${req.ip} web '/' enter`);
+	 	res.redirect(302, '/w/user/index.html');
+	//}//ip 확인
+	// if(req.cookies())//쿠기로 확인
+	// {
 
-	}//로그인 유무확인해서 로그인 페이지 접근 제한걸기//로그인 했을때
-	else{
+	// }//로그인 유무확인해서 로그인 페이지 접근 제한걸기//로그인 했을때
+	// else{
 
-	}//로그인
-});
+	// }//로그인
+});//버그 수정해야됨
 
 
 var errorHandler = expressErrorHandler({
