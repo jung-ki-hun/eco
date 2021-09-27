@@ -62,7 +62,7 @@ const ip_denying = (req)=>{
         state:0,
         country: geo.country
     }
-    if(geo != null && geo.country != 'KR' && ip != '127.0.0.1'){
+    if(geo != null && geo.country != 'KR' && ip != '127.0.0.1' && ip != '192.168.219.107'){
         return_data.state = 1;//밴 먹은 ip state = 1
         return return_data;
     }
