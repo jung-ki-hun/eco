@@ -39,3 +39,4 @@ start.bat
 - 리눅스 서버 설치
 - ncp호스팅예정
 - ddns 도입
+- v2 기능부터는 jsp로 제작 
