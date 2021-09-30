@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
 	var rrq_ip = jkh_f.ip_denying(req);//요청을 바탕으로 분석하여 해외여부 판단
 	if (rrq_ip.state == 1) {
 		iplist.push(rrq_ip.ip);//차단리스트 등록
-		console.log(`ip 차단 : ${rrq_ip.ip}`);//정기훈
+		console.log(`ip 차단 : ${rrq_ip.ip}`);
 		jkh_f.webhook('warn', `${req.ip} country '${rrq_ip.country}' api '/' enter and denying`);
 		let str = rrq_ip.ip + ' ';
 		jkh_f.file_a('./api/vi/function', 'config', str); //경로 파일명 인자를 파래메타로 전달 // 전달된 파라메타를 바탕으로 파일에 추가
