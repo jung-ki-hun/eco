@@ -149,7 +149,7 @@ const find_list_context = (req,res)=>{
     }
 }
 module.exports = (app) => {
-    app.group([], (router) => {
+    app.group([passport.authenticate('user.jwt', { session: false })], (router) => {
         router.get('/test', test);//api/v1/user/context/test
         router.get('/board/list:id', index),//가져오기
         router.post('/board/write', add_borad),// 글쓰기

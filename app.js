@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
 	jkh_f.webhook('success', `${req.ip} api '/' enter`);
 	return res.send(str);
 	}
-})
+}) /// -> 수정할 예정
 /////
 app.use(morgan('combined', { stream: jkh_f.logstream }))//로그파일로 관리 함 1일단위
 
