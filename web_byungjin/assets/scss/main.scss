@@ -30,7 +30,7 @@ html, body{
     width:100%;                      
     /* Nav */
     #nav{
-        @include line();        
+        // @include line();        
         position:sticky;
         width:100%;        
         left:0px;
@@ -41,7 +41,7 @@ html, body{
         font-size:1.5em;
         display:flex;
         justify-content: space-between;  
-        box-shadow: 0px 1px 3px rgb(0, 0, 0);
+        box-shadow: 0px 1px 3px rgb(88, 88, 88);
 
         .logo, .menu{
             color:#fff; 
@@ -70,66 +70,143 @@ html, body{
             display:none;
         }
     }
-    /* Wrapper */    
-    #wrapper{
-        border:1px solid #000;
-        border-top:none;
-        border-bottom: none;        
-        width:clamp(500px, 75%, 1300px);                
-        /* Banner */
-        #banner{                   
+    /* Banner */
+    #banner{                   
+        display:flex;
+        justify-content: center;
+        align-items:center;            
+        width:100%;             
+        height:500px;            
+        background-color:$bgcolor_nav;                      
+        .banner_inner{
             display:flex;
-            justify-content: center;
-            align-items:center;            
-            width:100%;             
-            height:600px;            
-            background-color:$bgcolor_nav;                
-            .banner_inner{
-                @include line();
+            justify-content: space-between;
+            align-items:center;  
+            width:clamp(500px, 75%, 1300px);
+            .movie{        
                 display:flex;
-                justify-content: space-between;                
-                width:70%;
-                height:70%;
-                margin:15%;                                
-                
-                .movie{                    
-                    height:100%;
-                    width:50%;
-                }
-                .info{
-                    height:100%;
-                    width:50%;
+                align-items:center;            
+                height:100%;
+                padding:3em;
+                width:50%;                    
+                iframe{             
+                    aspect-ratio: 16 / 9;    
+                    width:100%;           
                 }
             }
-        }  
-        /* Menu */
-        #menu{
-            
-            .itemWrapper{
+            .info{        
                 display:flex;
-                flex-direction:column;
-                align-items: center;
-                .items{
-                    display: flex;
-                    .linkItem{
-                        text-align: center;
-                        margin:0.3em 1em;
-                        border:1px solid #000;
-                        width:5em;
-                        padding:0.5em;
+                flex-direction: column;
+                justify-content: center;             
+                height:100%;
+                width:50%;                
+                color:#fff;
+
+                .title{                        
+                    font-size:2em;
+                    font-weight: bold;
+                }
+                .detail{
+                    margin:1em;
+                    height: 50%;
+                    width:100%;
+                }
+                .linkBox{
+                    display:flex;
+                    justify-content: space-around;
+                    font-weight: bold;
+
+                    .link{
+                        cursor: pointer;
+                        padding:1em 2.5em;
+                        background-color:rgb(66, 66, 66);
                     }
                 }
             }
-        }  
-        /* Content */
-        #content{
-            @include line();
-            min-height: 100%;
+        }            
+    } 
+    /* Wrapper */    
+    #wrapper{                
+        width:clamp(500px, 75%, 1300px);                
+         
+        /* card */
+        .card{
+            width: 100%;
+            margin:2.5em 2em;
+            display:flex;
+            flex-direction: column;
+            align-items: center;                
+
+            .title{
+                text-align: center;
+                font-size:1.5em;
+                font-weight: bold;
+                margin-bottom:0.8em;                
+            }
         }
-        /* Footer */
-        #footer{
-            @include line();
-            min-height: 10em;
+
+        /* Menu */
+        .menu{                                                   
+            .items{    
+                display:inline-flex;
+                justify-content: center;
+                width:100%;         
+                margin:0.5em 0em;   
+                font-size:1.2em;                    
+                .linkItem{                    
+                    width:30%;                        
+                    text-align: center;
+                    text-decoration: none;
+                    color:#000;
+                    display:inline-block;
+                    padding:1rem 2rem;
+                    border:1px solid #000;  
+                    margin:0.3em;      
+                    cursor:pointer;                     
+                    
+                    &:hover{
+                        background-color:rgb(223, 223, 223);
+                    }       
+                }
+            }
         }
+        
+        /* Edu */
+        .edu{                  
+            .items {                      
+                width:100%;                                          
+                display:grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                gap: 10px;
+                
+                .item{                                                               
+                    border:1px solid #000;
+                    height: 240px;
+                }
+            }
+        }
+
+        // Special
+        .spec{
+            .items{
+                width:100%;
+                display:inline-flex;
+                justify-content: center;
+
+                .item{
+                    margin:0em 1em;
+                    border:1px solid #000;
+                    height: 400px;
+                    width:200px;
+                }
+            }
+        }               
+    }
+    /* Footer */
+    #footer{        
+        width:100%;
+        height:250px;
+        background-color:rgb(175, 175, 175);
     }
 }
