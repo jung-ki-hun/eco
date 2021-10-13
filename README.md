@@ -16,7 +16,7 @@
 
 ## 설치방법
 
-npm install
+
 
 start.bat
 
