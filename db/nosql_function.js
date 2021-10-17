@@ -83,7 +83,7 @@ module.exports = {
         }, //게시글 검색
         addcommand:(data) =>{
             
-            let command = d;  
+            let command = data;  
 
         }, //뎃글 작성
         getlistboard:(data)=>{
