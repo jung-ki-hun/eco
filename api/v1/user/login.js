@@ -14,7 +14,7 @@ const passport = require('../function/jkh_passportU');
     id : req.user.id,
     jwt : token,
     name : req.user.name
-  }
+  }//쿠키에 저장
   if (req.user.error) {
     return res.status(500).json(req.user);
   }
@@ -40,7 +40,7 @@ const index_kakao = async (req, res) => {
     //   Buffer.from(token).toString('base64'),
     // )}`, //성공시 보내주는 콜백 url + 다른거 조합해 보내준다 이거 완성해보기
   );
-}
+} //v2 기능
 
 const del_log = async (req,res) =>{
   const response = {
@@ -55,7 +55,6 @@ const del_log = async (req,res) =>{
     id: req.uesr.email,
     pw: req.user.password
   }
- // var session = req.session; //새선 만듬 사용 x
   var pw_c = jkh.cipher(params.pw);
     try {
     const sql1 = Q`

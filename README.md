@@ -16,7 +16,7 @@
 
 ## 설치방법
 
-npm install
+
 
 start.bat
 
@@ -40,3 +40,5 @@ start.bat
 - ncp호스팅예정
 - ddns 도입
 - v2 기능부터는 jsp로 제작 
+- 스프링
+- files
