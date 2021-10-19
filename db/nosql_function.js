@@ -53,20 +53,25 @@ const schema_q = nodb.model('qnalist', context_q); //질문하기
 module.exports = {
     qna:{
         addboard:async (data)=>{
+
             const qnacontext = new schema_q(data);
             await qnacontext.save();
         },
-        deleteboard:async(data)=>{}, //게시글 삭제 (admin)
+        deleteboard:async(data)=>{
+
+        }, //게시글 삭제 (admin)
         selectboard:async(data)=>{
-            nodb.find(1)//조건(offset) 원하는 데이터 정렬 
-        }, //게시글 검색
+
+            nodb.find(data);//조건(offset) 원하는 데이터 정렬 
+        }, //특정 게시글 검색
         addcommand:(data) =>{
             
             let command = d;
 
         }, //뎃글 작성
         getlistboard:(data)=>{
-            nodb.find();
+
+            nodb.find().pretty();
         }, //리스트
         getviewboard:(data)=>{
             nodb.find();
@@ -77,7 +82,9 @@ module.exports = {
             const qnacontext = new schema_j(data);
             await qnacontext.save();
         },
-        deleteboard:async(data)=>{}, //게시글 삭제 (admin)
+        deleteboard:async(data)=>{
+
+        }, //게시글 삭제 (admin)
         selectboard:async(sql,data)=>{
             nodb.find(sql).select(data).sort('context_id');//조건(offset) 원하는 데이터 정렬 
         }, //게시글 검색
