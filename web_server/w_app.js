@@ -10,10 +10,6 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser')
 const ipfilter = require('express-ipfilter').IpFilter
 
-
-
-
-
 var iplist = [];
 const iplist_maker = (list) => {
 	//file 읽어 와서 배열화 시키는 함수 로직 구성
