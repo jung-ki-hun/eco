@@ -59,47 +59,53 @@ module.exports = {
         },
         deleteboard:async(data)=>{
 
+            schema_q.delete(data);
         }, //게시글 삭제 (admin)
         selectboard:async(data)=>{
-
-            nodb.find(data);//조건(offset) 원하는 데이터 정렬 
+            schema_q.find(data);//조건(offset) 원하는 데이터 정렬 
         }, //특정 게시글 검색
-        addcommand:(data) =>{
+        addcommand:(data,command) =>{
             
             let command = d;
-
+            schema_q.update(data,command,false,); //조건/ 값/ 이런형태의값을 새로만들것인가?/
         }, //뎃글 작성
-        getlistboard:(data)=>{
-
-            nodb.find().pretty();
+        getlistboard:(offset)=>{
+            //offset last value                    
+            let number = offset -99; // 백단위로 만들어서 줌
+            //1-100 101-200 201-300
+            schema_q.find({"context_id":{$gt:number,$lt:offset}}).pretty();//범위값
         }, //리스트
         getviewboard:(data)=>{
-            nodb.find();
+            schema_q.find(data);
         } //게시글 보기
     },
     show:{
         addboard:async (data)=>{
+
             const qnacontext = new schema_j(data);
             await qnacontext.save();
         },
         deleteboard:async(data)=>{
 
+            schema_j.delete(data);
         }, //게시글 삭제 (admin)
-        selectboard:async(sql,data)=>{
-            nodb.find(sql).select(data).sort('context_id');//조건(offset) 원하는 데이터 정렬 
-        }, //게시글 검색
-        addcommand:(data) =>{
+        selectboard:async(data)=>{
+            schema_j.find(data);//조건(offset) 원하는 데이터 정렬 
+        }, //특정 게시글 검색
+        addcommand:(data,command) =>{
             
-            let command = data;  
-
+            let command = d;
+            schema_j.update(data,command,false,); //조건/ 값/ 이런형태의값을 새로만들것인가?/
         }, //뎃글 작성
-        getlistboard:(data)=>{
-            nodb.find();
+        getlistboard:(offset)=>{
+            //offset last value                    
+            let number = offset -99; // 백단위로 만들어서 줌
+            //1-100 101-200 201-300
+            schema_j.find({"context_id":{$gt:number,$lt:offset}}).pretty();//범위값
         }, //리스트
-        getviewboard:(sql,data)=>{
-            nodb.find(sql);
+        getviewboard:(data)=>{
+            schema_j.find(data);
         } //게시글 보기
-
     }
 
 }

@@ -42,6 +42,16 @@ const config = {
         appkey: process.env.KAKAO_APP || "",
         apikey: process.env.KAKAO_API || "",
         jskey: process.env.KAKAO_JS || ""
+    },
+    err:{
+        ERR_IP_NOT_COUNTRY:{
+            status: 401,
+            message: "The country is inaccessible"
+        },
+        ERR_DB_DONT_SAVE:{
+            status: 200,
+            message: "DB inquiry failed"
+        }
     }    
 }
 module.exports = config;
