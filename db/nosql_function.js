@@ -58,7 +58,6 @@ module.exports = {
             await qnacontext.save();
         },
         deleteboard:async(data)=>{
-
             schema_q.delete(data);
         }, //게시글 삭제 (admin)
         selectboard:async(data)=>{
@@ -67,7 +66,7 @@ module.exports = {
         addcommand:(data,command) =>{
             
             let command = d;
-            schema_q.update(data,command,false,); //조건/ 값/ 이런형태의값을 새로만들것인가?/
+            schema_q.update(data,command,false,false); //조건/ 값/ 이런형태의값을 새로만들것인가?/
         }, //뎃글 작성
         getlistboard:(offset)=>{
             //offset last value                    
@@ -82,8 +81,8 @@ module.exports = {
     show:{
         addboard:async (data)=>{
 
-            const qnacontext = new schema_j(data);
-            await qnacontext.save();
+            const showcontext = new schema_j(data);
+            await showcontext.save();
         },
         deleteboard:async(data)=>{
 
@@ -95,7 +94,7 @@ module.exports = {
         addcommand:(data,command) =>{
             
             let command = d;
-            schema_j.update(data,command,false,); //조건/ 값/ 이런형태의값을 새로만들것인가?/
+            schema_j.update(data,command,false,false); //조건/ 값/ 이런형태의값을 새로만들것인가?/네번째 인자 : TRUE로 할 경우 조회를 충족하는 모든 문서를 업데이트 한다. FALSE시 하나의 문서만 업데이트
         }, //뎃글 작성
         getlistboard:(offset)=>{
             //offset last value                    
