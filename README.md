@@ -36,6 +36,7 @@ start.bat
 
 # 프로젝트 공지
 - web_server commit 제외
+- 서버 컴퓨터 철수
 
 # 추후 업데이트 예정
 - nginx 도입
