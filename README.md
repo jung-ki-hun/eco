@@ -35,7 +35,7 @@ start.bat
 ## 이후 지라 이슈와 동기화 처리됨 (기록 x)
 
 # 프로젝트 공지
-- web_server_d commit 제외
+- web_server commit 제외
 
 # 추후 업데이트 예정
 - nginx 도입
