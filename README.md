@@ -37,6 +37,9 @@ start.bat
 # 프로젝트 공지
 - web_server commit 제외
 - 서버 컴퓨터 철수
+- ncp 세팅필요
+- jkh_funtion -> npm 모듈화 예정
+
 
 # 추후 업데이트 예정
 - nginx 도입
