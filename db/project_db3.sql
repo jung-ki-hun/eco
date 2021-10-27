@@ -26,3 +26,13 @@ CREATE TABLE logstack(
     errTime TIMESTAMP NOT NULL,
     PRIMARY KEY(log_id)
 );--에러로그
+
+----------------
+----------------
+CREATE TABLE logstack(
+    log_id SERIAL NOT NULL,
+    errCord VARCHAR(30) NOT NULL,
+    content VARCHAR(200) NOT NULL,
+    errTime TIMESTAMP NOT NULL,
+    PRIMARY KEY(log_id)
+);--에러로그

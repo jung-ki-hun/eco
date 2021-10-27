@@ -29,8 +29,17 @@ var date_time = () => {
 }
 var date_ymd = () => {
     const date = new Date();
-    const sring_Regular = ' ';
     var str = `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`;
+    return str;
+}
+var date_local_time = () => {
+    let date = new Date();
+    const str = `${date.toLocaleTimeString()}`;
+    return str;
+}//사용자 기준으로 확인
+var date_local_time_set = (local) => {
+    let date = new Date();
+    const str = `${date.toLocaleTimeString(local)}`;
     return str;
 }
 /********************************
@@ -163,6 +172,34 @@ const file_a = (path,name,data)=>{
         }
     });
 }//파일에 데이터 추가용 함수
+
+/********************************
+ * ******* sql errorlog  ********
+*********************************/
+const {Q,pool}=require('../../../db/psqldb');
+const error_log_stack = (data) => {
+    if(isEmpty(data)==true){
+        return jkh_key.err.ERR_DB_EMPTY_DATA;//데이터값 비어져있음
+    }//비어있다
+    else{
+        let sql = Q`
+        insert into 
+        logstack(errCord,content,errTime) 
+        values(${data.code},${data.msg},${date_time()})`;
+        try{
+            const query1 = await pool.query(sql);//
+            if (query1.errors) {
+                console.log(query2.errors);
+                jkh_fun.webhook('err', 'error save not db');
+                throw new Error;
+            }
+        }
+        catch(e){
+            console.log(e.message);
+        }
+    }        
+
+}
 module.exports = {
     isEmpty,
     isNan,
@@ -179,6 +216,9 @@ module.exports = {
     file_r,
     file_w,
     file_a,
+    error_log_stack,
+    date_local_time,
+    date_local_time_set,
     appRoot,
     logstream,
 

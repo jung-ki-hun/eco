@@ -51,6 +51,10 @@ const config = {
         ERR_DB_DONT_SAVE:{
             status: 200,
             message: "DB inquiry failed"
+        },
+        ERR_DB_EMPTY_DATA:{
+            status: 0,//false
+            message: "DB data empty"
         }
     }    
 }
