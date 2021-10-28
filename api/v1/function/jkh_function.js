@@ -187,7 +187,7 @@ const error_log_stack = (data) => {
         logstack(errCord,content,errTime) 
         values(${data.code},${data.msg},${date_time()})`;
         try{
-            const query1 = await pool.query(sql);//
+            const query1 = await pool.query(sql);//에러 DB에 저장하는 함수
             if (query1.errors) {
                 console.log(query2.errors);
                 jkh_fun.webhook('err', 'error save not db');
