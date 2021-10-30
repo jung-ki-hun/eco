@@ -28,11 +28,21 @@ CREATE TABLE logstack(
 );--에러로그
 
 ----------------
+---- 게시판 -----
 ----------------
-CREATE TABLE logstack(
-    log_id SERIAL NOT NULL,
-    errCord VARCHAR(30) NOT NULL,
-    content VARCHAR(200) NOT NULL,
-    errTime TIMESTAMP NOT NULL,
-    PRIMARY KEY(log_id)
+CREATE TABLE notice(
+    no_id SERIAL NOT NULL,
+    title VARCHAR(30) NOT NULL,
+    content VARCHAR() NOT NULL,
+    createtime TIMESTAMP NOT NULL,
+    viewcount int not null,
+    comments int not null,
+    editer VARCHAR(30) NOT NULL,
+    PRIMARY KEY(no_id)
 );--에러로그
+CREATE TABLE command(
+    cm_id SERIAL NOT NULL,
+    c_editer VARCHAR(30) NOT NULL,
+    no_id SERIAL REFERENCES notice(no_id),
+    
+)
