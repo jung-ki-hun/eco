@@ -46,4 +46,4 @@ CREATE TABLE command(
     no_id SERIAL REFERENCES notice(no_id),
     createtime TIMESTAMP NOT NULL,
     PRIMARY KEY(cm_id)
-);--뎃글dd
+);--뎃글
