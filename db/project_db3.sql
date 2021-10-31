@@ -39,10 +39,11 @@ CREATE TABLE notice(
     comments int not null,
     editer VARCHAR(30) NOT NULL,
     PRIMARY KEY(no_id)
-);--에러로그
+);--게시판
 CREATE TABLE command(
     cm_id SERIAL NOT NULL,
     c_editer VARCHAR(30) NOT NULL,
     no_id SERIAL REFERENCES notice(no_id),
-    
-)
+    createtime TIMESTAMP NOT NULL,
+    PRIMARY KEY(cm_id)
+);--뎃글dd
