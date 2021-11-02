@@ -62,6 +62,5 @@ app.listen(jkh.app.port, jkh.app.host, () => {
 	console.log(`${jkh_f.date_time()}start server`);
 	jkh_f.webhook('info', `${jkh_f.date_time()}node.js server starting!!`);
 	jkh_f.webhook('info', str);
-
 });
 
