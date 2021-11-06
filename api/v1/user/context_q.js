@@ -3,6 +3,11 @@ const nosqldb = require('../../../db/nosql_function');
 const app = express.Router();
 const jkh = require("../function/jkh_function")
 //const { Q, pool } = require('../../../db/psqldb');
+
+const any = require("any-function");    
+
+any.isEmpty();
+
 const test = (req, res) => {
     var ress = [];
     for (const i = 0; i < 100; i++) {
@@ -16,6 +21,7 @@ const test = (req, res) => {
             date2: jkh.date_time(),
         });
     }
+
     return res.status(200).json(ress);
 }/// 테스트 함수
 
