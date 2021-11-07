@@ -8,4 +8,4 @@
 .log
 /web_server_d/
 /api/etc
-/Nginx/
+#/Nginx/
