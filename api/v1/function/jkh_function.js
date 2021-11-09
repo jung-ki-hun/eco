@@ -198,7 +198,6 @@ const error_log_stack = (data) => {
             console.log(e.message);
         }
     }        
-
 }
 module.exports = {
     isEmpty,
