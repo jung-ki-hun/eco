@@ -65,7 +65,7 @@ module.exports = {
         }, //특정 게시글 검색
         addcommand:(data,command) =>{
             
-            let command = data;
+           // let command = data;
             schema_q.update(data,command,false,false); //조건/ 값/ 이런형태의값을 새로만들것인가?/
         }, //뎃글 작성
         getlistboard:(offset)=>{
@@ -93,7 +93,7 @@ module.exports = {
         }, //특정 게시글 검색
         addcommand:(data,command) =>{
             
-            let command = data;
+            //let command = data;
             return schema_j.update(data,command,false,false); //조건/ 값/ 이런형태의값을 새로만들것인가?/네번째 인자 : TRUE로 할 경우 조회를 충족하는 모든 문서를 업데이트 한다. FALSE시 하나의 문서만 업데이트
         }, //뎃글 작성
         getlistboard:(offset)=>{
