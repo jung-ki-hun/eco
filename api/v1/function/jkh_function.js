@@ -176,29 +176,29 @@ const file_a = (path,name,data)=>{
 /********************************
  * ******* sql errorlog  ********
 *********************************/
-const {Q,pool}=require('../../../db/psqldb');
-const error_log_stack = (data) => {
-    if(isEmpty(data)==true){
-        return jkh_key.err.ERR_DB_EMPTY_DATA;//데이터값 비어져있음
-    }//비어있다
-    else{
-        let sql = Q`
-        insert into 
-        logstack(errCord,content,errTime) 
-        values(${data.code},${data.msg},${date_time()})`;
-        try{
-            const query1 = await pool.query(sql);//에러 DB에 저장하는 함수
-            if (query1.errors) {
-                console.log(query2.errors);
-                jkh_fun.webhook('err', 'error save not db');
-                throw new Error;
-            }
-        }
-        catch(e){
-            console.log(e.message);
-        }
-    }        
-}
+// const {Q,pool}=require('../../../db/psqldb');
+// const error_log_stack = (data) => {
+//     if(isEmpty(data)==true){
+//         return jkh_key.err.ERR_DB_EMPTY_DATA;//데이터값 비어져있음
+//     }//비어있다
+//     else{
+//         let sql = Q`
+//         insert into 
+//         logstack(errCord,content,errTime) 
+//         values(${data.code},${data.msg},${date_time()})`;
+//         try{
+//             const query1 = await pool.query(sql);//에러 DB에 저장하는 함수
+//             if (query1.errors) {
+//                 console.log(query2.errors);
+//                 jkh_fun.webhook('err', 'error save not db');
+//                 throw new Error;
+//             }
+//         }
+//         catch(e){
+//             console.log(e.message);
+//         }
+//     }        
+// }
 module.exports = {
     isEmpty,
     isNan,
