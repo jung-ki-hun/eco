@@ -11,7 +11,7 @@ var isEmpty = (...str) => { //null을 대신해 비어있음을 확인
     }
 }
 var isNan = (...num) =>{
-    for (let i_str of str) {
+    for (let i_str of num) {
         if (typeof i_str == "undefined" || i_str == null || i_str == NaN )
             return true;
         else
@@ -215,7 +215,7 @@ module.exports = {
     file_r,
     file_w,
     file_a,
-    error_log_stack,
+    //error_log_stack,
     date_local_time,
     date_local_time_set,
     appRoot,
