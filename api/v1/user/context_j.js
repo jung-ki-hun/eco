@@ -28,8 +28,7 @@ const add_borad =  async (req, res) => {
     var parmas = {
         ...req.body,
         ...req.parmas,
-        ...req.query,
-      
+        ...req.query,      
     }
     if (isEmpty(
         parmas.name,
