@@ -103,7 +103,7 @@ passport.use(
     new JWTStrategy(
       {
         jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(), // Bearer 인증 방식 사용
-        secretOrKey: config.auth.jwtSecretUser,
+        secretOrKey: jkh_c.app.ckey,
       },
       async (jwtPayload, done) => {
         try {

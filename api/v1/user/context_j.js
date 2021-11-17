@@ -105,7 +105,7 @@ const index = (req, res) => {
             ...req.parmas,
             ...req.query,
         }
-        if (isEmpty( arams.selector)) {
+        if (isEmpty( parmas.body.selector)) {
             response.state = 2;
             response.msg = 'parmas is empty';
             jkh.webhook('err', 'parmas is empty');

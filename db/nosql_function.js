@@ -65,7 +65,7 @@ module.exports = {
         }, //특정 게시글 검색
         addcommand:(data,command) =>{
             
-            let command = d;
+            let command = data;
             schema_q.update(data,command,false,false); //조건/ 값/ 이런형태의값을 새로만들것인가?/
         }, //뎃글 작성
         getlistboard:(offset)=>{
@@ -86,24 +86,24 @@ module.exports = {
         },
         deleteboard:async(data)=>{
 
-            schema_j.delete(data);
+            return schema_j.delete(data);
         }, //게시글 삭제 (admin)
         selectboard:async(data)=>{
-            schema_j.find(data);//조건(offset) 원하는 데이터 정렬 
+            return schema_j.find(data);//조건(offset) 원하는 데이터 정렬 
         }, //특정 게시글 검색
         addcommand:(data,command) =>{
             
-            let command = d;
-            schema_j.update(data,command,false,false); //조건/ 값/ 이런형태의값을 새로만들것인가?/네번째 인자 : TRUE로 할 경우 조회를 충족하는 모든 문서를 업데이트 한다. FALSE시 하나의 문서만 업데이트
+            let command = data;
+            return schema_j.update(data,command,false,false); //조건/ 값/ 이런형태의값을 새로만들것인가?/네번째 인자 : TRUE로 할 경우 조회를 충족하는 모든 문서를 업데이트 한다. FALSE시 하나의 문서만 업데이트
         }, //뎃글 작성
         getlistboard:(offset)=>{
             //offset last value                    
             let number = offset -99; // 백단위로 만들어서 줌
             //1-100 101-200 201-300
-            schema_j.find({"context_id":{$gt:number,$lt:offset}}).pretty();//범위값
-        }, //리스트
+            return schema_j.find({"context_id":{$gt:number,$lt:offset}}).pretty();//범위값
+        }, //리스트 100개단위로 보내줌
         getviewboard:(data)=>{
-            schema_j.find(data);
+            return schema_j.find(data);
         } //게시글 보기
     }
 

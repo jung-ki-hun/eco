@@ -96,7 +96,7 @@ const del_log = async (req,res) =>{
   }
   return res.state(200).join(response);//데이터 전송 !!
 }
-const
+
 const test = (req,res)=>{
   //req!!!
   const u = req.body.id;
