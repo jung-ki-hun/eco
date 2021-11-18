@@ -149,7 +149,12 @@ const index = (req, res) => {
             selector: params.selector
         }
         let sql = Q`
-        select `;
+        select * 
+        from 
+            noticeq n
+        where
+            between n.noq_id = ${data.selector -100} and ${data.selector}`;
+        const query1 = await pool.query(sql);
         //nosqldb.qna.addboard(data);
         response.state = 1;
         response.msg = 'Successful';
