@@ -8,7 +8,7 @@ const { Q, pool } = require('../../../db/psqldb');
 
 const any = require("any-function");    
 
-any.isEmpty();
+//https://handhand.tistory.com/110  //file save 
 
 const test = (req, res) => {
     var ress = [];
@@ -39,7 +39,7 @@ const add_borad = async (req, res) => {
         ...req.query,
 
     }
-    if (isEmpty(
+    if (any.isEmpty(
         parmas.name,
         parmas.id,
         parmas.title,
@@ -84,7 +84,7 @@ const add_commend = async (req, res) => {
         ...req.parmas,
         ...req.query,
     }
-    if (isEmpty(
+    if (any.isEmpty(
         parmas.name,
         parmas.id,
         parmas.title,
@@ -138,7 +138,7 @@ const index = (req, res) => {
         ...req.parmas,
         ...req.query,
     }
-    if (isEmpty(arams.selector)) {
+    if (any.isEmpty(arams.selector)) {
         response.state = 2;
         response.msg = 'parmas is empty';
         jkh.webhook('err', 'parmas is empty');
@@ -172,7 +172,7 @@ const find_list_context = (req,res)=>{
         ...req.parmas,
         ...req.query,
     }
-    if (isEmpty(arams.selector)) {
+    if (any.isEmpty(arams.selector)) {
         response.state = 2;
         response.msg = 'parmas is empty';
         jkh.webhook('err', 'parmas is empty');
