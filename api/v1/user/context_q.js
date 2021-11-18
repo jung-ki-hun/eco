@@ -2,6 +2,7 @@ const express = require('express');
 const nosqldb = require('../../../db/nosql_function');
 const app = express.Router();
 const jkh = require("../function/jkh_function")
+const any = require("any-function");
 const passport  = require('../function/jkh_passportU');
 //const { Q, pool } = require('../../../db/psqldb');
 
@@ -43,6 +44,7 @@ const add_borad = async (req, res) => {
         parmas.id,
         parmas.title,
         parmas.content,
+        parmas.image
     )) {
         response.state = 2;
         response.msg = 'parmas is empty';
@@ -56,9 +58,14 @@ const add_borad = async (req, res) => {
             create_d: jkh.date_time(),    //서버 시간으로 저장
             title: parmas.title,
             content: parmas.content,
+            image:parmas.image
         }
-        let sql = Q`insert 
+        let sql = 
+        Q`insert 
+        into noticeq(title,content,createtime,viewcount,comments,imagefilename,editer) 
+        values (${data.title},${data.content},${data.create_d},1,0,${data.image},${editer});
         `;
+        const query1 = await pool.query(sql);//조회 알고리즘
         //nosqldb.qna.addboard(data);
         response.state = 1;
         response.msg = 'Successful';
