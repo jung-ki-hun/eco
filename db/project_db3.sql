@@ -28,22 +28,46 @@ CREATE TABLE logstack(
 );--에러로그
 
 ----------------
----- 게시판 -----
+---- j게시판 -----
 ----------------
-CREATE TABLE notice(
-    no_id SERIAL NOT NULL,
-    title VARCHAR(30) NOT NULL,
-    content VARCHAR() NOT NULL,
+CREATE TABLE noticej(
+    noj_id SERIAL NOT NULL,
+    title VARCHAR(1000) NOT NULL,
+    content text NOT NULL,
     createtime TIMESTAMP NOT NULL,
     viewcount int not null,
     comments int not null,
-    editer VARCHAR(30) NOT NULL,
-    PRIMARY KEY(no_id)
+    imagefilename VARCHAR(1000),
+    editer VARCHAR(100) NOT NULL,
+    PRIMARY KEY(noj_id)
 );--게시판
-CREATE TABLE command(
-    cm_id SERIAL NOT NULL,
-    c_editer VARCHAR(30) NOT NULL,
-    no_id SERIAL REFERENCES notice(no_id),
+CREATE TABLE commandj(
+    cmj_id SERIAL NOT NULL,
+    c_editer VARCHAR(100) NOT NULL,
+    noj_id SERIAL REFERENCES noticej(noj_id),
     createtime TIMESTAMP NOT NULL,
-    PRIMARY KEY(cm_id)
+    content TEXT,
+    PRIMARY KEY(cmj_id)
+);--뎃글
+----------------
+---- q게시판 -----
+----------------
+CREATE TABLE noticeq(
+    noq_id SERIAL NOT NULL,
+    title VARCHAR(1000) NOT NULL,
+    content TEXT NOT NULL,
+    createtime TIMESTAMP NOT NULL,
+    viewcount int not null, --조회수
+    comments int not null,  --뎃글수
+    imagefilename VARCHAR(1000),
+    editer VARCHAR(100) NOT NULL,
+    PRIMARY KEY(noq_id)
+);--게시판
+CREATE TABLE commandq(
+    cmq_id SERIAL NOT NULL,
+    c_editer VARCHAR(100) NOT NULL,
+    noq_id SERIAL REFERENCES noticeq(noq_id),
+    createtime TIMESTAMP NOT NULL,
+    content TEXT,
+    PRIMARY KEY(cmq_id)
 );--뎃글

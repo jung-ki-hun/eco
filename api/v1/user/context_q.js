@@ -2,6 +2,7 @@ const express = require('express');
 const nosqldb = require('../../../db/nosql_function');
 const app = express.Router();
 const jkh = require("../function/jkh_function")
+const passport  = require('../function/jkh_passportU');
 //const { Q, pool } = require('../../../db/psqldb');
 
 const any = require("any-function");    
