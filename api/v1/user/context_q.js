@@ -57,7 +57,9 @@ const add_borad = async (req, res) => {
             title: parmas.title,
             content: parmas.content,
         }
-        nosqldb.qna.addboard(data);
+        let sql = Q`insert
+        `;
+        //nosqldb.qna.addboard(data);
         response.state = 1;
         response.msg = 'Successful';
         return res.status(200).json(response); //클라이언트에게 완료 메시지 보내줌
