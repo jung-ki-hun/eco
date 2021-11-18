@@ -1,11 +1,11 @@
 const express = require('express');
 const nosqldb = require('../../../db/nosql_function');
 const app = express.Router();
-const jkh = require("../function/jkh_function")
+const jkh = require("../function/jkh_function");
 //const { Q, pool } = require('../../../db/psqldb');
 const test = (req,res) => {
      var ress = [];
-    for (const i = 0; i < 100; i++) {
+    for (let i = 0; i < 100; i++) {
       ress.push({
         context_id: i + 1,
         data: "데이터값" + (i + 1) + "번",
@@ -122,7 +122,7 @@ const index = (req, res) => {
 }
 module.exports = (app) => {
     app.group([], (router) => {
-        router.get('/test', test);//api/v1/user/context/test
+        router.get('/test', test);//api/v1/user/context_j/test
         router.get('/board/list:id',  index),//가져오기
         router.post('/board/write', add_borad),// 글쓰기
         router.get('/board/:id', index),//게시판 글찿기
