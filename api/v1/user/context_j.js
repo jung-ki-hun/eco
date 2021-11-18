@@ -189,7 +189,7 @@ const find_list_context = (req,res)=>{
         from 
             noticej n
         where
-            n.title like ${data.name}
+            n.title like %${data.name}%
             and
             n.noj_id between ${data.selector -100} and ${data.selector}`;
         const query1 = await pool.query(sql);

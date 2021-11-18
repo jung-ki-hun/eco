@@ -187,7 +187,7 @@ const find_list_context = (req,res)=>{
         from 
             noticeq n
         where
-            n.title like ${data.name}
+            n.title like %${data.name}%
             and
             n.noq_id between ${data.selector -100} and ${data.selector}`;
         const query1 = await pool.query(sql);
