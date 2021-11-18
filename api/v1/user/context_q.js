@@ -63,7 +63,7 @@ const add_borad = async (req, res) => {
         let sql = 
         Q`insert 
         into noticeq(title,content,createtime,viewcount,comments,imagefilename,editer) 
-        values (${data.title},${data.content},${data.create_d},1,0,${data.image},${editer});
+        values(${data.title},${data.content},${data.create_d},1,0,${data.image},${editer});
         `;
         const query1 = await pool.query(sql);//조회 알고리즘
         //nosqldb.qna.addboard(data);
@@ -89,6 +89,7 @@ const add_commend = async (req, res) => {
         parmas.id,
         parmas.title,
         parmas.content,
+        parmas.noq_id
     )) {
         response.state = 2;
         response.msg = 'parmas is empty';
@@ -102,8 +103,24 @@ const add_commend = async (req, res) => {
             create_d: jkh.date_time(),    //서버 시간으로 저장
             title: params.title,
             content: params.content,
+            noq_id: params.noq_id
         }
-        nosqldb.qna.addboard(data);
+        let sql1 = 
+        Q`select * from noticeq where noq_id = ${data.noq_id}`;//해당하는 보드의 값
+        const query1 = await pool.query(sql1);//조회 알고리즘
+
+        let sql2 = Q`insert noticeq(c_editer,noq_id,createtime,content) 
+        values(${data.name},${data.noq_id},${data.create_d},${data.create_d})`;        
+        const query2 = await pool.query(sql2);//추가 알고리즘
+        
+        let sql3 = Q`update noticeq
+        set comments = ${query1.row[0].comments +1}
+        where
+        noq_id = ${data.noq_id}
+        `;
+        const query3 = await pool.query(sql3);//수정 알고리즘
+
+        //nosqldb.qna.addboard(data);
         response.state = 1;
         response.msg = 'Successful';
         return res.status(200).json(response); //클라이언트에게 완료 메시지 보내줌
@@ -131,7 +148,9 @@ const index = (req, res) => {
         let data = {
             selector: params.selector
         }
-        nosqldb.qna.addboard(data);
+        let sql = Q`
+        select `;
+        //nosqldb.qna.addboard(data);
         response.state = 1;
         response.msg = 'Successful';
         return res.status(200).json(response); //클라이언트에게 완료 메시지 보내줌
