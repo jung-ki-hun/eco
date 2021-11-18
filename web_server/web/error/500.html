@@ -1,0 +1,82 @@
+﻿<!-- 참고링크 https://lucidmaj7.tistory.com/251-->
+<!-- 2021/08/15(일) 로그인 성공/실패 상황에따라 페이지 자동 이동
+
+  const response = {
+    state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
+    query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
+    msg: 'Successful',
+  };
+
+-->
+
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 Internet Server Error</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/51db22a717.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+
+    <style>
+        :root {}
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Alata', sans-serif;
+        }
+
+        .page-container {
+            width: 100vw;
+            height: 100vh;
+            background: #16778a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .shadow {
+            -webkit-box-shadow: 27px 43px 43px -26px rgba(89, 89, 89, 0.39);
+            -moz-box-shadow: 27px 43px 43px -26px rgba(89, 89, 89, 0.39);
+            box-shadow: 27px 43px 43px -26px rgba(89, 89, 89, 0.39);
+        }
+        .login-kdh {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .page-form-container {
+
+            background: #f5f5f5;
+            width: 50%;
+            height: 540px;
+            display: inline-block;
+            box-shadow: 10px black;
+            border-radius: 10px;
+            text-align: center;
+            line-height: normal;
+            
+        }
+
+        .page-form-container div{
+            transform: translate(0%,200%);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="page-container">
+        <div class="page-form-container shadow">
+          <div>500 Internet Server Error </div>
+              <div>인터넷서버 에러</div>
+          <a href="../user/index.html"><div>홈페이지로 돌아가기</div></a>
+        </div>
+    </div>
+</body>
+
+</html>
