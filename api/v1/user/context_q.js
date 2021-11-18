@@ -57,7 +57,7 @@ const add_borad = async (req, res) => {
             title: parmas.title,
             content: parmas.content,
         }
-        let sql = Q`insert
+        let sql = Q`insert 
         `;
         //nosqldb.qna.addboard(data);
         response.state = 1;
