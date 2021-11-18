@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/jung-ki-hun/eco#readme",
   "dependencies": {
-    "any-function": "0.0.0",
+    "any-function": "^0.1.3",
     "app-root-path": "^3.0.0",
     "cheerio": "^1.0.0-rc.10",
     "cookie-parser": "^1.4.5",
