@@ -4,7 +4,7 @@ const app = express.Router();
 const jkh = require("../function/jkh_function")
 const any = require("any-function");
 const passport  = require('../function/jkh_passportU');
-//const { Q, pool } = require('../../../db/psqldb');
+const { Q, pool } = require('../../../db/psqldb');
 
 const any = require("any-function");    
 
@@ -197,6 +197,7 @@ const find_list_context = (req,res)=>{
 //nosqldb.qna.addboard(data);
         response.state = 1;
         response.msg = 'Successful';
+        response.query = query1;
         return res.status(200).json(response); //클라이언트에게 완료 메시지 보내줌
     }
 }
