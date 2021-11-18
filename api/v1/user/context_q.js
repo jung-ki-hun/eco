@@ -153,7 +153,7 @@ const index = (req, res) => {
         from 
             noticeq n
         where
-            between n.noq_id = ${data.selector -100} and ${data.selector}`;
+            n.noq_id between ${data.selector -100} and ${data.selector}`;
         const query1 = await pool.query(sql);
         //nosqldb.qna.addboard(data);
         response.state = 1;
@@ -180,9 +180,21 @@ const find_list_context = (req,res)=>{
     }
     else {
         let data = {
-            selector: params.selector
+            selector: params.selector,
+            name: params.name
         }
-        nosqldb.qna.addboard(data);
+
+        let sql = Q`
+        select * 
+        from 
+            noticeq n
+        where
+            n.title like ${data.name}
+            and
+            n.noq_id between ${data.selector -100} and ${data.selector}`;
+        const query1 = await pool.query(sql);
+        
+//nosqldb.qna.addboard(data);
         response.state = 1;
         response.msg = 'Successful';
         return res.status(200).json(response); //클라이언트에게 완료 메시지 보내줌
