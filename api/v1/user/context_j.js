@@ -6,7 +6,6 @@ const any = require("any-function");
 const passport  = require('../function/jkh_passportU');
 const { Q, pool } = require('../../../db/psqldb');
 
-const any = require("any-function");    
 
 //https://handhand.tistory.com/110  //file save 
 
@@ -127,7 +126,7 @@ const add_commend = async (req, res) => {
     }
 
 }
-const index = (req, res) => {
+const index = async (req, res) => {
     const response = {
         state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
@@ -161,7 +160,7 @@ const index = (req, res) => {
         return res.status(200).json(response); //클라이언트에게 완료 메시지 보내줌
     }
 }//가져오기
-const find_list_context = (req,res)=>{
+const find_list_context = async (req,res)=>{
     const response = {
         state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
