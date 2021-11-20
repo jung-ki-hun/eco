@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAGA,AAAA,MAAM,CAAC;EACH,KAAK,EAAE,IAAI;EACX,MAAM,EAAC,cAAc;EACrB,MAAM,EAAC,IAAI;CAMd;;AATD,AAKI,MALE,CAKF,YAAY,CAAA;EACR,SAAS,EAAC,KAAK;EACf,WAAW,EAAE,IAAI;CACpB",
+    "sources": [
+        "../scss/board.scss"
+    ],
+    "names": [],
+    "file": "board.css"
+}

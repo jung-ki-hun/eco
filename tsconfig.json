@@ -4,9 +4,10 @@
         "watch": true,
         "lib": ["DOM", "ES2017"],
         "sourceMap": true,
-        "outDir": "web_server/web/assets/js"
+        "outDir": "web_byungjin/assets/js",
+        "noImplicitThis": true        
     },
     "include": [        
-        "web_server/web/"
+        "web_byungjin/assets/ts"
     ]
 }

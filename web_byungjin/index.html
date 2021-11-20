@@ -6,26 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/main.css">
+    <script defer src="assets/js/util/w3Html.js"></script>
 </head>
 <body>    
     <!-- container -->
     <section id="container">        
         <!-- nav -->
-        <header id="nav">            
-            <div class="logo">
-                Simple Edu
-            </div>
-            <div class="menu">
-                <ul>            
-                    <li>Home</li>        
-                    <li>Login</li>
-                </ul>
-                <div class="cursor"></div>
-            </div>
-            <div class="menuIcon">
-
-            </div>
-        </header>    
+        <header id="nav" w3-include-html="header.html"></header>        
         <!-- banner -->
         <div id="banner">                        
             <div class="banner_inner">
@@ -35,6 +22,7 @@
                 </div>
                 <div class="info">
                     <p class="title">Inje-Simple Education</p>
+
                     <div class="detail">
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum quas labore a dolore placeat dignissimos laudantium facilis iure ut debitis animi consectetur voluptatum voluptate veritatis dolorum ducimus, reiciendis porro dolor.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum quas labore a dolore placeat dignissimos laudantium facilis iure ut debitis animi consectetur voluptatum voluptate veritatis dolorum ducimus, reiciendis porro dolor.
                     </div>
@@ -45,18 +33,19 @@
                 </div> 
             </div>                                 
         </div>                 
-        <div id="wrapper">           
+        <div id="wrapper">
              <!-- Menu  -->
             <div class="card menu">   
                 <p class="title">바로가기</p>                
 
                 <div class="items">                        
-                        <a class="linkItem" href="">공지사항</a>
-                        <a class="linkItem" href="">팀 정보</a>                                                
-                        <a class="linkItem" href="">질문하기</a>
-                        <a class="linkItem" href="">자랑하기</a>                        
-                        <a class="linkItem" href="">게시판 1</a>                                                                                                                                                  
+                    <a class="linkItem" href="">공지사항</a>
+                    <a class="linkItem" href="">팀 정보</a>
+                    <a class="linkItem" href="">질문하기</a>
+                    <a class="linkItem" href="">자랑하기</a>
+                    <a class="linkItem" href="">게시판 1</a>
                 </div>
+                
                 <div class="items">                        
                     <a class="linkItem" href="">공지사항</a>
                     <a class="linkItem" href="">팀 정보</a>
@@ -95,9 +84,7 @@
             </div>                                   
         </div>      
         <!-- footer -->
-        <footer id="footer">
-
-        </footer> 
+        <footer id="footer" w3-include-html="footer.html"></footer>
     </section>    
 </body>
 </html>
