@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {           
+        "target":"ESNext",
+        "watch": true,
+        "lib": ["DOM", "ES2017"],
+        "sourceMap": true,
+        "outDir": "web_byungjin/assets/js",
+        "noImplicitThis": true        
+    },
+    "include": [        
+        "web_byungjin/assets/ts"
+    ]
+}
