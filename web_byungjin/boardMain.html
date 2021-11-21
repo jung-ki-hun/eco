@@ -18,12 +18,28 @@
         <header id="nav" w3-include-html="header.html"></header>        
                        
         <div id="wrapper">			
-			<div id="board">
+			<div id="board">				
 				<div class="board_title"> 게시판</div>
-				<div class="board_table">
-					
+				<div class="controls">
+					<div class="write"><a href="./boardWrite.html">글쓰기</a></div>
+					<form id="search">
+						<input placeholder="2자 이상 검색어" type="text" name="search" id="search_txt">
+						<input type="submit" value="검색">
+					</form>	
 				</div>				
-				<div class="pages">
+				<table id="board_table">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>제목</th>
+							<th>글쓴이</th>
+							<th>작성시간</th>
+						</tr>
+					</thead>					
+					<tbody class="table_records">						
+					</tbody>
+				</table>
+				<div id="pages">
 
 				</div>
 			</div>

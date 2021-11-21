@@ -31,6 +31,7 @@ html, body{
     /* Nav */
     #nav{
         // @include line();        
+        z-index: 100;
         position:sticky;
         width:100%;        
         left:0px;
@@ -51,20 +52,24 @@ html, body{
 
         .logo{
             font-weight: bold;
+            a{
+                color:white;
+                text-decoration: none;
+            }
         }
-        .menu{
-            
+        .menu{            
             ul{
                 display:flex;
                 list-style-type: none;
                 font-size:1em;
-                li{
+                li{                    
                     padding: 0 1.5em;
+                    a{
+                        color:white;
+                        text-decoration: none;
+                    }
                 } 
-            }   
-            .cursor{
-
-            }                    
+            }                               
         }
         .menuIcon{
             display:none;

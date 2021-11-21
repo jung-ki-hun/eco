@@ -36,6 +36,7 @@ html, body {
 }
 
 #container #nav {
+  z-index: 100;
   position: -webkit-sticky;
   position: sticky;
   width: 100%;
@@ -65,6 +66,11 @@ html, body {
   font-weight: bold;
 }
 
+#container #nav .logo a {
+  color: white;
+  text-decoration: none;
+}
+
 #container #nav .menu ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -75,6 +81,11 @@ html, body {
 
 #container #nav .menu ul li {
   padding: 0 1.5em;
+}
+
+#container #nav .menu ul li a {
+  color: white;
+  text-decoration: none;
 }
 
 #container #nav .menuIcon {
