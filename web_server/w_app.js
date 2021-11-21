@@ -35,7 +35,7 @@ app.use(cookieParser());
 
 app.use(morgan('combined', { stream: jkh_f.logstream }))//로그파일로 관리 함
 app.use('/', require('./api/router.js'));
-app.use('/w', static(path.join(__dirname, 'web')));//웹페이지 미들웨어
+app.use('/w', static(path.join(__dirname, '../web_byungjin')));//웹페이지 미들웨어
 /*const dataset = {
 	port: process.env.T2_PORT ||"80",
 	host: process.env.T3_HOST ||"192.168.219.107" 
@@ -53,15 +53,14 @@ app.get('/', (req, res) => {
 	// else {
 	// 	const str = 'web server gate';
 	// 	jkh_f.webhook('success', `${req.ip} web '/' enter`);
-	 	res.redirect(302, '/w/user/index.html');
 	//}//ip 확인
 	// if(req.cookies())//쿠기로 확인
 	// {
-
+		//res.redirect(302, '/w/index.html');
 	// }//로그인 유무확인해서 로그인 페이지 접근 제한걸기//로그인 했을때
 	// else{
-
 	// }//로그인
+	res.redirect(302, '/w/index.html');
 });//버그 수정해야됨
 
 
@@ -82,6 +81,7 @@ app.listen(jkh.config.app.port, jkh.config.app.host, () => {
 	console.log(jkh_f.appRoot);
 	jkh_f.webhook('info', `open web server`);
 	jkh_f.webhook('info', `http://${jkh.config.app.host}:${jkh.config.app.port}/`);
+	console.log(__dirname);
 
 });
 
