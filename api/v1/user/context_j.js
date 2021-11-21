@@ -11,7 +11,7 @@ const { Q, pool } = require('../../../db/psqldb');
 
 const test = (req, res) => {
     var ress = [];
-    for (const i = 0; i < 100; i++) {
+    for (let i = 0; i < 100; i++) {
         ress.push({
             context_id: i + 1,
             data: "데이터값" + (i + 1) + "번",
@@ -201,7 +201,8 @@ const find_list_context = async (req,res)=>{
     }
 }
 module.exports = (app) => {
-    app.group([passport.authenticate('user.jwt', { session: false })], (router) => {
+    //app.group([],(router)=>{router.get('/test',test)});
+    app.group([/*passport.authenticate('user.jwt', { session: false })*/], (router) => {
         router.get('/test', test);//api/v1/user/context/test
         router.get('/board/list:id', index),//가져오기
         router.post('/board/write', add_borad),// 글쓰기

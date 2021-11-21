@@ -16,7 +16,35 @@
         <header id="nav" w3-include-html="header.html"></header>        
                        
         <div id="wrapper">			
-			
+            <div class="p-3">
+                <h4 class="font-18 m-b-5 text-center">환영합니다 !</h4>
+                <!-- <p class="text-muted text-center">로그인하기</p> -->
+
+                <!-- <form class="form-horizontal m-t-30" method="POST" action="/process/login"> -->
+
+                <div class="form-group">
+                    <label for="useremail">Email</label>
+                    <input type="email" class="form-control" id="id" name="id" placeholder="Enter email">
+                </div>
+
+                <div class="form-group">
+                    <label for="userpassword">Password</label>
+                    <input type="password" class="form-control" id="password" name="password"
+                        placeholder="Enter password">
+                </div>
+
+                <div class="form-group row">
+                    <button class="btn btn-primary w-md waves-effect waves-light" id="button"
+                        type="submit">로그인</button>
+                </div>
+                <!-- 
+                <div class="form-group m-t-10 mb-0 row">
+                    <div class="col-12 m-t-20">
+                        <a href="pages-recoverpw.html" class="text-muted"><i class="mdi mdi-lock"></i>비밀번호 찾기</a>
+                    </div>
+                </div> -->
+                <!-- </form> -->
+            </div>
 		</div>             
         <!-- footer -->
         <footer id="footer" w3-include-html="footer.html"></footer>
