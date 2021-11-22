@@ -12,8 +12,9 @@ const passport = require('../function/jkh_passportU');
   const { token } = req.user; //req.user은 passport가 보내
   const cookie_d = {
     id : req.user.id,
-    jwt : token,
-    name : req.user.name
+    jwt : token.token,
+    name : req.user.name,
+    level : token.level
   }//쿠키에 저장
   if (req.user.error) {
     return res.status(500).json(req.user);
