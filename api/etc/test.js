@@ -102,18 +102,21 @@
 //     }
 // }//login 
 // console.log('sad'+index('1@1','1234'));
-const express = require('express');
+// const express = require('express');
 
-const app = express();
-const port = 3000;
-const path = require('path');
-var static = require('serve-static');
-app.use('/w', static(path.join(__dirname, 'public'))); 
-//----------------
-app.get('/', (req, res) => {
-  return res.redirect(302,'/w/index.html');//sendFile(`C:/Users/whdgu/Documents/study/public/index.html`);
-});
+// const app = express();
+// const port = 3000;
+// const path = require('path');
+// var static = require('serve-static');
+// app.use('/w', static(path.join(__dirname, 'public'))); 
+// //----------------
+// app.get('/', (req, res) => {
+//   return res.redirect(302,'/w/index.html');//sendFile(`C:/Users/whdgu/Documents/study/public/index.html`);
+// });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Example app listening at http://localhost:${port}`);
+// });
+
+var pw_c = jkh_fun.cipheriv("simple123");//암호화 진행 //iv 버전으로 수정 필수 !!!!
+console.log(pw_c);
