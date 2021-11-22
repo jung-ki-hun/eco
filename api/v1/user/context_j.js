@@ -20,6 +20,7 @@ const test = (req, res) => {
             count: 30,
             date: jkh.date_ymd(),
             date2: jkh.date_time(),
+            image: jkh.file_r()
         });
     }
 
@@ -52,7 +53,7 @@ const add_borad = async (req, res) => {
         parmas.id,
         parmas.title,
         parmas.content,
-        parmas.image
+        parmas.filename
     )) {
         response.state = 2;
         response.msg = 'parmas is empty';
@@ -66,7 +67,7 @@ const add_borad = async (req, res) => {
             create_d: jkh.date_time(),    //서버 시간으로 저장
             title: parmas.title,
             content: parmas.content,
-            image:parmas.image
+            image:parmas.filename
         }
         let sql = 
         Q`insert 
@@ -180,7 +181,7 @@ const find_list_context = async (req,res)=>{
         ...req.parmas,
         ...req.query,
     }
-    if (any.isEmpty(arams.selector)) {
+    if (any.isEmpty(params.selector)) {
         response.state = 2;
         response.msg = 'parmas is empty';
         jkh.webhook('err', 'parmas is empty');
