@@ -4,7 +4,7 @@
  * @param api_info api에 접근에 필요한 정보
  * @returns {ModelObj} api에 접근하는 Object 반환
  */
-export function CreateModel(api_path, api_info = null) {
+export function CreateModel(api_path, api_info) {
     return {
         getApiPath() {
             return api_path;

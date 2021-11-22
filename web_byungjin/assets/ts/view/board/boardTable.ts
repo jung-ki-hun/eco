@@ -1,5 +1,7 @@
 import { View, getView } from "../View.js"
 
+import { ModelObj, ModelResult, CreateModel} from "../../model/Model.js"
+
 interface Record {
     title : String,
     user : String,
@@ -13,18 +15,20 @@ interface BoardView extends View{
     pageView : View,
     tableView : View,  
     searchView : View,  
+    model : ModelObj,
     records : Array<Record>, 
     init(el : HTMLElement) : void,
+    setModel() : void,
     getPageView() : View,
     setPageView() : void,
     getTableView() : View,
     setTableView() : void,
     getSearchView() : View,
     setSearchView() : void,
-    assignRecords(records : Array<Record>) : void,
-    paging(current: number, number_of_records : number) : void,
+    assignRecords(page : number) : void,
+    paging(current: number) : void,
     eventDispatcher() : void,
-    onRecordComeIn(data : JSON) : void,        
+    onRecordComeIn(data : Object) : void,        
     onClickRecord(record : HTMLElement): void,
     onClickPage(pageEl : Element) : void,
     onSearch(str : String) : void,
@@ -36,6 +40,7 @@ const boardView : BoardView = {
     pageView : null,
     tableView : null,
     searchView: null,
+    model : null,
     records : null,
     ...getView(),
     init(el : HTMLElement){        
@@ -43,8 +48,19 @@ const boardView : BoardView = {
         this.setPageView()
         this.setSearchView()
         this.setTableView()
-        this.eventDispatcher()
-        this.assignRecords(test())
+        this.eventDispatcher()        
+        // this.assignRecords(test())
+        this.setModel()
+    },
+    setModel(){
+        this.model = CreateModel("http://khkh0130.shop:4000/api/v1/user/context_j/test")
+        this.model.read().then((v)=>{
+            if(v.data != null){
+                this.onRecordComeIn(v.data)
+            }else{
+                console.error(v.error)
+            }            
+        })
     },
     getSearchView(){
         return this.searchView
@@ -64,24 +80,21 @@ const boardView : BoardView = {
     getTableView(){
         return this.tableView
     },
-    assignRecords(records : Array<Record>){
-        this.getTableView().getEl().innerHTML = records.reduce((acc, cur)=>{            
+    assignRecords(page : number){        
+        let len = this.records.length
+        this.getTableView().getEl().innerHTML = this.records.slice(Math.min(len, (page-1)* this.record_per_page), Math.min(len, page * this.record_per_page)).reduce((acc, cur)=>{            
             return acc + `<tr>
                 <td>${cur.count}</td>
                 <td>${cur.title}</td>
                 <td>${cur.user}</td>
                 <td>${cur.date}</td>
             </tr>`
-        }, "") 
-        
-        //test
-        this.records = records
-        this.paging(1, this.records.length)
+        }, "")                         
     },
-    paging(current: number, number_of_records : number){
+    paging(current: number){
         this.getPageView().getEl().innerHTML = ""
         
-        let number_of_page = Math.ceil(number_of_records / (this.record_per_page * 1.0))
+        let number_of_page = Math.ceil(this.records.length / (this.record_per_page * 1.0))
         let i = Math.max(1, current - 4)
         let range = i + 10        
         for(; i < range && i <= number_of_page; i++){
@@ -99,15 +112,17 @@ const boardView : BoardView = {
             this.prevPage.classList.remove("sel")            
         }
         this.prevPage = pageEl
-        pageEl.classList.add("sel")
-
+        pageEl.classList.add("sel")        
+        this.assignRecords(parseInt(pageEl.textContent))
     },
     onClickRecord(record: HTMLElement){
-        window.open("https://www.youtube.com", "_blank")
+        alert("Record Click")
+        // window.open("https://www.youtube.com", "_blank")
     },
-    onRecordComeIn(data : JSON){
-        //Store records
-        this.records = null
+    onRecordComeIn(data : Object){              
+        this.records = data as Record[]        
+        this.assignRecords(1)
+        this.paging(1)
     },
     eventDispatcher(){        
         this.getTableView().on("click", (evt : Event)=>{
@@ -135,20 +150,6 @@ const boardView : BoardView = {
             alert("2자 이상 입력하세요.")
         }
     }
-}
-
-function test() : Array<Record>{
-    let arr : Array<Record> = []
-    let i : number = 0
-    for(i = 0; i < 50; i++){
-        arr.push({
-            title : "Hello",
-            date : null,
-            user : "u",
-            count : 0,
-        })
-    }
-    return arr
 }
 
 boardView.init(document.querySelector("#board"))

@@ -17,7 +17,7 @@ export interface ModelObj{
 }
 export interface ModelResult{
     error:Error
-    data:JSON
+    data: Object
 }
 /**
  * Model Object
@@ -25,7 +25,7 @@ export interface ModelResult{
  * @param api_info api에 접근에 필요한 정보
  * @returns {ModelObj} api에 접근하는 Object 반환
  */
-export function CreateModel(api_path:string, api_info:RequestInit = null): ModelObj{    
+export function CreateModel(api_path:string, api_info?:RequestInit): ModelObj{    
     return {       
         getApiPath():string{
             return api_path;

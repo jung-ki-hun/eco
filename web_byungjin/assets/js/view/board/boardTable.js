@@ -1,10 +1,12 @@
 import { getView } from "../View.js";
+import { CreateModel } from "../../model/Model.js";
 const boardView = {
     record_per_page: 50,
     prevPage: null,
     pageView: null,
     tableView: null,
     searchView: null,
+    model: null,
     records: null,
     ...getView(),
     init(el) {
@@ -13,7 +15,19 @@ const boardView = {
         this.setSearchView();
         this.setTableView();
         this.eventDispatcher();
-        this.assignRecords(test());
+        // this.assignRecords(test())
+        this.setModel();
+    },
+    setModel() {
+        this.model = CreateModel("http://khkh0130.shop:4000/api/v1/user/context_j/test");
+        this.model.read().then((v) => {
+            if (v.data != null) {
+                this.onRecordComeIn(v.data);
+            }
+            else {
+                console.error(v.error);
+            }
+        });
     },
     getSearchView() {
         return this.searchView;
@@ -33,8 +47,9 @@ const boardView = {
     getTableView() {
         return this.tableView;
     },
-    assignRecords(records) {
-        this.getTableView().getEl().innerHTML = records.reduce((acc, cur) => {
+    assignRecords(page) {
+        let len = this.records.length;
+        this.getTableView().getEl().innerHTML = this.records.slice(Math.min(len, (page - 1) * this.record_per_page), Math.min(len, page * this.record_per_page)).reduce((acc, cur) => {
             return acc + `<tr>
                 <td>${cur.count}</td>
                 <td>${cur.title}</td>
@@ -42,13 +57,10 @@ const boardView = {
                 <td>${cur.date}</td>
             </tr>`;
         }, "");
-        //test
-        this.records = records;
-        this.paging(1, this.records.length);
     },
-    paging(current, number_of_records) {
+    paging(current) {
         this.getPageView().getEl().innerHTML = "";
-        let number_of_page = Math.ceil(number_of_records / (this.record_per_page * 1.0));
+        let number_of_page = Math.ceil(this.records.length / (this.record_per_page * 1.0));
         let i = Math.max(1, current - 4);
         let range = i + 10;
         for (; i < range && i <= number_of_page; i++) {
@@ -67,13 +79,16 @@ const boardView = {
         }
         this.prevPage = pageEl;
         pageEl.classList.add("sel");
+        this.assignRecords(parseInt(pageEl.textContent));
     },
     onClickRecord(record) {
-        window.open("https://www.youtube.com", "_blank");
+        alert("Record Click");
+        // window.open("https://www.youtube.com", "_blank")
     },
     onRecordComeIn(data) {
-        //Store records
-        this.records = null;
+        this.records = data;
+        this.assignRecords(1);
+        this.paging(1);
     },
     eventDispatcher() {
         this.getTableView().on("click", (evt) => {
@@ -101,19 +116,6 @@ const boardView = {
         }
     }
 };
-function test() {
-    let arr = [];
-    let i = 0;
-    for (i = 0; i < 50; i++) {
-        arr.push({
-            title: "Hello",
-            date: null,
-            user: "u",
-            count: 0,
-        });
-    }
-    return arr;
-}
 boardView.init(document.querySelector("#board"));
 export default boardView;
 //# sourceMappingURL=boardTable.js.map
