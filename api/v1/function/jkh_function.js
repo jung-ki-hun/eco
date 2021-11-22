@@ -199,6 +199,22 @@ const file_a = (path,name,data)=>{
 //         }
 //     }        
 // }
+
+/********************************
+ * ******* file multer  *********
+*********************************/
+const multer = require("multer");
+const { join } = require('path');
+const _storage = multer.diskStorage({
+    destination: (req,file,cb)=>{
+        cb(null,join.path(__dirname,'../db/image'));//파일 저장 경로
+    },
+    filename: (req,file,cb)=>{
+        cb(null,file.filename + '-' + Date.now());//파일 이름 형식 - 사용자가 준거-현재시간
+    }
+})
+const upload = multer({storage:_storage});
+
 module.exports = {
     isEmpty,
     isNan,
@@ -220,5 +236,6 @@ module.exports = {
     date_local_time_set,
     appRoot,
     logstream,
+    upload
 
 }//log save

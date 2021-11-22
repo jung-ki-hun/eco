@@ -11,7 +11,7 @@ const { Q, pool } = require('../../../db/psqldb');
 
 const test = (req, res) => {
     var ress = [];
-    for (const i = 0; i < 100; i++) {
+    for (let i = 0; i < 100; i++) {
         ress.push({
             context_id: i + 1,
             data: "데이터값" + (i + 1) + "번",
@@ -24,6 +24,15 @@ const test = (req, res) => {
     }
 
     return res.status(200).json(ress);
+}/// 테스트 함수
+const test2 = (req, res) => {
+console.log(req.file);
+const response = {
+    state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
+    query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
+    msg: 'Successful',
+};
+    return res.status(200).json(response);
 }/// 테스트 함수
 
 const add_borad = async (req, res) => {
@@ -201,8 +210,13 @@ const find_list_context = async (req,res)=>{
     }
 }
 module.exports = (app) => {
-    app.group([passport.authenticate('user.jwt', { session: false })], (router) => {
+    //app.group([],(router)=>{router.get('/test',test)});
+    app.group([/*passport.authenticate('user.jwt', { session: false })*/], (router) => {
         router.get('/test', test);//api/v1/user/context/test
+        router.post('/test',jkh.upload.single('userfile') ,test2);//api/v1/user/context/test
+        /**
+         * single('userfile') -> front가 쓰는 form테그의 name를 알아야됨!!
+         */
         router.get('/board/list:id', index),//가져오기
         router.post('/board/write', add_borad),// 글쓰기
         router.get('/board/:id', index),//게시판 뷰//추후 필요시 작성

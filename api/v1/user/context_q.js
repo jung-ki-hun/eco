@@ -8,7 +8,7 @@ const { Q, pool } = require('../../../db/psqldb');
 
 const test = (req, res) => {
     var ress = [];
-    for (const i = 0; i < 100; i++) {
+    for (let i = 0; i < 100; i++) {
         ress.push({
             context_id: i + 1,
             data: "데이터값" + (i + 1) + "번",

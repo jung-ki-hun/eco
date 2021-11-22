@@ -3,23 +3,28 @@ const jkh_f = require('./lib/jkh_wfuncfion');
 /*****************************/
 /******최상위 환경 페이지******/
 /*****************************/
-router.post('/login',(req,res)=>{
+router.post('/login', (req, res) => {
     //jkh_db_config.userSelect_post(req, res, conn); //유저 정보를 찾고
 
 })
 
 //권한을 구분 유저/관리자
-router.get('/login' ,(req, res) => {
-    
+router.get('/login', (req, res) => {
+
 })
-router.get('/level',(req, res)=>{
-if(ss)////
-{
-
-}
-else{
-
-}
+router.get('/level', (req, res) => {
+    if (req.cookies()) {
+        if (ss)////관리자인가?
+        {
+            redirect(302,"");//admin
+        }
+        else {
+            redirect(302,"");//user
+        }
+    }//login 유무
+    else {
+        41
+    }
 })//레벨에따라 보여주는 페이지가 달라짐!!
 
 
