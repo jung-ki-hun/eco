@@ -9,7 +9,6 @@ const jkh_f = require('./api/v1/function/jkh_function');
 const jkh = require('./api/v1/function/jkh_config');
 const users = require('./api/v1/user');
 const admin = require('./api/v1/admin');
-const multe = require("multe");
 
 //const ipfilter = require('express-ipfilter').IpFilter
 
