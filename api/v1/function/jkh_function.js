@@ -210,7 +210,8 @@ const _storage = multer.diskStorage({
         cb(null,join.path(__dirname,'../db/image'));//파일 저장 경로
     },
     filename: (req,file,cb)=>{
-        cb(null,file.filename + '-' + Date.now());//파일 이름 형식 - 사용자가 준거-현재시간
+        //cb(null,file.filename + '-' + Date.now());//파일 이름 형식 - 사용자가 준거-현재시간
+        cb(null,"image - " + Date.now());//파일 이름 형식 - 사용자가 준거-현재시간
     }
 })
 const upload = multer({storage:_storage});
