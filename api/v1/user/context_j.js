@@ -251,5 +251,6 @@ module.exports = (app) => {
         // router.post('/board/write', [passport.authenticate('user.local', { session: false })], add_borad),// 글쓰기
         // router.get('/board/:id', [passport.authenticate('user.local', { session: false })], index),//게시판 글찿기
         // router.post('/comment/write', del_log)//뎃글작성
+        //view 뎃글 불러오기 //뷰 요청하기
     });
 }
