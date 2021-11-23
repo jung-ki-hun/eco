@@ -28,6 +28,24 @@ export function CreateModel(api_path, api_info) {
                 }
             });
         },
+        sendPost(body) {
+            return new Promise(resolve => {
+                try {
+                    api_info.method = 'POST';
+                    api_info.body = body;
+                    fetch(api_path, api_info).then(response => {
+                        if (response.status == 200 || response.status == 201)
+                            response.json().then(data => resolve({ error: null, data }));
+                        else
+                            throw Error(`${api_path} : not good response`);
+                    });
+                }
+                catch (error) {
+                    console.error(error);
+                    resolve({ error, data: null });
+                }
+            });
+        }
     };
 }
 //# sourceMappingURL=Model.js.map

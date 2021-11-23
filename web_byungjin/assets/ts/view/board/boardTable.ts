@@ -109,7 +109,7 @@ const boardView : BoardView = {
     },
     onClickPage(pageEl : Element){
         if(this.prevPage != null){
-            this.prevPage.classList.remove("sel")            
+            this.prevPage.classList.remove("sel")
         }
         this.prevPage = pageEl
         pageEl.classList.add("sel")        

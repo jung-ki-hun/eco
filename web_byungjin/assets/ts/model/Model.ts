@@ -9,11 +9,15 @@ export interface ModelObj{
     /** API 접근 설정 반환
      * @returns {String}
      */
-    getApiInfo():RequestInit    
+    getApiInfo():RequestInit,
     /** API 접속
      * @returns {Promise<ModelResult>}
      */
-    read():Promise<ModelResult>
+    read():Promise<ModelResult>,
+    /**
+     * @par
+     */
+     sendPost(body : BodyInit) : Promise<ModelResult>
 }
 export interface ModelResult{
     error:Error
@@ -26,7 +30,7 @@ export interface ModelResult{
  * @returns {ModelObj} api에 접근하는 Object 반환
  */
 export function CreateModel(api_path:string, api_info?:RequestInit): ModelObj{    
-    return {       
+    return {               
         getApiPath():string{
             return api_path;
         },        
@@ -48,6 +52,23 @@ export function CreateModel(api_path:string, api_info?:RequestInit): ModelObj{
                 }                 
             });            
         },
-        
+        sendPost(body : BodyInit):Promise<ModelResult>{
+            return new Promise(resolve=>{
+                try{
+                    
+                    api_info.method = 'POST'
+                    api_info.body = body
+                    fetch(api_path, api_info).then(response=>{
+                        if(response.status == 200 || response.status == 201)
+                            response.json().then(data=>resolve({error:null, data}));
+                        else  
+                            throw Error(`${api_path} : not good response`); 
+                    })
+                }catch(error){
+                    console.error(error);
+                    resolve({error, data:null});
+                }
+            })
+        }        
     }
 }
