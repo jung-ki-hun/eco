@@ -1,13 +1,16 @@
 import { View, getView } from "../View.js"
 
-import { ModelObj, ModelResult, CreateModel} from "../../model/Model.js"
+import { ModelObj, ModelData, CreateModel} from "../../model/Model.js"
 
 interface Record {
-    title : String,
-    user : String,
-    count : Number,
-    date : Date
+    noj_id : number,
+    title : string,
+    editer : string,
+    imagefilename : any,
+    count : number,
+    createtime: string,
 }
+
 
 interface BoardView extends View{
     record_per_page : number,
@@ -28,7 +31,7 @@ interface BoardView extends View{
     assignRecords(page : number) : void,
     paging(current: number) : void,
     eventDispatcher() : void,
-    onRecordComeIn(data : Object) : void,        
+    onRecordComeIn(data : ModelData) : void,        
     onClickRecord(record : HTMLElement): void,
     onClickPage(pageEl : Element) : void,
     onSearch(str : String) : void,
@@ -53,13 +56,14 @@ const boardView : BoardView = {
         this.setModel()
     },
     setModel(){
-        this.model = CreateModel("http://khkh0130.shop:4000/api/v1/user/context_j/test")
+        this.model = CreateModel("http://khkh0130.shop:4000/api/v1/user/context_j/board/list?id=100")
         this.model.read().then((v)=>{
             if(v.data != null){
+                console.log(v)
                 this.onRecordComeIn(v.data)
             }else{
                 console.error(v.error)
-            }            
+            } 
         })
     },
     getSearchView(){
@@ -84,10 +88,10 @@ const boardView : BoardView = {
         let len = this.records.length
         this.getTableView().getEl().innerHTML = this.records.slice(Math.min(len, (page-1)* this.record_per_page), Math.min(len, page * this.record_per_page)).reduce((acc, cur)=>{            
             return acc + `<tr>
-                <td>${cur.count}</td>
+                <td>${cur.noj_id}</td>
                 <td>${cur.title}</td>
-                <td>${cur.user}</td>
-                <td>${cur.date}</td>
+                <td>${cur.editer}</td>
+                <td>${cur.createtime}</td>
             </tr>`
         }, "")                         
     },
@@ -119,8 +123,8 @@ const boardView : BoardView = {
         alert("Record Click")
         // window.open("https://www.youtube.com", "_blank")
     },
-    onRecordComeIn(data : Object){              
-        this.records = data as Record[]        
+    onRecordComeIn(data : ModelData){              
+        this.records = data.query as Record[]       
         this.assignRecords(1)
         this.paging(1)
     },

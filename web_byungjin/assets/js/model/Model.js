@@ -36,8 +36,9 @@ export function CreateModel(api_path, api_info) {
                     fetch(api_path, api_info).then(response => {
                         if (response.status == 200 || response.status == 201)
                             response.json().then(data => resolve({ error: null, data }));
-                        else
+                        else {
                             throw Error(`${api_path} : not good response`);
+                        }
                     });
                 }
                 catch (error) {

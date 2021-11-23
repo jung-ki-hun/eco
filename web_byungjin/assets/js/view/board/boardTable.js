@@ -19,9 +19,10 @@ const boardView = {
         this.setModel();
     },
     setModel() {
-        this.model = CreateModel("http://khkh0130.shop:4000/api/v1/user/context_j/test");
+        this.model = CreateModel("http://khkh0130.shop:4000/api/v1/user/context_j/board/list?id=100");
         this.model.read().then((v) => {
             if (v.data != null) {
+                console.log(v);
                 this.onRecordComeIn(v.data);
             }
             else {
@@ -51,10 +52,10 @@ const boardView = {
         let len = this.records.length;
         this.getTableView().getEl().innerHTML = this.records.slice(Math.min(len, (page - 1) * this.record_per_page), Math.min(len, page * this.record_per_page)).reduce((acc, cur) => {
             return acc + `<tr>
-                <td>${cur.count}</td>
+                <td>${cur.noj_id}</td>
                 <td>${cur.title}</td>
-                <td>${cur.user}</td>
-                <td>${cur.date}</td>
+                <td>${cur.editer}</td>
+                <td>${cur.createtime}</td>
             </tr>`;
         }, "");
     },
@@ -86,7 +87,7 @@ const boardView = {
         // window.open("https://www.youtube.com", "_blank")
     },
     onRecordComeIn(data) {
-        this.records = data;
+        this.records = data.query;
         this.assignRecords(1);
         this.paging(1);
     },

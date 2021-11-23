@@ -19,9 +19,16 @@ export interface ModelObj{
      */
      sendPost(body : BodyInit) : Promise<ModelResult>
 }
+
+export interface ModelData{
+    msg : string
+    query : Object | Array<Object>
+    state : number
+}
+
 export interface ModelResult{
     error:Error
-    data: Object
+    data: ModelData
 }
 /**
  * Model Object
@@ -54,15 +61,16 @@ export function CreateModel(api_path:string, api_info?:RequestInit): ModelObj{
         },
         sendPost(body : BodyInit):Promise<ModelResult>{
             return new Promise(resolve=>{
-                try{
-                    
+                try{                    
                     api_info.method = 'POST'
                     api_info.body = body
                     fetch(api_path, api_info).then(response=>{
                         if(response.status == 200 || response.status == 201)
-                            response.json().then(data=>resolve({error:null, data}));
-                        else  
-                            throw Error(`${api_path} : not good response`); 
+                        response.json().then(data=>resolve({error:null, data}));
+                        else{
+                            throw Error(`${api_path} : not good response`);                       
+                        }  
+                            
                     })
                 }catch(error){
                     console.error(error);

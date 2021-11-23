@@ -41,7 +41,8 @@ const boardWrite = {
         this.model.sendPost(JSON.stringify({
             'name': 'hellott',
             'title': 'title',
-            'content': this.getTextHTML()
+            'content': this.getTextHTML(),
+            'filename': null
         })).then(v => {
             console.log(v);
         }).catch(e => {
