@@ -106,7 +106,7 @@ const add_commend = async (req, res) => {
         parmas.id,
         parmas.title,
         parmas.content,
-        parmas.noq_id
+        parmas.noj_id
     )) {
         response.state = 2;
         response.msg = 'parmas is empty';
