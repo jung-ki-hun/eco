@@ -56,6 +56,18 @@ html, body {
           box-shadow: 0px 1px 3px #585858;
 }
 
+@media screen and (max-width: 750px) {
+  #container #nav .home {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  #container #nav {
+    font-size: 1.2em;
+  }
+}
+
 #container #nav .logo, #container #nav .menu {
   color: #fff;
   padding: 0 3em;
@@ -107,6 +119,36 @@ html, body {
   background-color: #04a4ff;
 }
 
+@media screen and (max-width: 1100px) {
+  #container #banner {
+    height: 400px;
+  }
+  #container #banner .banner_inner {
+    width: 800px !important;
+  }
+  #container #banner .info {
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  #container #banner {
+    height: 570px;
+  }
+  #container #banner .banner_inner {
+    margin-top: -2em;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 800px !important;
+  }
+  #container #banner .info {
+    font-size: 0.8em;
+    width: 400px;
+  }
+}
+
 #container #banner .banner_inner {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -117,7 +159,7 @@ html, body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: clamp(500px, 75%, 1300px);
+  width: 1000px;
 }
 
 #container #banner .banner_inner .movie {
@@ -128,7 +170,7 @@ html, body {
       -ms-flex-align: center;
           align-items: center;
   height: 100%;
-  padding: 3em;
+  padding: 2em;
   width: 50%;
 }
 
@@ -180,15 +222,15 @@ html, body {
 }
 
 #container #wrapper {
-  width: clamp(500px, 75%, 1300px);
+  width: clamp(480px, 75%, 1300px);
   /* card */
   /* Menu */
   /* Edu */
 }
 
 #container #wrapper .card {
-  width: 100%;
-  margin: 2.5em 2em;
+  width: calc(100% - 2em);
+  margin: 2.5em 1em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -220,7 +262,35 @@ html, body {
   font-size: 1.2em;
 }
 
+#container #wrapper .menu .items div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media screen and (max-width: 1050px) {
+  #container #wrapper .menu .items {
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #container #wrapper .menu .items {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 #container #wrapper .menu .items .linkItem {
+  white-space: nowrap;
   width: 30%;
   text-align: center;
   text-decoration: none;
