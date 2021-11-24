@@ -282,7 +282,7 @@ const delete_context = async (req, res)=>{
         ...req.parmas,
         ...req.query,
     }
-    if (any.isEmpty(arams.selector)) {
+    if (any.isEmpty(params.no)) {
         response.state = 2;
         response.msg = 'parmas is empty';
         jkh.webhook('err', 'parmas is empty');
@@ -290,11 +290,10 @@ const delete_context = async (req, res)=>{
     }
     else {
         let data = {
-            selector: params.selector
+            no: params.no
         }
-        let sql = Q`delete from noticej where `;
+        let sql = Q`delete from noticej nj where nj = ${data.no}`;
         const query1 = await pool.query(sql);
-        //nosqldb.qna.addboard(data);
         response.state = 1;
         response.msg = 'Successful';
         return res.status(200).json(response); //클라이언트에게 완료 메시지 보내줌

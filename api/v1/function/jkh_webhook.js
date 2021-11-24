@@ -1,7 +1,7 @@
 // null 값 찾아보기
 const webhook = require('webhook-discord'); //디스코드에 오류 목록 전송
 var stringToUrl = process.env.WEB_HOOK +"";
-const Hook = new webhook.Webhook("https://discord.com/api/webhooks/876266259103252531/xidU2wyVolJE_077O2Z7FuCyEFdwPQCJ9lPGH2bXwOHrpUcY0SnG7TY1SS2ZBBZPAht6")//stringToUrl+"");
+const Hook = new webhook.Webhook("https://discord.com/api/webhooks/912755594149126155/nbHuWzT1zyc9K1eaRwZCIXKglSjtPtIUn0g00ufc4fOqbkyBZvOTV9Twb-KnFWX7HkCA")//stringToUrl+"");
 ///url 삽입 문제 해결 필요
 var sendMessage = (type, msg) => {
     const str = "server_bot";

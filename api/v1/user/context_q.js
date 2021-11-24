@@ -168,7 +168,7 @@ const find_list_context = async (req,res)=>{
         ...req.parmas,
         ...req.query,
     }
-    if (any.isEmpty(arams.selector)) {
+    if (any.isEmpty(params.selector)) {
         response.state = 2;
         response.msg = 'parmas is empty';
         jkh.webhook('err', 'parmas is empty');

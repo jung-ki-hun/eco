@@ -9,7 +9,6 @@ const jkh_f = require('./api/v1/function/jkh_function');
 const jkh = require('./api/v1/function/jkh_config');
 const users = require('./api/v1/user');
 const admin = require('./api/v1/admin');
-
 //const ipfilter = require('express-ipfilter').IpFilter
 
 const app = express();
@@ -37,7 +36,6 @@ app.use(cors({
 app.options('*', cors()); // CORS Pre-Flight 활성화
 app.use(express.json());
 app.use(express.urlencoded({ extends: true }));
-app.use()
 app.use(cookieParser());
 app.use(passport.initialize());//passport 실행
 //// ip  확인 코드

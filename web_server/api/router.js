@@ -13,17 +13,19 @@ router.get('/login', (req, res) => {
 
 })
 router.get('/level', (req, res) => {
-    if (req.cookies()) {
-        if (ss)////관리자인가?
+    
+    const cookie_check = req.cookies.cookie_d;
+    if (cookie_check) {
+        if (cookie_check.level == 1)////관리자인가?
         {
-            redirect(302,"");//admin
+            res.redirect(302,"");//admin
         }
         else {
-            redirect(302,"");//user
+            res.redirect(302,"");//user
         }
     }//login 유무
     else {
-        41
+        res.redirect(302,"");//user로 보내줌
     }
 })//레벨에따라 보여주는 페이지가 달라짐!!
 
