@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+
+<head>
+	<title>Elements - Intensify by TEMPLATED</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />		
+    <link rel="stylesheet" href="assets/css/main.css">	
+	<link rel="stylesheet" href="assets/css/board.css">	
+	<script defer src="assets/js/util/w3Html.js"></script>
+	<script type="module" src="assets/js/view/board/boardView.js"></script>	
+</head>
+
+<body>	
+    <!-- container -->
+    <section id="container">        
+        <!-- nav -->
+        <header id="nav" w3-include-html="header.html"></header>        
+                       
+        <div id="wrapper">		            
+			<div id="board">	
+                <div class="back"><a href="./boardMain.html">뒤로가기</a></div>
+				<div id="boardHeader">
+                    <div class="title">Test</div>
+                    <div class="detail">
+                        작성자, 작성일자, 조회수
+                    </div>
+                </div>
+                <div id="boardContent">
+                    
+                </div>
+                <div id="boardComment">
+                    <div id="inputComment">
+                        <div class="username">
+                            username
+                        </div>                        
+                        <textarea type="text" placeholder="댓글을 입력하세요." name=""></textarea>
+                        <div class="controls">
+                            <div>쓰기</div>
+                        </div>                        
+                    </div>
+                    <div id="listComment">
+
+                    </div>
+                </div>
+			</div>			
+		</div>             
+        <!-- footer -->
+        <footer id="footer" w3-include-html="footer.html"></footer>		
+    </section> 	
+</body>
+
+</html>

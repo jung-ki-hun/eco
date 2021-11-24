@@ -2,7 +2,7 @@
     margin-top: 2em;
     margin-bottom: 1em;
     width: 100%; 
-    min-height: 75vh;       
+    min-height: 75vh;           
 
     .board_title{
         font-size:1.5em;
@@ -141,6 +141,63 @@
                 text-decoration: none;
                 color:white;
             }
+        }
+    }
+
+    .back{
+        text-align: right;
+        a{
+            text-decoration: none;
+            color:lightcoral;
+            font-size:0.8em;
+        }
+    }
+
+    #boardHeader{
+        border-top:1px solid lightgray;    
+        border-bottom: 1px solid lightgray;
+        padding:0.4em;        
+        .title{
+            font-size:1.5em;
+        }
+        .detail{
+            font-size:0.9em;
+        }
+    }
+    #boardContent{
+        border-bottom: 1px solid lightgray;
+        min-height: 40vh;
+
+    }
+    #boardComment{
+        #inputComment{
+            margin:5px;
+            border-radius: 10px;
+            border:1px solid rgb(192, 192, 192);
+            min-height:4.8em;
+            padding:3px 8px;
+            .username{
+
+            }            
+            textarea {
+                width:100%;
+                padding-top:5px;
+                border:none;   
+                resize: none;             
+                &:focus{
+                    outline: none;
+                }                
+                
+            }
+            .controls{
+                display:flex;
+                justify-content: flex-end;
+                font-size:0.9em;
+                color:rgb(179, 179, 179);
+            }
+        }
+        #listComment{
+
         }
     }
 }

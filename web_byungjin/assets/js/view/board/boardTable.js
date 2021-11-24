@@ -19,7 +19,7 @@ const boardView = {
         this.setModel();
     },
     setModel() {
-        this.model = CreateModel("http://khkh0130.shop:4000/api/v1/user/context_j/board/list?id=100");
+        this.model = CreateModel("http://khkh0130.shop:4000/api/v1/user/context_j/board/100");
         this.model.read().then((v) => {
             if (v.data != null) {
                 console.log(v);
