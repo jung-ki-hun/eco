@@ -305,7 +305,6 @@ module.exports = (app) => {
         router.post('/comment/write', add_commend),//뎃글작성
         router.get('/board/find',find_list_context)//게시글 검색 기능 해당리스트
         router.put('/board/delete', delete_context)//글삭제
-
         // router.get('/board/list:id', [passport.authenticate('user.local', { session: false })], index),//가져오기
         // router.post('/board/write', [passport.authenticate('user.local', { session: false })], add_borad),// 글쓰기
         // router.get('/board/:id', [passport.authenticate('user.local', { session: false })], index),//게시판 글찿기

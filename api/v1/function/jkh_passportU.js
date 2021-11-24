@@ -85,8 +85,8 @@ passport.use(
                 // JWT 토큰 생성 
                 console.log(user);
                 const token = jkh_fun.createToken(user.user_id);//userid 인자 전달
-
-                return done(null, { token }, {});
+                const level = user.level_u;
+                return done(null, { token,level}, {});
                 
             } catch (e) {
                 // 로그인 확인 중 에러 발생 시
