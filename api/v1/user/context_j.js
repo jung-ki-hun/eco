@@ -46,6 +46,7 @@ const add_borad = async (req, res) => {
         ...req.parmas,
         ...req.query,
 
+        
     }
     if (any.isEmpty(
         parmas.name,
@@ -60,6 +61,8 @@ const add_borad = async (req, res) => {
         return res.status(400).json(response)
     }
     else {
+        try {
+            
         let data = {
             name: parmas.name,   // -> 닉네임
             id: parmas.id,
@@ -77,6 +80,10 @@ const add_borad = async (req, res) => {
         //nosqldb.qna.addboard(data);
         response.state = 1;
         response.msg = 'Successful';
+    }
+    catch (e){
+    jkh.webhook("err",e);
+    }
         return res.status(200).json(response); //클라이언트에게 완료 메시지 보내줌
     }
 
