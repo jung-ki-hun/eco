@@ -48,7 +48,6 @@ const boardWrite = {
         }).catch(e => {
             console.log(e);
         });
-        console.log(this.model.getApiInfo());
     }
 };
 boardWrite.init(document.querySelector("#controls"), '#note');
