@@ -235,7 +235,7 @@ const find_list_context = async (req, res) => {
         return res.status(200).json(response); //클라이언트에게 완료 메시지 보내줌
     }
 }
-const get_veiw = (req,res)=>{
+const get_veiw = async (req,res)=>{
     const response = {
         state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
@@ -246,7 +246,7 @@ const get_veiw = (req,res)=>{
         ...req.parmas,
         ...req.query,
     }
-    if (any.isEmpty(params.number)) {
+    if (any.isEmpty(params.id)) {
         response.state = 2;
         response.msg = 'parmas is empty';
         jkh.webhook('err', 'parmas is empty');
@@ -257,8 +257,6 @@ const get_veiw = (req,res)=>{
         let data = {
             selector: parmas.id
         }
-        let selector = data.selector >= 100 ?data.selector - 99: data.selector;
-        let selector2 = data.selector >= 100 ?data.selector: 100;
         let sql = Q`
         select
             n.noj_id, 
@@ -295,11 +293,12 @@ module.exports = (app) => {
          * single('userfile') -> front가 쓰는 form테그의 name를 알아야됨!!
          */
         //router.get('/board/list/:id', index),//가져오기
-            router.post('/board/write', add_borad),// 글쓰기
-            router.get('/board/:id', index),//게시판 뷰//추후 필요시 작성
-            router.post('/comment/write', add_commend),//뎃글작성
-            router.get('/board/find', find_list_context)//게시글 검색 기능 해당리스트
-            router.get('/veiw',get_veiw);
+
+        router.post('/board/write', add_borad),// 글쓰기
+        router.get('/board/:id', index),//게시판 뷰//추후 필요시 작성
+        router.post('/comment/write', add_commend),//뎃글작성
+        router.get('/board/find', find_list_context)//게시글 검색 기능 해당리스트
+        router.get('/veiw',get_veiw);
         // router.get('/board/list:id', [passport.authenticate('user.local', { session: false })], index),//가져오기
         // router.post('/board/write', [passport.authenticate('user.local', { session: false })], add_borad),// 글쓰기
         // router.get('/board/:id', [passport.authenticate('user.local', { session: false })], index),//게시판 글찿기
