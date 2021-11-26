@@ -388,5 +388,11 @@ html, body {
   width: 100%;
   height: 250px;
   background-color: #afafaf;
+  padding: 1em;
+}
+
+#container #footer .map {
+  height: 230px;
+  width: 400px;
 }
 /*# sourceMappingURL=main.css.map */

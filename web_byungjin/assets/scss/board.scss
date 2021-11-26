@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
 #board {
     margin-top: 2em;
     margin-bottom: 1em;
@@ -180,6 +182,7 @@
 
             }            
             textarea {
+                font-family: 'Nanum Gothic';
                 width:100%;
                 padding-top:5px;
                 border:none;   
@@ -194,6 +197,7 @@
                 justify-content: flex-end;
                 font-size:0.9em;
                 color:rgb(179, 179, 179);
+                cursor: pointer;
             }
         }
         #listComment{

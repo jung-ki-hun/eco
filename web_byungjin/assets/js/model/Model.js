@@ -12,7 +12,7 @@ export function CreateModel(api_path, api_info) {
         getApiInfo() {
             return api_info;
         },
-        read(query) {
+        read(query = "") {
             return new Promise(resolve => {
                 try {
                     this.debug("Fetch(Get) : " + api_path + query);

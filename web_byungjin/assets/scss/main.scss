@@ -307,5 +307,11 @@ html, body{
         width:100%;
         height:250px;
         background-color:rgb(175, 175, 175);
+        padding: 1em;
+
+        .map{
+            height: 230px;            
+            width:400px
+        }
     }
 }

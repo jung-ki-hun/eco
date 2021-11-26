@@ -51,12 +51,11 @@ const boardView : BoardView = {
         this.setPageView()
         this.setSearchView()
         this.setTableView()
-        this.eventDispatcher()        
-        // this.assignRecords(test())
+        this.eventDispatcher()                
         this.setModel()
     },
     setModel(){
-        this.model = CreateModel("http://khkh0130.shop:4000/api/v1/user/context_j/board/100")
+        this.model = CreateModel("http://khkh0130.shop:4000/api/v1/user/context_j/board/test")
         this.model.read().then((v)=>{
             if(v.data != null){
                 console.log(v)

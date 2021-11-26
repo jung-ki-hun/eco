@@ -50,7 +50,7 @@ export function CreateModel(api_path:string, api_info?:RequestInit): ModelObj{
         getApiInfo():RequestInit{
             return api_info;
         }, 
-        read(query? : string):Promise<ModelResult>{
+        read(query : string = ""):Promise<ModelResult>{
             return new Promise(resolve=>{        
                 try{
                     this.debug("Fetch(Get) : " + api_path + query)
