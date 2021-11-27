@@ -42,32 +42,32 @@ const add_borad = async (req, res) => {
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
         msg: 'Successful',
     };
-    var parmas = {
+    var params = {
         ...req.body,
-        ...req.parmas,
+        ...req.params,
         ...req.query,
 
     }
     if (jkh.isEmpty(
-        parmas.name,    
-        parmas.title,
-        parmas.content,
-        parmas.image
+        params.name,    
+        params.title,
+        params.content,
+        params.image
     )) {
         response.state = 2;
-        response.msg = 'parmas is empty';
-        jkh.webhook('err', 'parmas is empty');
+        response.msg = 'params is empty';
+        jkh.webhook('err', 'params is empty');
         return res.status(400).json(response)
     }
     else {
         try {
 
             let data = {
-                name: parmas.name,   // -> 닉네임
+                name: params.name,   // -> 닉네임
                 create_d: jkh.date_time(),    //서버 시간으로 저장
-                title: parmas.title,
-                content: parmas.content,
-                image: parmas.image
+                title: params.title,
+                content: params.content,
+                image: params.image
             }
             let sql =
                 Q`insert 
@@ -96,21 +96,21 @@ const add_commend = async (req, res) => {
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
         msg: 'Successful',
     };
-    var parmas = {
+    var params = {
         ...req.body,
-        ...req.parmas,
+        ...req.params, //req.parmas -> req.params로 수정?
         ...req.query,
     }
     if (any.isEmpty(
-        parmas.name,
-        parmas.id,
-        parmas.title,
-        parmas.content,
-        parmas.noq_id
+        params.name,
+        params.id,
+        params.title,
+        params.content,
+        params.noq_id
     )) {
         response.state = 2;
         response.msg = 'parmas is empty';
-        jkh.webhook('err', 'parmas is empty');
+        jkh.webhook('err', 'params is empty');
         return res.status(400).json(response)
     }
     else {
@@ -126,14 +126,14 @@ const add_commend = async (req, res) => {
             Q`select * from noticej where noj_id = ${data.noj_id}`;//해당하는 보드의 값
         const query1 = await pool.query(sql1);//조회 알고리즘
 
-        let sql2 = Q`insert noticej(c_editer,noj_id,createtime,content) 
+        let sql2 = Q`insert into commandj(c_editer,noj_id,createtime,content) 
         values(${data.name},${data.noj_id},${data.create_d},${data.create_d})`;
         const query2 = await pool.query(sql2);//추가 알고리즘
 
         let sql3 = Q`update noticej
         set comments = ${query1.row[0].comments + 1}
         where
-        noj_id = ${data.noq_id}
+        noj_id = ${data.noj_id}
         `;
         const query3 = await pool.query(sql3);//수정 알고리즘
 
@@ -150,21 +150,21 @@ const index = async (req, res) => {
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
         msg: 'Successful',
     };
-    var parmas = {
+    var params = {
         ...req.body,
-        ...req.parmas,
+        ...req.params,
         ...req.query,
     }
-    if (jkh.isEmpty(parmas.id)) {
+    if (jkh.isEmpty(params.id)) {
         response.state = 2;
-        response.msg = 'parmas is empty'
-        jkh.webhook('err', 'parmas is empty');
+        response.msg = 'params is empty'
+        jkh.webhook('err', 'params is empty');
         return res.status(400).json(response)
     }
     else {
         try{
         let data = {
-            selector: parmas.id
+            selector: params.id
         }
         let selector = data.selector >= 100 ?data.selector - 99: data.selector;
         let selector2 = data.selector >= 100 ?data.selector: 100;
@@ -200,15 +200,15 @@ const find_list_context = async (req, res) => {
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
         msg: 'Successful',
     };
-    var parmas = {
+    var params = {
         ...req.body,
-        ...req.parmas,
+        ...req.params,
         ...req.query,
     }
     if (any.isEmpty(params.selector)) {
         response.state = 2;
-        response.msg = 'parmas is empty';
-        jkh.webhook('err', 'parmas is empty');
+        response.msg = 'params is empty';
+        jkh.webhook('err', 'params is empty');
         return res.status(400).json(response)
     }
     else {
