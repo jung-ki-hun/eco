@@ -1,7 +1,9 @@
 import { View, getView } from "../View.js"
-import { ModelObj, ModelResult, CreateModel } from "../../model/Model.js"
+import { ModelObj, ModelResult, CreateModel, ModelData } from "../../model/Model.js"
+import { Record } from "./Record.js"
 
 interface BoardView extends View{
+    model : ModelObj,
     titleView : View,
     contentView : View,
     commentView : View,    
@@ -9,16 +11,19 @@ interface BoardView extends View{
     setTitleView() : void,
     setContentView() : void,
     setCommentView() : void,
+    setModel(),
     getTitleView() : View,
     getContentView() : View,
     getCommentView() : View,
     eventDispatcher() : void,
-    onWriteComment(str : string) : void
+    onWriteComment(str : string) : void,
+    onRecordComeIn(data : ModelData) : void,
 }
 
 
 const boardView : BoardView = {
     ...getView(),
+    model : null,
     titleView : null,
     contentView : null,
     commentView : null,
@@ -28,6 +33,7 @@ const boardView : BoardView = {
         this.setCommentView()
         this.setContentView()
         this.eventDispatcher()
+        this.setModel()
     },
     setTitleView(){
         this.titleView = getView(this.selEl("#boardHeader"))
@@ -59,6 +65,20 @@ const boardView : BoardView = {
             alert("1 자 이상 입력해주세요.")
             return;
         }
+    },
+    onRecordComeIn(data : ModelData) : void{
+        console.log(data)
+        this.getContentView().getEl().innerHTML = (data.query[0] as Record).content
+    },    
+    setModel(){
+        this.model = CreateModel("http://khkh0130.shop:4000/api/v1/user/context_j/veiw")        
+        
+
+        this.model.read(window.location.search).then(v=>{
+            if(v.data != null){
+                this.onRecordComeIn(v.data)
+            }
+        })
     }
 
 }

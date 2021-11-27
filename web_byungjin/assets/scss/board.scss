@@ -109,6 +109,10 @@
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 text-align: center;
+                a{
+                    text-decoration: none;
+                    color:#000;
+                }
             } 
             td:nth-child(2){                
                 text-align: left;
@@ -169,7 +173,7 @@
     #boardContent{
         border-bottom: 1px solid lightgray;
         min-height: 40vh;
-
+        padding:0.5em;
     }
     #boardComment{
         #inputComment{

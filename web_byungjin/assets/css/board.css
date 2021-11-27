@@ -131,6 +131,11 @@
   text-align: center;
 }
 
+#board #board_table tbody td a {
+  text-decoration: none;
+  color: #000;
+}
+
 #board #board_table tbody td:nth-child(2) {
   text-align: left;
 }
@@ -198,6 +203,7 @@
 #board #boardContent {
   border-bottom: 1px solid lightgray;
   min-height: 40vh;
+  padding: 0.5em;
 }
 
 #board #boardComment #inputComment {
