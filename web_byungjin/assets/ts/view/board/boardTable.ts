@@ -1,16 +1,7 @@
 import { View, getView } from "../View.js"
+import { Record } from "./Record.js"
 
 import { ModelObj, ModelData, CreateModel} from "../../model/Model.js"
-
-interface Record {
-    noj_id : number,
-    title : string,
-    editer : string,
-    imagefilename : any,
-    count : number,
-    createtime: string,
-}
-
 
 interface BoardView extends View{
     record_per_page : number,
@@ -51,8 +42,7 @@ const boardView : BoardView = {
         this.setPageView()
         this.setSearchView()
         this.setTableView()
-        this.eventDispatcher()        
-        // this.assignRecords(test())
+        this.eventDispatcher()                
         this.setModel()
     },
     setModel(){
@@ -89,7 +79,7 @@ const boardView : BoardView = {
         this.getTableView().getEl().innerHTML = this.records.slice(Math.min(len, (page-1)* this.record_per_page), Math.min(len, page * this.record_per_page)).reduce((acc, cur)=>{            
             return acc + `<tr>
                 <td>${cur.noj_id}</td>
-                <td>${cur.title}</td>
+                <td><a target="_blank" href="./boardView.html?id=${cur.noj_id}">${cur.title}</a></td>
                 <td>${cur.editer}</td>
                 <td>${cur.createtime}</td>
             </tr>`
@@ -119,8 +109,7 @@ const boardView : BoardView = {
         pageEl.classList.add("sel")        
         this.assignRecords(parseInt(pageEl.textContent))
     },
-    onClickRecord(record: HTMLElement){
-        alert("Record Click")
+    onClickRecord(record: HTMLElement){        
         // window.open("https://www.youtube.com", "_blank")
     },
     onRecordComeIn(data : ModelData){              

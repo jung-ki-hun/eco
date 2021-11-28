@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
 #board {
     margin-top: 2em;
     margin-bottom: 1em;
@@ -107,6 +109,11 @@
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 text-align: center;
+                a{
+                    display:block;
+                    text-decoration: none;
+                    color:#000;
+                }
             } 
             td:nth-child(2){                
                 text-align: left;
@@ -167,7 +174,7 @@
     #boardContent{
         border-bottom: 1px solid lightgray;
         min-height: 40vh;
-
+        padding:0.5em;
     }
     #boardComment{
         #inputComment{
@@ -180,6 +187,7 @@
 
             }            
             textarea {
+                font-family: 'Nanum Gothic';
                 width:100%;
                 padding-top:5px;
                 border:none;   
@@ -194,6 +202,7 @@
                 justify-content: flex-end;
                 font-size:0.9em;
                 color:rgb(179, 179, 179);
+                cursor: pointer;
             }
         }
         #listComment{

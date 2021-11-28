@@ -64,8 +64,7 @@ const boardWrite : BoardWrite = {
             console.log(v)
         }).catch(e=>{
             console.log(e)
-        })
-        console.log(this.model.getApiInfo())
+        })        
     }
 }
 
