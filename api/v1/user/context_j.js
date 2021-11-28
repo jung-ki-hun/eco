@@ -298,7 +298,7 @@ module.exports = (app) => {
         router.get('/board/:id', index),//게시판 뷰//추후 필요시 작성
         router.post('/comment/write', add_commend),//뎃글작성
         router.get('/board/find', find_list_context)//게시글 검색 기능 해당리스트
-        router.get('/veiw:no',get_veiw);
+        router.get('/veiw/:no',get_veiw);
         // router.get('/board/list:id', [passport.authenticate('user.local', { session: false })], index),//가져오기
         // router.post('/board/write', [passport.authenticate('user.local', { session: false })], add_borad),// 글쓰기
         // router.get('/board/:id', [passport.authenticate('user.local', { session: false })], index),//게시판 글찿기
