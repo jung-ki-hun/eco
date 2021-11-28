@@ -169,4 +169,63 @@
   text-decoration: none;
   color: white;
 }
+
+#board .back {
+  text-align: right;
+}
+
+#board .back a {
+  text-decoration: none;
+  color: lightcoral;
+  font-size: 0.8em;
+}
+
+#board #boardHeader {
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  padding: 0.4em;
+}
+
+#board #boardHeader .title {
+  font-size: 1.5em;
+}
+
+#board #boardHeader .detail {
+  font-size: 0.9em;
+}
+
+#board #boardContent {
+  border-bottom: 1px solid lightgray;
+  min-height: 40vh;
+}
+
+#board #boardComment #inputComment {
+  margin: 5px;
+  border-radius: 10px;
+  border: 1px solid silver;
+  min-height: 4.8em;
+  padding: 3px 8px;
+}
+
+#board #boardComment #inputComment textarea {
+  width: 100%;
+  padding-top: 5px;
+  border: none;
+  resize: none;
+}
+
+#board #boardComment #inputComment textarea:focus {
+  outline: none;
+}
+
+#board #boardComment #inputComment .controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  font-size: 0.9em;
+  color: #b3b3b3;
+}
 /*# sourceMappingURL=board.css.map */
