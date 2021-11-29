@@ -125,17 +125,28 @@ const add_commend = async (req, res) => {
             noj_id: params.noj_id
         }
         let sql1 =
-            Q`select * from noticej where noj_id = ${data.noj_id}`;//해당하는 보드의 값
+            Q`select 
+            * 
+            from 
+                noticej n 
+            where 
+                n.noj_id = ${data.noj_id}`;//해당하는 보드의 값
         const query1 = await pool.query(sql1);//조회 알고리즘
 
-        let sql2 = Q`insert into commandj(c_editer,noj_id,createtime,content) 
+        let sql2 = 
+        Q`insert 
+        into 
+            commandj(c_editer,noj_id,createtime,content) 
         values(${data.name},${data.noj_id},${data.create_d},${data.create_d})`;
         const query2 = await pool.query(sql2);//추가 알고리즘
 
-        let sql3 = Q`update noticej
-        set comments = ${query1.row[0].comments + 1}
+        let sql3 = 
+        Q`update 
+            noticej
+        set 
+            comments = ${query1.row[0].comments + 1}
         where
-        noj_id = ${data.noj_id}
+            noj_id = ${data.noj_id}
         `;
         const query3 = await pool.query(sql3);//수정 알고리즘
 
@@ -305,11 +316,11 @@ module.exports = (app) => {
         router.get('/board/:id', index),//게시판 뷰//추후 필요시 작성
         router.post('/comment/write', add_commend),//뎃글작성
         router.get('/board/find', find_list_context),//게시글 검색 기능 해당리스트
-        router.get('/veiw/:no', get_veiw)
+        router.get('/veiw/:no', get_veiw) // view 뎃글 불러오기 //뷰 요청하기
+
         // router.get('/board/list:id', [passport.authenticate('user.local', { session: false })], index),//가져오기
         // router.post('/board/write', [passport.authenticate('user.local', { session: false })], add_borad),// 글쓰기
         // router.get('/board/:id', [passport.authenticate('user.local', { session: false })], index),//게시판 글찿기
         // router.post('/comment/write', del_log)//뎃글작성
-        //view 뎃글 불러오기 //뷰 요청하기
     });
 }
