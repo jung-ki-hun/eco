@@ -115,6 +115,7 @@ const add_commend = async (req, res) => {
         return res.status(400).json(response)
     }
     else {
+        try{
         let data = {
             name: params.name,   // -> 닉네임
             id: params.id,
@@ -142,6 +143,12 @@ const add_commend = async (req, res) => {
         response.state = 1;
         response.msg = 'Successful';
         return res.status(200).json(response); //클라이언트에게 완료 메시지 보내줌
+        }
+        catch(err){
+            console.log(err);
+            response.msg = ''
+            return res.status(500).json()
+        }
     }
 
 }
