@@ -45,7 +45,7 @@ const { Q, pool } = require('../../../db/psqldb');
         const sql2 = 
         Q`with su AS;
         insert into users_level(user_id,level_u) values((
-            select u.user_id from users u where u.email = ${params.id}
+            select u.user_id from users u where u.email = ${data.id}
         ),0);
         `
         const query2 = await pool.query(sql2);

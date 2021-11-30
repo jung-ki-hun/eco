@@ -1,6 +1,6 @@
 //user context_j.js
 const express = require('express');
-const nosqldb = require('../../../db/nosql_function');
+//const nosqldb = require('../../../db/nosql_function');
 const app = express.Router();
 const jkh = require("../function/jkh_function")
 const any = require("any-function");
@@ -72,8 +72,8 @@ const add_borad = async (req, res) => {
             }
             let sql =
                 Q`insert 
-        into noticej(title,content,createtime,viewcount,comments,imagefilename,editer) 
-        values(${data.title},${data.content},${data.create_d},1,0,${data.image},${data.name});
+                    into noticej(title,content,createtime,viewcount,comments,imagefilename,editer) 
+                    values(${data.title},${data.content},${data.create_d},1,0,${data.image},${data.name});
         `;
             const query1 = await pool.query(sql);//조회 알고리즘
             //nosqldb.qna.addboard(data);S

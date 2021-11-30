@@ -1,6 +1,6 @@
 //user context_q.js
 const express = require('express');
-const nosqldb = require('../../../db/nosql_function');
+//const nosqldb = require('../../../db/nosql_function');
 const app = express.Router();
 const jkh = require("../function/jkh_function")
 const any = require("any-function");
