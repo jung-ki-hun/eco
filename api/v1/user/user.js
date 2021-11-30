@@ -16,17 +16,24 @@ const { Q, pool } = require('../../../db/psqldb');
         id: req.uesr.email,
         pw: req.user.password,
         name: req.user.username
-    }
+    }//user는 passport가 지원해주는 거 //추정
     try {
         if (jkh.isEmpty(params.id, params.pw, params.name)) {
             response.state = 2;
             response.msg = 'params is empty !!';
             return res.state(404).json(response);
         }
-        const sql1 = Q`
-        insert into user(username,email,pw) values (${params.name},${params.id},${jkh.cipher(params.pw)})
+        const sql1 = 
+        Q`insert 
+            into user(username,email,pw) 
+            values (${params.name},${params.id},${jkh.cipher(params.pw)})
         `;//
-        const query1 = await pool.query(sql1);//조회 알고리즘
+        const query1 = await pool.query(sql1);//값 저장
+        const sql2 = 
+        Q`with su AS(
+            select user_id from user where name
+        )`
+        const query2 = await pool.query(sql2);
         if (jkh.isEmpty(query1.rows)) {
             response.state = 3;
             response.msg = 'login failed';
