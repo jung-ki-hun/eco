@@ -13,17 +13,22 @@ const { Q, pool } = require('../../../db/psqldb');
         ...req.query,
         ...req.params,
         ...req.body,
-        id: req.uesr.email,
-        pw: req.user.password,
-        name: req.user.username
+        // id: req.uesr.email,
+        // pw: req.user.password,
+        // name: req.user.username
     }//user는 passport가 지원해주는 거 //추정
     try {
-        if (jkh.isEmpty(params.id, params.pw, params.name)) {
+        let data = {
+            id : params.id,
+            pw : params.pw,
+            name: params.name
+        }
+        if (jkh.isEmpty(data.id, data.pw, data.name)) {
             response.state = 2;
             response.msg = 'params is empty !!';
             return res.state(404).json(response);
         }
-        const sql0 =Q`select u.uses_id from user u where u.email = ${params.id}`;//중복조회
+        const sql0 =Q`select u.uses_id from user u where u.email = ${data.id}`;//중복조회
         const query0 = await pool.query(sql0);
         if(jkh.isEmpty(query0.rows)){
             response.state = 0;
@@ -34,7 +39,7 @@ const { Q, pool } = require('../../../db/psqldb');
         const sql1 = 
         Q`insert 
             into user(username,email,pw) 
-            values (${params.name},${params.id},${jkh.cipher(params.pw)})
+            values (${data.name},${data.id},${jkh.cipher(data.pw)})
         `;//등록
         const query1 = await pool.query(sql1);//값 저장
         const sql2 = 
@@ -179,7 +184,7 @@ module.exports = (app) => {
     app.group([], (router) => {
         router.get('/login_n',[], get_name),//사용자 닉네임 요청 //jwt
         router.post('/regiser', regiser)//회원가입
-        router.post('/pwfind', find_pw)//비밀번호 찾기 //
+        router.post('/pwfind', find_pw)//비밀번호 찾기 
         router.get('/test', test)//테스트용 모듈
     });
 }
