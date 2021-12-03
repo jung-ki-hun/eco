@@ -1,0 +1,2 @@
+167.248.133.59 - - [02/Dec/2021:07:15:14 +0000] "GET / HTTP/1.1" 302 35 "-" "Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)"
+167.248.133.59 - - [02/Dec/2021:07:15:15 +0000] "GET /w/index.html HTTP/1.1" 200 7437 "-" "Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)"
