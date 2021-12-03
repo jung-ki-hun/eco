@@ -118,5 +118,6 @@
 //   console.log(`Example app listening at http://localhost:${port}`);
 // });
 
-var pw_c = jkh_fun.cipheriv("simple123");//암호화 진행 //iv 버전으로 수정 필수 !!!!
-console.log(pw_c);
+// var pw_c = jkh_fun.cipheriv("simple123");//암호화 진행 //iv 버전으로 수정 필수 !!!!
+// console.log(pw_c);
+
