@@ -1,0 +1,7 @@
+199.249.230.119 - - [07/Dec/2021:08:35:49 +0000] "GET / HTTP/1.1" 302 35 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36"
+199.249.230.119 - - [07/Dec/2021:08:35:50 +0000] "GET /w/index.html HTTP/1.1" 200 7437 "http://180.83.98.139:3003/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36"
+64.113.32.29 - - [07/Dec/2021:08:35:52 +0000] "GET /favicon.ico HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36"
+209.141.51.49 - - [07/Dec/2021:13:54:52 +0000] "GET / HTTP/1.1" 302 70 "-" "Chrome/54.0 (Windows NT 10.0)"
+209.141.51.49 - - [07/Dec/2021:13:54:52 +0000] "GET /w/index.html HTTP/1.1" 200 7437 "http://180.83.98.139:3000" "Chrome/54.0 (Windows NT 10.0)"
+209.141.51.49 - - [07/Dec/2021:13:54:53 +0000] "GET /favicon.ico HTTP/1.1" 200 - "-" "Chrome/54.0 (Windows NT 10.0)"
+34.86.35.27 - - [07/Dec/2021:14:51:42 +0000] "GET / HTTP/1.1" 302 35 "-" "Expanse indexes the network perimeters of our customers. If you have any questions or concerns, please reach out to: scaninfo@expanseinc.com"
