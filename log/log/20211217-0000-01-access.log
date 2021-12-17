@@ -1,0 +1,2 @@
+178.32.197.86 - - [16/Dec/2021:06:42:41 +0000] "GET / HTTP/1.1" 404 139 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0"
+62.210.5.253 - - [16/Dec/2021:07:39:23 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0"
