@@ -1,5 +1,6 @@
+//user context_j.js
 const express = require('express');
-const nosqldb = require('../../../db/nosql_function');
+//const nosqldb = require('../../../db/nosql_function');
 const app = express.Router();
 const jkh = require("../function/jkh_function")
 const any = require("any-function");
@@ -42,38 +43,37 @@ const add_borad = async (req, res) => {
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
         msg: 'Successful',
     };
-    var parmas = {
+    var params = {
         ...req.body,
-        ...req.parmas,
+        ...req.params,
         ...req.query,
 
-        
     }
     if (jkh.isEmpty(
-        parmas.name,    
-        parmas.title,
-        parmas.content,
-        parmas.image
+        params.name,    
+        params.title,
+        params.content,
+        params.image
     )) {
         response.state = 2;
-        response.msg = 'parmas is empty';
-        jkh.webhook('err', 'parmas is empty');
+        response.msg = 'params is empty';
+        jkh.webhook('err', 'params is empty');
         return res.status(400).json(response)
     }
     else {
         try {
 
             let data = {
-                name: parmas.name,   // -> 닉네임
+                name: params.name,   // -> 닉네임
                 create_d: jkh.date_time(),    //서버 시간으로 저장
-                title: parmas.title,
-                content: parmas.content,
-                image: parmas.image
+                title: params.title,
+                content: params.content,
+                image: params.image
             }
             let sql =
                 Q`insert 
-        into noticej(title,content,createtime,viewcount,comments,imagefilename,editer) 
-        values(${data.title},${data.content},${data.create_d},1,0,${data.image},${data.name});
+                    into noticej(title,content,createtime,viewcount,comments,imagefilename,editer) 
+                    values(${data.title},${data.content},${data.create_d},1,0,${data.image},${data.name});
         `;
             const query1 = await pool.query(sql);//조회 알고리즘
             //nosqldb.qna.addboard(data);S
@@ -97,24 +97,25 @@ const add_commend = async (req, res) => {
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
         msg: 'Successful',
     };
-    var parmas = {
+    var params = {
         ...req.body,
-        ...req.parmas,
+        ...req.params, //req.params -> req.params로 수정?
         ...req.query,
     }
     if (any.isEmpty(
-        parmas.name,
-        parmas.id,
-        parmas.title,
-        parmas.content,
-        parmas.noj_id
+        params.name,
+        params.id,
+        params.title,
+        params.content,
+        params.noq_id
     )) {
         response.state = 2;
-        response.msg = 'parmas is empty';
-        jkh.webhook('err', 'parmas is empty');
+        response.msg = 'params is empty';
+        jkh.webhook('err', 'params is empty');
         return res.status(400).json(response)
     }
     else {
+        try{
         let data = {
             name: params.name,   // -> 닉네임
             id: params.id,
@@ -124,17 +125,28 @@ const add_commend = async (req, res) => {
             noj_id: params.noj_id
         }
         let sql1 =
-            Q`select * from noticej where noj_id = ${data.noj_id}`;//해당하는 보드의 값
+            Q`select 
+            * 
+            from 
+                noticej n 
+            where 
+                n.noj_id = ${data.noj_id}`;//해당하는 보드의 값
         const query1 = await pool.query(sql1);//조회 알고리즘
 
-        let sql2 = Q`insert noticej(c_editer,noj_id,createtime,content) 
+        let sql2 = 
+        Q`insert 
+        into 
+            commandj(c_editer,noj_id,createtime,content) 
         values(${data.name},${data.noj_id},${data.create_d},${data.create_d})`;
         const query2 = await pool.query(sql2);//추가 알고리즘
 
-        let sql3 = Q`update noticej
-        set comments = ${query1.row[0].comments + 1}
+        let sql3 = 
+        Q`update 
+            noticej
+        set 
+            comments = ${query1.row[0].comments + 1}
         where
-        noj_id = ${data.noq_id}
+            noj_id = ${data.noj_id}
         `;
         const query3 = await pool.query(sql3);//수정 알고리즘
 
@@ -142,6 +154,12 @@ const add_commend = async (req, res) => {
         response.state = 1;
         response.msg = 'Successful';
         return res.status(200).json(response); //클라이언트에게 완료 메시지 보내줌
+        }
+        catch(err){
+            console.log(err);
+            response.msg = ''
+            return res.status(500).json()
+        }
     }
 
 }
@@ -151,21 +169,21 @@ const index = async (req, res) => {
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
         msg: 'Successful',
     };
-    var parmas = {
+    var params = {
         ...req.body,
-        ...req.parmas,
+        ...req.params,
         ...req.query,
     }
-    if (jkh.isEmpty(parmas.id)) {
+    if (jkh.isEmpty(params.id)) {
         response.state = 2;
-        response.msg = 'parmas is empty'
-        jkh.webhook('err', 'parmas is empty');
+        response.msg = 'params is empty'
+        jkh.webhook('err', 'params is empty');
         return res.status(400).json(response)
     }
     else {
         try{
         let data = {
-            selector: parmas.id
+            selector: params.id
         }
         let selector = data.selector >= 100 ?data.selector - 99: data.selector;
         let selector2 = data.selector >= 100 ?data.selector: 100;
@@ -201,15 +219,15 @@ const find_list_context = async (req, res) => {
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
         msg: 'Successful',
     };
-    var parmas = {
+    var params = {
         ...req.body,
-        ...req.parmas,
+        ...req.params,
         ...req.query,
     }
     if (any.isEmpty(params.selector)) {
         response.state = 2;
-        response.msg = 'parmas is empty';
-        jkh.webhook('err', 'parmas is empty');
+        response.msg = 'params is empty';
+        jkh.webhook('err', 'params is empty');
         return res.status(400).json(response)
     }
     else {
@@ -235,30 +253,28 @@ const find_list_context = async (req, res) => {
         return res.status(200).json(response); //클라이언트에게 완료 메시지 보내줌
     }
 }
-const get_veiw = (req,res)=>{
+const get_veiw = async (req,res)=>{
     const response = {
         state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
         msg: 'Successful',
     };
-    var parmas = {
+    var params = {
         ...req.body,
-        ...req.parmas,
+        ...req.params,
         ...req.query,
     }
-    if (any.isEmpty(params.number)) {
+    if (any.isEmpty(params.no)) {
         response.state = 2;
-        response.msg = 'parmas is empty';
-        jkh.webhook('err', 'parmas is empty');
+        response.msg = 'params is empty';
+        jkh.webhook('err', 'params is empty');
         return res.status(400).json(response)
     }
     else {
         try{
         let data = {
-            selector: parmas.id
+            selector: params.no
         }
-        let selector = data.selector >= 100 ?data.selector - 99: data.selector;
-        let selector2 = data.selector >= 100 ?data.selector: 100;
         let sql = Q`
         select
             n.noj_id, 
@@ -295,15 +311,16 @@ module.exports = (app) => {
          * single('userfile') -> front가 쓰는 form테그의 name를 알아야됨!!
          */
         //router.get('/board/list/:id', index),//가져오기
-            router.post('/board/write', add_borad),// 글쓰기
-            router.get('/board/:id', index),//게시판 뷰//추후 필요시 작성
-            router.post('/comment/write', add_commend),//뎃글작성
-            router.get('/board/find', find_list_context)//게시글 검색 기능 해당리스트
-            router.get('/veiw',get_veiw);
+
+        router.post('/board/write', add_borad),// 글쓰기
+        router.get('/board/:id', index),//게시판 뷰//추후 필요시 작성
+        router.post('/comment/write', add_commend),//뎃글작성
+        router.get('/board/find', find_list_context),//게시글 검색 기능 해당리스트
+        router.get('/veiw/:no', get_veiw) // view 뎃글 불러오기 //뷰 요청하기
+
         // router.get('/board/list:id', [passport.authenticate('user.local', { session: false })], index),//가져오기
         // router.post('/board/write', [passport.authenticate('user.local', { session: false })], add_borad),// 글쓰기
         // router.get('/board/:id', [passport.authenticate('user.local', { session: false })], index),//게시판 글찿기
         // router.post('/comment/write', del_log)//뎃글작성
-        //view 뎃글 불러오기 //뷰 요청하기
     });
 }

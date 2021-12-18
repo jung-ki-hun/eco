@@ -1,3 +1,4 @@
+//admin context_q.js
 // const express = require('express'); // const app = express.Router();
 // const nosqldb = require('../../../db/nosql_function');
 // const app = express.Router();
@@ -27,20 +28,20 @@
 //         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
 //         msg: 'Successful',
 //     };
-//     var parmas = { //모든 파일에서 중요함 => req에서 받아서 사용
+//     var params = { //모든 파일에서 중요함 => req에서 받아서 사용
 //         ...req.body,
-//         ...req.parmas,
+//         ...req.params,
 //         ...req.query,
 //     }
 //     if (isEmpty(
-//         parmas.name,
-//         parmas.id,        
-//         parmas.title,
-//         parmas.content,
+//         params.name,
+//         params.id,        
+//         params.title,
+//         params.content,
 //     )) {
 //         response.state = 2;
-//         response.msg = 'parmas is empty';
-//         jkh.webhook('err', 'parmas is empty');
+//         response.msg = 'params is empty';
+//         jkh.webhook('err', 'params is empty');
 //         return res.status(400).json(response)
 //     }
 //     else {
@@ -70,7 +71,7 @@
 //     });
 // }
 const express = require('express');
-const nosqldb = require('../../../db/nosql_function');
+//const nosqldb = require('../../../db/nosql_function');
 const app = express.Router();
 const jkh = require("../function/jkh_function")
 const any = require("any-function");
@@ -100,32 +101,32 @@ const add_borad = async (req, res) => {
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
         msg: 'Successful',
     };
-    var parmas = {
+    var params = {
         ...req.body,
-        ...req.parmas,
+        ...req.params,
         ...req.query,
 
     }
     if (any.isEmpty(
-        parmas.name,
-        parmas.id,
-        parmas.title,
-        parmas.content,
-        parmas.image
+        params.name,
+        params.id,
+        params.title,
+        params.content,
+        params.image
     )) {
         response.state = 2;
-        response.msg = 'parmas is empty';
-        jkh.webhook('err', 'parmas is empty');
+        response.msg = 'params is empty';
+        jkh.webhook('err', 'params is empty');
         return res.status(400).json(response)
     }
     else {
         let data = {
-            name: parmas.name,   // -> 닉네임
-            id: parmas.id,
+            name: params.name,   // -> 닉네임
+            id: params.id,
             create_d: jkh.date_time(),    //서버 시간으로 저장
-            title: parmas.title,
-            content: parmas.content,
-            image:parmas.image
+            title: params.title,
+            content: params.content,
+            image:params.image
         }
         let sql = 
         Q`insert 
@@ -146,21 +147,21 @@ const add_commend = async (req, res) => {
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
         msg: 'Successful',
     };
-    var parmas = {
+    var params = {
         ...req.body,
-        ...req.parmas,
+        ...req.params,
         ...req.query,
     }
     if (any.isEmpty(
-        parmas.name,
-        parmas.id,
-        parmas.title,
-        parmas.content,
-        parmas.noq_id
+        params.name,
+        params.id,
+        params.title,
+        params.content,
+        params.noq_id
     )) {
         response.state = 2;
-        response.msg = 'parmas is empty';
-        jkh.webhook('err', 'parmas is empty');
+        response.msg = 'params is empty';
+        jkh.webhook('err', 'params is empty');
         return res.status(400).json(response)
     }
     else {
@@ -173,10 +174,10 @@ const add_commend = async (req, res) => {
             noq_id: params.noq_id
         }
         let sql1 = 
-        Q`select * from noticeq where noq_id = ${data.noq_id}`;//해당하는 보드의 값
+        Q`select * from commandq where noq_id = ${data.noq_id}`;//해당하는 보드의 값
         const query1 = await pool.query(sql1);//조회 알고리즘
 
-        let sql2 = Q`insert noticeq(c_editer,noq_id,createtime,content) 
+        let sql2 = Q`insert into commandq(c_editer,noq_id,createtime,content) 
         values(${data.name},${data.noq_id},${data.create_d},${data.create_d})`;        
         const query2 = await pool.query(sql2);//추가 알고리즘
         
@@ -200,15 +201,15 @@ const index = async (req, res) => {
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
         msg: 'Successful',
     };
-    var parmas = {
+    var params = {
         ...req.body,
-        ...req.parmas,
+        ...req.params,
         ...req.query,
     }
     if (any.isEmpty(arams.selector)) {
         response.state = 2;
-        response.msg = 'parmas is empty';
-        jkh.webhook('err', 'parmas is empty');
+        response.msg = 'params is empty';
+        jkh.webhook('err', 'params is empty');
         return res.status(400).json(response)
     }
     else {
@@ -234,15 +235,15 @@ const find_list_context = async (req,res)=>{
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
         msg: 'Successful',
     };
-    var parmas = {
+    var params = {
         ...req.body,
-        ...req.parmas,
+        ...req.params,
         ...req.query,
     }
     if (any.isEmpty(params.selector)) {
         response.state = 2;
-        response.msg = 'parmas is empty';
-        jkh.webhook('err', 'parmas is empty');
+        response.msg = 'params is empty';
+        jkh.webhook('err', 'params is empty');
         return res.status(400).json(response)
     }
     else {
@@ -274,22 +275,22 @@ const delete_context = async (req, res)=>{
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
         msg: 'Successful',
     };
-    var parmas = {
+    var params = {
         ...req.body,
-        ...req.parmas,
+        ...req.params,
         ...req.query,
     }
     if (any.isEmpty(params.no)) {
         response.state = 2;
-        response.msg = 'parmas is empty';
-        jkh.webhook('err', 'parmas is empty');
+        response.msg = 'params is empty';
+        jkh.webhook('err', 'params is empty');
         return res.status(400).json(response)
     }
     else {
         let data = {
             no: params.no
         }
-        let sql = Q`delete from noticej nj where nj = ${data.no}`;
+        let sql = Q`delete from noticeq nq where nq = ${data.no}`;
         const query1 = await pool.query(sql);
         response.state = 1;
         response.msg = 'Successful';

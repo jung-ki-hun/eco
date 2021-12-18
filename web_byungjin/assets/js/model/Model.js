@@ -12,14 +12,17 @@ export function CreateModel(api_path, api_info) {
         getApiInfo() {
             return api_info;
         },
-        read() {
+        read(query = "") {
             return new Promise(resolve => {
                 try {
-                    fetch(api_path, api_info).then((response) => {
+                    this.debug("Fetch(Get) : " + api_path + query);
+                    fetch(api_path + query, api_info).then((response) => {
                         if (response.status == 200 || response.status == 201)
                             response.json().then(data => resolve({ error: null, data }));
-                        else
-                            throw Error(`${api_path} : not good response`);
+                        else {
+                            resolve({ error: Error("Status Not 200 or 201"), data: null });
+                            throw Error(`"Status Not 200 or 201"`);
+                        }
                     });
                 }
                 catch (error) {
@@ -31,6 +34,7 @@ export function CreateModel(api_path, api_info) {
         sendPost(body) {
             return new Promise(resolve => {
                 try {
+                    this.debug("Fetch(Post) : " + api_path);
                     api_info.method = 'POST';
                     api_info.body = body;
                     fetch(api_path, api_info).then(response => {
@@ -46,6 +50,11 @@ export function CreateModel(api_path, api_info) {
                     resolve({ error, data: null });
                 }
             });
+        },
+        debug(msg) {
+            if (window.DEBUG != null && window.DEBUG == true) {
+                console.log("[Model]" + msg);
+            }
         }
     };
 }

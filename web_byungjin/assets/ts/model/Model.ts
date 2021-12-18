@@ -13,11 +13,17 @@ export interface ModelObj{
     /** API 접속
      * @returns {Promise<ModelResult>}
      */
-    read():Promise<ModelResult>,
+    read(query? : string):Promise<ModelResult>,
     /**
-     * @par
+     * Post Body로 보냄
+     * @param body 
      */
-     sendPost(body : BodyInit) : Promise<ModelResult>
+    sendPost(body : BodyInit) : Promise<ModelResult>,
+    /**
+     * 로그 메세지
+     * @param msg Log Message
+     */
+    debug(msg : string) : void
 }
 
 export interface ModelData{
@@ -44,14 +50,17 @@ export function CreateModel(api_path:string, api_info?:RequestInit): ModelObj{
         getApiInfo():RequestInit{
             return api_info;
         }, 
-        read():Promise<ModelResult>{
+        read(query : string = ""):Promise<ModelResult>{
             return new Promise(resolve=>{        
                 try{
-                    fetch(api_path, api_info).then((response)=>{                    
+                    this.debug("Fetch(Get) : " + api_path + query)
+                    fetch(api_path + query, api_info).then((response)=>{                    
                         if(response.status == 200 || response.status == 201)
                             response.json().then(data=>resolve({error:null, data}));
-                        else  
-                            throw Error(`${api_path} : not good response`);            
+                        else{
+                            resolve({error: Error("Status Not 200 or 201"), data : null})
+                            throw Error(`"Status Not 200 or 201"`)
+                        }                            
                     });
                 }catch(error){
                     console.error(error);
@@ -62,6 +71,7 @@ export function CreateModel(api_path:string, api_info?:RequestInit): ModelObj{
         sendPost(body : BodyInit):Promise<ModelResult>{
             return new Promise(resolve=>{
                 try{                    
+                    this.debug("Fetch(Post) : " + api_path)
                     api_info.method = 'POST'
                     api_info.body = body
                     fetch(api_path, api_info).then(response=>{
@@ -77,6 +87,11 @@ export function CreateModel(api_path:string, api_info?:RequestInit): ModelObj{
                     resolve({error, data:null});
                 }
             })
-        }        
+        },
+        debug(msg : string){            
+            if((window as any).DEBUG != null && (window as any).DEBUG == true){
+                console.log("[Model]" + msg)
+            }
+        }     
     }
 }

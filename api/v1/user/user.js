@@ -13,20 +13,42 @@ const { Q, pool } = require('../../../db/psqldb');
         ...req.query,
         ...req.params,
         ...req.body,
-        id: req.uesr.email,
-        pw: req.user.password,
-        name: req.user.username
-    }
+        // id: req.uesr.email,
+        // pw: req.user.password,
+        // name: req.user.username
+    }//user는 passport가 지원해주는 거 //추정
     try {
-        if (jkh.isEmpty(params.id, params.pw, params.name)) {
+        let data = {
+            id : params.id,
+            pw : params.pw,
+            name: params.name
+        }
+        if (jkh.isEmpty(data.id, data.pw, data.name)) {
             response.state = 2;
             response.msg = 'params is empty !!';
             return res.state(404).json(response);
         }
-        const sql1 = Q`
-        insert into user(username,email,pw) values (${params.name},${params.id},${jkh.cipher(params.pw)})
-        `;//
-        const query1 = await pool.query(sql1);//조회 알고리즘
+        const sql0 =Q`select u.uses_id from user u where u.email = ${data.id}`;//중복조회
+        const query0 = await pool.query(sql0);
+        if(jkh.isEmpty(query0.rows)){
+            response.state = 0;
+            response.msg = 'Duplicate values';
+            return res.status(500).json(response);
+        }//리턴하면 else가 필용없다.
+
+        const sql1 = 
+        Q`insert 
+            into user(username,email,pw) 
+            values (${data.name},${data.id},${jkh.cipher(data.pw)})
+        `;//등록
+        const query1 = await pool.query(sql1);//값 저장
+        const sql2 = 
+        Q`with su AS;
+        insert into users_level(user_id,level_u) values((
+            select u.user_id from users u where u.email = ${data.id}
+        ),0);
+        `
+        const query2 = await pool.query(sql2);
         if (jkh.isEmpty(query1.rows)) {
             response.state = 3;
             response.msg = 'login failed';
@@ -41,7 +63,11 @@ const { Q, pool } = require('../../../db/psqldb');
 
     }
     catch (err) {
+        console.log(err);
+        response.state = 0;
+        response.msg = err+' ';
         jkh.webhook.sendMessage('err', 'login sql select err(500)')//log 보내는 역활
+        //return res.status(500).json(response); //클라이언트에게 완료 메시지 보내줌
     }
     return res.state(200).join(response);//데이터 전송 !!
 

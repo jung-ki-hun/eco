@@ -6,6 +6,7 @@ export function getView(el) {
     return {
         el,
         emit(evt, data) {
+            this.debug(`emit - ${evt}`);
             const customEvt = new CustomEvent(evt, { detail: data });
             this.el.dispatchEvent(customEvt);
         },
@@ -26,6 +27,11 @@ export function getView(el) {
                 if (el.tagName == o)
                     return el;
             return null;
+        },
+        debug(msg) {
+            if (window.DEBUG != null && window.DEBUG == true) {
+                console.log("[View]" + msg);
+            }
         }
     };
 }

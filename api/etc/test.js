@@ -121,3 +121,16 @@
 // var pw_c = jkh_fun.cipheriv("simple123");//암호화 진행 //iv 버전으로 수정 필수 !!!!
 // console.log(pw_c);
 
+const a = (n) =>{
+    var sum =0;
+    for(var i =1 ; i<10;i++ ){
+        if(i%2 == 1)
+        {
+            sum += n*i;
+        }
+    }
+   return sum;
+}
+var x = 10 ,y=10;
+console.log((y-- + 3)); // y=y +1 
+console.log(1+2+3+"4");//y = 즉 '='대입연산자를 활용해 변수의 값을 변형 시킴 
