@@ -22,6 +22,8 @@ const index = async (id, pw) => {
     var user;
     try {
         //
+        
+        await pool.query('BEGIN');
         const sql1 = Q`
           SELECT 
             u.username,
@@ -37,7 +39,7 @@ const index = async (id, pw) => {
             u.pw = ${pw_c}
           `;//암호화 한 데이터(pw)를 기반으로 검색 진행
         const query1 = await pool.query(sql1);//조회 알고리즘
-        console.log(`abc ${query1.rows[0]}`);
+        console.log(`abc ${query1.rows[0]}`);   
         if (jkh_fun.isEmpty(query1.rows[0])) {
             console.log('login fail');
             jkh_fun.webhook('err',' response.msg')//log 보내는 역활
@@ -55,11 +57,12 @@ const index = async (id, pw) => {
                 jkh_fun.webhook('err', 'login sql insert err(500)');
             }
         }
-
+        await pool.query("COMMIT")
         return user;
     }
     catch (err) {
         console.error(err);
+        await pool.query('ROLLBACK')
         jkh_fun.webhook('err', 'login sql select err(500)')//log 보내는 역활
     }
 }//login 
