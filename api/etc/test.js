@@ -42,7 +42,7 @@
 //     }
 // }
 // console.log(dbtest())
-console.log(jkh.cipheriv(`1234`));//테스트해보기
+console.log(jkh.cipheriv('1234'));//테스트해보기
 
 // const a = { 
 //     a1:1,
