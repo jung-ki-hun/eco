@@ -14,3 +14,12 @@
 2021/12/21 03:47:24 [emerg] 46024#17500: unknown directive "<=" in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:48
 2021/12/21 03:47:39 [warn] 47364#53552: "user" is not supported, ignored in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:1
 2021/12/21 03:47:39 [emerg] 47364#53552: unknown directive "<=" in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:48
+2021/12/21 03:54:53 [warn] 51136#41944: "user" is not supported, ignored in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:1
+2021/12/21 03:54:53 [emerg] 51136#41944: unknown directive "<=" in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:48
+2021/12/21 04:12:09 [warn] 51268#45468: "user" is not supported, ignored in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:1
+2021/12/21 04:12:09 [emerg] 51268#45468: unknown directive "<=" in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:48
+2021/12/21 04:16:20 [warn] 20908#11856: "user" is not supported, ignored in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:1
+2021/12/21 04:16:20 [emerg] 20908#11856: unknown directive "<=" in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:48
+2021/12/21 04:21:43 [emerg] 40980#48300: unexpected end of file, expecting "}" in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:142
+2021/12/21 04:22:28 [emerg] 41856#45776: CreateDirectory() "G:\programming_net\project_node_eco\Nginx/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2021/12/21 04:23:28 [emerg] 16928#4576: CreateDirectory() "G:\programming_net\project_node_eco\Nginx/temp/client_body_temp" failed (3: The system cannot find the path specified)
