@@ -19,11 +19,9 @@ const index = async (id, pw) => {
      console.log(id, pw);
     var pw_c = jkh_fun.cipheriv(pw);//암호화 진행 //iv 버전으로 수정 필수 !!!!
     console.log(id, pw_c);
-    var user;
-    try {
-        //
-        
-        await pool.query('BEGIN');
+    var user;//반환 하는 값
+    try {        
+        await pool.query('BEGIN');//트랜잭션 시작
         const sql1 = Q`
           SELECT 
             u.username,
@@ -39,10 +37,10 @@ const index = async (id, pw) => {
             u.pw = ${pw_c}
           `;//암호화 한 데이터(pw)를 기반으로 검색 진행
         const query1 = await pool.query(sql1);//조회 알고리즘
-        console.log(`abc ${query1.rows[0]}`);   
+        console.log(`answer check : ${query1.rows[0]}`);   
         if (jkh_fun.isEmpty(query1.rows[0])) {
             console.log('login fail');
-            jkh_fun.webhook('err',' response.msg')//log 보내는 역활
+            //jkh_fun.webhook('err','login failed')//log 보내는 역활///webhook 뭐가 문제임?
             return null;
         }
         else {
@@ -57,12 +55,12 @@ const index = async (id, pw) => {
                 jkh_fun.webhook('err', 'login sql insert err(500)');
             }
         }
-        await pool.query("COMMIT")
+        await pool.query("COMMIT")//저장
         return user;
     }
     catch (err) {
         console.error(err);
-        await pool.query('ROLLBACK')
+        await pool.query('ROLLBACK')//에러시 롤백
         jkh_fun.webhook('err', 'login sql select err(500)')//log 보내는 역활
     }
 }//login 

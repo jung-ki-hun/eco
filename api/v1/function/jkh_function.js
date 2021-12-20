@@ -4,7 +4,7 @@ const jkh_key = require('./jkh_config');
  *********************************/
 var isEmpty = (...str) => { //null을 대신해 비어있음을 확인
     for (let i_str of str) {
-        if (typeof i_str == "undefined" || i_str == null || i_str == "" )
+        if (typeof i_str === "undefined" || i_str === null || i_str === "" )
             return true;
         else
             return false;
