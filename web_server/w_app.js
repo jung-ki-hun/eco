@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const cluster = require('cluster');
+const ncpu = require('os').cpus().length /2 - 2; // tls 위에서 동작함
 var expressErrorHandler = require('express-error-handler');
 var jkh_f = require('./api/lib/jkh_wfuncfion');
 var jkh = require('./api/lib/jkh_wconfig')//jkh_wconfig에서 config를 호출하기위한 변수

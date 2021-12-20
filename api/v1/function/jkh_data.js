@@ -1,6 +1,7 @@
 //데이터 분석용 
-const axios =require('axios');
-const cheerio = require("cheerio");
+const axios =require('axios');//쓰려나??
+const request = require('request');//html page 요청
+const cheerio = require("cheerio");//jquery로 변환
 const fs = require('fs');
 
 function delay(ms) {
@@ -21,3 +22,12 @@ function getHTML(url) {
     })    
 }
 /// 크롤링
+
+const call_html = () => {
+    return new Promise(function(resolve, reject){
+        
+    })
+}
+module.exports ={
+
+}

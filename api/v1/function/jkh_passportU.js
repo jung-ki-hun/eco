@@ -38,9 +38,9 @@ const index = async (id, pw) => {
           `;//암호화 한 데이터(pw)를 기반으로 검색 진행
         const query1 = await pool.query(sql1);//조회 알고리즘
         console.log(`abc ${query1.rows[0]}`);
-        if (jkh_fun.isEmpty(query1.rows[0].username)) {
+        if (jkh_fun.isEmpty(query1.rows[0])) {
             console.log('login fail');
-            jkh_fun.webhook('err', response.msg)//log 보내는 역활
+            jkh_fun.webhook('err',' response.msg')//log 보내는 역활
             return null;
         }
         else {

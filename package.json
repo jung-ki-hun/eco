@@ -4,7 +4,8 @@
   "description": "project_eco",
   "main": "app.js",
   "scripts": {
-    "app": "nodemon app",
+    "app": "pm2 start api_server_config.js",
+    "start": "node app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
