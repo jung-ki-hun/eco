@@ -226,7 +226,7 @@ const find_list_context = async (req, res) => {
             noticeq n
         where
             n.title like %${data.name}%
-            and
+        AND
             n.noq_id between ${data.selector - 100} and ${data.selector}`;
         const query1 = await pool.query(sql);
 

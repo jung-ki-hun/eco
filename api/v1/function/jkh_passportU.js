@@ -30,14 +30,21 @@ const index = async (id, pw) => {
           FROM
             users u, users_level ul
           WHERE        
-            ul.level_u in (select level_u from users_level ul2, users u2 WHERE u2.user_id = ul2.user_id)
+            ul.level_u in 
+            (select 
+                level_u 
+              from 
+                users_level ul2, 
+                users u2 
+              WHERE 
+                u2.user_id = ul2.user_id)
             AND
             u.email = ${id}
             AND
             u.pw = ${pw_c}
           `;//암호화 한 데이터(pw)를 기반으로 검색 진행
         const query1 = await pool.query(sql1);//조회 알고리즘
-        console.log(`answer check : ${query1.rows[0]}`);   
+        console.log(`check type : ${query1.rows[0]}`);   
         if (jkh_fun.isEmpty(query1.rows[0])) {
             console.log('login fail');
             //jkh_fun.webhook('err','login failed')//log 보내는 역활///webhook 뭐가 문제임?
@@ -46,13 +53,12 @@ const index = async (id, pw) => {
         else {
             let user_id = query1.rows[0].user_id;//사용자 key 추출
             user = query1.rows[0];
-            //res.cookie('auth', true);//쿠키생성 추후 수정예정
             const sql2 = 
             Q`insert into login_log(user_id,log_time) values (${user_id},${jkh_fun.date_time()})`;
             const query2 = await pool.query(sql2);
             if (query2.errors) {
                 console.log(query2.errors);
-                jkh_fun.webhook('err', 'login sql insert err(500)');
+                //jkh_fun.webhook('err', 'login sql insert err(500)');
             }
         }
         await pool.query("COMMIT")//저장
@@ -79,15 +85,15 @@ passport.use(
             try {
                 //로그인 확인 구현 자리
                 const user = await index(email, password);//login 확인 함수 
-                if(jkh_fun.isEmpty(user)){ //조회값이 null 값이면
+                if(jkh_fun.isEmpty(user)){ //조회값이 null 값이면 //값이 튄다
                     return done(null,{error: true, message: 'Incorrect email or password'});
                 }
                            
                 // JWT 토큰 생성 
-                console.log(user);
+                console.log("sdfs"+user);
                 const token = jkh_fun.createToken(user.user_id);//userid 인자 전달
                 const level = user.level_u;
-                return done(null, { token,level}, {});
+                return done(null, { token,level,user}, {});
                 
             } catch (e) {
                 // 로그인 확인 중 에러 발생 시

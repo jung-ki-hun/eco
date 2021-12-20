@@ -312,7 +312,6 @@ module.exports = (app) => {
          * single('userfile') -> front가 쓰는 form테그의 name를 알아야됨!!
          */
         //router.get('/board/list/:id', index),//가져오기
-
         router.post('/board/write', add_borad),// 글쓰기
         router.get('/board/:id', index),//게시판 뷰//추후 필요시 작성
         router.post('/comment/write', add_commend),//뎃글작성

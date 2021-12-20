@@ -82,6 +82,7 @@ var dcipheriv = (password) => {
  * ***********로그 관리***********
 *********************************/
 var webhook = require("./jkh_webhook");
+
 var fs = require('fs');
 var rfs = require('rotating-file-stream');//로그 하루단위로 절샥
 const logstream = rfs.createStream(`access.log`, {
