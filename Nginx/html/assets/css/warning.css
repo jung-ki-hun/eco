@@ -1,0 +1,58 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.warning_wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  width: 100%;
+  height: 100%;
+  background-color: #ff6464;
+}
+
+.warning_wrapper ::-moz-selection {
+  background-color: white;
+  color: #ff6464;
+}
+
+.warning_wrapper ::selection {
+  background-color: white;
+  color: #ff6464;
+}
+
+.warning_wrapper .title {
+  margin-top: -2em;
+  color: white;
+  font-size: 4em;
+  font-weight: bold;
+}
+
+.warning_wrapper .reason {
+  font-size: 2em;
+  color: lightgray;
+  padding: 2em;
+}
+
+.warning_wrapper .home a {
+  font-size: 1.8em;
+  color: lightgray;
+}
+
+.warning_wrapper .home a:hover {
+  color: white;
+}
+/*# sourceMappingURL=warning.css.map */

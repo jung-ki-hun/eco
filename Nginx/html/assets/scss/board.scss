@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+#board {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    width: 100%; 
+    min-height: 75vh;           
+
+    .board_title{
+        font-size:1.5em;
+        font-weight: bold;
+    }
+    
+    .controls{
+        display: flex;
+        justify-content: space-between;
+
+        .write{
+            background-color: cornflowerblue;
+            border: 1px solid lightgray;
+            padding:3px 7px;  
+            margin: 0px 0.3em;            
+            font-weight: bold;       
+            cursor:pointer;
+            a{
+                text-decoration: none;
+                color:#fff;
+            }             
+        }
+        #search{
+            display:flex;
+            justify-content: flex-end;  
+            
+            input[type="submit"]{
+                padding:1px 5px;
+                margin: 0 4px;
+            }
+            input[type="text"]{
+                padding:3px;
+                border:1px solid gray;
+                &:focus{
+                    box-shadow: none;
+                    outline: none;
+                }
+            }        
+        }
+    }
+
+    #pages{
+        display: flex;
+        justify-content: center;
+        height: 2em;        
+        
+        div{
+            cursor: pointer;
+            min-width: 1.1em;
+            margin:0px 2px;
+            border:1px solid lightgray;
+            padding:4px 7px;
+            text-align: center;
+        
+            &.sel{
+                background-color:rgb(70, 187, 255);
+                color:#fff;
+            }
+            &:not(.sel):hover{
+                background-color: rgb(241, 241, 241);
+            }
+        }        
+    }
+
+    #board_table{
+        border-top:1px solid black;            
+        border-bottom:1px solid black;            
+        margin:1em 0;
+        width: 100%;  
+        border-collapse: collapse;  
+        table-layout: fixed;                   
+
+        thead{                                        
+            th{
+              padding:4px;  
+            }
+            th:nth-child(1){
+                width:3em;
+            }            
+            th:nth-child(3){
+                width: 9em;
+            }
+            th:nth-child(4){
+                width:8em;
+            }
+        }
+
+        tbody{            
+            tr{
+                border-top:1px solid lightgray;
+                background-color:transparent;
+                border-bottom:1px solid lightgray;
+                cursor:pointer;
+
+                &:hover{
+                    background-color: rgb(241, 241, 241);
+                }
+            }            
+            td{
+                padding:3px;                
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                text-align: center;
+                a{
+                    display:block;
+                    text-decoration: none;
+                    color:#000;
+                }
+            } 
+            td:nth-child(2){                
+                text-align: left;
+            }                                     
+        }
+    }
+
+    #note{
+        min-height: 70vh;
+    }
+
+    #controls{
+        display:flex;
+        justify-content: right;
+        margin-bottom: 0.3em;
+        
+        div{
+            border: 1px solid lightgray;
+            padding:5px 7px;  
+            margin: 0px 0.3em;
+            color:#fff;
+            font-weight: bold;       
+            cursor:pointer;   
+        }
+
+        .submit{
+            background-color: cornflowerblue;
+        }
+        .cancel{
+            background-color: lightpink;
+            a{
+                text-decoration: none;
+                color:white;
+            }
+        }
+    }
+
+    .back{
+        text-align: right;
+        a{
+            text-decoration: none;
+            color:lightcoral;
+            font-size:0.8em;
+        }
+    }
+
+    #boardHeader{
+        border-top:1px solid lightgray;    
+        border-bottom: 1px solid lightgray;
+        padding:0.4em;        
+        .title{
+            font-size:1.5em;
+        }
+        .detail{
+            font-size:0.9em;
+        }
+    }
+    #boardContent{
+        border-bottom: 1px solid lightgray;
+        min-height: 40vh;
+        padding:0.5em;
+    }
+    #boardComment{
+        #inputComment{
+            margin:5px;
+            border-radius: 10px;
+            border:1px solid rgb(192, 192, 192);
+            min-height:4.8em;
+            padding:3px 8px;
+            .username{
+
+            }            
+            textarea {
+                font-family: 'Nanum Gothic';
+                width:100%;
+                padding-top:5px;
+                border:none;   
+                resize: none;             
+                &:focus{
+                    outline: none;
+                }                
+                
+            }
+            .controls{
+                display:flex;
+                justify-content: flex-end;
+                font-size:0.9em;
+                color:rgb(179, 179, 179);
+                cursor: pointer;
+            }
+        }
+        #listComment{
+
+        }
+    }
+}
