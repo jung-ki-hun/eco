@@ -43,10 +43,10 @@ const { Q, pool } = require('../../../db/psqldb');
         `;//등록
         const query1 = await pool.query(sql1);//값 저장
         const sql2 = 
-        Q`with su AS;
-        insert into users_level(user_id,level_u) values((
-            select u.user_id from users u where u.email = ${data.id}
-        ),0);
+        Q`insert 
+            into 
+                users_level(user_id,level_u) 
+            values((select u.user_id from users u where u.email = ${data.id}),0);
         `
         const query2 = await pool.query(sql2);
         if (jkh.isEmpty(query1.rows)) {
@@ -66,7 +66,7 @@ const { Q, pool } = require('../../../db/psqldb');
         console.log(err);
         response.state = 0;
         response.msg = err+' ';
-        jkh.webhook.sendMessage('err', 'login sql select err(500)')//log 보내는 역활
+        jkh.webhook('err', 'login sql select err(500)')//log 보내는 역활
         //return res.status(500).json(response); //클라이언트에게 완료 메시지 보내줌
     }
     return res.state(200).join(response);//데이터 전송 !!
@@ -109,7 +109,7 @@ const get_name = async (req, res) => {
 
     }
     catch (err) {
-        jkh.webhook.sendMessage('err', 'login sql select err(500)')//log 보내는 역활
+        jkh.webhook('err', 'login sql select err(500)')//log 보내는 역활
     }
     return res.state(200).join(response);//데이터 전송 !!
 }
@@ -156,7 +156,7 @@ const get_name = async (req, res) => {
               return res.state(200).join(response);//데이터 전송 !!
         }//성공시
     } catch (err) {
-        jkh.webhook.sendMessage('err', 'select err(500)')//log 보내는 역활
+        jkh.webhook('err', 'select err(500)')//log 보내는 역활
     }
     return res.state(200).join(response);//데이터 전송 !!
 }
