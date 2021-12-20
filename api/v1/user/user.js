@@ -141,12 +141,13 @@ const get_name = async (req, res) => {
         }
         const sql1 = Q`
             UPDATE
-            user
-            set pw = ${jkh.cipher(params.pw)}
+                user
+            set 
+                pw = ${jkh.cipher(params.pw)}
             WHERE
-            username = ${params.name}
+                username = ${params.name}
             AND
-            email = ${params.id}
+                email = ${params.id}
             `;//
         const query1 = await pool.query(sql1);//조회 알고리즘
         if (query1.err) {
