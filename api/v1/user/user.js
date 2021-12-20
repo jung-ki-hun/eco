@@ -92,7 +92,12 @@ const get_name = async (req, res) => {
             return res.state(404).json(response);
         }
         const sql1 = Q`
-        select username from users where email = '${params.id}'
+        select 
+            u.username 
+        from 
+            users u
+        where 
+            u.email = '${params.id}'
         `;//
         const query1 = await pool.query(sql1);//조회 알고리즘
         if (jkh.isEmpty(query1.rows)) {
