@@ -4,12 +4,12 @@ const { Q, pool } = require('../../../db/psqldb');
 const passport = require('../function/jkh_passportU');
 
  const index = async (req, res) => {
-  //쿠키에 담아줘야될것
-   // 닉네임
-   // id
-   // jwt
+  // 쿠키에 담아줘야될것
+  // 닉네임
+  // id
+  // jwt
   // 에러처리
-  const { token } = req.user; //req.user은 passport가 보내
+  const { token } = req.user; // req.user은 passport가 보내
   const cookie_d = {
     id : req.user.id,
     jwt : token.token,
@@ -21,7 +21,7 @@ const passport = require('../function/jkh_passportU');
   }
   // 로그인 성공 시
   res.cookie('key',cookie_d);
-  //res.send(`token :   ${token}`); //토근 보내주는 구간
+  //res.send(`token :   ${token}`); // 토근 보내주는 구간
   return res.json({ token });
 }//login 
 const index_kakao = async (req, res) => {
@@ -50,11 +50,11 @@ const del_log = async (req,res) =>{
     msg: 'Successful',
   };
   res.clearCookie('key');//수정필요
-  return res.state(200).join(response);//데이터 전송 !!
+  return res.state(200).join(response);// 데이터 전송 !!
 }
 
 const test = (req,res)=>{
-  //req!!!
+  //req test function
   const u = req.body.id;
   return res.join(u);
 }
@@ -67,9 +67,9 @@ module.exports = (app) => {
 
     router.get('/in/kakao',[passport.authenticate('user.kakao', { session: false })]),//로그인 요청
     router.get('/in/kakao/callbake',[passport.authenticate('user.kakao', { session: false })],index_kakao ),//로그인 요청결과에대한 응답처리
-    router.get('/out/kakao'),//카카오 로그아웃
+    router.get('/out/kakao'),// 카카오 로그아웃
 
-    router.get('/out',del_log),//로그아웃  // 미구현
-    router.get('/test',test)//테스트
+    router.get('/out',del_log),// 로그아웃  // 미구현
+    router.get('/test',test)// 테스트
     });
 }

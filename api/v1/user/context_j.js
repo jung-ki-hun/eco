@@ -70,10 +70,11 @@ const add_borad = async (req, res) => {
                 content: params.content,
                 image: params.image
             }
-            let sql =
-                Q`insert 
-                    into noticej(title,content,createtime,viewcount,comments,imagefilename,editer) 
-                    values(${data.title},${data.content},${data.create_d},1,0,${data.image},${data.name});
+            let sql = Q`
+            insert 
+            into 
+                noticej(title,content,createtime,viewcount,comments,imagefilename,editer) 
+            values(${data.title},${data.content},${data.create_d},1,0,${data.image},${data.name});
         `;
             const query1 = await pool.query(sql);//조회 알고리즘
             //nosqldb.qna.addboard(data);S
@@ -124,24 +125,24 @@ const add_commend = async (req, res) => {
             content: params.content,
             noj_id: params.noj_id
         }
-        let sql1 =
-            Q`select 
+        let sql1 = Q`
+        select 
             * 
-            from 
-                noticej n 
-            where 
-                n.noj_id = ${data.noj_id}`;//해당하는 보드의 값
+        from 
+            noticej n 
+        where 
+            n.noj_id = ${data.noj_id}`;//해당하는 보드의 값
         const query1 = await pool.query(sql1);//조회 알고리즘
 
-        let sql2 = 
-        Q`insert 
+        let sql2 = Q`
+        insert 
         into 
             commandj(c_editer,noj_id,createtime,content) 
         values(${data.name},${data.noj_id},${data.create_d},${data.create_d})`;
         const query2 = await pool.query(sql2);//추가 알고리즘
 
-        let sql3 = 
-        Q`update 
+        let sql3 = Q`
+        update 
             noticej
         set 
             comments = ${query1.row[0].comments + 1}

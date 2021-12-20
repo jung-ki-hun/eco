@@ -58,10 +58,10 @@ const add_borad = async (req, res) => {
                 image: params.image
             }
             let sql =
-                Q`insert 
-        into noticeq(title,content,createtime,viewcount,comments,imagefilename,editer) 
-        values(${data.title},${data.content},${data.create_d},1,0,${data.image},${editer});
-        `;
+            Q`insert 
+            into 
+                noticeq(title,content,createtime,viewcount,comments,imagefilename,editer) 
+            values(${data.title},${data.content},${data.create_d},1,0,${data.image},${editer});`;
             const query1 = await pool.query(sql);//조회 알고리즘
             //nosqldb.qna.addboard(data);
             response.state = 1;
@@ -235,7 +235,7 @@ const find_list_context = async (req, res) => {
         response.msg = 'Successful';
         response.query = query1;
         return res.status(200).json(response); //클라이언트에게 완료 메시지 보내줌
-    }
+    }//삭제하면 어케야되냐...ㅅㅂ
 }
 module.exports = (app) => {
     app.group([passport.authenticate('user.jwt', { session: false })], (router) => {
