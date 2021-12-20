@@ -6,3 +6,11 @@
 2021/09/10 23:49:46 [emerg] 5596#17948: unknown directive "<=" in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:50
 2021/09/10 23:51:11 [warn] 9848#18336: server name "http://127.0.0.1:3000/" has suspicious symbols in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:37
 2021/09/10 23:51:11 [emerg] 9848#18336: unknown directive "<=" in C:\Users\khkh0\Desktop\project_eco\nginx-1.20.1/conf/nginx.conf:50
+2021/12/21 03:46:58 [warn] 51316#42120: "user" is not supported, ignored in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:1
+2021/12/21 03:46:58 [emerg] 51316#42120: unknown directive "<=" in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:48
+2021/12/21 03:47:01 [warn] 10772#28304: "user" is not supported, ignored in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:1
+2021/12/21 03:47:01 [emerg] 10772#28304: unknown directive "<=" in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:48
+2021/12/21 03:47:24 [warn] 46024#17500: "user" is not supported, ignored in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:1
+2021/12/21 03:47:24 [emerg] 46024#17500: unknown directive "<=" in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:48
+2021/12/21 03:47:39 [warn] 47364#53552: "user" is not supported, ignored in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:1
+2021/12/21 03:47:39 [emerg] 47364#53552: unknown directive "<=" in G:\programming_net\project_node_eco\Nginx/conf/nginx.conf:48
