@@ -15,3 +15,4 @@
 115.138.119.101 - - [20/Dec/2021:21:49:44 +0000] "GET /api/v1/user/login/in?id=1@1&password=1234 HTTP/1.1" 200 170 "-" "PostmanRuntime/7.28.4"
 115.138.119.101 - - [20/Dec/2021:21:56:56 +0000] "GET /api/v1/user/login/in?id=1@1&password=1234 HTTP/1.1" 200 347 "-" "PostmanRuntime/7.28.4"
 115.138.119.101 - - [20/Dec/2021:21:57:21 +0000] "POST /api/v1/user/context_q/test HTTP/1.1" 401 - "-" "PostmanRuntime/7.28.4"
+185.180.143.14 - - [21/Dec/2021:10:55:43 +0000] "GET / HTTP/1.1" 404 139 "-" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36"
