@@ -53,8 +53,11 @@ const index = async (id, pw) => {
         else {
             let user_id = query1.rows[0].user_id;//사용자 key 추출
             user = query1.rows[0];
-            const sql2 = 
-            Q`insert into login_log(user_id,log_time) values (${user_id},${jkh_fun.date_time()})`;
+            const sql2 = Q`
+            insert 
+              into 
+                login_log(user_id,log_time) 
+              values (${user_id},${jkh_fun.date_time()})`;
             const query2 = await pool.query(sql2);
             if (query2.errors) {
                 console.log(query2.errors);
@@ -119,12 +122,11 @@ passport.use(
           // 필요시 사용자 정보 조회하는 DB 쿼리 실행
 
           // 사용자 정보 조회 성공
-
           return done(null, jwtPayload);
         } catch (e) {
           // 사용자 인증 체크 중 에러 발생 시
           console.error(e);
-          return done(e);
+          return done(null,{error:true,state:0,message:'internal error'},{});
         }
       },
     ),
