@@ -1,8 +1,0 @@
-104.140.188.18 - - [20/Dec/2021:16:52:50 +0000] "GET / HTTP/1.1" 302 35 "-" "https://gdnplus.com:Gather Analyze Provide."
-104.140.188.18 - - [20/Dec/2021:16:52:51 +0000] "GET /w/index.html HTTP/1.1" 200 7437 "http://180.83.98.139:3000/" "Go http package"
-128.14.209.170 - - [20/Dec/2021:22:08:47 +0000] "GET / HTTP/1.1" 302 35 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36"
-128.14.209.170 - - [20/Dec/2021:22:08:47 +0000] "GET /w/index.html HTTP/1.1" 200 7437 "http://180.83.98.139:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36"
-128.14.209.170 - - [20/Dec/2021:22:08:47 +0000] "GET /fuel HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36"
-209.141.41.193 - - [21/Dec/2021:00:50:06 +0000] "GET / HTTP/1.1" 302 70 "-" "Chrome/54.0 (Windows NT 10.0)"
-209.141.41.193 - - [21/Dec/2021:00:50:06 +0000] "GET /w/index.html HTTP/1.1" 200 7437 "http://180.83.98.139:3000" "Chrome/54.0 (Windows NT 10.0)"
-209.141.41.193 - - [21/Dec/2021:00:50:07 +0000] "GET /favicon.ico HTTP/1.1" 200 - "-" "Chrome/54.0 (Windows NT 10.0)"
