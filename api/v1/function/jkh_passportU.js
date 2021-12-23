@@ -10,8 +10,8 @@ const ExtractJWT = passport_jwt.ExtractJwt;
 
 const JWTStrategy = passport_jwt.Strategy;
 const LocalStrategy = passport_local.Strategy;
-const NaverStrategy = passport_naver.Strategy;
-const KakaoStrategy = passport_kakao.Strategy;
+//const NaverStrategy = passport_naver.Strategy;
+//const KakaoStrategy = passport_kakao.Strategy;
 
 
 //트랜젝션 확보 예정
