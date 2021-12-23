@@ -55,6 +55,10 @@ const config = {
         ERR_DB_EMPTY_DATA:{
             status: 0,//false
             message: "DB data empty"
+        },
+        ERR_UESR_NOT_ACCREDIT:{
+            status: 403,
+            message: "I can't find the user."
         }
     }    
 }
