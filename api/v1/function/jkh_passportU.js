@@ -131,7 +131,18 @@ passport.use(
       },
     ),
   );
+//------------------------------------------//
+//------jwt strategy setting by kihun-------//
+//------------------------------------------//
+const jwtConfig = {
+  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(), // Bearer 인증 방식 사용
+  secretOrKey: jkh_c.app.ckey,
+}
+passport.use(
+  'user.jwt',new JWTStrategy(
 
+  )
+)
 //   if (config.kakao.clientKey && config.kakao.callbackUrl) {
 //         // Kakao Strategy
 //         passport.use(new KakaoStrategy(
