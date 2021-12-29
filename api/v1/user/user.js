@@ -71,7 +71,7 @@ const { Q, pool } = require('../../../db/psqldb');
     }
     return res.state(200).join(response);//데이터 전송 !!
 
-}//회원가입
+}// 회원가입
 const get_name = async (req, res) => {
     const response = {
         state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
