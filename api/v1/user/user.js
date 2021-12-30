@@ -28,7 +28,13 @@ const { Q, pool } = require('../../../db/psqldb');
             response.msg = 'params is empty !!';
             return res.state(404).json(response);
         }
-        const sql0 =Q`select u.uses_id from user u where u.email = ${data.id}`;//중복조회
+        const sql0 =Q`
+        select 
+            u.uses_id 
+        from 
+            user u 
+        where 
+            u.email = ${data.id}`;//중복조회
         const query0 = await pool.query(sql0);
         if(jkh.isEmpty(query0.rows)){
             response.state = 0;
