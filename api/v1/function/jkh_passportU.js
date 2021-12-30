@@ -140,7 +140,22 @@ const jwtConfig = {
 }
 passport.use(
   'user.jwt',new JWTStrategy(
+    jwtConfig,
+    async (jwtPayload, done) => {
+      try {
+        // JWT로 사용자 인증 확인
 
+        // 필요시 사용자 정보 조회하는 DB 쿼리 실행
+
+        // 사용자 정보 조회 성공
+        console.log("jwt"+jwtPayload);
+        return done(null, jwtPayload);
+      } catch (e) {
+        // 사용자 인증 체크 중 에러 발생 시
+        console.error(e);
+        return done(null,{error:true,state:0,message:'internal error'},{});
+      }
+    },
   )
 )
 //   if (config.kakao.clientKey && config.kakao.callbackUrl) {
