@@ -158,6 +158,7 @@ passport.use(
     },
   )
 )
+// 설정하기
 //   if (config.kakao.clientKey && config.kakao.callbackUrl) {
 //         // Kakao Strategy
 //         passport.use(new KakaoStrategy(
