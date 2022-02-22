@@ -46,6 +46,7 @@
     "rotating-file-stream": "^2.1.6",
     "serve-static": "^1.14.1",
     "sql-template-strings": "^2.2.2",
+    "url": "^0.11.0",
     "webhook-discord": "^3.7.8",
     "winson": "^1.0.0"
   }
