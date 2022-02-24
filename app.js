@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const passport = require('passport');
 const cookieParser = require('cookie-parser'); //쿠키제공
 const cors = require('cors');
+const jkh_s = require('./api/v1/function/jkh_security');
 require('./api/v1/function/jkh_group.js');
 const jkh_f = require('./api/v1/function/jkh_function');
 const jkh = require('./api/v1/function/jkh_config');
